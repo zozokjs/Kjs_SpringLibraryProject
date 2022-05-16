@@ -7,7 +7,5 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LibraryStartApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LibraryStartApplication.class, args);
-		
-		
 	}
 }
