@@ -1,1 +1,8 @@
-
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp  #이렇듯 파일 확장자가 명시되어 있으므로 파일 이름만  return하면 된다.
+  
+  mustache:
+    check-template-location: false
