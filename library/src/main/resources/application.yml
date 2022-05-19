@@ -1,4 +1,10 @@
 spring:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+      enabled: true
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -6,3 +12,4 @@ spring:
   
   mustache:
     check-template-location: false
+    

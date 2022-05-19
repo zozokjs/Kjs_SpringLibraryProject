@@ -2,6 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 
-<h1>견본 페이지 입니다.</h1>
+<h1>로그인 견본 페이지 입니다.</h1>
 
 <%@ include file="../layout/footer.jsp"%>

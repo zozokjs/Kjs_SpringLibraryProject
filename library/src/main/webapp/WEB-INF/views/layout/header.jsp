@@ -47,8 +47,8 @@
 				</div>
 				<div class="col-lg-10 col-md-8 text-center text-lg-right text-md-right">
 					<div class="header-top-info">
-						<a href="tel:+23-345-67890">Call Us : <span>+23-345-67890</span></a>
-						<a href="mailto:support@gmail.com" ><i class="fa fa-envelope mr-2"></i><span>support@gmail.com</span></a>
+						<a href="tel:+23-345-67890">Call Us : <span>000-0000-0000</span></a>
+						<a href="mailto:support@gmail.com" ><i class="fa fa-envelope mr-2"></i><span>susport@gmail.com</span></a>
 					</div>
 				</div>
 			</div>
@@ -56,7 +56,7 @@
 	</div>
 	<nav class="navbar navbar-expand-lg  py-4" id="navbar">
 		<div class="container">
-		  <a class="navbar-brand" href="index.html">
+		  <a class="navbar-brand" href="/">
 		  	토르두스 제국<span>도서관</span>
 		  </a>
 
@@ -66,20 +66,48 @@
 	  
 		  <div class="collapse navbar-collapse text-center" id="navbarsExample09">
 			<ul class="navbar-nav ml-auto">
-			  <li class="nav-item active">
-				<a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+<!-- 			  <li class="nav-item active">
+				<a class="nav-link dropdown"  href="index.html">도서관 이용안내 <span class="sr-only">(current)</span></a>
+			  </li> -->
+  			  <li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">도서관 이용안내</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdown03">
+						<li><a class="dropdown-item" href="pricing.html">인사말</a></li>
+						<li><a class="dropdown-item" href="pricing.html">찾아오시는 길</a></li>
+						<li><a class="dropdown-item" href="about.html">가입 안내</a></li>
+						<li><a class="dropdown-item" href="pricing.html">이용시간과 휴관일</a></li>
+						<li><a class="dropdown-item" href="pricing.html">시설이용안내</a></li>
+						<li><a class="dropdown-item" href="pricing.html">대출/반납/예약/연장</a></li>
+						<li><a class="dropdown-item" href="pricing.html">자료 기증</a></li>
+						<li><a class="dropdown-item" href="pricing.html">자료실 좌석 예약</a></li>
+						<li><a class="dropdown-item" href="pricing.html">찾아오시는 길</a></li>
+						<li><a class="dropdown-item" href="pricing.html">도서관 현황</a></li>
+						<li><a class="dropdown-item" href="pricing.html">조직도 및 담당 업무</a></li>
+					</ul>
 			  </li>
-			  <li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
+   			  <li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">자료검색</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
 						<li><a class="dropdown-item" href="about.html">Our company</a></li>
 						<li><a class="dropdown-item" href="pricing.html">Pricing</a></li>
 					</ul>
 			  </li>
-			   <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
-			   <li class="nav-item"><a class="nav-link" href="project.html">Portfolio</a></li>
+  			  <li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">전자도서관</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdown03">
+						<li><a class="dropdown-item" href="about.html">Our company</a></li>
+						<li><a class="dropdown-item" href="pricing.html">Pricing</a></li>
+					</ul>
+			  </li>
+  			  <li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">열린공간</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdown03">
+						<li><a class="dropdown-item" href="about.html">Our company</a></li>
+						<li><a class="dropdown-item" href="pricing.html">Pricing</a></li>
+					</ul>
+			  </li>
 			   <li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
+					<a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">내서재</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown05">
 						<li><a class="dropdown-item" href="blog-grid.html">Blog Grid</a></li>
 						<li><a class="dropdown-item" href="blog-sidebar.html">Blog with Sidebar</a></li>
@@ -91,7 +119,7 @@
 			</ul>
 
 			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
-			  <a href="contact.html" class="btn btn-solid-border btn-round-full">Get a Quote</a>
+			  <a href="/auth/login" class="btn btn-solid-border btn-round-full">로그인</a>
 			</form>
 		  </div>
 		</div>
