@@ -42,7 +42,7 @@
                                 <div class="card-block">
                                     <div class="row m-b-20">
                                         <div class="col-md-12">
-                                            <h3 class="text-center">Sign In</h3>
+                                            <h3 class="text-center">토르두스 제국 도서관</h3>
                                         </div>
                                     </div>
                                     <div class="form-group form-primary">
@@ -71,7 +71,14 @@
                                     </div>
                                     <div class="row m-t-30">
                                         <div class="col-md-12">
-                                            <button type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Sign in</button>
+                                            <button type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">로그인</button>
+                                        </div>
+                                    </div>
+                                    <div class="row m-t-30">
+                                        <div class="col-md-12">
+                                            <button type="button" 
+                                            onclick="location.href='/auth/signup'"
+                                            class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">회원가입</button>
                                         </div>
                                     </div>
                                     <hr/>
@@ -92,7 +99,8 @@
         <!-- end of container-fluid -->
     </section>
 <!-- Required Jquery -->
-    <script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>     <script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js "></script>     <script type="text/javascript" src="assets/js/popper.js/popper.min.js"></script>     <script type="text/javascript" src="assets/js/bootstrap/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>     <script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js "></script>     
+<script type="text/javascript" src="assets/js/popper.js/popper.min.js"></script>     <script type="text/javascript" src="assets/js/bootstrap/js/bootstrap.min.js "></script>
 <!-- waves js -->
 <script src="assets/pages/waves/js/waves.min.js"></script>
 <!-- jquery slimscroll js -->

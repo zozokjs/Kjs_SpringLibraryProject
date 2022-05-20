@@ -119,7 +119,7 @@
 			</ul>
 
 			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
-			  <a href="/auth/login" class="btn btn-solid-border btn-round-full">로그인</a>
+			  <a href="/auth/signin" class="btn btn-solid-border btn-round-full">로그인</a>
 			</form>
 		  </div>
 		</div>
