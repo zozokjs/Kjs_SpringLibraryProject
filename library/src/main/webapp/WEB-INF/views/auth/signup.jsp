@@ -35,8 +35,11 @@
       <link rel="stylesheet" type="text/css" href="/assets/icon/font-awesome/css/font-awesome.min.css">
       <!-- Style.css -->
       <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+      
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   </head>
-
+  <link rel="stylesheet" href="/css_custom/signup.css">
+  
   <body themebg-pattern="theme1">
   <!-- Pre-loader start -->
   <div class="theme-loader">
@@ -110,12 +113,11 @@
                                 
                                 
                                 <!-- 아이디     --------------- -->
-                                <div class="form-group form-primary">
-                                    <input type="text" name="username" class="form-control" required="">
+                                <div id = "div_username" class="form-group form-primary">
+                                    <input type="text"  id ="username" name="username" onkeyup ='findByUsernameR()' class="form-control"  required="">
                                     <span class="form-bar"></span>
                                     <label class="float-label">아이디</label>
                                 </div>
-                                
                                 <!-- 비밀번호     --------------- -->
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -163,7 +165,7 @@
 											<option value="1">Human</option>
 											<option value="2">Elf</option>
 											<option value="3">Dwarf</option>
-											<option value="4">Ork</option>
+											<option value="4">Electron</option>
 											<option value="5">Fairy</option>
 											<option value="6">Furry</option>
 											<option value="0">Other</option>
@@ -235,12 +237,12 @@
                               
                                 <hr/>
                                 <div class="row">
-                                    <div class="col-md-10">
+                                    <div class="col-md-4">
                                         <p class="text-inverse text-left m-b-0">Thank you.</p>
                                         <p class="text-inverse text-left"><a href="index.html"><b>Back to website</b></a></p>
                                     </div>
-                                    <div class="col-md-2">
-                                        <img src="assets/images/auth/Logo-small-bottom.png" alt="small-logo.png">
+                                    <div class="col-md-6">
+                                        <img src="/images/logo-text-small-long.png" alt="small-logo.png">
                                     </div>
                                 </div>
                             </div>
@@ -255,8 +257,17 @@
         <!-- end of container-fluid -->
     </section>
 
+
+<script src="/js_custom/signup.js"></script>
+
+
 <!-- Required Jquery -->
-    <script type="text/javascript" src="/assets/js/jquery/jquery.min.js"></script>     <script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js "></script>     <script type="text/javascript" src="assets/js/popper.js/popper.min.js"></script>     <script type="text/javascript" src="assets/js/bootstrap/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="/assets/js/jquery/jquery.min.js">
+</script>  
+   
+<script type="text/javascript" src="/assets/js/jquery-ui/jquery-ui.min.js "></script>     
+<script type="text/javascript" src="/assets/js/popper.js/popper.min.js"></script>     
+<script type="text/javascript" src="/assets/js/bootstrap/js/bootstrap.min.js "></script>
 <!-- waves js -->
 <script src="/assets/pages/waves/js/waves.min.js"></script>
 <!-- jquery slimscroll js -->
@@ -265,10 +276,12 @@
     <script type="text/javascript" src="/assets/js/SmoothScroll.js"></script>     
     <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js "></script>
 <!-- i18next.min.js -->
+<!--  
 <script type="text/javascript" src="bower_components/i18next/js/i18next.min.js"></script>
 <script type="text/javascript" src="bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js"></script>
 <script type="text/javascript" src="bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js"></script>
 <script type="text/javascript" src="bower_components/jquery-i18next/js/jquery-i18next.min.js"></script>
+-->
 <script type="text/javascript" src="/assets/js/common-pages.js"></script>
 </body>
 

@@ -37,6 +37,7 @@ public class AuthController {
 		return "auth/signup";
 	}
 	
+	//회원가입 처리
 	@PostMapping("/auth/signup")
 	public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) {
 		

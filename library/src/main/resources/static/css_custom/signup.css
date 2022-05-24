@@ -1,0 +1,23 @@
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  border: 1px solid black;
+}
+
+input.valid {
+  border: 1px solid green;
+}
+
+input.invalid {
+  border: 1px solid red;
+}
+
+input.invalid + .error-message {
+  display: initial;
+}
+
+.error-message {
+  display: none;
+}
