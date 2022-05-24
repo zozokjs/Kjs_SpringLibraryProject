@@ -120,14 +120,14 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group form-primary">
-                                            <input type="password" name="password" class="form-control" required="">
+                                            <input type="password" name="password" class="form-control" >
                                             <span class="form-bar"></span>
                                             <label class="float-label">비밀번호</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group form-primary">
-                                            <input type="password" name="confirm-password" class="form-control" required="">
+                                            <input type="password" name="confirm-password" class="form-control" >
                                             <span class="form-bar"></span>
                                             <label class="float-label">비밀번호 확인</label>
                                         </div>

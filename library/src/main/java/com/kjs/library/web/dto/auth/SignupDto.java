@@ -1,21 +1,27 @@
 package com.kjs.library.web.dto.auth;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import com.kjs.library.domain.user.User;
 
 import lombok.Data;
 
 @Data
 public class SignupDto {
-
 	
 	//아이디(유저네임), 비번, 이메일, 이름, 종족, 국가, 직업, 생년월일, 주소, 연락처
-	
+	@Size(min = 2, max = 20)
+	@NotBlank
 	private String username;
 	
+	@NotBlank
 	private String password;
 	
+	@NotBlank
 	private String email;
 	
+	@NotBlank
 	private String name;
 	
 	private String species; 
@@ -28,6 +34,7 @@ public class SignupDto {
 	
 	private String address;
 	
+	@NotBlank
 	private String phoneNumber;
 	
 	

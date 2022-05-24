@@ -1,8 +1,11 @@
 package com.kjs.library.web;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -35,7 +38,8 @@ public class AuthController {
 	}
 	
 	@PostMapping("/auth/signup")
-	public String signup(SignupDto signupDto) {
+	public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) {
+		
 		
 		log.info("--------------------------");
 		log.info(signupDto.toString());
