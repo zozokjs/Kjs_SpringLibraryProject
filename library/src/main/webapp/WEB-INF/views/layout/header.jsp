@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-
+<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal" var ="principal"/>
+	<!-- isAuthenticated()로 세션 접근 가능
+	property="principal"는 정해진 키워드.
+	principal.user.~로 찾을 수 있음	
+	 -->
+</sec:authorize>
 
 <!doctype html>
 <html lang="en">
@@ -49,10 +57,20 @@
 						<a href="https://github.com/themefisher/" target="_blank"><i class="ti-github"></i></a>
 					</div>
 				</div>
-				<div class="col-lg-10 col-md-8 text-center text-lg-right text-md-right">
+				<div style="font-family: sans-serif;" class="col-lg-10 col-md-8 text-center text-lg-right text-md-right">
 					<div class="header-top-info">
-						<a href="tel:+23-345-67890">Call Us : <span>000-0000-0000</span></a>
-						<a href="mailto:support@gmail.com" ><i class="fa fa-envelope mr-2"></i><span>susport@gmail.com</span></a>
+						<a href="/" ><span>홈으로</span></a>		
+						<!-- 로그인 한 상태라면 사용자 이름 표시되어야 함 -->		
+						<c:choose>
+							<c:when test ="${principal.user eq null}">
+								<a href="/auth/signin" ><span>로그인</span></a>	
+							</c:when>
+							<c:otherwise>
+								<a href="" ><span>	${principal.user.username}님</span></a>	
+								<a href="/logout" ><span>로그아웃</span></a>		
+							</c:otherwise>
+						</c:choose>
+						<a href="" ><span>내서재</span></a>						
 					</div>
 				</div>
 			</div>

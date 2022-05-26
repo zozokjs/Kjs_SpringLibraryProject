@@ -102,7 +102,7 @@
                 <div class="col-sm-12">
                 
                 	<!-- 회원가입 폼 Start -->
-                    <form action="/auth/signup" method="post" class="md-float-material form-material">
+                    <form action="/auth/signup" method="post" onsubmit = "return validationAll()" class="md-float-material form-material">
                         <div class="auth-box card">
                             <div class="card-block">
                                 <div class="row m-b-20">
@@ -122,14 +122,14 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group form-primary">
-                                            <input type="password" name="password" class="form-control" >
+                                            <input type="password"  id ="password"  name="password" class="form-control" >
                                             <span class="form-bar"></span>
                                             <label class="float-label">비밀번호</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group form-primary">
-                                            <input type="password" name="confirm-password" class="form-control" >
+                                            <input type="password" id ="confirm-password"  name="confirm-password" class="form-control" >
                                             <span class="form-bar"></span>
                                             <label class="float-label">비밀번호 확인</label>
                                         </div>
@@ -145,7 +145,7 @@
                                 
                                 <!-- 이름     --------------- -->
                                 <div class="form-group form-primary">
-                                    <input type="text" name="name" class="form-control" required="">
+                                    <input type="text"  name="name" class="form-control" required="">
                                     <span class="form-bar"></span>
                                     <label class="float-label">이름</label>
                                 </div>

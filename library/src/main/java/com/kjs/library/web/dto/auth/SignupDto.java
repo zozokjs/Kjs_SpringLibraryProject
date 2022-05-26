@@ -11,10 +11,11 @@ import lombok.Data;
 public class SignupDto {
 	
 	//아이디(유저네임), 비번, 이메일, 이름, 종족, 국가, 직업, 생년월일, 주소, 연락처
-	@Size(min = 2, max = 20)
+	@Size(min = 4,  max = 20)
 	@NotBlank
 	private String username;
 	
+	@Size(min = 4)
 	@NotBlank
 	private String password;
 	

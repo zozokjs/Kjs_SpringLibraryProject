@@ -31,28 +31,12 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
 		
 		http.authorizeRequests()
 			.antMatchers("/user/**").authenticated() //이 주소는 인증 필요
-			.anyRequest().permitAll(); //그 외의 요청은 허용
-		/*
-		http.authorizeRequests()
-		.antMatchers("/","/user/**", "/js/**", "/css/**", "/images/**", "/plugins/**", "/scss/**").permitAll()
-		.anyRequest().authenticated()
-		
-		.and()
-		.formLogin()
-		.loginPage("/auth/signin2");*/
-		
-		
-		/*
-		http.authorizeRequests()
-				.antMatchers("/","/user/**").authenticated() //이 주소는 인증 필요
-				.anyRequest().permitAll() //그 외의 요청은 허용
-				.and()
-				.formLogin()
-				.loginPage("/auth/signin")
-				.defaultSuccessUrl("/");
-				//.loginProcessingUrl("/"); // loginPage()에 기입된 주소에서 인증되었다면 이 주소로 향하라.
-			*/	 
-		
+			.anyRequest().permitAll() //그 외의 요청은 허용
+			.and()
+			.formLogin()
+			.loginPage("/auth/signin") // //antMatcher()에 적힌 주소로 접근한다면 이 주소로 향해라  GET요청임
+			.loginProcessingUrl("/auth/signin") //이 주소로 POST 방식 요청하면 시큐리티가 로그인을 낚아채서 진행해줌.
+			.defaultSuccessUrl("/");  //loginPage()에 적힌 주소에서 인증 되었다면 그 다음 이 주소로 향해라.
 	}
 	
 	
