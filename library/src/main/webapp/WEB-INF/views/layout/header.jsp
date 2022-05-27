@@ -23,17 +23,17 @@
   <title>토르두스 제국 도서관</title>
 
   <!-- bootstrap.min css -->
-  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
   <!-- Icon Font Css -->
-  <link rel="stylesheet" href="plugins/themify/css/themify-icons.css">
-  <link rel="stylesheet" href="plugins/fontawesome/css/all.css">
-  <link rel="stylesheet" href="plugins/magnific-popup/dist/magnific-popup.css">
+  <link rel="stylesheet" href="/plugins/themify/css/themify-icons.css">
+  <link rel="stylesheet" href="/plugins/fontawesome/css/all.css">
+  <link rel="stylesheet" href="/plugins/magnific-popup/dist/magnific-popup.css">
   <!-- Owl Carousel CSS -->
-  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
-  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+  <link rel="stylesheet" href="/plugins/slick-carousel/slick/slick.css">
+  <link rel="stylesheet" href="/plugins/slick-carousel/slick/slick-theme.css">
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
   
   
   
@@ -94,7 +94,7 @@
   			  <li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">도서관 이용안내</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
-						<li><a class="dropdown-item" href="pricing.html">인사말</a></li>
+						<li><a class="dropdown-item" href="pricing.html">게시판</a></li>
 						<li><a class="dropdown-item" href="pricing.html">찾아오시는 길</a></li>
 						<li><a class="dropdown-item" href="about.html">가입 안내</a></li>
 						<li><a class="dropdown-item" href="pricing.html">이용시간과 휴관일</a></li>
@@ -107,10 +107,14 @@
 						<li><a class="dropdown-item" href="pricing.html">조직도 및 담당 업무</a></li>
 					</ul>
 			  </li>
+			  
+			  <!-- 샘플 -->
+		   		<li class="nav-item"><a class="nav-link" href="/board/boardSample2">Sample</a></li>
+			  <!-- 자료 검색 -->
    			  <li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">자료검색</a>
+					<a class="nav-link dropdown-toggle" href="/board/boardSample" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">자료검색</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
-						<li><a class="dropdown-item" href="about.html">Our company</a></li>
+						<li><a class="dropdown-item" href="/board/boardSample">Our company</a></li>
 						<li><a class="dropdown-item" href="pricing.html">Pricing</a></li>
 					</ul>
 			  </li>

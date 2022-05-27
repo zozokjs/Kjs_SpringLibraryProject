@@ -6,12 +6,14 @@
 <!-- Slider Start -->
 <section class="slider">
 	<div class="container">
-		<div class="row">
+		<div class="row-custom">
 			<div class="col-lg-9 col-md-10">
 				<div class="block">
 					<span class="d-block mb-3 text-white text-capitalize">Prepare for new future</span>
-					<h1 class="animated fadeInUp mb-5">Our work is <br>presentation of our <br>capabilities.</h1>
-					<a href="#" target="_blank" class="btn btn-main animated fadeInUp btn-round-full" >Get started<i class="btn-icon fa fa-angle-right ml-2"></i></a>
+					<h1 class="animated fadeInUp mb-5">책과 함께하는 즐거움<br>토르두스 제국 도서관 </h1>
+					<form action="#" class="sub-form">
+						<input type="text" class="form-control mb-3" placeholder="검색어를 입력하세요"><a href="#" class="btn btn-main btn-small">subscribe</a>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -19,91 +21,90 @@
 </section>
 <!-- Section Intro Start -->
 
-<section class="section intro">
-	<div class="container">
 
-		<div class="row justify-content-center">
-			<div class="col-lg-4 col-md-6 col-12">
-				<div class="intro-item mb-5 mb-lg-0"> 
-					<i class="ti-desktop color-one"></i>
-					<h4 class="mt-4 mb-3">Modern & Responsive design</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, ducimus.</p>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="intro-item mb-5 mb-lg-0">
-					<i class="ti-medall color-one"></i> 
-					<h4 class="mt-4 mb-3">Awarded licensed company</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, ducimus.</p>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="intro-item">
-					<i class="ti-layers-alt color-one"></i>
-					<h4 class="mt-4 mb-3">Build your website Professionally</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, ducimus.</p>
-				</div>
-			</div> 
-		</div>
-	</div>
-</section>
-
-<!-- Section Intro END -->
-<!--  Section Services Start -->
 <section class="section service border-top">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-lg-4 col-md-6 col-sm-6">
 				<div class="service-item mb-5">
 					<i class="ti-desktop"></i>
-					<h4 class="mb-3">Web development.</h4>
-					<p>A digital agency isn't here to replace your internal team, we're here to partner</p>
+					<h3 class="mb-3">도서대출예약</h3>
+					<p>                          -                                 </p>
 				</div>
 			</div>
 
 			<div class="col-lg-4 col-md-6 col-sm-6">
 				<div class="service-item mb-5">
 					<i class="ti-layers"></i>
-					<h4 class="mb-3">Interface Design.</h4>
-					<p>A digital agency isn't here to replace your internal team, we're here to partner</p>
+					<h3 class="mb-3">도서반납연기</h3>
+					<p>                          -                                 </p>
 				</div>
 			</div>
 
 			<div class="col-lg-4 col-md-6 col-sm-6">
 				<div class="service-item mb-5">
 					<i class="ti-bar-chart"></i>
-					<h4 class="mb-3">Business Consulting.</h4>
-					<p>A digital agency isn't here to replace your internal team, we're here to partner</p>
+					<h3 class="mb-3">희망도서신청</h3>
+					<p>                          -                                 </p>
 				</div>
 			</div>
-
+<hr>
 			<div class="col-lg-4 col-md-6 col-sm-6">
 				<div class="service-item mb-5 mb-lg-0">
 					<i class="ti-vector"></i>
-					<h4 class="mb-3">Branding.</h4>
-					<p>A digital agency isn't here to replace your internal team, we're here to partner</p>
+					<h3 class="mb-3">자료실 좌석예약</h3>
+					<p>                          -                                 </p>
 				</div>
 			</div>
 
 			<div class="col-lg-4 col-md-6 col-sm-6">
 				<div class="service-item mb-5 mb-lg-0">
 					<i class="ti-android"></i>
-					<h4 class="mb-3">App development.</h4>
-					<p>A digital agency isn't here to replace your internal team, we're here to partner</p>
+					<h3 class="mb-3">전자도서관</h3>
+					<p>                          -                                 </p>
 				</div>
 			</div>
 
 			<div class="col-lg-4 col-md-6 col-sm-6">
 				<div class="service-item mb-5 mb-lg-0">
 					<i class="ti-pencil-alt"></i>
-					<h4 class="mb-3">Content creation.</h4>
-					<p>A digital agency isn't here to replace your internal team, we're here to partner</p>
+					<h3 class="mb-3">책값반환제</h3>
+					<p>                          -                                 </p>
 				</div>
 			</div>
+			
 		</div>
 	</div>
 </section>
-<!--  Section Services End -->
+
+
+<section class="section intro">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-4 col-md-6 col-12">
+				<div class="intro-item mb-5 mb-lg-0"> 
+					<i class="ti-desktop color-one"></i>
+					<h4 class="mt-4 mb-3">지식의 교류</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, ducimus.</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="intro-item mb-5 mb-lg-0">
+					<i class="ti-medall color-one"></i> 
+					<h4 class="mt-4 mb-3">문화의 발전</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, ducimus.</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="intro-item">
+					<i class="ti-layers-alt color-one"></i>
+					<h4 class="mt-4 mb-3">모든 지성체를 위한 화합</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, ducimus.</p>
+				</div>
+			</div> 
+		</div>
+	</div>
+</section>
 
 <section class="section latest-blog bg-2">
 	<div class="container">
@@ -173,5 +174,5 @@
 		</div>
 	</div>
 </section>
-
+</div>
 <%@ include file="../layout/footer.jsp"%>
