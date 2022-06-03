@@ -32,7 +32,7 @@
             <div class="col-lg-4-c col-lg-4">
                 <div class="sidebar-wrap">
 					<div class="sidebar-widget latest-post card border-0 p-4 mb-3">
-						<h5>Board Sample</h5>
+						<h5>Latest Posts</h5>
 				        <div class="media border-bottom py-3">
 				            <div class="media-body">
 				                <h6 class="my-2"><a href="#"> 2depth 메뉴 1 </a></h6>

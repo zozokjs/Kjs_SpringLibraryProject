@@ -38,10 +38,9 @@ spring:
 # hibernate.format_sql
 # true >  콘솔 창에 sql 실행 결과가 보기 좋게 정렬되어 표시되도록 한다
   
-  
-  
-  
   mustache:
     check-template-location: false
-    
-    
+
+file:
+  path:
+    upload_imageTitle: D:/workspace_Spring_Library/upload_imageTitle/

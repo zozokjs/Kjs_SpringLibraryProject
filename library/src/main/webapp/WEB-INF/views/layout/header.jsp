@@ -34,10 +34,11 @@
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="/css/style.css">
-  
-  
-  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+	<!-- other TEMPLATE -->
+
 
 </head>
 
@@ -109,12 +110,12 @@
 			  </li>
 			  
 			  <!-- 샘플 -->
-		   		<li class="nav-item"><a class="nav-link" href="/board/boardSample2">Sample</a></li>
+		   		<li class="nav-item"><a class="nav-link" href="/board/board_bookRegistration">Sample</a></li>
 			  <!-- 자료 검색 -->
    			  <li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="/board/boardSample" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">자료검색</a>
+					<a class="nav-link dropdown-toggle" href="/board/boardSample2" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">자료검색</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
-						<li><a class="dropdown-item" href="/board/boardSample">Our company</a></li>
+						<li><a class="dropdown-item" href="/board/boardSample2">Our company</a></li>
 						<li><a class="dropdown-item" href="pricing.html">Pricing</a></li>
 					</ul>
 			  </li>

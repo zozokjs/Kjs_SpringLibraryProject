@@ -273,8 +273,8 @@
 <!-- jquery slimscroll js -->
 <script type="text/javascript" src="/assets/js/jquery-slimscroll/jquery.slimscroll.js "></script>
 <!-- modernizr js -->
-    <script type="text/javascript" src="/assets/js/SmoothScroll.js"></script>     
-    <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js "></script>
+<script type="text/javascript" src="/assets/js/SmoothScroll.js"></script>     
+<script src="/assets/js/jquery.mCustomScrollbar.concat.min.js "></script>
 <!-- i18next.min.js -->
 <!--  
 <script type="text/javascript" src="bower_components/i18next/js/i18next.min.js"></script>

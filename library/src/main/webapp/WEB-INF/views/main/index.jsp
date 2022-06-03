@@ -21,14 +21,14 @@
 </section>
 <!-- Section Intro Start -->
 
-
+<!-- 도서대출예약 등 -->
 <section class="section service border-top">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-lg-4 col-md-6 col-sm-6">
 				<div class="service-item mb-5">
 					<i class="ti-desktop"></i>
-					<h3 class="mb-3">도서대출예약</h3>
+					<h3 class="mb-3">도서 등록</h3>
 					<p>                          -                                 </p>
 				</div>
 			</div>
