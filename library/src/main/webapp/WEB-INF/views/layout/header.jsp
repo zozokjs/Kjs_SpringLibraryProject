@@ -53,9 +53,9 @@
 			<div class="row justify-content-between align-items-center">
 				<div class="col-lg-2 col-md-4">
 					<div class="header-top-socials text-center text-lg-left text-md-left">
-						<a href="https://www.facebook.com/themefisher" target="_blank"><i class="ti-facebook"></i></a>
-						<a href="https://twitter.com/themefisher" target="_blank"><i class="ti-twitter"></i></a>
-						<a href="https://github.com/themefisher/" target="_blank"><i class="ti-github"></i></a>
+		  <a class="navbar-brand" href="/">
+		  	토르두스 국립<span>도서관</span>
+		  </a>
 					</div>
 				</div>
 				<div style="font-family: sans-serif;" class="col-lg-10 col-md-8 text-center text-lg-right text-md-right">
@@ -79,16 +79,14 @@
 	</div>
 	<nav class="navbar navbar-expand-lg  py-4" id="navbar">
 		<div class="container">
-		  <a class="navbar-brand" href="/">
-		  	토르두스 국립<span>도서관</span>
-		  </a>
+
 
 		  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="fa fa-bars"></span>
 		  </button>
 	  
 		  <div class="collapse navbar-collapse text-center" id="navbarsExample09">
-			<ul class="navbar-nav ml-auto">
+			<ul class="navbar-nav m-auto">
 <!-- 			  <li class="nav-item active">
 				<a class="nav-link dropdown"  href="index.html">도서관 이용안내 <span class="sr-only">(current)</span></a>
 			  </li> -->
@@ -144,10 +142,6 @@
 			  </li>
 			   <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 			</ul>
-
-			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
-			  <a href="/auth/signin" class="btn btn-solid-border btn-round-full">로그인</a>
-			</form>
 		  </div>
 		</div>
 	</nav>
