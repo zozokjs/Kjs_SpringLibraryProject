@@ -26,17 +26,18 @@ public class BookController {
 		
 		//로그인 검사 통과 못하면 업로드 불가능함.
 		if(principalDetails == null) {
-			System.out.println("로그인 안 됐음");
-			return Script.back("반드시 로그인 되어야 합니다.");
+			System.out.println("로그인 안 됐음 -도서 등록 안 됨------------------------------------");
+			//경고 표시 나오도록 추가해야 함
+			return "main/index";
 			
 		}else {
-			System.out.println("로그인 됐음");
+			//System.out.println("로그인 됐음");
 			bookService.사진업로드(bookRegistrationDto, principalDetails);
 
+			return "main/index";
+			
 		}
 		
-		
-		return "main/index";
 	}
 
 

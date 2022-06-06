@@ -173,4 +173,6 @@
     </div>
 	</section>
 </div>
+<script src="/js/board_bookRegistration.js"></script>
+
 <%@ include file="../layout/footer.jsp"%>

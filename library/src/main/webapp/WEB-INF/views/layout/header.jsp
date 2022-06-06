@@ -20,7 +20,7 @@
   
   <meta name="author" content="themefisher.com">
 
-  <title>토르두스 제국 도서관</title>
+  <title>토르두스 국립도서관</title>
 
   <!-- bootstrap.min css -->
   <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
@@ -80,7 +80,7 @@
 	<nav class="navbar navbar-expand-lg  py-4" id="navbar">
 		<div class="container">
 		  <a class="navbar-brand" href="/">
-		  	토르두스 제국<span>도서관</span>
+		  	토르두스 국립<span>도서관</span>
 		  </a>
 
 		  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">

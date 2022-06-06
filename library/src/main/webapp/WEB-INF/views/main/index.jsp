@@ -10,7 +10,7 @@
 			<div class="col-lg-9 col-md-10">
 				<div class="block">
 					<span class="d-block mb-3 text-white text-capitalize">Prepare for new future</span>
-					<h1 class="animated fadeInUp mb-5">책과 함께하는 즐거움<br>토르두스 제국 도서관 </h1>
+					<h1 class="animated fadeInUp mb-5">책과 함께하는 즐거움<br>토르두스 국립도서관 </h1>
 					<form action="#" class="sub-form">
 						<input type="text" class="form-control mb-3" placeholder="검색어를 입력하세요"><a href="#" class="btn btn-main btn-small">subscribe</a>
 					</form>
@@ -78,40 +78,13 @@
 </section>
 
 
-<section class="section intro">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-lg-4 col-md-6 col-12">
-				<div class="intro-item mb-5 mb-lg-0"> 
-					<i class="ti-desktop color-one"></i>
-					<h4 class="mt-4 mb-3">지식의 교류</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, ducimus.</p>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="intro-item mb-5 mb-lg-0">
-					<i class="ti-medall color-one"></i> 
-					<h4 class="mt-4 mb-3">문화의 발전</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, ducimus.</p>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="intro-item">
-					<i class="ti-layers-alt color-one"></i>
-					<h4 class="mt-4 mb-3">모든 지성체를 위한 화합</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, ducimus.</p>
-				</div>
-			</div> 
-		</div>
-	</div>
-</section>
-
+<!-- 신착도서 -->
 <section class="section latest-blog bg-2">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-lg-7 text-center">
 				<div class="section-title">
-					<span class="h6 text-color">Latest News</span>
+					<span class="h6 text-color">신착 도서</span>
 					<h2 class="mt-3 content-title text-white">Latest articles to enrich knowledge</h2>
 				</div>
 			</div>
@@ -174,5 +147,35 @@
 		</div>
 	</div>
 </section>
+
+
+<section class="section intro">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-4 col-md-6 col-12">
+				<div class="intro-item mb-5 mb-lg-0"> 
+					<i class="ti-desktop color-one"></i>
+					<h4 class="mt-4 mb-3">지식의 교류</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, ducimus.</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="intro-item mb-5 mb-lg-0">
+					<i class="ti-medall color-one"></i> 
+					<h4 class="mt-4 mb-3">문화의 발전</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, ducimus.</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="intro-item">
+					<i class="ti-layers-alt color-one"></i>
+					<h4 class="mt-4 mb-3">모든 지성체를 위한 화합</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, ducimus.</p>
+				</div>
+			</div> 
+		</div>
+	</div>
+</section>
+
 </div>
 <%@ include file="../layout/footer.jsp"%>

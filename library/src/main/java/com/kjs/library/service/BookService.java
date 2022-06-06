@@ -45,6 +45,7 @@ public class BookService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		//로그인 검사 필요함 - jsp 페이지 접근할 때, 여기서 save 할 때
 		Book book = bookRegistrationDto.toEntity(imageFileName, principalDetails.getUser());
 		

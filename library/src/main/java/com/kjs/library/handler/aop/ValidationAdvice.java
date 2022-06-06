@@ -7,12 +7,17 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.hibernate.internal.build.AllowSysOut;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
+import com.kjs.library.config.auth.PrincipalDetails;
 import com.kjs.library.handler.aop.ex.CustomValidationException;
-import com.kjs.library.web.dto.CMRespDto;
+import com.kjs.library.web.dto.book.BookRegistrationDto;
 
 @Component
 @Aspect // aop처리 되는 핸들러 명시
@@ -59,6 +64,19 @@ public class ValidationAdvice {
 				} //end of if
 				
 			}
+			
+			/*
+			else if(arg instanceof BookRegistrationDto) {
+				//로그인 검사해서 로그인 안 되어 있으면 에러 리턴해야 하는데
+				//System.out.println("advice-------------------");
+				
+				//System.out.println("check > "+SecurityContextHolder.getContext().getAuthentication().isAuthenticated());
+				
+				//로그인 안 했음. false
+				//System.out.println("check2 > "+SecurityContextHolder.getContext().getAuthentication().getAuthorities().isEmpty());
+				
+				
+			}*/
 		}
 	
 		return proceedingJoinPoint.proceed(); 
