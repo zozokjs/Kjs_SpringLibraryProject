@@ -50,7 +50,7 @@
 	                            
 		                            <!-- 아이디 -->
 		                            <div class="form-group form-primary">
-		                                <input type="text" name="username" class="form-control" required="required">
+		                                <input type="text" name="username" class="form-control" required="required">zozo
 		                                <span class="form-bar"></span>
 		                                <label class="float-label">ID</label>
 		                            </div>

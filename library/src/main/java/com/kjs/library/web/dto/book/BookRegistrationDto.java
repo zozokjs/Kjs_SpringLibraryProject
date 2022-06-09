@@ -12,6 +12,7 @@ public class BookRegistrationDto {
 
 	private MultipartFile file;
 	
+	//isbn 번호
 	private Integer isbn;
 	
 	//isbnSet 번호
@@ -47,6 +48,19 @@ public class BookRegistrationDto {
 	//발행처
 	private String publish;
 	
+	//권 수
+	private String volume;
+	
+	//내용
+	private String contents; 
+	
+	//십진분류표 000, 100, 200...
+	private String kdcTable;
+	
+	//청구기호 김15소, 박211가
+	private String kdcCallSign;
+	
+	
 	public Book toEntity(String imageUri, User user) {
 		return Book.builder()
 				.isbn(isbn)
@@ -62,6 +76,10 @@ public class BookRegistrationDto {
 				.deliveryState(deliveryState)
 				.publish(publish)
 				.user(user)
+				.volume(volume)
+				.contents(contents)
+				.kdcTable(kdcTable)
+				.kdcCallSign(kdcCallSign)
 				.build();
 				
 				

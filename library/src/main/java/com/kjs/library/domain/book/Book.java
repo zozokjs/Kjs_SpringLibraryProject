@@ -66,7 +66,18 @@ public class Book {
 	//발행처
 	private String publish;
 	
+	//권수
+	private String volume;
 	
+	//내용
+	private String contents;
+	
+	//십진분류표 000, 100, 200...
+	private String kdcTable;
+	
+	//청구기호 김15소, 박211가...
+	private String kdcCallSign;
+
 	//등록한 사람
 	/* 1명의 유저는 여러 개의 책을 등록할 수 있음.
 	 *  1권의 책은 1명이 등록할 수 있음

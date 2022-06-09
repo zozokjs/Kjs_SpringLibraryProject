@@ -36,7 +36,7 @@ public class ValidationAdvice {
 			
 			//매개변수가 BindingResult 타입일 때 걸러내서
 			if(arg instanceof BindingResult) {
-				System.out.println("유효성 검사 결과가 표시됩니다.");
+				//System.out.println("유효성 검사 결과가 표시됩니다.");
 				
 				//걸러낸 것을 BindingResult 타입으로 캐스팅하고
 				BindingResult bindingResult = (BindingResult) arg;
