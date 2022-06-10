@@ -38,13 +38,15 @@
 									<div class="col-lg-4 col-md-6 col-sm-6">
 										<div class="team-item-wrap mb-5 mb-lg-0">
 											<div class="portflio-item position-relative">
-												<a href ="#" class="popup-gallery">
+											
+												<!-- 수정 페이지로 이동 -->
+												<a href ="/saseo/${booked.id}/bookDetail" class="popup-gallery">
 												
 													<!--  책 이미지 -->
 													<img src="/upload/${booked.titleImageUrl}" alt="" class="img-fluid w-100">
 													<i class="ti-plus overlay-item"></i>
 													<div class="portfolio-item-content">
-														<h3 class="mb-0 text-white">수정</h3>
+														<h3 class="mb-0 text-white">상세정보</h3>
 													</div>
 												</a>
 											</div>

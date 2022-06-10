@@ -25,12 +25,12 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											ISBN<input class="form-control" type="text" name="isbn" id="isbn" placeholder="ISBN">
+											ISBN<input type="text"   id="isbn"  name="isbn"  class="form-control"  placeholder="ISBN">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											ISBN SET<input class="form-control" type="text" name="isbnSet" id="isbnSet" placeholder="ISBN SET">
+											ISBN SET<input type="text"  id="isbnSet"  name="isbnSet" class="form-control"   placeholder="ISBN SET">
 										</div>
 									</div>
 								</div>
@@ -38,12 +38,12 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											제목<input class="form-control" type="text" name="title"	id="title" placeholder="제목">
+											제목<input type="text"  	id="title"  name="title" class="form-control"   placeholder="제목">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											저자<input class="form-control" type="text" name="writer"id="writer" placeholder="저자">
+											저자<input type="text"  id="writer"  name="writer" class="form-control"   placeholder="저자">
 										</div>
 									</div>
 								</div>
@@ -53,12 +53,12 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											발행처<input class="form-control" type="text" name="publish"id="publish" placeholder="발행처">
+											발행처<input type="text"  id="publish" name="publish" class="form-control"   placeholder="발행처">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											페이지<input class="form-control" type="text" name="page"id="page" placeholder="페이지">
+											페이지<input type="text"   id="page" name="page" class="form-control"  placeholder="페이지">
 										</div>
 									</div>
 								</div>
@@ -67,12 +67,12 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											크기<input class="form-control" type="text" name="size"	id="size" placeholder="크기">
+											크기<input type="text"   id="size"  name="size" class="form-control" 	 placeholder="크기">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											언어<input class="form-control" type="text" name="language"id="language" placeholder="언어">
+											언어<input type="text"  id="language" name="language" class="form-control"   placeholder="언어">
 										</div>
 									</div>
 								</div>
@@ -80,12 +80,12 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											가격<input class="form-control" type="text" name="price"	id="price" placeholder="가격">
+											가격<input type="text"  	id="price"  name="price" class="form-control"   placeholder="가격">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											발행일<input class="form-control" type="text" name="publishDate"id="publishDate" placeholder="발행일">
+											발행일<input type="text"  id="publishDate" name="publishDate" class="form-control"    placeholder="발행일">
 										</div>
 									</div>
 								</div>
@@ -124,7 +124,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												권 수<input class="form-control" type="text" name="volume"	id="volume" placeholder="권수">
+												권 수<input type="text"   	id="volume" name="volume"  class="form-control" placeholder="권수">
 											</div>
 										</div>
 									</div>
@@ -151,13 +151,13 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												청구기호<input class="form-control" type="text" name="kdcCallSign" id="kdcCallSign" placeholder="청구기호">
+												청구기호<input type="text"  id="kdcCallSign"  name="kdcCallSign" class="form-control"  placeholder="청구기호">
 											</div>
 										</div>
 									</div>
 									
 									줄거리
-									<textarea class="form-control mb-3" name="contents" id="contents" cols="30" rows="5" placeholder="줄거리"></textarea>
+									<textarea  id="contents"  name="contents" class="form-control mb-3"  cols="30" rows="5" placeholder="줄거리"></textarea>
 									
 									
 								</div>

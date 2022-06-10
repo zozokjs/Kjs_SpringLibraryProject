@@ -66,6 +66,9 @@ public class Book {
 	//발행처
 	private String publish;
 	
+	//크기 128*188*20mm...
+	private String size;
+	
 	//권수
 	private String volume;
 	
@@ -89,9 +92,10 @@ public class Book {
 	@JoinColumn(name = "userId")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
-	
-	
 
+	//책 정보 수정한 사람. 일단 String으로 저장함...
+	private String editedUser;
+	
 	//등록 날짜
 	private LocalDateTime createDate;
 

@@ -44,3 +44,4 @@ spring:
 file:
   path:
     upload_imageTitle: D:/workspace_Spring_Library/upload_imageTitle/
+    upload_imageProfile: D:/workspace_Spring_Library/upload_imageProfile/

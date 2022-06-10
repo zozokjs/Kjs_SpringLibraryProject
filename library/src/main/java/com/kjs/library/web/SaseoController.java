@@ -7,12 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.kjs.library.config.auth.PrincipalDetails;
 import com.kjs.library.domain.book.Book;
 import com.kjs.library.handler.aop.ex.CustomValidationException;
-import com.kjs.library.service.BookService;
 import com.kjs.library.service.SaseoService;
 import com.kjs.library.web.dto.book.BookRegistrationDto;
 
@@ -31,7 +31,7 @@ public class SaseoController {
 	
 	//도서 관리 화면으로 이동
 	@GetMapping("/saseo/bookManage")
-	public String bookManage(Model model) {
+	public String bookManageForm(Model model) {
 		
 		//신규 등록된 도서가 표시되어야 함
 		List<Book> book = saseoService.bookSelect();
@@ -44,14 +44,19 @@ public class SaseoController {
 	
 	//도서 등록 화면으로 이동
 	@GetMapping("/saseo/bookRegistration")
-	public String bookRegistrationForm() {
+	public String bookRegistrationForm(@AuthenticationPrincipal PrincipalDetails principalDetails) {
 		
-		return "saseo/bookRegistration";
+		if(principalDetails == null) {			
+			throw new CustomValidationException("로그인 해야합니다", null);
+		}else {
+			return "saseo/bookRegistration";
+		}
+		
 	}
 
 	
 	
-	//도서 등록
+	//도서 등록 처리
 	@PostMapping("/saseo/bookRegistration")
 	public String bookRegistration(BookRegistrationDto bookRegistrationDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		//로그인 및 권한 검사 필요
@@ -74,12 +79,73 @@ public class SaseoController {
 		}else {
 			
 			//System.out.println("로그인 됐음");
-			saseoService.사진업로드(bookRegistrationDto, principalDetails);
-
-			return "main/index";
+			saseoService.책등록(bookRegistrationDto, principalDetails);
+			//업로드 잘 됐다고 스크립트로 알려줘야함
 			
+			return "main/index";
 		}
 	}
+	
+	//도서 상세 화면으로 이동
+	@GetMapping("/saseo/{id}/bookDetail")
+	public String bookDetailForm(@PathVariable int id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+
+		if(principalDetails == null) {			
+			throw new CustomValidationException("로그인 해야합니다", null);
+		}else {
+			
+			//System.out.println("--------------------------");
+			//System.out.println("전달 받은 책 id > "+id);
+			Book bookEntity = saseoService.bookSelectOne(id);
+			model.addAttribute("book",bookEntity);
+			
+			return "saseo/bookDetail";
+		}
+	
+	}
+	
+	
+	//도서 수정 화면으로 이동
+	@GetMapping("/saseo/{id}/bookUpdate")
+	public String bookUpdateForm(@PathVariable int id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		if(principalDetails == null) {			
+			throw new CustomValidationException("로그인 해야합니다", null);
+		}else {
+			//System.out.println("--------------------------");
+			//System.out.println("전달 받은 책 id > "+id);
+
+			Book bookEntity = saseoService.bookSelectOne(id);
+			
+			model.addAttribute("book",bookEntity);
+
+			return "saseo/bookUpdate";
+		}
+		
+	}
+	
+	/*
+	//도서 수정 완료 처리
+	@PostMapping("/saseo/bookUpdate")
+	public String bookUpdate(BookRegistrationDto bookRegistrationDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		if(principalDetails == null) {			
+			throw new CustomValidationException("로그인이 안 되었습니다. 등록할 수 없습니다", null);
+		}else if( !((principalDetails.getUser().getRole().equalsIgnoreCase("ROLE_SASEO")) || (principalDetails.getUser().getRole() != "ROLE_ADMIN")) ){
+			throw new CustomValidationException("권한이 없습니다. 등록할 수 없습니다", null);
+		}else {
+			saseoService.책수정(bookRegistrationDto, principalDetails);
+			
+			//ajax로 해야 하나? ... 
+			//더티채킹 이뤄지게 하려면 그냥 컨트롤러에서 해도 되지 않을까
+			//만약에 더치채킹 안 이뤄지면 ajax 써야 함
+			
+			return "main/index";
+		}}*/
+	
+	
+	
+	
 	
 	
 	

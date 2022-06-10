@@ -50,14 +50,14 @@
 	                            
 		                            <!-- 아이디 -->
 		                            <div class="form-group form-primary">
-		                                <input type="text" name="username" class="form-control" required="required">zozo
+		                                <input type="text" name="username"  value="zozo" class="form-control" required="required">
 		                                <span class="form-bar"></span>
 		                                <label class="float-label">ID</label>
 		                            </div>
 		                            
 		                            <!-- 비번 -->
 		                            <div class="form-group form-primary">
-		                                <input type="password" name="password" class="form-control" required="required">
+		                                <input type="password" name="password"  value="1234" class="form-control" required="required">
 		                                <span class="form-bar"></span>
 		                                <label class="float-label">Password</label>
 		                            </div>
