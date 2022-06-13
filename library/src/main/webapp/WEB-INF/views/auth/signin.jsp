@@ -40,7 +40,7 @@
 	                        <div class="card-block">
 	                            <div class="row m-b-20">
 	                                <div class="col-md-12">
-	                                    <h3 class="text-center">토르두스 제국 도서관</h3>
+	                                    <h3 class="text-center">토르두스 국립도서관</h3>
 	                                </div>
 	                            </div>
 	                            
@@ -50,14 +50,14 @@
 	                            
 		                            <!-- 아이디 -->
 		                            <div class="form-group form-primary">
-		                                <input type="text" name="username"   class="form-control" required="required">
+		                                <input type="text" name="username"   value="zozo" class="form-control" required="required">
 		                                <span class="form-bar"></span>
 		                                <label class="float-label">ID</label>
 		                            </div>
 		                            
 		                            <!-- 비번 -->
 		                            <div class="form-group form-primary">
-		                                <input type="password" name="password"  class="form-control" required="required">
+		                                <input type="password" name="password"   value="1234"  class="form-control" required="required">
 		                                <span class="form-bar"></span>
 		                                <label class="float-label">Password</label>
 		                            </div>

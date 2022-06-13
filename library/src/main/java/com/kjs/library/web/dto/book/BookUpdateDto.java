@@ -53,7 +53,7 @@ public class BookUpdateDto {
 	private String kdcTable;
 	
 	//청구기호 김15소, 박211가
-	private String kdcCallSign;
+	private String kdcCallSignFamily;
 	
 	
 	public Book toEntity() {
@@ -71,7 +71,7 @@ public class BookUpdateDto {
 				.volume(volume)
 				.contents(contents)
 				.kdcTable(kdcTable)
-				.kdcCallSign(kdcCallSign)
+				.kdcCallSignFamily(kdcCallSignFamily)
 				.build();
 	}
 	

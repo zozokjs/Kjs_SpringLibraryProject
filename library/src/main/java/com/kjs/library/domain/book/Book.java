@@ -84,8 +84,8 @@ public class Book {
 	//십진분류표 000, 100, 200...
 	private String kdcTable;
 	
-	//청구기호 김15소, 박211가...
-	private String kdcCallSign;
+	//대표 청구기호 김15소, 박211가...
+	private String kdcCallSignFamily;
 
 	//등록한 사람
 	/* 1명의 유저는 여러 개의 책을 등록할 수 있음.

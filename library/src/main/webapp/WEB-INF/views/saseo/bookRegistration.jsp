@@ -124,7 +124,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												권 수<input type="text"   	id="volume" name="volume"  class="form-control" placeholder="권수">
+												권 수<input type="text"  id="volume" name="volume"  class="form-control" placeholder="권수">
 											</div>
 										</div>
 									</div>
@@ -151,7 +151,7 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												청구기호<input type="text"  id="kdcCallSign"  name="kdcCallSign" class="form-control"  placeholder="청구기호">
+												대표 청구기호<input type="text"  id="kdcCallSign"  name="kdcCallSign" class="form-control"  placeholder="대표 청구기호">
 											</div>
 										</div>
 									</div>

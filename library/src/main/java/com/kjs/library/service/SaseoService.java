@@ -125,7 +125,7 @@ public class SaseoService {
 			bookEntity.setPublish(bookUpdateDto.getPublish());
 			bookEntity.setVolume(bookUpdateDto.getVolume());
 			bookEntity.setKdcTable(bookUpdateDto.getKdcTable());
-			bookEntity.setKdcCallSign(bookUpdateDto.getKdcCallSign());
+			bookEntity.setKdcCallSignFamily(bookUpdateDto.getKdcCallSignFamily());
 			
 			//System.out.println("=-==============================");
 			//System.out.println(bookEntity);
