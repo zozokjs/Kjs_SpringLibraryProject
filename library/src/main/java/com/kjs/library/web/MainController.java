@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+
 @Controller
 public class MainController {
 
+	//메인 화면으로 이동
 	@GetMapping("/")
 	public String index() {
 		return "main/index";

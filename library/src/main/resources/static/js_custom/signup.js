@@ -43,7 +43,7 @@ function findByUsernameR() {
 
 }
 
-
+/** */
 //회원가입 시 전체 유효성 체크
 function validationAll(){
 	//alert("작동됨");

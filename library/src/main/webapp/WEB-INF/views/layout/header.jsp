@@ -4,9 +4,12 @@
 
 <sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal" var ="principal"/>
-	<!-- isAuthenticated()로 세션 접근 가능
-	property="principal"는 정해진 키워드.
-	principal.user.~로 찾을 수 있음	
+	<!-- 
+	isAuthenticated()는 세선에 접근하는 방식
+	property = " principal "에서 principal은 정해진 키워드. UserDetails의 인스턴스를 출력한다고 공식문서에 적혀 있다.
+	이것을 header에 명시했으므로 body에서는 principal.** 식으로 사용
+	principal 내부에 user 객체가 있고 그 내부에 username 등이 있으므로
+	principal.user.username 식으로 찾으면 된다.
 	 -->
 </sec:authorize>
 
@@ -72,7 +75,7 @@
 								<a href="/logout" ><span>로그아웃</span></a>		
 							</c:otherwise>
 						</c:choose>
-						<a href="" ><span>내서재</span></a>						
+						<a href="/user/myLibrary" ><span>내서재</span></a>						
 					</div>
 				</div>
 			</div>
@@ -105,8 +108,8 @@
 				</li>
 			  
 		  		<!-- 샘플 -->
-				<li class="nav-item"><a class="nav-link" href="/saseo/bookManage">공사중</a></li>
-				<li class="nav-item"><a class="nav-link" href="/saseo/bookRegistration">공사중2</a></li>
+				<li class="nav-item"><a class="nav-link" href="/user/${principal.user.id}/userInfor">공사중</a></li>
+				<li class="nav-item"><a class="nav-link" href="/board/boardSample">샘플</a></li>
 				
 				<!-- 사서 공간 -->
 				<li class="nav-item dropdown">

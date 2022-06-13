@@ -1,4 +1,4 @@
-package com.kjs.library.web;
+package com.kjs.library.web.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +23,7 @@ public class SaseoApiController {
 	
 	private final SaseoService saseoService;
 	
+	//도서 수정 완료 처리
 	@PutMapping("/saseo/api/{bookId}/update")
 	public ResponseEntity<?> bookUpdate(
 			@PathVariable int bookId,

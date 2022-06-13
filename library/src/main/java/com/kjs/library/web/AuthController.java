@@ -15,6 +15,7 @@ import com.kjs.library.web.dto.auth.SignupDto;
 
 import lombok.RequiredArgsConstructor;
 
+//로그인 및 가입 처리
 @RequiredArgsConstructor
 @Controller
 public class AuthController {

@@ -87,8 +87,8 @@ public class SaseoController {
 	}
 	
 	//도서 상세 화면으로 이동
-	@GetMapping("/saseo/{id}/bookDetail")
-	public String bookDetailForm(@PathVariable int id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+	@GetMapping("/saseo/{id}/bookInfor")
+	public String bookInformationForm(@PathVariable int id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 
 		if(principalDetails == null) {			
 			throw new CustomValidationException("로그인 해야합니다", null);
@@ -99,7 +99,7 @@ public class SaseoController {
 			Book bookEntity = saseoService.bookSelectOne(id);
 			model.addAttribute("book",bookEntity);
 			
-			return "saseo/bookDetail";
+			return "saseo/bookInfor";
 		}
 	
 	}

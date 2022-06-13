@@ -19,7 +19,7 @@
 							<hr>	
 							
 							<form id="comment-form" action="/saseo/${book.id}/bookUpdate"  method = "get" enctype="multipart/form-data" class="contact-form bg-white rounded p-5"  >
-							<h4 class="mb-4">상세 정보</h4>
+								<h4 class="mb-4">상세 정보</h4>
 							
 								<!-- 이미지 표시 -->
 								<div class="row justify-content-center">
@@ -170,7 +170,7 @@
 									
 									
 								</div>
- 							<button>수정</button>
+ 							<button>수정하기</button>
 						</form>
 							
 						</div>

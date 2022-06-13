@@ -40,7 +40,7 @@
 											<div class="portflio-item position-relative">
 											
 												<!-- 수정 페이지로 이동 -->
-												<a href ="/saseo/${booked.id}/bookDetail" class="popup-gallery">
+												<a href ="/saseo/${booked.id}/bookInfor" class="popup-gallery">
 												
 													<!--  책 이미지 -->
 													<img src="/upload/${booked.titleImageUrl}" alt="" class="img-fluid w-100">

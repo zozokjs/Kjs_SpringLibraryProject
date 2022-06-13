@@ -1,4 +1,4 @@
-package com.kjs.library.web;
+package com.kjs.library.web.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

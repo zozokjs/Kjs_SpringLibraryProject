@@ -33,6 +33,12 @@ public class Book {
 	//isbn 번호
 	private int isbn;
 	
+	//남은 양(대여 가능한 책 수량)
+	private int remainAmount;
+	
+	//총량(반입된 책 수량)
+	private int totalAmount;
+	
 	//isbnSet 번호
 	private int isbnSet;
 	
