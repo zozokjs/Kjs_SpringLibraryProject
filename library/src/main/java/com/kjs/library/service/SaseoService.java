@@ -3,6 +3,7 @@ package com.kjs.library.service;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,9 +15,12 @@ import org.springframework.stereotype.Service;
 import com.kjs.library.config.auth.PrincipalDetails;
 import com.kjs.library.domain.book.Book;
 import com.kjs.library.domain.book.BookRepository;
+import com.kjs.library.domain.book.SameBook;
+import com.kjs.library.domain.book.SameBookRepository;
 import com.kjs.library.handler.aop.ex.CustomApiException;
 import com.kjs.library.handler.aop.ex.CustomValidationApiException;
 import com.kjs.library.web.dto.book.BookRegistrationDto;
+import com.kjs.library.web.dto.book.BookRegistrationDto2;
 import com.kjs.library.web.dto.book.BookUpdateDto;
 import com.kjs.library.web.dto.book.ImageDto;
 
@@ -28,9 +32,9 @@ public class SaseoService {
 
 		private final CommonService commonService;
 		private final BookRepository bookRepository;
+		private final SameBookRepository sameBookRepository;
 		
-		
-		// SAVE
+		// SAVE 책등록
 		@Transactional
 		public void 책등록(BookRegistrationDto bookRegistrationDto, PrincipalDetails principalDetails) {                       
 			
@@ -46,16 +50,40 @@ public class SaseoService {
 				imageFileName = commonService.사진저장(imageDto, "imageTitle");
 			}
 			
-			
-			
-			
 			Book book = bookRegistrationDto.toEntity(imageFileName, principalDetails.getUser());
 			
 			bookRepository.save(book);
 		}
 		
 		
-		// UPDATE
+		// SAVE 책청구기호등록
+		@Transactional
+		public void 책청구기호등록(BookRegistrationDto2 bookRegistrationDto2, PrincipalDetails principalDetails) {                       
+			
+			//넘어온 청구 기호 출력
+			System.out.println("-------------------------");
+			System.out.println(bookRegistrationDto2); //BookRegistrationDto2(bookId=1, kdcCallSign=7,8,9)
+			System.out.println(bookRegistrationDto2.getBookId().getId());
+			System.out.println(bookRegistrationDto2.getKdcCallSign());
+			
+			String kdcCallSignList = bookRegistrationDto2.getKdcCallSign(); // 2,3,4
+			String[] array = kdcCallSignList.split(",");
+					    
+			//출력				
+			SameBook sameBook = new SameBook();
+			
+			LocalDateTime now = LocalDateTime.now();
+			
+			for(int i=0;i<array.length;i++) {
+					sameBook.setUpdateDate(now.toString()); //수정 시간
+					sameBook = bookRegistrationDto2.toEntity(bookRegistrationDto2.getBookId(), array[i]);
+					sameBookRepository.save(sameBook);
+			}
+		}
+		
+		
+		
+		// UPDATE 책수정
 		@Transactional
 		public Book 책수정(int bookId, BookUpdateDto bookUpdateDto, String loginedId) {                       
 			
@@ -134,7 +162,7 @@ public class SaseoService {
 		}
 		
 		
-		//SELECT
+		//SELECT 책 전부 조회
 		@Transactional(readOnly = true)
 		// 서비스 단에는 select만 하더라도 Transactional을 걸어주는 게 좋다.
 		// readonly True를 넣으면 읽기전용으로 인식하므로 jpa는
@@ -163,7 +191,17 @@ public class SaseoService {
 		 }
 		
 		
-		
+		//책 1개의 청구기호 정보만 가져옴		
+		@Transactional(readOnly = true)
+		public List<SameBook> sameBookSelectOne(int bookId) {
+			
+			System.out.println("-1---------");
+			//청구기호가 존재하지 않는다면 아무 조치도 취하지 않음
+			List<SameBook> sameBookEntity = sameBookRepository.findBybookid(bookId);
+			System.out.println("-2---------");
+			
+			return sameBookEntity;
+		}
 		
 		
 		

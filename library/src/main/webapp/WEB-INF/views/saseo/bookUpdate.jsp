@@ -166,7 +166,7 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												청구기호<input type="text"  id="kdcCallSign"  name="kdcCallSign"  value = "${book.kdcCallSign}" class="form-control"  placeholder="청구기호">
+												청구기호<input type="text"  id="kdcCallSign"  name="kdcCallSign"  value = "${book.kdcCallSignFamily}" class="form-control"  placeholder="청구기호">
 											</div>
 										</div>
 									</div>

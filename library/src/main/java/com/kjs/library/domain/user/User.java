@@ -1,19 +1,24 @@
 package com.kjs.library.domain.user;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
+
+import com.kjs.library.domain.book.Book;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//유저 한 사람을 정의하는 테이블
 @Builder
 @Data
 @NoArgsConstructor // 빈 생성자
@@ -25,6 +30,9 @@ public class User {
 	@Id // PK값 설정
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 자동 증가 설정함. 정책은 DB처럼 번호 증가함
 	private int id;
+	
+	@OneToMany//기본 전력은 LAZY
+	private List<Book> book;
 	
 	//아이디
 	@Column(length = 100, unique = true)

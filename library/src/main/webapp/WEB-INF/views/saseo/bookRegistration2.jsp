@@ -2,8 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_Saseo.jsp"%>
-
-	        
+				
+			
+				
 	            <!-- 우측 메인 -->
 	            <div class="col-lg-8">
 	               <div class="row">
@@ -18,41 +19,46 @@
 							</div>		
 							<hr>	
 							
-							<form action="/saseo/bookRegistration"  method = "post" enctype="multipart/form-data" class="contact-form bg-white rounded p-5"  id="comment-form">
-							<h4 class="mb-4">도서 정보를 입력하세요-청구기호 등록</h4>
+							<form action="/saseo/bookRegistration2"  method = "post" enctype="multipart/form-data" class="contact-form bg-white rounded p-5"  id="comment-form2">
+								<h4 class="mb-4">도서 정보를 입력하세요-청구기호 등록</h4>
 								
-								<!-- 십진 분류 1차, 2차 -->
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											ISBN<input type="text"   id="isbn"  name="isbn"  class="form-control"  placeholder="ISBN">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											ISBN SET<input type="text"  id="isbnSet"  name="isbnSet" class="form-control"   placeholder="ISBN SET">
+								<!-- hidden Tag -->
+								<input type="hidden"  id="book_id"  name = "bookId" value="${book.id}" />
+								<input type="hidden"  id="book_volume"  value="${book.volume}" />
+								<input type="hidden"  id="book_kdcCallSignFamily" value="${book.kdcCallSignFamily}" />
+								<!-- hidden Tag -->
+								
+								<!-- 표 시작 -->
+								<div class="card">
+									<div class="card-block table-border-style">
+										<div class="table-responsive">
+											<table class="table" >
+												<thead style="border:1px solid black;">
+													<tr class="table-active"  >
+														<th class="tg-0pky">책 제목</th>
+														<th class="tg-0pky">${book.title}</th>
+													</tr>
+													<tr class="table-active" >
+														<td class="tg-0pky">ISBN</td>
+														<td class="tg-0pky">${book.isbn}</td>
+													</tr>
+													<tr>
+														<td colspan="2" style="text-align:center;">총 ${book.volume}권</td>
+													</tr>
+													<tr>
+														<td class="tg-0pky">번호</td>
+														<td class="tg-0pky">청구기호</td>
+													</tr>
+												</thead>
+												<tbody id="kdcCallSignList">
+													
+												</tbody>
+											</table>
 										</div>
 									</div>
 								</div>
-								
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											제목<input type="text"  	id="title"  name="title" class="form-control"   placeholder="제목">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											저자<input type="text"  id="writer"  name="writer" class="form-control"   placeholder="저자">
-										</div>
-									</div>
-								</div>
-								
-									
-								</div>
- 							<button>상세 청구기호 같이 등록</button>
- 							<button>청구기호 빼고 등록</button>
- 							
+								<!-- 표 끝 -->
+ 							<button>청구 기호 등록</button>
 						</form>
 							
 						</div>
@@ -64,5 +70,5 @@
 	    </div>
 	</section>
 </div>
-<script src="/js/saseo_bookRegistration.js"></script>
+<script src="/js_custom/saseo_bookRegistration2.js"></script>
 <%@ include file="../layout/footer.jsp"%>

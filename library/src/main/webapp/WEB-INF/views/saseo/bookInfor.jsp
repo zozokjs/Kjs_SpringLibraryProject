@@ -20,7 +20,12 @@
 							
 							<form id="comment-form" action="/saseo/${book.id}/bookUpdate"  method = "get" enctype="multipart/form-data" class="contact-form bg-white rounded p-5"  >
 								<h4 class="mb-4">상세 정보</h4>
-							
+
+								<!-- hidden Tag -->
+								<input type="hidden"  id="book_volume"  value="${book.volume}" />
+								<!-- hidden Tag -->
+								
+								
 								<!-- 이미지 표시 -->
 								<div class="row justify-content-center">
 									<div class="col-lg-4 col-md-6 col-sm-6">
@@ -160,19 +165,52 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												청구기호<input type="text"  id="kdcCallSign"  name="kdcCallSign"  value = "${book.kdcCallSign}" class="form-control"  placeholder="청구기호" readonly="readonly">
+												대표청구기호<input type="text"  id="kdcCallSign"  name="kdcCallSign"  value = "${book.kdcCallSignFamily}" class="form-control"  placeholder="청구기호" readonly="readonly">
 											</div>
 										</div>
 									</div>
 									
 									줄거리
 									<textarea  id="contents"  name="contents"  value = "${book.contents}" class="form-control mb-3"  cols="30" rows="5" placeholder="줄거리" readonly="readonly"></textarea>
-									
-									
 								</div>
+								<!-- 청구 기호 정보 출력해야 함. -->
+								
  							<button>수정하기</button>
+						
 						</form>
-							
+							<div>
+								<!-- 표 시작 -->
+								<div class="card">
+									<div class="card-block table-border-style">
+										<div class="table-responsive">
+											<table class="table" >
+												<thead style="border:1px solid black;">
+													<tr class="table-active"  >
+														<th class="tg-0pky">책 제목</th>
+														<th class="tg-0pky">${book.title}</th>
+													</tr>
+													<tr class="table-active" >
+														<td class="tg-0pky">ISBN</td>
+														<td class="tg-0pky">${book.isbn}</td>
+													</tr>
+													<tr>
+														<td colspan="2" style="text-align:center;">총 ${book.volume}권</td>
+													</tr>
+													<tr>
+														<td class="tg-0pky">번호</td>
+														<td class="tg-0pky">청구기호</td>
+													</tr>
+												</thead>
+												<tbody id="kdcCallSignList">
+													
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 표 끝-->
+						<button type="button" onclick="location.href='/saseo/${book.id}/bookRegistration2'">청구기호 등록하기</button>
 						</div>
 					</div>
 				</div>
@@ -182,5 +220,5 @@
 	    </div>
 	</section>
 </div>
-<script src="/js/saseo_bookRegistration.js"></script>
+<script src="/js_custom/saseo_bookInfor.js"></script>
 <%@ include file="../layout/footer.jsp"%>

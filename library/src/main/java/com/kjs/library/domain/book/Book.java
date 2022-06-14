@@ -19,6 +19,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+//책 한 종류를 정의하는 테이블
 @Builder
 @Entity // JPA를 위함. 디비에 테이블을 생성함
 @Data
@@ -87,21 +89,27 @@ public class Book {
 	//대표 청구기호 김15소, 박211가...
 	private String kdcCallSignFamily;
 
-	//등록한 사람
-	/* 1명의 유저는 여러 개의 책을 등록할 수 있음.
+	
+	/* 2022.06.14 주석처리
+	등록한 사람
+	1명의 유저는 여러 개의 책을 등록할 수 있음.
 	 *  1권의 책은 1명이 등록할 수 있음
 	 *  그래서 책과 유저는 N : 1의 관계
 	 *  
 	 * @Entity라고 적었으므로 DB에는 테이블이 생성될텐데, 아래는 USER 오브젝트이므로 FK가 생성된다. 
 	 * @JoinColumn으로 FK 이름을 지정함
 	 * */
+	/*
 	@JoinColumn(name = "userId")
 	@ManyToOne(fetch = FetchType.EAGER)
-	private User user;
+	private User user;*/
 
 	//책 정보 수정한 사람. 일단 String으로 저장함...
 	private String editedUser;
 	
+	//책 정보를 입력한 사람. 일단 String으로 저장함...
+	private String registrationUserId;
+		
 	//등록 날짜
 	private LocalDateTime createDate;
 

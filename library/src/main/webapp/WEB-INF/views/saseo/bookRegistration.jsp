@@ -19,7 +19,7 @@
 							<hr>	
 							
 							<form action="/saseo/bookRegistration"  method = "post" enctype="multipart/form-data" class="contact-form bg-white rounded p-5"  id="comment-form">
-							<h4 class="mb-4">도서 정보를 입력하세요</h4>
+								<h4 class="mb-4">도서 정보를 입력하세요</h4>
 								
 								<!-- 십진 분류 1차, 2차 -->
 								<div class="row">
@@ -161,7 +161,7 @@
 									
 									
 								</div>
- 							<button>등록</button>
+								<button>등록</button>
 						</form>
 							
 						</div>
@@ -173,5 +173,4 @@
 	    </div>
 	</section>
 </div>
-<script src="/js/saseo_bookRegistration.js"></script>
 <%@ include file="../layout/footer.jsp"%>
