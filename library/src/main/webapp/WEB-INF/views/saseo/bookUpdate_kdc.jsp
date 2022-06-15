@@ -13,20 +13,34 @@
 							<div class="col-lg-7">
 								<div class="">
 									<h2 class="mt-3 content-title ">
-									청구기호 최초 등록
+									청구기호 수정
 									</h2>
 								</div>
 							</div>		
 							<hr>	
 							
-							<form action="/saseo/bookRegistration_kdc"  method = "post" enctype="multipart/form-data" class="contact-form bg-white rounded p-5"  id="comment-form2">
-								<h4 class="mb-4">도서 정보를 입력하세요-청구기호 최초 등록</h4>
+							<form  id = "bookUpdate_kdc" onsubmit="bookUpdate_kdc(${book.id},event)" class="contact-form bg-white rounded p-5" >
+								<h4 class="mb-4">도서 정보를 입력하세요-청구기호 수정</h4>
 								
 								<!-- hidden Tag -->
 								<input type="hidden"  id="book_id"  name = "bookId" value="${book.id}" />
 								<input type="hidden"  id="book_volume"  value="${book.volume}" />
 								<input type="hidden"  id="book_kdcCallSignFamily" value="${book.kdcCallSignFamily}" />
+								<input type="hidden"  id="sameBook" value="${sameBook}" />
 								<!-- hidden Tag -->
+								
+								<!-- Controller에서 넘어온 List<SameBook>을 자바스크립트에서 반복시키기 위함 -->
+								<script type="text/javascript">
+									
+									var samebookArray = new Array();
+									
+									<c:forEach items="${sameBook}" var="item">
+										samebookArray.push({										
+											kdcCallSign : "${item.kdcCallSign}"
+										});
+									</c:forEach>
+								
+								</script>
 								
 								<!-- 표 시작 -->
 								<div class="card">
@@ -34,25 +48,22 @@
 										<div class="table-responsive">
 											<table class="table" >
 												<thead style="border:1px solid black;">
-													<tr class="table-active"  >
-														<th class="tg-0pky">책 제목</th>
-														<th class="tg-0pky">${book.title}</th>
-													</tr>
-													<tr class="table-active" >
-														<td class="tg-0pky">ISBN</td>
-														<td class="tg-0pky">${book.isbn}</td>
-													</tr>
 													<tr>
-														<td colspan="2" style="text-align:center;">총 ${book.volume}권</td>
+													    <th class="tg-0pky">제목</th>
+													    <th class="tg-0pky"></th>
 													</tr>
+												
 													<tr>
-														<td class="tg-0pky">번호</td>
-														<td class="tg-0pky">청구기호</td>
-													</tr>
-												</thead>
+													    <td class="tg-0pky">ISBN</td>
+													    <td class="tg-0pky"></td>
+												  	</tr>
+												 	 <tr>
+													    <td class="tg-0pky" colspan="2">총 ${book.volume}권</td>
+												  	</tr>
+											  	</thead>
 												<tbody id="kdcCallSignList">
-													
-												</tbody>
+												
+											  	</tbody>
 											</table>
 										</div>
 									</div>
@@ -70,5 +81,5 @@
 	    </div>
 	</section>
 </div>
-<script src="/js_custom/saseo_bookRegistration_kdc.js"></script>
+<script src="/js_custom/saseo_bookUpdate_kdc.js"></script>
 <%@ include file="../layout/footer.jsp"%>

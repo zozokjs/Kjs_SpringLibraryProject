@@ -65,7 +65,7 @@ public class SaseoController {
 		
 		Book bookEntity = saseoService.bookSelectOne(id);
 		model.addAttribute("book",bookEntity);
-		System.out.println("> "+bookEntity.getVolume());
+		//System.out.println("> "+bookEntity.getVolume());
 		return "saseo/bookRegistration_kdc";
 		
 	}
@@ -119,43 +119,31 @@ public class SaseoController {
 		}
 	}
 		
-		
+			
 	//도서 상세 화면으로 이동
 	@GetMapping("/saseo/{id}/bookInfor")
 	public String bookInformationForm(@PathVariable int id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-	
 		if(principalDetails == null) {			
 			throw new CustomValidationException("로그인 해야합니다", null);
 		}else {
-			
-			//System.out.println("전달 받은 책 id > "+id);
+				
 			//책 1개의 정보
 			Book bookEntity = saseoService.bookSelectOne(id);
 			model.addAttribute("book",bookEntity);
-			
-			
-			
+				
 			//책 1개의 청구기호 정보
 			List<SameBook> sameBookEntity = saseoService.sameBookSelectOne(id);
+	
 			
-			System.out.println("> "+ sameBookEntity.get(0).getKdcCallSign());
-			
-			/*
-			Iterator<SameBook> sameBookEntity2 = sameBookEntity.iterator();
-			while(sameBookEntity2.hasNext()) {
-				System.out.println("check > "+sameBookEntity2.next().getKdcCallSign());
-			}*/
-			
-			
-		  model.addAttribute("sameBook",sameBookEntity);
-			
-			
-			
+			//System.out.println("> "+ sameBookEntity.get(0).getKdcCallSign());
+				
+			model.addAttribute("sameBook",sameBookEntity);
+				
 			return "saseo/bookInfor";
 		}
-	
+		
 	}
-	
+		
 	
 	//도서 수정 화면으로 이동
 	@GetMapping("/saseo/{id}/bookUpdate")
@@ -173,10 +161,30 @@ public class SaseoController {
 
 			return "saseo/bookUpdate";
 		}
-		
 	}
 	
 	
+	//도서 청구기호 수정 화면으로 이동
+	@GetMapping("/saseo/{id}/bookUpdate_kdc")
+	public String bookUpdate_kdcForm(@PathVariable int id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		if(principalDetails == null) {			
+			throw new CustomValidationException("로그인 해야합니다", null);
+		}else {
+			//System.out.println("--------------------------");
+			//System.out.println("전달 받은 책 id > "+id);
+			
+			//책 1개의 정보를 가져옴
+			Book bookEntity = saseoService.bookSelectOne(id);
+			model.addAttribute("book",bookEntity);
+			
+			//책 1권의 청구기호 정보 가져옴
+			List<SameBook> sameBookEntity = saseoService.sameBookSelectOne(id);
+			model.addAttribute("sameBook",sameBookEntity);
+	
+			return "saseo/bookUpdate_kdc";
+		}
+	}
 	
 	
 	

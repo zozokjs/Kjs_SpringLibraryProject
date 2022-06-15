@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.transaction.annotation.Transactional;
-
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +24,7 @@ import com.kjs.library.handler.aop.ex.CustomValidationApiException;
 import com.kjs.library.web.dto.book.BookRegistrationDto;
 import com.kjs.library.web.dto.book.BookRegistration_kdcDto;
 import com.kjs.library.web.dto.book.BookUpdateDto;
+import com.kjs.library.web.dto.book.BookUpdate_kdcDto;
 import com.kjs.library.web.dto.book.ImageDto;
 
 import lombok.RequiredArgsConstructor;
@@ -36,7 +37,7 @@ public class SaseoService {
 		private final BookRepository bookRepository;
 		private final SameBookRepository sameBookRepository;
 		
-		// SAVE 책등록
+		// SAVE 책 등록
 		@Transactional
 		public void 책등록(BookRegistrationDto bookRegistrationDto, PrincipalDetails principalDetails) {                       
 			
@@ -58,7 +59,8 @@ public class SaseoService {
 		}
 		
 		
-		// SAVE 책청구기호등록
+		
+		// SAVE 책 청구기호 등록
 		@Transactional
 		public void 책청구기호등록(BookRegistration_kdcDto bookRegistration_kdcDto, PrincipalDetails principalDetails) {                       
 			
@@ -85,7 +87,8 @@ public class SaseoService {
 		
 		
 		
-		// UPDATE 책수정
+		
+		// UPDATE 책 수정
 		@Transactional
 		public Book 책수정(int bookId, BookUpdateDto bookUpdateDto, String loginedId) {                       
 			
@@ -100,14 +103,15 @@ public class SaseoService {
 			//이미지가 변경되지 않는다면 null이 표시되고... 기본 이미지가 저장됨
 			//null이더라도 기존의 이미지와 같다면 저장하지 않아야 함. 
 			
-			
+			/*
 			System.out.println("기존 거");
 			System.out.println(bookEntity.getTitleImageUrl());
 			System.out.println("바뀐 거");
 			System.out.println(bookUpdateDto.getTitleImageUrl());
 			System.out.println("첨부한 파일 이름");
 			System.out.println(bookUpdateDto.getFile().getOriginalFilename());
-
+		 	*/
+			
 			//첨부한 파일 이름
 			//bookUpdateDto.getFile().getOriginalFilename();
 			
@@ -164,7 +168,43 @@ public class SaseoService {
 		}
 		
 		
-		//SELECT 책 전부 조회
+		
+		
+		// UPDATE 책 청구기호 수정
+		@Transactional
+		public List<SameBook> 책청구기호수정(int bookId, BookUpdate_kdcDto bookUpdate_kdcDto, String loginedId) {
+			
+			System.out.println("----------------");
+			Book bookEntity = bookRepository.findById(bookId).orElseThrow(()->{
+				return new CustomValidationApiException("찾을 수 없는 책 입니다. 책을 찾을 수 없으므로 청구기호 수정 불가");
+			});
+			
+			//기존 db 값을 가져와서 영속화
+			List<SameBook> samebookEntity = sameBookRepository.findBybookid(bookId); 
+	
+			bookEntity.setId(bookId);
+						
+			String kdcCallSignList = bookUpdate_kdcDto.getKdcCallSign(); // 2,3,4
+			String[] array = kdcCallSignList.split(",");
+			
+			
+			//값을 변경 시킴
+			for(int i = 0; i < samebookEntity.size(); i++) {
+				
+				System.out.println("반복 횟수 "+i);
+				
+				samebookEntity.get(i).setBook(bookEntity);
+				samebookEntity.get(i).setKdcCallSign(array[i]);
+			}
+			
+			//return과 동시에 값 변경을 감지하고 자동 업데이트
+			return samebookEntity;
+		}
+		
+		
+		
+		
+		// SELECT 책 전부 조회
 		@Transactional(readOnly = true)
 		// 서비스 단에는 select만 하더라도 Transactional을 걸어주는 게 좋다.
 		// readonly True를 넣으면 읽기전용으로 인식하므로 jpa는
@@ -181,7 +221,9 @@ public class SaseoService {
 		}
 		
 		
-		//책 1개의 정보만 가져옴
+		
+		
+		// SELECT 책 1개의 정보만 가져옴
 		@Transactional(readOnly = true)
 		public Book bookSelectOne(int id) {
 		
@@ -193,7 +235,10 @@ public class SaseoService {
 		 }
 		
 		
-		//책 1개의 청구기호 정보만 가져옴		
+		
+		
+		
+		// SELECT 책 1개의 청구기호 정보만 가져옴		
 		@Transactional(readOnly = true)
 		public List<SameBook> sameBookSelectOne(int bookId) {
 			
@@ -202,8 +247,19 @@ public class SaseoService {
 			
 			List<SameBook> sameBookEntity = sameBookRepository.findBybookid(bookId);
 			
+			if(sameBookEntity.isEmpty()) {
+				System.out.println("등록된 청구기호가 없음");
+				
+				
+				
+			}else {
+				System.out.println("등록된 청구기호가 잇음");
+				
+			}
 			return sameBookEntity;
 		}
+
+		
 		
 		
 		

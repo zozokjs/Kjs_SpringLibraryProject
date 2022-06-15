@@ -202,13 +202,29 @@
 													</tr>
 												</thead>
 												<tbody id="kdcCallSignList">
-													<c:forEach var="sameBooks" items="${sameBook}">
-													<tr>
-														<td class="tg-0pky"  colspan="2"  style="text-align:center;">
+												<!-- 청구 기호 없을 때 뭐라해야 함 -->
+													<c:choose>
+														<c:when test="${empty sameBook}">
+															<!-- 청구 기호 없을 때 -->
+															<tr>
+																<td class="tg-0pky"  colspan="2"  style="text-align:center;">
+																<input type="text" name="kdcCallSign" value="등록된 청구기호가 없습니다."  readonly="readonly">
+																</td>
+															</tr>
+														</c:when>
+														
+														<c:otherwise>
+															<!-- 청구 기호 있을 때 -->
+															<c:forEach var="sameBooks"  items="${sameBook}">
+															<tr>
+																<td class="tg-0pky"  colspan="2"  style="text-align:center;">
 																<input type="text" name="kdcCallSign" value="${sameBooks.kdcCallSign}"  readonly="readonly">
-														</td>
-													</tr>
-													</c:forEach>	
+																</td>
+															</tr>
+															</c:forEach>
+														</c:otherwise>
+													</c:choose>
+														
 												</tbody>
 											</table>
 										</div>
@@ -216,7 +232,7 @@
 								</div>
 							</div>
 							<!-- 표 끝-->
-						<button type="button" onclick="location.href='/saseo/${book.id}/bookRegistration_kdc">청구기호 수정하기</button>
+						<button type="button" onclick="location.href='/saseo/${book.id}/bookUpdate_kdc' "  >청구기호 수정하기</button>
 						</div>
 					</div>
 				</div>
