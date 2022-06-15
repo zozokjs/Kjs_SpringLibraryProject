@@ -18,15 +18,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class BookRegistrationDto2 {
+public class BookRegistration_kdcDto {
 
-	private Book bookId;
+	private Book book;
 	
 	private String kdcCallSign;
 	
 	public SameBook toEntity(Book bookId, String kdcCallSign) {
 		return SameBook.builder()
-				.bookId(bookId)
+				.book(book)
 				.kdcCallSign(kdcCallSign)
 				.build();
 	}

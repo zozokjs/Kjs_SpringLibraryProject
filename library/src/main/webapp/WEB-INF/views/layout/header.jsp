@@ -108,7 +108,7 @@
 				</li>
 			  
 		  		<!-- 샘플 -->
-				<li class="nav-item"><a class="nav-link" href="/saseo/1/bookRegistration2">공사중</a></li>
+				<li class="nav-item"><a class="nav-link" href="/saseo/1/bookRegistration_kdc">공사중</a></li>
 				<li class="nav-item"><a class="nav-link" href="/board/boardSample">샘플</a></li>
 				
 				<!-- 사서 공간 -->

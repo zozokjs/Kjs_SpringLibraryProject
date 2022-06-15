@@ -1,6 +1,11 @@
 package com.kjs.library.domain.book;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,19 +30,18 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor 
 @AllArgsConstructor 
-public class SameBook {
+public class SameBook{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 자동 증가 설정함. 정책은 DB처럼 번호 증가함
 	private int id;
 	
 	//책 아이디
-	//같은 책은 하나의 id를 가진다.
-	//하나의 id는 여러 종류의 sameBook을 가진다. 그래서 sameBook이 N, book은 1
-	@JsonIgnoreProperties({"user"})//이것은 지정된 것의 JSON 직렬화, 역직렬화를 무시한다. 
+	//한 권의 책은 한 종류의 책을 가진다. 여러 종류의 책을 가지는 건 불가능함.
+	//한 종류의 책은 여러 권의 책을 가진다. 한 권만 가질 수도 있음.
 	@JoinColumn(name = "bookId")
 	@ManyToOne
-	private Book bookId;
+	private Book book;
 	
 	//청구 기호
 	private String kdcCallSign;
@@ -52,6 +56,7 @@ public class SameBook {
 	public void createDate() {
 		this.createDate = LocalDateTime.now();
 	}
+
 	
 	
 }

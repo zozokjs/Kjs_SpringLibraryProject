@@ -202,7 +202,13 @@
 													</tr>
 												</thead>
 												<tbody id="kdcCallSignList">
-													
+													<c:forEach var="sameBooks" items="${sameBook}">
+													<tr>
+														<td class="tg-0pky"  colspan="2"  style="text-align:center;">
+																<input type="text" name="kdcCallSign" value="${sameBooks.kdcCallSign}"  readonly="readonly">
+														</td>
+													</tr>
+													</c:forEach>	
 												</tbody>
 											</table>
 										</div>
@@ -210,7 +216,7 @@
 								</div>
 							</div>
 							<!-- 표 끝-->
-						<button type="button" onclick="location.href='/saseo/${book.id}/bookRegistration2'">청구기호 등록하기</button>
+						<button type="button" onclick="location.href='/saseo/${book.id}/bookRegistration_kdc">청구기호 수정하기</button>
 						</div>
 					</div>
 				</div>

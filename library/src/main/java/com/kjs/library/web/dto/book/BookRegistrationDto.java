@@ -61,7 +61,7 @@ public class BookRegistrationDto {
 	private String kdcCallSignFamily;
 	
 	
-	public Book toEntity(String imageUri, User user) {
+	public Book toEntity(String imageUri) {
 		return Book.builder()
 				.isbn(isbn)
 				.isbnSet(isbnSet)
@@ -75,7 +75,6 @@ public class BookRegistrationDto {
 				.publishDate(publishDate)
 				.deliveryState(deliveryState)
 				.publish(publish)
-				.user(user)
 				.volume(volume)
 				.contents(contents)
 				.kdcTable(kdcTable)

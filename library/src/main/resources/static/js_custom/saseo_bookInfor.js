@@ -1,5 +1,6 @@
 
 //권 수에 따라 청구기호 테이블 생성 함.
+/*
 function kdcCallSignLoad(){
 	const volume = 	$("#book_volume").val(); //권 수
 	
@@ -22,4 +23,4 @@ function kdcCallSignLoad(){
 	$("#kdcCallSignList").append(kdcCallSignListHtml);
 }
 
-kdcCallSignLoad();
+kdcCallSignLoad();*/

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 
@@ -30,9 +31,12 @@ public class User {
 	@Id // PK값 설정
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 자동 증가 설정함. 정책은 DB처럼 번호 증가함
 	private int id;
-	
+
+	/*
+	@JoinColumn(name = "bookId")
 	@OneToMany//기본 전력은 LAZY
 	private List<Book> book;
+	*/
 	
 	//아이디
 	@Column(length = 100, unique = true)

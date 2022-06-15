@@ -1,5 +1,7 @@
 package com.kjs.library.web;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,7 +18,7 @@ import com.kjs.library.domain.book.SameBook;
 import com.kjs.library.handler.aop.ex.CustomValidationException;
 import com.kjs.library.service.SaseoService;
 import com.kjs.library.web.dto.book.BookRegistrationDto;
-import com.kjs.library.web.dto.book.BookRegistrationDto2;
+import com.kjs.library.web.dto.book.BookRegistration_kdcDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -57,14 +59,14 @@ public class SaseoController {
 	}
 	
 	//도서 등록-같은 책의 청구기호 등록 화면으로 이동
-	@GetMapping("/saseo/{id}/bookRegistration2")
+	@GetMapping("/saseo/{id}/bookRegistration_kdc")
 	public String bookRegistrationForm2(@PathVariable int id,  Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		//System.out.println("전달 된 책 아이디 "+id);
 		
 		Book bookEntity = saseoService.bookSelectOne(id);
 		model.addAttribute("book",bookEntity);
 		System.out.println("> "+bookEntity.getVolume());
-		return "saseo/bookRegistration2";
+		return "saseo/bookRegistration_kdc";
 		
 	}
 		
@@ -100,8 +102,8 @@ public class SaseoController {
 	}
 		
 	//도서 등록-같은 책의 청구기호 등록 처리
-	@PostMapping("/saseo/bookRegistration2")
-	public String bookRegistration2(BookRegistrationDto2 bookRegistrationDto2, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+	@PostMapping("/saseo/bookRegistration_kdc")
+	public String bookRegistration_kdc(BookRegistration_kdcDto bookRegistration_kdcDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		if(principalDetails == null) {			
 			throw new CustomValidationException("로그인이 안 되었습니다. 등록할 수 없습니다", null);
 		}else if( !((principalDetails.getUser().getRole().equalsIgnoreCase("ROLE_SASEO")) || (principalDetails.getUser().getRole() != "ROLE_ADMIN")) ){
@@ -110,7 +112,7 @@ public class SaseoController {
 			
 			System.out.println("읽음");
 			
-			saseoService.책청구기호등록(bookRegistrationDto2, principalDetails);
+			saseoService.책청구기호등록(bookRegistration_kdcDto, principalDetails);
 			//업로드 잘 됐다고 스크립트로 알려줘야함
 			
 			return "main/index";
@@ -131,17 +133,23 @@ public class SaseoController {
 			Book bookEntity = saseoService.bookSelectOne(id);
 			model.addAttribute("book",bookEntity);
 			
-			System.out.println("-3---------");
+			
+			
 			//책 1개의 청구기호 정보
 			List<SameBook> sameBookEntity = saseoService.sameBookSelectOne(id);
 			
-			System.out.println("-4---------");
+			System.out.println("> "+ sameBookEntity.get(0).getKdcCallSign());
 			
-			model.addAttribute("sameBook",sameBookEntity);
+			/*
+			Iterator<SameBook> sameBookEntity2 = sameBookEntity.iterator();
+			while(sameBookEntity2.hasNext()) {
+				System.out.println("check > "+sameBookEntity2.next().getKdcCallSign());
+			}*/
 			
 			
-			System.out.println("---------------------");
-			System.out.println(sameBookEntity);
+		  model.addAttribute("sameBook",sameBookEntity);
+			
+			
 			
 			return "saseo/bookInfor";
 		}

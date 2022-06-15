@@ -4,7 +4,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +22,7 @@ import com.kjs.library.domain.book.SameBookRepository;
 import com.kjs.library.handler.aop.ex.CustomApiException;
 import com.kjs.library.handler.aop.ex.CustomValidationApiException;
 import com.kjs.library.web.dto.book.BookRegistrationDto;
-import com.kjs.library.web.dto.book.BookRegistrationDto2;
+import com.kjs.library.web.dto.book.BookRegistration_kdcDto;
 import com.kjs.library.web.dto.book.BookUpdateDto;
 import com.kjs.library.web.dto.book.ImageDto;
 
@@ -50,7 +52,7 @@ public class SaseoService {
 				imageFileName = commonService.사진저장(imageDto, "imageTitle");
 			}
 			
-			Book book = bookRegistrationDto.toEntity(imageFileName, principalDetails.getUser());
+			Book book = bookRegistrationDto.toEntity(imageFileName);
 			
 			bookRepository.save(book);
 		}
@@ -58,15 +60,15 @@ public class SaseoService {
 		
 		// SAVE 책청구기호등록
 		@Transactional
-		public void 책청구기호등록(BookRegistrationDto2 bookRegistrationDto2, PrincipalDetails principalDetails) {                       
+		public void 책청구기호등록(BookRegistration_kdcDto bookRegistration_kdcDto, PrincipalDetails principalDetails) {                       
 			
 			//넘어온 청구 기호 출력
 			System.out.println("-------------------------");
-			System.out.println(bookRegistrationDto2); //BookRegistrationDto2(bookId=1, kdcCallSign=7,8,9)
-			System.out.println(bookRegistrationDto2.getBookId().getId());
-			System.out.println(bookRegistrationDto2.getKdcCallSign());
+			System.out.println(bookRegistration_kdcDto); //BookRegistration_kdcDto(bookId=1, kdcCallSign=7,8,9)
+			System.out.println(bookRegistration_kdcDto.getBook().getId());
+			System.out.println(bookRegistration_kdcDto.getKdcCallSign());
 			
-			String kdcCallSignList = bookRegistrationDto2.getKdcCallSign(); // 2,3,4
+			String kdcCallSignList = bookRegistration_kdcDto.getKdcCallSign(); // 2,3,4
 			String[] array = kdcCallSignList.split(",");
 					    
 			//출력				
@@ -76,7 +78,7 @@ public class SaseoService {
 			
 			for(int i=0;i<array.length;i++) {
 					sameBook.setUpdateDate(now.toString()); //수정 시간
-					sameBook = bookRegistrationDto2.toEntity(bookRegistrationDto2.getBookId(), array[i]);
+					sameBook = bookRegistration_kdcDto.toEntity(bookRegistration_kdcDto.getBook(), array[i]);
 					sameBookRepository.save(sameBook);
 			}
 		}
@@ -195,10 +197,10 @@ public class SaseoService {
 		@Transactional(readOnly = true)
 		public List<SameBook> sameBookSelectOne(int bookId) {
 			
-			System.out.println("-1---------");
 			//청구기호가 존재하지 않는다면 아무 조치도 취하지 않음
+			//System.out.println("전달된 책 아이디 >"+bookId);
+			
 			List<SameBook> sameBookEntity = sameBookRepository.findBybookid(bookId);
-			System.out.println("-2---------");
 			
 			return sameBookEntity;
 		}
