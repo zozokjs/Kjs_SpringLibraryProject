@@ -187,11 +187,8 @@ public class SaseoService {
 			String kdcCallSignList = bookUpdate_kdcDto.getKdcCallSign(); // 2,3,4
 			String[] array = kdcCallSignList.split(",");
 			
-			
 			//값을 변경 시킴
 			for(int i = 0; i < samebookEntity.size(); i++) {
-				
-				System.out.println("반복 횟수 "+i);
 				
 				samebookEntity.get(i).setBook(bookEntity);
 				samebookEntity.get(i).setKdcCallSign(array[i]);
