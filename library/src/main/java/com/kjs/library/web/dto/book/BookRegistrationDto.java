@@ -13,10 +13,10 @@ public class BookRegistrationDto {
 	private MultipartFile file;
 	
 	//isbn 번호
-	private Integer isbn;
+	private String isbn;
 	
 	//isbnSet 번호
-	private Integer isbnSet;
+	private String isbnSet;
 	
 	//제목
 	private String title;

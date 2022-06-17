@@ -3,7 +3,7 @@ package com.kjs.library.web.dto.book;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kjs.library.domain.book.Book;
-import com.kjs.library.domain.book.SameBook;
+import com.kjs.library.domain.book.Samebook;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,9 +22,9 @@ public class BookUpdate_kdcDto {
 	private String kdcCallSign;
 
 	
-	public SameBook toEntity(Book bookId, String kdcCallSign) {
+	public Samebook toEntity(Book bookId, String kdcCallSign) {
 		
-		return SameBook.builder()
+		return Samebook.builder()
 					.book(bookId)
 					.kdcCallSign(kdcCallSign)
 					.build();

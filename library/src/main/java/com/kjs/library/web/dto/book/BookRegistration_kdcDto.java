@@ -3,7 +3,7 @@ package com.kjs.library.web.dto.book;
 import java.util.List;
 
 import com.kjs.library.domain.book.Book;
-import com.kjs.library.domain.book.SameBook;
+import com.kjs.library.domain.book.Samebook;
 import com.kjs.library.domain.user.User;
 
 import lombok.AllArgsConstructor;
@@ -26,8 +26,8 @@ public class BookRegistration_kdcDto {
 	
 	private boolean kdcCallSignExistState; //청구기호 등록 여부
 	
-	public SameBook toEntity(Book bookId, String kdcCallSign) {
-		return SameBook.builder()
+	public Samebook toEntity(Book bookId, String kdcCallSign) {
+		return Samebook.builder()
 				.book(book)
 				.kdcCallSign(kdcCallSign)
 				.build();

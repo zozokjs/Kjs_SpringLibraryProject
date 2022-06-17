@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface SameBookRepository  extends JpaRepository<SameBook, Integer>{
+public interface SamebookRepository  extends JpaRepository<Samebook, Integer>{
 
 	@Query(value="SELECT * FROM samebook WHERE bookId = :bookId", nativeQuery = true)
-	List<SameBook> findBybookid(int bookId);
+	List<Samebook> findBybookid(int bookId);
 }

@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 
+import com.kjs.library.domain.Lend.Lend;
 import com.kjs.library.domain.book.Book;
 
 import lombok.AllArgsConstructor;
@@ -32,11 +33,10 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 자동 증가 설정함. 정책은 DB처럼 번호 증가함
 	private int id;
 
-	/*
-	@JoinColumn(name = "bookId")
-	@OneToMany//기본 전력은 LAZY
-	private List<Book> book;
-	*/
+	
+	@OneToMany(mappedBy="user")//기본 전력은 LAZY
+	private List<Lend> lend;
+	
 	
 	//아이디
 	@Column(length = 100, unique = true)

@@ -39,7 +39,7 @@
 										<div class="team-item-wrap mb-5 mb-lg-0">
 											<div class="portflio-item position-relative">
 											
-												<!-- 수정 페이지로 이동 -->
+												<!-- 상세 페이지로 이동 -->
 												<a href ="/saseo/${booked.id}/bookInfor" class="popup-gallery">
 												
 													<!--  책 이미지 -->
@@ -77,5 +77,4 @@
 	    </div>
 	</section>
 </div>
-<script src="/js/board_bookRegistration.js"></script>
 <%@ include file="../layout/footer.jsp"%>

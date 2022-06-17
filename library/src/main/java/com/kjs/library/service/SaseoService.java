@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 import com.kjs.library.config.auth.PrincipalDetails;
 import com.kjs.library.domain.book.Book;
 import com.kjs.library.domain.book.BookRepository;
-import com.kjs.library.domain.book.SameBook;
-import com.kjs.library.domain.book.SameBookRepository;
+import com.kjs.library.domain.book.Samebook;
+import com.kjs.library.domain.book.SamebookRepository;
 import com.kjs.library.handler.aop.ex.CustomApiException;
 import com.kjs.library.handler.aop.ex.CustomValidationApiException;
 import com.kjs.library.web.dto.book.BookRegistrationDto;
@@ -35,12 +35,11 @@ public class SaseoService {
 
 		private final CommonService commonService;
 		private final BookRepository bookRepository;
-		private final SameBookRepository sameBookRepository;
+		private final SamebookRepository sameBookRepository;
 		
 		// SAVE 책 등록
 		@Transactional
 		public void 책등록(BookRegistrationDto bookRegistrationDto, PrincipalDetails principalDetails) {                       
-			
 			String imageFileName = "";
 			
 			ImageDto imageDto = new ImageDto();
@@ -74,7 +73,7 @@ public class SaseoService {
 			String[] array = kdcCallSignList.split(",");
 					    
 			//출력				
-			SameBook sameBook = new SameBook();
+			Samebook sameBook = new Samebook();
 			
 			LocalDateTime now = LocalDateTime.now();
 			
@@ -172,7 +171,7 @@ public class SaseoService {
 		
 		// UPDATE 책 청구기호 수정
 		@Transactional
-		public List<SameBook> 책청구기호수정(int bookId, BookUpdate_kdcDto bookUpdate_kdcDto, String loginedId) {
+		public List<Samebook> 책청구기호수정(int bookId, BookUpdate_kdcDto bookUpdate_kdcDto, String loginedId) {
 			
 			System.out.println("----------------");
 			Book bookEntity = bookRepository.findById(bookId).orElseThrow(()->{
@@ -180,7 +179,7 @@ public class SaseoService {
 			});
 			
 			//기존 db 값을 가져와서 영속화
-			List<SameBook> samebookEntity = sameBookRepository.findBybookid(bookId); 
+			List<Samebook> samebookEntity = sameBookRepository.findBybookid(bookId); 
 	
 			bookEntity.setId(bookId);
 						
@@ -210,9 +209,9 @@ public class SaseoService {
 			
 			List<Book> bookList = bookRepository.findAll();
 			
-			//System.out.println("--------------------------");
-			//System.out.println(bookList.get(0).getTitleImageUrl() );
-			//System.out.println(bookList.get(1).getTitleImageUrl() );
+			System.out.println("--------------------------");
+			System.out.println(bookList.get(0).getTitleImageUrl() );
+			System.out.println(bookList.get(1).getTitleImageUrl() );
 			
 			return bookList;
 		}
@@ -237,12 +236,12 @@ public class SaseoService {
 		
 		// SELECT 책 1개의 청구기호 정보만 가져옴		
 		@Transactional(readOnly = true)
-		public List<SameBook> sameBookSelectOne(int bookId) {
+		public List<Samebook> sameBookSelectOne(int bookId) {
 			
 			//청구기호가 존재하지 않는다면 아무 조치도 취하지 않음
 			//System.out.println("전달된 책 아이디 >"+bookId);
 			
-			List<SameBook> sameBookEntity = sameBookRepository.findBybookid(bookId);
+			List<Samebook> sameBookEntity = sameBookRepository.findBybookid(bookId);
 			
 			if(sameBookEntity.isEmpty()) {
 				System.out.println("등록된 청구기호가 없음");

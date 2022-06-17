@@ -35,7 +35,10 @@ public class Book {
 	private int id;
 
 	//isbn 번호
-	private int isbn;
+	private String isbn;
+	
+	//isbnSet 번호
+	private String isbnSet;
 	
 	//남은 양(대여 가능한 책 수량)
 	private int remainAmount;
@@ -43,8 +46,7 @@ public class Book {
 	//총량(반입된 책 수량)
 	private int totalAmount;
 	
-	//isbnSet 번호
-	private int isbnSet;
+
 	
 	//제목
 	private String title;

@@ -193,6 +193,10 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
   padding: 100px 0;
 }
 
+.section-custom {
+  padding: 30px 0;
+}
+
 .section-sm {
   padding: 70px 0;
 }

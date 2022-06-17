@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.kjs.library.domain.Lend.Lend;
 import com.kjs.library.domain.user.User;
 
 import lombok.AllArgsConstructor;
@@ -30,7 +31,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor 
 @AllArgsConstructor 
-public class SameBook{
+public class Samebook{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 자동 증가 설정함. 정책은 DB처럼 번호 증가함
@@ -42,6 +43,19 @@ public class SameBook{
 	@JoinColumn(name = "bookId")
 	@ManyToOne
 	private Book book;
+	
+	//한 권의 책은 한 장의 대여 정보를 가진다.     ->   책 : 대여정보 = 1 : 1
+	//여러 권의 책은 한 장의 대여 내역을 가진다.  ->  책 : 대여정보 = N : 1
+	//한 장의 대여 내역은 많은 권의 책을 가진다.   -> 책 : 대여정보 = N : 1
+	//여러 장의 대여 내역은 한 권의 책을 가진다.. 불가능
+	//SAMEBOOK이 N, LEND가 1
+	//연관 관계의 주인은 SAMEBOOK. FK는 SAMEBOOK이 가진다.
+	//SAMEBOOK 모델에서 LEND 객체를 가져온 뒤 JOINCOLUMN(lendId)를 설정함.
+	///////////////////////////////////////////////////////////////
+	@JoinColumn(name="lendId")
+	@ManyToOne
+	private Lend lend;
+	
 	
 	//청구 기호
 	private String kdcCallSign;

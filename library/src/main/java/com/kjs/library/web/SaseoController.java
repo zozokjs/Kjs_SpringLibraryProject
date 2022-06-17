@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.kjs.library.config.auth.PrincipalDetails;
 import com.kjs.library.domain.book.Book;
-import com.kjs.library.domain.book.SameBook;
+import com.kjs.library.domain.book.Samebook;
 import com.kjs.library.handler.aop.ex.CustomValidationException;
 import com.kjs.library.service.SaseoService;
 import com.kjs.library.web.dto.book.BookRegistrationDto;
@@ -93,7 +93,6 @@ public class SaseoController {
 			throw new CustomValidationException("권한이 없습니다. 등록할 수 없습니다", null);
 		}else {
 			
-			//System.out.println("로그인 됐음");
 			saseoService.책등록(bookRegistrationDto, principalDetails);
 			//업로드 잘 됐다고 스크립트로 알려줘야함
 			
@@ -132,7 +131,7 @@ public class SaseoController {
 			model.addAttribute("book",bookEntity);
 				
 			//책 1개의 청구기호 정보
-			List<SameBook> sameBookEntity = saseoService.sameBookSelectOne(id);
+			List<Samebook> sameBookEntity = saseoService.sameBookSelectOne(id);
 	
 			
 			//System.out.println("> "+ sameBookEntity.get(0).getKdcCallSign());
@@ -179,7 +178,7 @@ public class SaseoController {
 			model.addAttribute("book",bookEntity);
 			
 			//책 1권의 청구기호 정보 가져옴
-			List<SameBook> sameBookEntity = saseoService.sameBookSelectOne(id);
+			List<Samebook> sameBookEntity = saseoService.sameBookSelectOne(id);
 			model.addAttribute("sameBook",sameBookEntity);
 	
 			return "saseo/bookUpdate_kdc";

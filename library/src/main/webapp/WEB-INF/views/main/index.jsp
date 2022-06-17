@@ -22,7 +22,7 @@
 <!-- Section Intro Start -->
 
 <!-- 도서대출예약 등 -->
-<section class="section service border-top">
+<section class="section-custom service border-top">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-lg-4 col-md-6 col-sm-6">
@@ -93,33 +93,25 @@
 		<!-- 신착도서 리스트 시작 -->
 		<div class="row justify-content-center">
 		
-			<!-- 샘플 첫번쨰 -->
-			<div class="col-lg-4 col-md-6 col-sm-6">
-				<div class="team-item-wrap mb-5 mb-lg-0">
-					<div class="team-item position-relative">
-						<img src="/images/sampleTitle1_origin.jpg" alt="" class="img-fluid w-100">
-					</div>
-					<div class="team-item-content">
-						<h3 class="mt-3 mb-5 lh-36"><a href="#" class="text-white">불편한 편의점</a></h3>
-					</div>
-				</div>
-			</div>
-			
-			<!-- 샘플 두번쨰 -->
-			
-			<div class="col-lg-4 col-md-6 col-sm-6">
-				<div class="team-item-wrap mb-5 mb-lg-0">
-					<div class="team-item position-relative">
-						<img src="/images/sampleTitle2_origin.jpg" alt="" class="img-fluid w-100">
-					</div>
-					<div class="team-item-content">
-						<h3 class="mt-3 mb-5 lh-36"><a href="#" class="text-white">단어의 집</a></h3>
+			<!--사진 반복 시작 -->
+			<c:forEach var = "booked" items ="${book}">
+				
+				<div class="col-lg-4 col-md-6 col-sm-6">
+					<div class="team-item-wrap mb-5 mb-lg-0">
+						<div class="team-item position-relative">
+							<img src="/upload/${booked.titleImageUrl}" alt="" class="img-fluid w-100">
+						</div>
+						<div class="team-item-content">
+							<h3 class="mt-3 mb-5 lh-36"><a href="/" class="text-white">${booked.title}</a></h3>
+						</div>
 					</div>
 				</div>
-			</div>
-
-
-
+			
+			</c:forEach>
+			<!--사진 반복 끝 -->
+			
+			
+			
 		</div>
 	</div>
 </section>
@@ -154,4 +146,5 @@
 </section>
 
 </div>
+<script src="/js_custom/main_index.js"></script>
 <%@ include file="../layout/footer.jsp"%>
