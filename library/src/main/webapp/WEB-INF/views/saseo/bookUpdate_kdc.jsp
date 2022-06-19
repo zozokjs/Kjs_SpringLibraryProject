@@ -69,7 +69,7 @@
 									</div>
 								</div>
 								<!-- 표 끝 -->
- 							<button>청구 기호 등록</button>
+ 							<button>청구 기호 수정 완료</button>
 						</form>
 							
 						</div>

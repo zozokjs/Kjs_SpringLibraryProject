@@ -61,12 +61,11 @@ public class SaseoService {
 		
 		// SAVE 책 청구기호 등록
 		@Transactional
-		public void 책청구기호등록(BookRegistration_kdcDto bookRegistration_kdcDto, PrincipalDetails principalDetails) {                       
+		public void 책청구기호등록(int bookId, BookRegistration_kdcDto bookRegistration_kdcDto, PrincipalDetails principalDetails) {                       
 			
 			//넘어온 청구 기호 출력
 			System.out.println("-------------------------");
 			System.out.println(bookRegistration_kdcDto); //BookRegistration_kdcDto(bookId=1, kdcCallSign=7,8,9)
-			System.out.println(bookRegistration_kdcDto.getBook().getId());
 			System.out.println(bookRegistration_kdcDto.getKdcCallSign());
 			
 			String kdcCallSignList = bookRegistration_kdcDto.getKdcCallSign(); // 2,3,4
@@ -74,6 +73,12 @@ public class SaseoService {
 					    
 			//출력				
 			Samebook sameBook = new Samebook();
+			
+			Book book = new Book();
+			book.setId(bookId);
+			
+			bookRegistration_kdcDto.setBook(book); //bookId 세팅
+			
 			
 			LocalDateTime now = LocalDateTime.now();
 			
@@ -188,6 +193,9 @@ public class SaseoService {
 			
 			//값을 변경 시킴
 			for(int i = 0; i < samebookEntity.size(); i++) {
+				
+				System.out.println("반복 횟수1  "+i);
+				System.out.println("반복 횟수2  "+array[i]);
 				
 				samebookEntity.get(i).setBook(bookEntity);
 				samebookEntity.get(i).setKdcCallSign(array[i]);

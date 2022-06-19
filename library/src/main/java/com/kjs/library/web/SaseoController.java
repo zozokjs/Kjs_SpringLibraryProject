@@ -33,7 +33,7 @@ public class SaseoController {
 
 	private final SaseoService saseoService;
 	
-	//도서 관리 화면으로 이동
+	//도서 목록(도서 관리를 위한) 화면으로 이동
 	@GetMapping("/saseo/bookManage")
 	public String bookManageForm(Model model) {
 		
@@ -100,9 +100,9 @@ public class SaseoController {
 		}
 	}
 		
-	//도서 등록-같은 책의 청구기호 등록 처리
-	@PostMapping("/saseo/bookRegistration_kdc")
-	public String bookRegistration_kdc(BookRegistration_kdcDto bookRegistration_kdcDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+	//도서 등록-같은 책의 청구기호 등록 완료 처리
+	@PostMapping("/saseo/{bookId}/bookRegistration_kdc")
+	public String bookRegistration_kdc(@PathVariable int bookId, BookRegistration_kdcDto bookRegistration_kdcDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		if(principalDetails == null) {			
 			throw new CustomValidationException("로그인이 안 되었습니다. 등록할 수 없습니다", null);
 		}else if( !((principalDetails.getUser().getRole().equalsIgnoreCase("ROLE_SASEO")) || (principalDetails.getUser().getRole() != "ROLE_ADMIN")) ){
@@ -110,8 +110,8 @@ public class SaseoController {
 		}else {
 			
 			System.out.println("읽음");
-			
-			saseoService.책청구기호등록(bookRegistration_kdcDto, principalDetails);
+
+			saseoService.책청구기호등록(bookId, bookRegistration_kdcDto, principalDetails);
 			//업로드 잘 됐다고 스크립트로 알려줘야함
 			
 			return "main/index";
@@ -132,9 +132,6 @@ public class SaseoController {
 				
 			//책 1개의 청구기호 정보
 			List<Samebook> sameBookEntity = saseoService.sameBookSelectOne(id);
-	
-			
-			//System.out.println("> "+ sameBookEntity.get(0).getKdcCallSign());
 				
 			model.addAttribute("sameBook",sameBookEntity);
 				

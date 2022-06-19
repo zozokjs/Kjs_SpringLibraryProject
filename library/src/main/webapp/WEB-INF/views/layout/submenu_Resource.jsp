@@ -35,7 +35,7 @@
 							<div class="media border-bottom py-3">
 								<div class="media-body">
 									<h6 class="my-2">
-										<a href="/">신착 도서</a>
+										<a href="/resource/newBook">신착 도서</a>
 									</h6>
 								</div>
 							</div>

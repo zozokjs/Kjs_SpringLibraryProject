@@ -94,7 +94,7 @@
 			  	<!-- 상단메뉴 Start -->
 			  
 			  	<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">도서관 이용안내</a>
+					<a class="nav-link dropdown-toggle" href="/guide/wayToHome" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">도서관 이용안내</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
 						<!-- 1 depth guide -->
 						<li><a class="dropdown-item" href="/guide/wayToHome">찾아오시는 길</a></li>
@@ -108,12 +108,23 @@
 				</li>
 			  
 		  		<!-- 샘플 -->
-				<li class="nav-item"><a class="nav-link" href="/saseo/1/bookUpdate_kdc">공사중</a></li>
+				<li class="nav-item"><a class="nav-link" href="/resource/newBook">공사중</a></li>
 				<li class="nav-item"><a class="nav-link" href="/board/boardSample">샘플</a></li>
+				
+				<!-- 자료 검색 -->
+			  	<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="/board/boardSample2" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">자료검색</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdown03">
+						<!-- 1 depth resource -->
+						<li><a class="dropdown-item" href="/">통합검색</a></li>
+						<li><a class="dropdown-item" href="/resource/newBook">신착도서</a></li>
+						<li><a class="dropdown-item" href="/">인기도서</a></li>
+					</ul>
+				</li>
 				
 				<!-- 사서 공간 -->
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="/board/boardSample2" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">사서공간</a>
+					<a class="nav-link dropdown-toggle" href="/saseo/bookManage" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">사서공간</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
 						<!-- 1 depth guide -->
 						<li><a class="dropdown-item" href="/saseo/bookManage">도서관리(등록/수정/삭제/권수수정/십진분류)</a></li>
@@ -123,14 +134,7 @@
 					</ul>
 				</li>	
 	  		
-				<!-- 자료 검색 -->
-			  	<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="/board/boardSample2" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">자료검색</a>
-					<ul class="dropdown-menu" aria-labelledby="dropdown03">
-						<li><a class="dropdown-item" href="/board/boardSample2">Our company</a></li>
-						<li><a class="dropdown-item" href="pricing.html">Pricing</a></li>
-					</ul>
-				</li>
+				
 				
 			  	<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">열린공간</a>
@@ -141,7 +145,7 @@
 				</li>
 				
 			  	<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">행정공간</a>
+					<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">닫힌공간</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
 						<li><a class="dropdown-item" href="about.html">Our company</a></li>
 						<li><a class="dropdown-item" href="pricing.html">Pricing</a></li>

@@ -19,7 +19,7 @@
 							</div>		
 							<hr>	
 							
-							<form action="/saseo/bookRegistration_kdc"  method = "post" enctype="multipart/form-data" class="contact-form bg-white rounded p-5"  id="comment-form2">
+							<form action="/saseo/${book.id}/bookRegistration_kdc"  method = "post" enctype="multipart/form-data" class="contact-form bg-white rounded p-5"  id="comment-form2">
 								<h4 class="mb-4">도서 정보를 입력하세요-청구기호 최초 등록</h4>
 								
 								<!-- hidden Tag -->

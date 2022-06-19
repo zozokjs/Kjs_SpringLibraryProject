@@ -18,7 +18,7 @@ function kdcCallSignLoad(){
 		//1줄씩 추가.
 		kdcCallSignListHtml += `<tr>
 			<td class="tg-0pky">
-					${i}
+					
 			</td>
 			<td class="tg-0pky">
 					<input type="text" name="kdcCallSign" placeholder="청구기호">

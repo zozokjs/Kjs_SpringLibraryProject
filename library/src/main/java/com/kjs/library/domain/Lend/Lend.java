@@ -76,6 +76,18 @@ public class Lend {
 	@OneToMany(mappedBy = "lend")
 	private List<Samebook> lendSamebook;
 	
+	
+	//빌린 책 한 종류의 아이디
+	//[한 종류의 책 : 한 장의 대여 내역]
+	//한 종류의 책은 한 장의 대여 내역을 가진다.    -> 1 : 1
+	//여러 종류의 책은 한 장의 대여 내역을 가진다.  -> N : 1
+	//여러 종류의 책은 여러 장의 대여 내역을 가진다. -> N : N 
+	//여러 장의 대여 내역은 한 종류의 책을 가진다.   -> 1 : N
+	//
+	//private Book book;  ..불가능.. 이게 있으면 중간테이블 생성 이유가 없음
+	private int bookId;
+	
+	
 	//빌린 날짜
 	private String lendDate;
 	

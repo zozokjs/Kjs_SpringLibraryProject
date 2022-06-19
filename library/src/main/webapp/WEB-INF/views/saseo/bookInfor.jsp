@@ -232,7 +232,19 @@
 								</div>
 							</div>
 							<!-- 표 끝-->
-						<button type="button" onclick="location.href='/saseo/${book.id}/bookUpdate_kdc' "  >청구기호 수정하기</button>
+							
+							<c:choose>
+								<c:when test="${empty sameBook}">
+									<!-- 청구 기호 없을 때    등록 화면으로 이동-->
+									<button type="button" onclick="location.href='/saseo/${book.id}/bookRegistration_kdc' "  >청구기호 등록하기</button>
+								</c:when>
+								<c:otherwise>
+									<!-- 청구 기호 있을 때    수정 화면으로 이동-->
+									<button type="button" onclick="location.href='/saseo/${book.id}/bookUpdate_kdc' "  >청구기호 수정하기</button>
+								</c:otherwise>
+							</c:choose>
+							
+						
 						</div>
 					</div>
 				</div>
@@ -242,5 +254,4 @@
 	    </div>
 	</section>
 </div>
-<script src="/js_custom/saseo_bookInfor.js"></script>
 <%@ include file="../layout/footer.jsp"%>
