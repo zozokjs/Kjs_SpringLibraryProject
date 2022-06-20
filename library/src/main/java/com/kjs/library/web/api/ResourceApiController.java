@@ -48,14 +48,15 @@ public class ResourceApiController {
 		}
 		//대출 가능 여부 검사
 		else {
-			//대출 성공 시킨 다음에..
+			bookService.책대출(bookId, principalDetails.getUser().getId());
+			System.out.println("다 읽었음");
+			return new ResponseEntity<>(new CMRespDto<>(1, "대출성공", null), HttpStatus.OK);
 		}
 		
 		//책 아이디, 로그인한 아이디를 넘김
-		bookService.책대출(bookId, principalDetails.getUser().getId());
 		
-		System.out.println("다 읽었음");
-		return null;
+		
+	
 	}
 	
 }

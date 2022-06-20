@@ -92,23 +92,36 @@
 
 		<!-- 신착도서 리스트 시작 -->
 		<div class="row justify-content-center">
-		
-			<!--사진 반복 시작 -->
-			<c:forEach var = "booked" items ="${book}">
+		<c:choose>
+			<c:when test="${empty book}">
+				<!-- 등록된 책이 없을 때 -->
 				
-				<div class="col-lg-4 col-md-6 col-sm-6">
-					<div class="team-item-wrap mb-5 mb-lg-0">
-						<div class="team-item position-relative">
-							<img src="/upload/${booked.titleImageUrl}" alt="" class="img-fluid w-100">
-						</div>
-						<div class="team-item-content">
-							<h3 class="mt-3 mb-5 lh-36"><a href="/" class="text-white">${booked.title}</a></h3>
+			</c:when>
+			<c:otherwise>
+				<!-- 등록된 책이 있을 때 -->
+				<div class="team-item position-relative">
+					등록된 책이 없습니다.
+					<img src="/upload/noTitleImage.jpg">
+				</div>
+				<!--사진 반복 시작 -->
+				<c:forEach var = "booked" items ="${book}">
+				
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="team-item-wrap mb-5 mb-lg-0">
+							<div class="team-item position-relative">
+								<img src="/upload/${booked.titleImageUrl}" alt="" class="img-fluid w-100">
+							</div>
+							<div class="team-item-content">
+								<h3 class="mt-3 mb-5 lh-36"><a href="/" class="text-white">${booked.title}</a></h3>
+							</div>
 						</div>
 					</div>
-				</div>
-			
-			</c:forEach>
+				</c:forEach>
 			<!--사진 반복 끝 -->
+			</c:otherwise>
+			
+		</c:choose>
+
 			
 			
 			
@@ -146,5 +159,4 @@
 </section>
 
 </div>
-<script src="/js_custom/main_index.js"></script>
 <%@ include file="../layout/footer.jsp"%>

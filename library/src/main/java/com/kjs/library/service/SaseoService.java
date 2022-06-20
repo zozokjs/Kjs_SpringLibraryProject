@@ -80,10 +80,10 @@ public class SaseoService {
 			bookRegistration_kdcDto.setBook(book); //bookId 세팅
 			
 			
-			LocalDateTime now = LocalDateTime.now();
+			//LocalDateTime now = LocalDateTime.now();
 			
 			for(int i=0;i<array.length;i++) {
-					sameBook.setUpdateDate(now.toString()); //수정 시간
+					//sameBook.setUpdateDate(now.toString()); //수정 시간
 					sameBook = bookRegistration_kdcDto.toEntity(bookRegistration_kdcDto.getBook(), array[i]);
 					sameBookRepository.save(sameBook);
 			}
@@ -217,9 +217,9 @@ public class SaseoService {
 			
 			List<Book> bookList = bookRepository.findAll();
 			
-			System.out.println("--------------------------");
-			System.out.println(bookList.get(0).getTitleImageUrl() );
-			System.out.println(bookList.get(1).getTitleImageUrl() );
+			//System.out.println("--------------------------");
+			//System.out.println(bookList.get(0).getTitleImageUrl() );
+			//System.out.println(bookList.get(1).getTitleImageUrl() );
 			
 			return bookList;
 		}

@@ -9,11 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.kjs.library.domain.Lend.Lend;
 import com.kjs.library.domain.user.User;
 
 import lombok.AllArgsConstructor;
@@ -34,6 +36,10 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 자동 증가 설정함. 정책은 DB처럼 번호 증가함
 	private int id;
 
+	@OneToOne(mappedBy = "book")
+	private Lend lend;
+	
+	
 	//isbn 번호
 	private String isbn;
 	
@@ -45,8 +51,6 @@ public class Book {
 	
 	//총량(반입된 책 수량)
 	private int totalAmount;
-	
-
 	
 	//제목
 	private String title;
@@ -85,6 +89,7 @@ public class Book {
 	private String volume;
 	
 	//내용
+	@Lob
 	private String contents;
 	
 	//십진분류표 000, 100, 200...

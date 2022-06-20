@@ -23,8 +23,9 @@ function bookLending(bookId, event) {
 		console.log("성공", res);
 		
 		alert("빌리기 성공");
+		alert("대출 목록으로 이동하시겠습니까?")
 		
-		//내 서재의 대여 목록으로 이동
+		//내 서재의 대여 목록으로 이동되어야 함
 		location.href = `/`; 
 		
 	}).fail(error =>{

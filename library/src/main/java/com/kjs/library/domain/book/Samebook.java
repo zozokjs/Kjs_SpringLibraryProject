@@ -44,25 +44,21 @@ public class Samebook{
 	@ManyToOne
 	private Book book;
 	
-	//한 권의 책은 한 장의 대여 정보를 가진다.     ->   책 : 대여정보 = 1 : 1
-	//여러 권의 책은 한 장의 대여 내역을 가진다.  ->  책 : 대여정보 = N : 1
-	//한 장의 대여 내역은 많은 권의 책을 가진다.   -> 책 : 대여정보 = N : 1
-	//여러 장의 대여 내역은 한 권의 책을 가진다.. 불가능
-	//SAMEBOOK이 N, LEND가 1
-	//연관 관계의 주인은 SAMEBOOK. FK는 SAMEBOOK이 가진다.
-	//SAMEBOOK 모델에서 LEND 객체를 가져온 뒤 JOINCOLUMN(lendId)를 설정함.
+	//한 권의 책은 한 줄의 대여 정보를 가진다.     ->   책 : 대여정보 = 1 : 1
+	//여러 권의 책은 한 줄의 대여 내역을 가진다.. 불가능
+	//한 줄의 대여 내역은 많은 권의 책을 가진다.. 불가능
+	//여러 줄의 대여 내역은 한 권의 책을 가진다.. 불가능
+	//SAMEBOOK이 1, LEND가 1
+	//
 	///////////////////////////////////////////////////////////////
 	@JoinColumn(name="lendId")
-	@ManyToOne
+	@OneToOne(mappedBy = "samebook")
 	private Lend lend;
 	
 	
 	//청구 기호
 	private String kdcCallSign;
 
-	//수정 날자
-	private String updateDate;
-	
 	//등록 날짜
 	private LocalDateTime createDate;
 	

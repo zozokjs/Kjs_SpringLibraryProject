@@ -28,7 +28,12 @@ public class MainController {
 		
 		//신규 등록된 도서가 표시되어야 함
 		List<Book> book = saseoService.bookSelect();
-		model.addAttribute("book",book);
+		
+		if(book.size() == 0) {
+			System.out.println("등록된 책이 없습니다.");
+		}else {
+			model.addAttribute("book",book);
+		}
 		
 		return "main/index";
 	}
