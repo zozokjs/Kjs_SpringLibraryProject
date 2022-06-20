@@ -1,7 +1,7 @@
 package com.kjs.library.web.dto.lend;
 
-import com.kjs.library.domain.Lend.Lend;
 import com.kjs.library.domain.book.Book;
+import com.kjs.library.domain.lend.Lend;
 import com.kjs.library.domain.user.User;
 import com.kjs.library.web.dto.book.BookRegistration_kdcDto;
 

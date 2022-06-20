@@ -12,8 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 
-import com.kjs.library.domain.Lend.Lend;
 import com.kjs.library.domain.book.Book;
+import com.kjs.library.domain.lend.Lend;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

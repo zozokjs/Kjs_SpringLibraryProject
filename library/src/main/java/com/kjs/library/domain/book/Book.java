@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.kjs.library.domain.Lend.Lend;
+import com.kjs.library.domain.lend.Lend;
 import com.kjs.library.domain.user.User;
 
 import lombok.AllArgsConstructor;

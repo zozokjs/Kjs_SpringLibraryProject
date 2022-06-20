@@ -1,4 +1,4 @@
-package com.kjs.library.domain.Lend;
+package com.kjs.library.domain.lend;
 
 import java.util.List;
 

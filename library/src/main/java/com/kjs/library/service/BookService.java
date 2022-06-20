@@ -8,11 +8,11 @@ import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.kjs.library.domain.Lend.Lend;
-import com.kjs.library.domain.Lend.LendRepository;
 import com.kjs.library.domain.book.Book;
 import com.kjs.library.domain.book.Samebook;
 import com.kjs.library.domain.book.SamebookRepository;
+import com.kjs.library.domain.lend.Lend;
+import com.kjs.library.domain.lend.LendRepository;
 import com.kjs.library.domain.user.User;
 
 import lombok.RequiredArgsConstructor;
