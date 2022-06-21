@@ -30,5 +30,5 @@ public class TestSample {
 	
 	private String title;
 	
-	private String content;
+	private String author;
 }
