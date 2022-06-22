@@ -1,4 +1,4 @@
-package com.kjs.library.service;
+package com.kjs.library.testSample.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -11,6 +11,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.kjs.library.testSample.TestSample;
 import com.kjs.library.testSample.TestSampleRepository;
 import com.kjs.library.testSample.TestSampleService;
+import com.kjs.library.testSample.web.TestSampleControllerIntegreTest;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -35,7 +38,7 @@ import com.kjs.library.testSample.TestSampleService;
  * 그래서 가짜 객체로 만들어야 하는데 그걸 MockitoExtension가 지원함.
  *
  * */
-
+@Slf4j
 @ExtendWith(MockitoExtension.class)
 public class TestSampleServiceUnitTest {
 

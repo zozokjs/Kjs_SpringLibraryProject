@@ -24,10 +24,5 @@ public class LendDto {
 	
 	private User user;
 	
-	public Lend toEntity() {
-		return Lend.builder()
-				.user(user)
-				.build();
-	}
 	
 }

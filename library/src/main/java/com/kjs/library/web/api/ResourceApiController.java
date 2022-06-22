@@ -39,15 +39,17 @@ public class ResourceApiController {
 		 * 
 		 * */
 		
-		System.out.println("넘어온 책 아이디 :  "+bookId);
+		System.out.println("책 아이디:  "+bookId);
+		boolean lendAbleByBookId = false;
+		boolean lendAbleBySamebookId = false; 
+		
+		//lendAbleByBookId = bookService.대출여부(bookId, loginId);
 		
 		//로그인 검사
 		if(principalDetails == null) {			
 			//	System.out.println("-로그인 안 됨-");
 			return new ResponseEntity<>(new CMRespDto<>(1, "로그인 해야 합니당", null), HttpStatus.BAD_REQUEST);
-		}
-		//대출 가능 여부 검사
-		else {
+		}else {
 			bookService.책대출(bookId, principalDetails.getUser().getId());
 			System.out.println("다 읽었음");
 			return new ResponseEntity<>(new CMRespDto<>(1, "대출성공", null), HttpStatus.OK);

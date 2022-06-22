@@ -1,4 +1,4 @@
-package com.kjs.library.web;
+package com.kjs.library.testSample.web;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

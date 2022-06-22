@@ -16,7 +16,7 @@ public interface LendRepository  extends JpaRepository<Lend, Integer>{
 	
 	//bookId 기준, 대출 상태가 아닌(lendId가 null) 가장 빠른 청구기호 1개 검색
 	@Query(value="SELECT id FROM samebook where bookId = :bookId ORDER BY id LIMIT 1;", nativeQuery = true)
-	String findKdcCallSignBybookidTest(int bookId);
+	int findKdcCallSignBybookidTest(int bookId);
 	
 	
 	

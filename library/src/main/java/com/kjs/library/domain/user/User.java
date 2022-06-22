@@ -33,10 +33,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 자동 증가 설정함. 정책은 DB처럼 번호 증가함
 	private int id;
 
-	
 	@OneToMany(mappedBy="user")//기본 전력은 LAZY
 	private List<Lend> lend;
-	
 	
 	//아이디
 	@Column(length = 100, unique = true)

@@ -1,6 +1,9 @@
-package com.kjs.library.web;
+package com.kjs.library.testSample.web;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -10,61 +13,68 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kjs.library.domain.user.UserRepository;
+import com.kjs.library.service.AuthService;
+import com.kjs.library.service.BookService;
+import com.kjs.library.service.CommonService;
+import com.kjs.library.service.SaseoService;
+import com.kjs.library.service.UserService;
 import com.kjs.library.testSample.TestSample;
 import com.kjs.library.testSample.TestSampleRepository;
+import com.kjs.library.testSample.TestSampleService;
 
 import lombok.extern.slf4j.Slf4j;
 
-// 통합 테스트
 
-/***
- * @SpringBootTest 이걸 붙이면 서버 실행하듯이 모두 ioc에 올라감
- * WebEnvironment.MOCK = 실제 톰캣이 아니라 다른 가짜 톰켓으로 테스트함
- * WebEnvironment.RANDOM_PORT = 실제 톰켓으로 테스트함
- *
- * @AutoConfigureMockMvc = MockMvc를 IOC에 등록해준다.
- * @Transactional = 각각 테스트 함수가 종료될 때마다 트랜잭션을 롤백해준다. (db에 넣어준 걸 뺴준다)
- * 
- */
+//단위 테스트 (Controller, Filter, ControllerAdvice 등만 올라감)
 @Slf4j
-@Transactional
-@AutoConfigureMockMvc
-@SpringBootTest(webEnvironment = WebEnvironment.MOCK) 
-public class TestSampleControllerIntegreTest {
+@WebMvcTest
+public class TestSampleControllerUnitTest {
 
 	@Autowired
 	private MockMvc mockMvc;
 	
-	@Autowired
+	//최초 실행 시 이 클래스에서는 Controller 테스트하는 거라서 Controller 관련된 것만 뜨지
+	//Controller 테스트에 필요한 Service는 뜨지 않음
+	//그래서 MockBean이라는 어노테이션을 붙여서 가짜 서비스를 생성한다.
+	//진짜 서비스를 연결한다면 그 서비스에 연결된 db 관련된 것도 다 연결해야 하기 때문임.
+	@MockBean
+	private BookService bookService;
+	
+	@MockBean
+	private AuthService authService;
+	
+	@MockBean
+	private CommonService commonService;
+	
+	@MockBean
+	private SaseoService saseoService;
+	
+	@MockBean
+	private UserService userService;
+	
+	@MockBean
+	private UserRepository userRepository;
+	
+	
+	
+	@MockBean
+	private TestSampleService testSampleService ;
+	
+	@MockBean
 	private TestSampleRepository testSampleRepository;
-	
-	@Autowired
-	private EntityManager entityManager;
-	
-	@BeforeEach //@Test라고 붙은 함수가 실행되기 전에 이 함수가 한 번씩 실행되도록 한다.
-	public void init() {
-		//id를 1로 초기화
-		entityManager.createNativeQuery("ALTER TABLE testsample AUTO_INCREMENT = 1").executeUpdate();
-	}
-	
-	
-	
 	
 	
 	//@Test
@@ -77,6 +87,7 @@ public class TestSampleControllerIntegreTest {
 		//given(테스트를 위한 준비)
 		TestSample testSample = new TestSample(1, "abc", "content");//객체 만들고
 		String content = new ObjectMapper().writeValueAsString(testSample); //제이슨으로 바꿈
+		//when(testSampleService.저장하기(testSample)).thenReturn(new TestSample(1,"abc","content")); //실행되면 이것이 리턴될 것이다?
 		
 		//when( 테스트 실행 )
 		ResultActions resultAction =
@@ -85,24 +96,21 @@ public class TestSampleControllerIntegreTest {
 				.content(content) //보낼 거
 				.accept(MediaType.APPLICATION_JSON_UTF8));//받는 타입
 		
-		
 		//then ( 검증 )
 		resultAction
 			.andExpect(status().isCreated()) //응답은 201을 기대함
 			.andExpect(jsonPath("$.title").value("abc")) //json을 기대함. title이라는 변수의 값이 abc가 맞는가?
 			.andDo(MockMvcResultHandlers.print());
-		
 	}
-	
 	
 	@Test
 	public void finalAll테스트() throws Exception{
 		//given
-		//진짜 db로 하는데 값이 없으니까 이렇게 데이터를 넣어줘야 함
+		//가짜 db로 하니까 이렇게 데이터를 넣어줘야 함
 		List<TestSample> testSamples = new ArrayList<>();
 		testSamples.add(new TestSample(1, "abc","ㅇㄷㄹ"));
 		testSamples.add(new TestSample(2, "dcv","ㄱㄴㄷ"));
-		testSampleRepository.saveAll(testSamples);
+		when(testSampleService.모두가져오기()).thenReturn(testSamples);
 		
 		//when
 		ResultActions resultAction =
@@ -114,22 +122,16 @@ public class TestSampleControllerIntegreTest {
 		.andExpect(status().isOk()) //응답은 201을 기대함
 		.andExpect(jsonPath("$",Matchers.hasSize(2))   ) //json을 기대함. 전체의 / 사이즈가 2개인가?
 		.andExpect(jsonPath("$.[0].title").value("abc")) //전체 중 0번지의 타이틀 / 그 값이 abc인가?
-		.andDo(MockMvcResultHandlers.print());
-		
+		.andDo(MockMvcResultHandlers.print()); //결과물을 콘솔에 출력
 	}
-	
 	
 	
 	@Test
 	public void findById_테스트() throws Exception{
 		//given
-	
-		List<TestSample> testSamples = new ArrayList<>();
-		testSamples.add(new TestSample(1, "abc","ㅇㄷㄹ"));
-		testSamples.add(new TestSample(2, "dcv","ㄱㄴㄷ"));
-		testSampleRepository.saveAll(testSamples);
+		int id = 1;
 		
-		int id = 2;
+		when(testSampleService.한건가져오기(id)).thenReturn(new TestSample(1,"ㄱㄱㄱ","sss"));
 		
 		//when
 		ResultActions resultAction =
@@ -139,11 +141,9 @@ public class TestSampleControllerIntegreTest {
 		//then
 		resultAction
 		.andExpect(status().isOk()) //응답은 201을 기대함
-		.andExpect(jsonPath("$.title").value("dcv"))
+		.andExpect(jsonPath("$.title").value("ㄱㄱㄱ"))
 		.andDo(MockMvcResultHandlers.print());
 	}
-	
-	
 	
 	
 	@Test
@@ -151,13 +151,9 @@ public class TestSampleControllerIntegreTest {
 		
 		//given
 		int id = 1;
-		List<TestSample> testSamples = new ArrayList<>();
-		testSamples.add(new TestSample(1, "abc","ㅇㄷㄹ"));
-		testSamples.add(new TestSample(2, "dcv","ㄱㄴㄷ"));
-		testSampleRepository.saveAll(testSamples);
-		
-		TestSample testSample = new TestSample(1, "zzzz", "ㅁㄴㅁㄴㅁㄴ");//객체 만들고
+		TestSample testSample = new TestSample(1, "cccc", "ㅁㄴㅁㄴㅁㄴ");//객체 만들고
 		String content = new ObjectMapper().writeValueAsString(testSample); //제이슨으로 바꿈
+		when(testSampleService.수정하기(id, testSample)).thenReturn(new TestSample(1,"cccc","content")); //실행되면 이것이 리턴될 것이다?
 
 		
 		//when
@@ -170,9 +166,34 @@ public class TestSampleControllerIntegreTest {
 		//then
 		resultAction
 		.andExpect(status().isOk()) //응답은 201을 기대함
-		.andExpect(jsonPath("$.id").value(1))
-		.andExpect(jsonPath("$.title").value("zzzz"))
+		.andExpect(jsonPath("$.title").value("cccc"))
 		.andDo(MockMvcResultHandlers.print());
+	}
+	
+	
+	
+	@Test
+	public void delete_테스트() throws Exception{
+		
+		//given
+		int id = 1;
+		when(testSampleService.삭제하기(id)).thenReturn("ok");
+		
+		//when
+		ResultActions resultAction =
+		mockMvc.perform(delete("/testSample/{id}", id)
+				.accept(MediaType.TEXT_PLAIN));//받는 타입(문자열)
+		
+		//then
+		resultAction
+		.andExpect(status().isOk()) //응답은 200을 기대함
+		.andDo(MockMvcResultHandlers.print());
+		
+		//문자열 응답을 검증할 때 
+		MvcResult requestResult = resultAction.andReturn();
+		String result = requestResult.getResponse().getContentAsString();
+		assertEquals("ok",result);
+
 	}
 	
 }

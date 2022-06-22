@@ -35,10 +35,6 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 자동 증가 설정함. 정책은 DB처럼 번호 증가함
 	private int id;
-
-	@OneToOne(mappedBy = "book")
-	private Lend lend;
-	
 	
 	//isbn 번호
 	private String isbn;
@@ -126,4 +122,15 @@ public class Book {
 	public void createDate() {
 		this.createDate = LocalDateTime.now();
 	}
+
+	public Book(int id) {
+		super();
+		this.id = id;
+	}
+	
+	
+	
+	
+	
 }
+
