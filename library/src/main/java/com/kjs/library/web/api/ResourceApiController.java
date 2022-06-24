@@ -28,37 +28,45 @@ public class ResourceApiController {
 	@PostMapping("/api/resource/{bookId}/bookLending")
 	public ResponseEntity<?> bookLending(@PathVariable int bookId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		
-		/**
-		 * 0. 책 아이디 가져옴
-		 * 1. 로그인 여부 확인
-		 * 2. 책의 대출 가능 여부 확인
-		 * 2.1. 책의 대출 가능 수 체크. 불가능하면 불가능하다고 알림.
-		 * 
-		 * 서비스에 책 아이디, 로그인된 아이디 넘김.
-		 * 
-		 * 
-		 * */
 		
+		boolean lendAbleByBookId = false;   //대출여부
+		boolean lendAbleBySamebookVolume = false;  //대여 가능한 책(samebook) 존재여부
+		
+		int loginId = principalDetails.getUser().getId();
+		lendAbleByBookId = bookService.대출했다(bookId, loginId);
+		lendAbleBySamebookVolume = bookService.잔여책존재한다(bookId);
+		
+		System.out.println("로그인한 유저 이름:  "+principalDetails.getUser().getUsername());
 		System.out.println("책 아이디:  "+bookId);
-		boolean lendAbleByBookId = false;
-		boolean lendAbleBySamebookId = false; 
+		System.out.println("대출했다 : "+lendAbleByBookId);
+		System.out.println("대여 가능한 samebook 존재한다 :  "+lendAbleBySamebookVolume);
 		
-		//lendAbleByBookId = bookService.대출여부(bookId, loginId);
+		
+		/**
+		 * 1. 로그인 했니?
+		 * 2. 그 아이디로 책을 빌리진 않았니?
+		 * 3. 빌릴 책이 남아 있니? 
+		 **/
 		
 		//로그인 검사
-		if(principalDetails == null) {			
+		if(loginId == 0) {			
 			//	System.out.println("-로그인 안 됨-");
-			return new ResponseEntity<>(new CMRespDto<>(1, "로그인 해야 합니당", null), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(new CMRespDto<>(1, "로그인 해야 합니다", null), HttpStatus.BAD_REQUEST);
+		}else if(lendAbleByBookId == true){
+			
+			//로그인한 사람이 빌린 책을 또 대출하려고 함
+			//대출 상태니까 또 못 빌림.
+			return new ResponseEntity<>(new CMRespDto<>(2, "같은 책을 동시에 대출할 수 없습니다.", null), HttpStatus.BAD_REQUEST);
+		}else if(lendAbleBySamebookVolume == false) {
+			
+			//대출된 책이 없음.
+			return new ResponseEntity<>(new CMRespDto<>(3, "이미 모두 대출 되어 대출할 수 없습니다.", null), HttpStatus.BAD_REQUEST);
 		}else {
-			bookService.책대출(bookId, principalDetails.getUser().getId());
-			System.out.println("다 읽었음");
-			return new ResponseEntity<>(new CMRespDto<>(1, "대출성공", null), HttpStatus.OK);
+			
+			bookService.책대출(bookId, loginId);
+			//System.out.println("다 읽었음");
+			return new ResponseEntity<>(new CMRespDto<>(0, "대출성공", null), HttpStatus.OK);
 		}
-		
-		//책 아이디, 로그인한 아이디를 넘김
-		
-		
-	
 	}
 	
 }

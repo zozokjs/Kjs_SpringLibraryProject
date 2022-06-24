@@ -35,6 +35,7 @@
 									var samebookArray = new Array();
 									
 									<c:forEach items="${sameBook}" var="item">
+										console.log("반복 중");
 										samebookArray.push({										
 											kdcCallSign : "${item.kdcCallSign}"
 										});

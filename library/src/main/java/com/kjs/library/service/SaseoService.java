@@ -79,8 +79,7 @@ public class SaseoService {
 			
 			bookRegistration_kdcDto.setBook(book); //bookId 세팅
 			
-			
-			//LocalDateTime now = LocalDateTime.now();
+			sameBook.setLendState(false); //대여 상태를 false로 세팅
 			
 			for(int i=0;i<array.length;i++) {
 					//sameBook.setUpdateDate(now.toString()); //수정 시간
@@ -88,8 +87,6 @@ public class SaseoService {
 					sameBookRepository.save(sameBook);
 			}
 		}
-		
-		
 		
 		
 		// UPDATE 책 수정
@@ -172,8 +169,6 @@ public class SaseoService {
 		}
 		
 		
-		
-		
 		// UPDATE 책 청구기호 수정
 		@Transactional
 		public List<Samebook> 책청구기호수정(int bookId, BookUpdate_kdcDto bookUpdate_kdcDto, String loginedId) {
@@ -190,18 +185,46 @@ public class SaseoService {
 						
 			String kdcCallSignList = bookUpdate_kdcDto.getKdcCallSign(); // 2,3,4
 			String[] array = kdcCallSignList.split(",");
+
+			int currentKdcCallSign_size = samebookEntity.size();
+			int editKdcCallSign_size = array.length; 
+			
+			//System.out.println("길이 체크 : "+editKdcCallSign_size);
+			//System.out.println("영속화된 List 길이 체크 "+currentKdcCallSign_size);
+			
+			
 			
 			//값을 변경 시킴
-			for(int i = 0; i < samebookEntity.size(); i++) {
+			for(int i = 0; i < array.length; i++) {
 				
-				System.out.println("반복 횟수1  "+i);
-				System.out.println("반복 횟수2  "+array[i]);
+				//System.out.println( i+"번째 청구기호 : "+array[i]);
+
+				//영속화된 객체에 새 것이 추가되는 경우
+				if(editKdcCallSign_size > currentKdcCallSign_size) {
+					
+					if( i < currentKdcCallSign_size) {
+						//기존 것을 업데이트합니다.
+						//System.out.println("기존의 청구기호를 업데이트합니다.");
+					
+						samebookEntity.get(i).setBook(bookEntity);
+						samebookEntity.get(i).setKdcCallSign(array[i]);
+					}else {
+						//새 것을 추가합니다.
+						//System.out.println("새 청구기호를 추가합니다.");
+						
+						Samebook sameBook = new Samebook(bookEntity, array[i]);
+						sameBookRepository.save(sameBook);
+						
+					} //end of if
+					
+					
+				}else if(editKdcCallSign_size == currentKdcCallSign_size) {
+					samebookEntity.get(i).setBook(bookEntity);
+					samebookEntity.get(i).setKdcCallSign(array[i]);
+				}//end of if
 				
-				samebookEntity.get(i).setBook(bookEntity);
-				samebookEntity.get(i).setKdcCallSign(array[i]);
-			}
+			} //end of for
 			
-			//return과 동시에 값 변경을 감지하고 자동 업데이트
 			return samebookEntity;
 		}
 		

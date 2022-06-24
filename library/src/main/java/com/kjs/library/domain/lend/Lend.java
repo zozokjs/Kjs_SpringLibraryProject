@@ -2,6 +2,7 @@ package com.kjs.library.domain.lend;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -40,20 +41,17 @@ public class Lend {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 자동 증가 설정함. 정책은 DB처럼 번호 증가함
 	private int id;
 	
-	@JoinColumn(name="lendUserId")
+	@JoinColumn(name="userId")
 	@ManyToOne
 	private User user; //자식 entity는 List<Lend>
 	
-	@JoinColumn(name="lendBookId")
+	@JoinColumn(name="bookId")
 	@OneToOne
 	private Book book; //자식 entity는 lend
 	
-	@JoinColumn(name="lendSamebookId")
+	@JoinColumn(name="samebookId")
 	@OneToOne
 	private Samebook samebook; //자식 entity는 book과 lend
-	
-	//빌린 날짜
-	private String lendDate;
 	
 	//반납 날짜
 	private String returnDate;

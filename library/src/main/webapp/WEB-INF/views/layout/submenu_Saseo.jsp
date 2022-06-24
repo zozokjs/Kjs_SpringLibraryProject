@@ -19,7 +19,7 @@
 	        
 	            <!-- 사이드 메뉴 -->
 	            <!-- css 경로 : static > plugins > bootstrap > css > bootstrap.min.css -->
-	            <div class="col-lg-4-c col-lg-4">
+	            <div class="col-lg-3-c col-lg-3">
 	                <div class="sidebar-wrap">
 						<div class="sidebar-widget latest-post card border-0 p-4 mb-3">
 							<h5>사서공간</h5>

@@ -9,6 +9,7 @@ import java.util.ListIterator;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,8 +43,10 @@ public class Samebook{
 	
 	//책 아이디
 	@JoinColumn(name = "bookId")
-	@ManyToOne
+	@ManyToOne(targetEntity = Book.class, fetch = FetchType.LAZY)
 	private Book book;
+	
+	private boolean lendState;
 	
 	//청구 기호
 	private String kdcCallSign;
@@ -56,9 +59,10 @@ public class Samebook{
 		this.createDate = LocalDateTime.now();
 	}
 
-	public Samebook(String kdcCallSign) {
+	public Samebook(Book book, String kdcCallSign) {
 		super();
 		this.kdcCallSign = kdcCallSign;
+		this.book = book;
 	}
 
 	

@@ -34,29 +34,35 @@ function bookUpdate_kdc(bookId, event) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //권 수에 따라 청구기호 ''입력'' 테이블 생성 함.
 function kdcCallSignLoad(){
+	
 	const volume = 	$("#book_volume").val(); //권 수
 
-	//alert(volume);
 	var kdcCallSignListHtml ="";
 	
 	const volume_Integer = Number(volume);//String을 Number로 변환.
+	
+	
+	/*
+	값 체크
+	
+	
+	console.log("book의 volume 값 : "+Number(volume));
+	console.log("청구기호 배열 길이 : "+samebookArray.length);
+	for (var i = 0; i < samebookArray.length; i++) { //배열 출력
+		console.log("청구기호 배열 값 " + samebookArray[i].kdcCallSign);
+	}
+
+	값 체크 끝
+	 */
+	 
+	//volume은 2인데,
+	//samebookArray 길이가 1일 때 값을 불러오지 못함	 
+	//samebookArray는 1개 밖에 없으니까 2번째를 찾지 못하는 것임		
+	
+	
+	
 	
 	kdcCallSignListHtml += `<tr>
 											    <td class="tg-0pky">기존</td>
@@ -73,10 +79,22 @@ function kdcCallSignLoad(){
 											 			<input type="text"  name=""  value="등록된 청구기호 없음" readonly="readonly">
 											 		</td>    `
 	    }else{
+			
+			if( samebookArray[i] === undefined ){
+			//청구기호가 정해지지 않았을 때
+			kdcCallSignListHtml += ` <td class="tg-0pky">
+												  		<input type="text"  name="" value="아직 정해지지 않았습니다" readonly="readonly">
+												    </td>  `
+				
+			}else{
 			//값이 있을 때 청구기호 표시
 			kdcCallSignListHtml += ` <td class="tg-0pky">
 												  		<input type="text"  name="" value="  `+samebookArray[i].kdcCallSign+`  " readonly="readonly">
 												    </td>  `
+				
+			}
+						
+			
 		}//end of else
 		
 		
