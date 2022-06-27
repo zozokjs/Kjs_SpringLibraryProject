@@ -37,6 +37,11 @@
 					        </div>
 					        <div class="media border-bottom py-3">
 					            <div class="media-body">
+					                <h6 class="my-2"><a href="#">대출내역 </a></h6>
+					            </div>
+					        </div>
+					        <div class="media border-bottom py-3">
+					            <div class="media-body">
 					                <h6 class="my-2"><a href="#">희망도서신청관리</a></h6>
 					            </div>
 					        </div>

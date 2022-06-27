@@ -1,5 +1,8 @@
 package com.kjs.library.service;
 
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -11,6 +14,7 @@ import com.kjs.library.domain.book.SamebookRepository;
 import com.kjs.library.domain.lend.Lend;
 import com.kjs.library.domain.lend.LendRepository;
 import com.kjs.library.domain.user.User;
+import com.kjs.library.web.dto.lend.UserLendListInterface;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,8 +24,25 @@ public class BookService {
 
 	private final SamebookRepository samebookRepository;
 	private final LendRepository lendRepository;
+	private final CommonService commonService;
 	
-	//책 대출, 반납, 희망도서 신청, 희망도서 신청 취소 등
+	
+	//책 대출, 반납, 희대도서 신청, 희망도서 신청 취소 등
+	
+	//사용자 1명의 반납 안 한 대출 목록 
+	@Transactional
+	public List<UserLendListInterface> 대출목록(int loginId){
+		
+		List<UserLendListInterface> lend = lendRepository.findUserLendListByUserId(loginId);
+
+		/* 값 체크
+		for (int i = 0; i < lend.size(); i++) {
+			System.out.println(lend.get(i).getCreateDate() + "    /  " +lend.get(i).getBindType());
+		}
+		*/
+		return lend;
+	}
+	
 	
 	//1권 씩 대출할 때?
 	@Transactional
@@ -53,6 +74,17 @@ public class BookService {
 		samebookEntity.setLendState(true); 
 		
 		
+		//5. 반납예정일 세팅
+		String returnPlanDate = null;
+		try {
+			//오늘 날짜를 가져와서 반납예정날자를 구함(그 날짜가 주말이면 1일 더함.. 그 이후 계산 안 됨. 미완성)
+			returnPlanDate = commonService.반납예정날짜();
+		} catch (Exception e) {
+			System.out.println("에러 "+e);
+		}
+		lend.setReturnPlanDate(returnPlanDate);
+		
+		
 		System.out.println("세팅된 책번호  " +bookId);
 		System.out.println("세팅된 청구기호 아이디 " +samebookId);
 		
@@ -71,7 +103,7 @@ public class BookService {
 		return samebooId;
 	}
 
-
+	
 	@Transactional(readOnly = true)
 	public boolean 대출했다(int bookId, int loginId) {
 		
@@ -100,6 +132,80 @@ public class BookService {
 			return false;
 		}
 	}
+	
+	
+	@Transactional
+	public Lend 책반납(int lendId) throws ParseException {
+		Lend lend = lendRepository.findById(lendId).orElseThrow();
+		
+		//System.out.println(lend);
+		
+		LocalDateTime now = LocalDateTime.now(); 
+		String returnDate = CommonService.날짜포맷변경(now);
+		
+		lend.setReturnDate(returnDate);
+	
+		return lend;
+	}
+	
+	
+	
+	
+	
+	
+	@Transactional
+	public Lend 책연장(int lendId) throws Exception {
+		Lend lend = lendRepository.findById(lendId).orElseThrow();
+		
+		/**
+		 * 책 대출 연장 처리 순서
+		 * 1. 연장 횟수 확인
+		 * 2. 오늘 날짜 가져옴
+		 * 3. 연장 날자 세팅
+		 * 4. 반납 날짜를 연장 날짜에서 14일 더하고 세팅
+		 * 5. 연장 횟수 세팅
+		 * **/
+	
+		//1. 연장 날짜 세팅
+		LocalDateTime now = LocalDateTime.now(); 
+		String extensionDate = CommonService.날짜포맷변경(now);
+		lend.setExtensionDate(extensionDate);
+		
+		
+		//2. 반납예정일 세팅(업데이트)
+		String returnPlanDate = null;
+		try {
+			//오늘 날짜를 가져와서 반납예정날자를 구함(그 날짜가 주말이면 1일 더함.. 그 이후 계산 안 됨. 미완성)
+			returnPlanDate = commonService.반납예정날짜();
+		} catch (Exception e) {
+			System.out.println("에러 "+e);
+		}
+		lend.setReturnPlanDate(returnPlanDate);
+		
+		//3. 연장 횟수 세팅
+		lend.setExtensionAbleCount(0);
+		
+		System.out.println("연장 날짜 "+extensionDate);
+		System.out.println("반납 날짜 "+returnPlanDate);
+		
+		return lend;
+	}
+	
+	
+	@Transactional(readOnly = true)
+	public boolean 책연장가능하다(int lendId) {
+		
+		Lend lend = lendRepository.findById(lendId).orElseThrow();
+		int bookExtensionAbleCount = lend.getExtensionAbleCount();
+		
+		if(bookExtensionAbleCount == 0) {
+			return false; //연장 불가
+		}else {
+			return true; //연장 가능
+		}
+		
+	}
+	
 	
 	
 }

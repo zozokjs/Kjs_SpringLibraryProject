@@ -18,7 +18,11 @@
 							</div>		
 							<hr>	
 							
+							<button type="button" 
+	                                    onclick="location.href='/auth/signup'"
+	                                    class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">회원가입</button>
 							
+							<input  type="hidden" name="titleImageUrl"  value="${book.titleImageUrl}"/>
 							
 							
 							<!-- 내용 Start-->
@@ -31,4 +35,7 @@
 	    </div>
 	</section>
 </div>
+<!-- 
+				<script src="/js_custom/saseo_bookUpdate.js"></script>
+ -->
 <%@ include file="../layout/footer.jsp"%>

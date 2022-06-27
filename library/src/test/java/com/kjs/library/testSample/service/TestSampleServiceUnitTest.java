@@ -1,8 +1,8 @@
 package com.kjs.library.testSample.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -11,7 +11,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.kjs.library.testSample.TestSample;
 import com.kjs.library.testSample.TestSampleRepository;
 import com.kjs.library.testSample.TestSampleService;
-import com.kjs.library.testSample.web.TestSampleControllerIntegreTest;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -49,7 +48,7 @@ public class TestSampleServiceUnitTest {
 	@Mock
 	private TestSampleRepository testSampleRepository;
 	
-	
+	//@Test
 	public void 저장_테스트() {
 		
 		TestSample testSample = new TestSample();

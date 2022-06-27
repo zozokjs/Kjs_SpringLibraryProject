@@ -103,7 +103,7 @@ public class TestSampleControllerUnitTest {
 			.andDo(MockMvcResultHandlers.print());
 	}
 	
-	@Test
+	//@Test
 	public void finalAll테스트() throws Exception{
 		//given
 		//가짜 db로 하니까 이렇게 데이터를 넣어줘야 함
@@ -126,7 +126,7 @@ public class TestSampleControllerUnitTest {
 	}
 	
 	
-	@Test
+	//@Test
 	public void findById_테스트() throws Exception{
 		//given
 		int id = 1;
@@ -146,7 +146,7 @@ public class TestSampleControllerUnitTest {
 	}
 	
 	
-	@Test
+	//@Test
 	public void update_테스트() throws Exception{
 		
 		//given
@@ -172,7 +172,7 @@ public class TestSampleControllerUnitTest {
 	
 	
 	
-	@Test
+	//@Test
 	public void delete_테스트() throws Exception{
 		
 		//given

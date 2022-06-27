@@ -41,13 +41,13 @@ function bookUpdate(bookId, event) {
 		
 		console.log("성공", res);
 		
-		alert("도서 정보가 수정되었습니당");
+		alert("도서 정보가 수정되었습니다");
 		location.href = `/`;
 		
 	}).fail(error =>{
 		
 		console.log("실패",error);
-		alert("stop");
+		alert("도서 정보 수정을 실패했습니다");
 		
 	})
 }

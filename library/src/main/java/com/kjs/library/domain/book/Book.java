@@ -58,6 +58,9 @@ public class Book {
 	private String titleImageUrl;
 	
 	//제본형식
+	/* 1: 종이 / 2. 마력 / 3. 전자잉크
+	 * 4. 음성 /5. 영상 / 6.기타
+	 * */
 	private String bindType;
 	
 	//페이지
@@ -73,6 +76,8 @@ public class Book {
 	private String publishDate;
 	
 	//납본여부
+	/* 1. 했음  / 2. 안 했음
+	 * */
 	private String deliveryState;
 	
 	//발행처
@@ -88,7 +93,11 @@ public class Book {
 	@Lob
 	private String contents;
 	
-	//십진분류표 000, 100, 200...
+	//KDC대분류(십진분류에 따름) 
+	/*  000 총류 / 100 철학 /200 종교
+	 *  300 사회과학 / 400 자연과학 / 500 기술과학
+	 *  600 예술 / 700 언어 / 800 문학 / 900 역사
+	 * */
 	private String kdcTable;
 	
 	//대표 청구기호 김15소, 박211가...

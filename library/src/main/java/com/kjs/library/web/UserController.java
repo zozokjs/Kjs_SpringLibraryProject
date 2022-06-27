@@ -1,18 +1,43 @@
 package com.kjs.library.web;
 
+import java.text.ParseException;
+import java.util.List;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.kjs.library.config.auth.PrincipalDetails;
+import com.kjs.library.service.BookService;
+import com.kjs.library.web.dto.lend.UserLendListInterface;
 
+import lombok.RequiredArgsConstructor;
+
+
+@RequiredArgsConstructor
 @Controller
 public class UserController {
 	
+	private final BookService bookService;
+	
 	//내 서재 페이지로 이동
 	@GetMapping("/user/myLibrary")
-	public String myLibraryForm() {
+	public String myLibraryForm(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) throws ParseException {
+		
+		//대출된 목록 표시
+		List<UserLendListInterface> userLendList = bookService.대출목록(principalDetails.getUser().getId());
+
+		/*
+		for (int i = 0; i < userLendList.size(); i++) {
+			System.out.println("체크");
+			System.out.println(userLendList.get(i).getReturnPlanDate()  );
+			System.out.println(userLendList.get(i).getBindTypeToString()  );
+			System.out.println(userLendList.get(i).getStandardCreateDate() );
+		}*/
+		
+		model.addAttribute("userLendList",userLendList);
 		
 		return "user/myLibrary";
 	}

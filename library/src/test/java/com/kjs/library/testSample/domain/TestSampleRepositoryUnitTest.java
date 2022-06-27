@@ -36,7 +36,7 @@ public class TestSampleRepositoryUnitTest {
 	@Autowired
 	private TestSampleRepository testSampleRepository;
 
-	@Test
+	//@Test
 	public void 저장_테스트() {
 		
 		//given
@@ -53,7 +53,7 @@ public class TestSampleRepositoryUnitTest {
 	
 	
 	
-	@Test
+	//@Test
 	public void findAll_테스트() {
 		// given
 		testSampleRepository.saveAll(

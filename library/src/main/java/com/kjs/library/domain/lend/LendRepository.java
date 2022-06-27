@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.kjs.library.domain.book.Samebook;
+import com.kjs.library.web.dto.lend.UserLendListInterface;
 
 public interface LendRepository  extends JpaRepository<Lend, Integer>{
 	
@@ -22,4 +23,15 @@ public interface LendRepository  extends JpaRepository<Lend, Integer>{
 	@Query(value = "SELECT id FROM samebook where bookId = :bookId AND lendState = 0", nativeQuery = true)
 	List<Integer> findLendAbleSamebookVolume(int bookId);
 	
+	/***
+	//사용자가 대출 했으면서 반납하지 않은 목록의 lendId,  Book title, Book writer, Lend createDate, Lend returnPlanDate
+	@Query(value="SELECT L.id, B.title, B.writer,  B.publish,  B.bindType,  L.createDate, L.returnPlanDate FROM(SELECT returnPlanDate, samebookId, bookId, id, createDate FROM lend WHERE returnDate IS NULL AND userId = :userId) AS L INNER JOIN samebook AS S ON L.samebookId = S.id INNER JOIN book AS B ON L.bookId = B.id;",nativeQuery = true)
+	List<UserLendListInterface> findUserLendListByUserId(int userId);
+	 */
+	//사용자가 대출 했으면서 반납하지 않은 목록의 lendId,  Book title, Book writer, Lend createDate, Lend returnPlanDate
+	@Query(value="SELECT L.id, B.title, B.writer,  B.publish,  B.bindType,  L.createDate, L.returnPlanDate FROM(SELECT returnPlanDate, samebookId, bookId, id, createDate FROM lend WHERE returnDate IS NULL AND userId = :userId) AS L INNER JOIN samebook AS S ON L.samebookId = S.id INNER JOIN book AS B ON L.bookId = B.id;",nativeQuery = true)
+	List<UserLendListInterface> findUserLendListByUserId(int userId);
+		
+	
 }
+

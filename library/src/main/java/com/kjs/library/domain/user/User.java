@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // 빈 생성자
 @AllArgsConstructor // 모든 생성자
 @Entity // JPA를 위함. 디비에 테이블ㅇ을 생성함
-public class User {
+public class User{
 	
 	//회원 번호
 	@Id // PK값 설정
@@ -85,6 +85,4 @@ public class User {
 	public void createDate() {
 		this.createDate = LocalDateTime.now();
 	}
-	
-	
 }
