@@ -44,7 +44,7 @@ public class BookUpdateDto {
 	private String publish;
 	
 	//권 수
-	private String volume;
+	private String totalAmount;
 	
 	//내용
 	private String contents; 
@@ -68,7 +68,7 @@ public class BookUpdateDto {
 				.publishDate(publishDate)
 				.deliveryState(deliveryState)
 				.publish(publish)
-				.volume(volume)
+				.totalAmount(totalAmount)
 				.contents(contents)
 				.kdcTable(kdcTable)
 				.kdcCallSignFamily(kdcCallSignFamily)

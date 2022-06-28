@@ -124,7 +124,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												권 수<input type="text"  id="volume" name="volume"  class="form-control" placeholder="권수">
+												권 수<input type="text"  id="totalAmount" name="totalAmount"  class="form-control" placeholder="권수">
 											</div>
 										</div>
 									</div>

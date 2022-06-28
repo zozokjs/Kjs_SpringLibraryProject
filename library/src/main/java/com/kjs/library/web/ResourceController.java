@@ -27,6 +27,8 @@ public class ResourceController {
 		List<Book> book = saseoService.bookSelect();
 		model.addAttribute("book",book);
 		
+		//전체 권수 , 대출된 권수
+		
 		return "resource/newBook";
 	}
 	

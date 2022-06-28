@@ -32,12 +32,12 @@
 					        </div>
 	   				        <div class="media border-bottom py-3">
 					            <div class="media-body">
-					                <h6 class="my-2"><a href="#">대출관리(연장/반납) </a></h6>
+					                <h6 class="my-2"><a href="/user/myLibrary">대출관리(연장/반납) </a></h6>
 					            </div>
 					        </div>
 					        <div class="media border-bottom py-3">
 					            <div class="media-body">
-					                <h6 class="my-2"><a href="#">대출내역 </a></h6>
+					                <h6 class="my-2"><a href="/user/myLendHistory">대출내역 </a></h6>
 					            </div>
 					        </div>
 					        <div class="media border-bottom py-3">

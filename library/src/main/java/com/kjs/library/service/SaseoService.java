@@ -52,6 +52,8 @@ public class SaseoService {
 				imageFileName = commonService.사진저장(imageDto, "imageTitle");
 			}
 			
+			bookRegistrationDto.setRemainAmount("0");
+			
 			Book book = bookRegistrationDto.toEntity(imageFileName);
 			
 			bookRepository.save(book);
@@ -59,7 +61,7 @@ public class SaseoService {
 		
 		
 		
-		// SAVE 책 청구기호 등록
+		// SAVE 책 청구기호 최초 등록
 		@Transactional
 		public void 책청구기호등록(int bookId, BookRegistration_kdcDto bookRegistration_kdcDto, PrincipalDetails principalDetails) {                       
 			
@@ -70,12 +72,18 @@ public class SaseoService {
 			
 			String kdcCallSignList = bookRegistration_kdcDto.getKdcCallSign(); // 2,3,4
 			String[] array = kdcCallSignList.split(",");
-					    
+			
+			int arrayLength = array.length+1;
+			
+			
 			//출력				
 			Samebook sameBook = new Samebook();
 			
 			Book book = new Book();
 			book.setId(bookId);
+			
+			//청구기호 갯수 update
+			book.setRemainAmount(String.valueOf(arrayLength));
 			
 			bookRegistration_kdcDto.setBook(book); //bookId 세팅
 			
@@ -158,10 +166,9 @@ public class SaseoService {
 			bookEntity.setPublishDate(bookUpdateDto.getPublishDate());
 			bookEntity.setDeliveryState(bookUpdateDto.getDeliveryState());
 			bookEntity.setPublish(bookUpdateDto.getPublish());
-			bookEntity.setVolume(bookUpdateDto.getVolume());
+			//bookEntity.setTotalAmount(bookUpdateDto.getTotalAmount());
 			bookEntity.setKdcTable(bookUpdateDto.getKdcTable());
 			bookEntity.setKdcCallSignFamily(bookUpdateDto.getKdcCallSignFamily());
-			
 			//System.out.println("=-==============================");
 			//System.out.println(bookEntity);
 			
@@ -180,9 +187,7 @@ public class SaseoService {
 			
 			//기존 db 값을 가져와서 영속화
 			List<Samebook> samebookEntity = sameBookRepository.findBybookid(bookId); 
-	
-			bookEntity.setId(bookId);
-						
+			
 			String kdcCallSignList = bookUpdate_kdcDto.getKdcCallSign(); // 2,3,4
 			String[] array = kdcCallSignList.split(",");
 
@@ -192,6 +197,21 @@ public class SaseoService {
 			//System.out.println("길이 체크 : "+editKdcCallSign_size);
 			//System.out.println("영속화된 List 길이 체크 "+currentKdcCallSign_size);
 			
+			//bookid 세팅
+			bookEntity.setId(bookId);
+			//현재 book 테이블의 remainAmount를 가져 옴
+			int remainAmount = Integer.parseInt(bookEntity.getRemainAmount());
+			
+			/**
+			 * 예) 같은책(samebook)이 3권인데 2권 추가되는 경우
+			 * book의 remainAmount에 2권 추가함 */
+			//추가된 권수 = 수정된samebookSize - 현재samebookSize
+			int addAmount= editKdcCallSign_size - currentKdcCallSign_size;
+			if(addAmount > 0) {
+				//추가된 권수가 양수일 때 그만큼 더함.
+				remainAmount = remainAmount + addAmount;
+				bookEntity.setRemainAmount(String.valueOf(remainAmount));
+			}
 			
 			
 			//값을 변경 시킴
@@ -248,6 +268,20 @@ public class SaseoService {
 		}
 		
 		
+		
+		//Update 책 1개의 remainAmount 수정
+		@Transactional
+		public Book remainAmount수정(int bookId, int remainAmount) {
+			
+			System.out.println("남은 양 >"+remainAmount);
+			
+			Book bookEntity = bookSelectOne(bookId);
+			
+			bookEntity.setRemainAmount(String.valueOf(remainAmount));
+			//bookEntity
+			
+			return bookEntity;
+		}
 		
 		
 		// SELECT 책 1개의 정보만 가져옴

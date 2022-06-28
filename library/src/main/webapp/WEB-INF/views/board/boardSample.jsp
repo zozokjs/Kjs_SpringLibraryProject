@@ -31,4 +31,5 @@
 	    </div>
 	</section>
 </div>
+<script src="/js_custom/saseo_bookUpdate_kdc.js"></script>
 <%@ include file="../layout/footer.jsp"%>

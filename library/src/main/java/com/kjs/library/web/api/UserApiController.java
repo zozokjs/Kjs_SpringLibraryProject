@@ -61,6 +61,7 @@ public class UserApiController {
 	public ResponseEntity<?> bookReturn(@PathVariable int lendId) throws Exception {
 		
 		bookService.책반납(lendId);
+		bookService.대출상태false변경(lendId);
 		
 		return new ResponseEntity<>(new CMRespDto<>(1,"반납 되었습니다.",null),HttpStatus.OK);
 	}
@@ -73,13 +74,13 @@ public class UserApiController {
 		
 		if(bookExtensionAble == true) {
 			//연장 처리
-			System.out.println("1");
+			System.out.println("연장 됨");
 			bookService.책연장(lendId);
 			return new ResponseEntity<>(new CMRespDto<>(0,"연장 되었습니다.",null),HttpStatus.OK);
 		}else {
-			System.out.println("2");
+			System.out.println("연장 불가");
 
-			return new ResponseEntity<>(new CMRespDto<>(1,"연장 횟수를 초과하여 더 이상 연장할 수 없습니다..",null),HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(new CMRespDto<>(1,"연장 횟수를 초과하여 더 이상 연장할 수 없습니다.",null),HttpStatus.BAD_REQUEST);
 			
 		}
 		

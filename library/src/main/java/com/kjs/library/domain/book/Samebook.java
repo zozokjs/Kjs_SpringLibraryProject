@@ -45,6 +45,8 @@ public class Samebook{
 	@ManyToOne(targetEntity = Book.class, fetch = FetchType.LAZY)
 	private Book book;
 	
+	/**대출 = true, 반납 = false
+	 * **/
 	private boolean lendState;
 	
 	//청구 기호

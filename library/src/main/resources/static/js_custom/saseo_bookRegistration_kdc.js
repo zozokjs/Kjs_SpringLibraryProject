@@ -7,13 +7,13 @@
 
 //권 수에 따라 청구기호 ''입력'' 테이블 생성 함.
 function kdcCallSignLoad(){
-	const volume = 	$("#book_volume").val(); //권 수
-	//alert(volume);
+	const totalAmount = 	$("#book_totalAmount").val(); //권 수
+	//alert(totalAmount);
 	var kdcCallSignListHtml ="";
 	
-	const volume_Integer = Number(volume);//String을 Number로 변환.
+	const totalAmount_Integer = Number(totalAmount);//String을 Number로 변환.
 	
-	for(var i = 1; i <= volume_Integer; i++){
+	for(var i = 1; i <= totalAmount_Integer; i++){
 		
 		//1줄씩 추가.
 		kdcCallSignListHtml += `<tr>

@@ -153,11 +153,15 @@ public class CommonService {
 	 * */
 	public static String 날짜포맷변경2(String givenDate) {
 
-		String year = givenDate.substring(0,4);
-		String month = givenDate.substring(4,6);
-		String day  = givenDate.substring(6,8);
-		
-		return year+"년 "+month+"월 "+day+"일";
+		if(givenDate != null) {
+			String year = givenDate.substring(0,4);
+			String month = givenDate.substring(4,6);
+			String day  = givenDate.substring(6,8);
+			
+			return year+"년 "+month+"월 "+day+"일";
+		}else {
+			return null;
+		}
 	}
 	
 	

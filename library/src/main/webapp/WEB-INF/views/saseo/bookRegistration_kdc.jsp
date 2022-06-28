@@ -24,7 +24,7 @@
 								
 								<!-- hidden Tag -->
 								<input type="hidden"  id="book_id"  name = "bookId" value="${book.id}" />
-								<input type="hidden"  id="book_volume"  value="${book.volume}" />
+								<input type="hidden"  id="book_totalAmount"  value="${book.totalAmount}" />
 								<input type="hidden"  id="book_kdcCallSignFamily" value="${book.kdcCallSignFamily}" />
 								<!-- hidden Tag -->
 								
@@ -43,7 +43,7 @@
 														<td class="tg-0pky">${book.isbn}</td>
 													</tr>
 													<tr>
-														<td colspan="2" style="text-align:center;">총 ${book.volume}권</td>
+														<td colspan="2" style="text-align:center;">총 ${book.totalAmount}권</td>
 													</tr>
 													<tr>
 														<td class="tg-0pky">번호</td>

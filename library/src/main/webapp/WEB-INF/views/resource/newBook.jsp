@@ -64,7 +64,7 @@
 																		</tr>
 																		<tr>
 																			<td class="tg-0pky" >대여가능수</td>
-																			<td class="tg-0pky">${booked.totalAmount}</td>
+																			<td class="tg-0pky">${booked.totalAmount} / ${booked.totalAmount}</td>
 																		</tr>
 																	</tbody>
 																</table>

@@ -1,17 +1,14 @@
 //책 연장 처리
-function bookExtensionConfirm(){
+function bookExtensionConfirm(lendId){
 	if(confirm("정말 연장하실거에요?")){
-		bookExtension();
+		bookExtension(lendId);
 	}else{
 	}
 }
 
 
 
-function bookExtension() {
-	
-	const lendId = $("#lendId").val(); //연장 처리할 Lend Id
-	console.log(lendId);
+function bookExtension(lendId) {
 	
 	$.ajax({
 		
@@ -46,19 +43,17 @@ function bookExtension() {
 }
 
 
-function bookReturnConfirm(){
+function bookReturnConfirm(lendId){
 	
 	if(confirm("정말로 반납하시겠습니까?")){
-		bookReturn();
+		bookReturn(lendId);
 	}else{
 	}
 	
 }
 
 //책 반납 처리
-function bookReturn() {
-	
-	const lendId = $("#lendId").val(); //반납 처리할 Lend Id
+function bookReturn(lendId) {
 	
 	console.log(lendId);
 	

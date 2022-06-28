@@ -44,7 +44,7 @@ public class BookService {
 	}
 	
 	
-	//1권 씩 대출할 때?
+	//1권 씩 대출할 때
 	@Transactional
 	public void 책대출(int bookId, int loginId) {                       
 		
@@ -136,10 +136,11 @@ public class BookService {
 	
 	@Transactional
 	public Lend 책반납(int lendId) throws ParseException {
+		
+		//1. Lend 테이블 가져와서 영속화
 		Lend lend = lendRepository.findById(lendId).orElseThrow();
 		
-		//System.out.println(lend);
-		
+		//2. 반납 날짜 세팅
 		LocalDateTime now = LocalDateTime.now(); 
 		String returnDate = CommonService.날짜포맷변경(now);
 		
@@ -148,6 +149,21 @@ public class BookService {
 		return lend;
 	}
 	
+	
+	/** 대출 상태를 false(반납상태)로 변경
+	 * **/
+	@Transactional
+	public Samebook 대출상태false변경(int lendId) {
+		
+		//1. lendId로 samebook Id 찾기
+		Lend lend = lendRepository.findById(lendId).orElseThrow();
+		int samebookId = lend.getSamebook().getId();
+	
+		//2. samebookId로 lendState 업데이트
+		Samebook samebook = samebookRepository.findById(samebookId).orElseThrow();
+		samebook.setLendState(false);		
+		return samebook;
+	}
 	
 	
 	
@@ -198,6 +214,10 @@ public class BookService {
 		Lend lend = lendRepository.findById(lendId).orElseThrow();
 		int bookExtensionAbleCount = lend.getExtensionAbleCount();
 		
+		System.out.println("전달 받은 id " + lendId);
+		System.out.println("결과 " + bookExtensionAbleCount);
+		
+		
 		if(bookExtensionAbleCount == 0) {
 			return false; //연장 불가
 		}else {
@@ -207,5 +227,12 @@ public class BookService {
 	}
 	
 	
+	
+	//사람 1명의 반납 완료된 내역
+	@Transactional(readOnly = true)
+	public List<UserLendListInterface> 반납완료내역(int loginId){
+		List<UserLendListInterface> lendHistory = lendRepository.findUserLendHistoryByUserId(loginId);
+		return lendHistory;
+	}
 	
 }

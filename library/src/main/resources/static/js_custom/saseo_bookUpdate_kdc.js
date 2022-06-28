@@ -37,18 +37,18 @@ function bookUpdate_kdc(bookId, event) {
 //권 수에 따라 청구기호 ''입력'' 테이블 생성 함.
 function kdcCallSignLoad(){
 	
-	const volume = 	$("#book_volume").val(); //권 수
+	const totalAmount = 	$("#book_totalAmount").val(); //권 수
 
 	var kdcCallSignListHtml ="";
 	
-	const volume_Integer = Number(volume);//String을 Number로 변환.
+	const totalAmount_Integer = Number(totalAmount);//String을 Number로 변환.
 	
 	
 	/*
 	값 체크
 	
 	
-	console.log("book의 volume 값 : "+Number(volume));
+	console.log("book의 totalAmount 값 : "+Number(totalAmount));
 	console.log("청구기호 배열 길이 : "+samebookArray.length);
 	for (var i = 0; i < samebookArray.length; i++) { //배열 출력
 		console.log("청구기호 배열 값 " + samebookArray[i].kdcCallSign);
@@ -57,7 +57,7 @@ function kdcCallSignLoad(){
 	값 체크 끝
 	 */
 	 
-	//volume은 2인데,
+	//totalAmount은 2인데,
 	//samebookArray 길이가 1일 때 값을 불러오지 못함	 
 	//samebookArray는 1개 밖에 없으니까 2번째를 찾지 못하는 것임		
 	
@@ -69,8 +69,8 @@ function kdcCallSignLoad(){
 											    <td class="tg-0pky">수정</td>
 										  	</tr>
 										  	<tr>`
-	//volume 기준으로 반복함								  	
-	for(var i = 0; i < volume_Integer; i++){
+	//totalAmount 기준으로 반복함								  	
+	for(var i = 0; i < totalAmount_Integer; i++){
 		
 		// 여기부터 ★1열 정의함★
 		//값이 없을 때

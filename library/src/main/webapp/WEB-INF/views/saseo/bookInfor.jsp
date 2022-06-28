@@ -22,7 +22,7 @@
 								<h4 class="mb-4">상세 정보</h4>
 
 								<!-- hidden Tag -->
-								<input type="hidden"  id="book_volume"  value="${book.volume}" />
+								<input type="hidden"  id="book_totalAmount"  value="${book.totalAmount}" />
 								<!-- hidden Tag -->
 								
 								
@@ -138,7 +138,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												권 수<input type="text"   	id="volume" name="volume"  value = "${book.volume}" class="form-control" placeholder="권수" readonly="readonly">
+												권 수<input type="text"   	id="totalAmount" name="totalAmount"  value = "${book.totalAmount}" class="form-control" placeholder="권수" readonly="readonly">
 											</div>
 										</div>
 									</div>
@@ -194,7 +194,7 @@
 														<td class="tg-0pky">${book.isbn}</td>
 													</tr>
 													<tr>
-														<td colspan="2" style="text-align:center;">총 ${book.volume}권</td>
+														<td colspan="2" style="text-align:center;">총 ${book.totalAmount}권</td>
 													</tr>
 													<tr>
 														<td class="tg-0pky">번호</td>

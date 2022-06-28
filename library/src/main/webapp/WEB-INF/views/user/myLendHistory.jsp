@@ -23,55 +23,53 @@
 							<div class="col-lg-7">
 								<div class="">
 									<h2 class="mt-3 content-title ">
-									대출 내역
+									반납 완료 내역
 									</h2>
 								</div>
 							</div>		
 							<hr>		
 							
 							<!-- 반복부 Start-->
-							<c:forEach var = "userLendInfor"  items ="${userLendList}">
+							<c:forEach var = "userLendHistoryInfor"  items ="${userLendHistoryList}">
 			
-						
+								<!-- 해당 아이디는 Lend 테이블의 id임. -->
+								<input  type="hidden" id="lendId"  value="${userLendInfor.id}"/>
 											
 								<div class="col-lg-12 col-md-8 mb-1">
-									
 									<div class="blog-item" style="display:flex; flex-direction:row; flex-wrap:nowrap; justify-content:space-around;">
 										<div style="display:flex; flex-grow:2;">
 											<img src="/upload/noTitleImage_150px.jpg" alt="" class="img-fluid rounded">
 										</div>
 										<div class="blog-item-content bg-white p-4" style="display:flex; flex-grow:8; flex-direction: column;">
-											<h3 class="mt-3 mb-3"><a href="/resource/${userLendInfor.bookId}/bookInfor">${userLendInfor.title}</a></h3>
+											<h3 class="mt-3 mb-3"><a href="/resource/${userLendHistoryInfor.bookId}/bookInfor">${userLendHistoryInfor.title}</a></h3>
 											<!-- 표 Start -->
 											<table class="tg">
 												<thead>
 													<tr>
 														<th class="tg-0pky">저자</th>
-														<th class="tg-0pky" colspan=3>  ${userLendInfor.writer}</th>
+														<th class="tg-0pky" colspan=3>  ${userLendHistoryInfor.writer}</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 														<td class="tg-0pky">발행처</td>
-														<td class="tg-0pky" colspan=3> ${userLendInfor.publish}</td>
+														<td class="tg-0pky" colspan=3> ${userLendHistoryInfor.publish}</td>
 													</tr>
 													<tr>
 														<td class="tg-0pky">매체구분</td>
-														<td class="tg-0pky" colspan=3> ${userLendInfor.bindTypeToString}</td>
+														<td class="tg-0pky" colspan=3> ${userLendHistoryInfor.bindTypeToString}</td>
 													</tr>
 													<tr>
-														<td class="tg-0pky">대출일</td>
-														<td class="tg-0pky" colspan=3> ${userLendInfor.formattedCreateDate}</td>
+														<td class="tg-0pky">대출 날짜</td>
+														<td class="tg-0pky" colspan=3> ${userLendHistoryInfor.formattedCreateDate}</td>
 													</tr>
 													<tr>
-														<td class="tg-0pky" >반납예정일</td>
-														<td class="tg-0pky" colspan=3> ${userLendInfor.formattedReturnPlanDate}</td>
+														<td class="tg-0pky" >반납 날짜</td>
+														<td class="tg-0pky" colspan=3> ${userLendHistoryInfor.returnDate}</td>
 													</tr>
 													<tr>
 														
 														<td class="tg-0pky" colspan=4>
-															<button type ="button" onclick="bookReturnConfirm(${userLendInfor.id})">반납</button>
-															<button type ="button" onclick="bookExtensionConfirm(${userLendInfor.id})">연장</button>
 														</td>
 													</tr>
 												</tbody>

@@ -6,7 +6,7 @@
  */
  
  //값 들고오기
-const volume = 	$("#book_volume").val(); //권 수
+const totalAmount = 	$("#book_totalAmount").val(); //권 수
 
 
 //AJAX API 처리

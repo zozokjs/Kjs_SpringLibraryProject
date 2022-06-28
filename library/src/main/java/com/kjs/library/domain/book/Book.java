@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 
+import org.hibernate.annotations.DynamicInsert;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kjs.library.domain.lend.Lend;
 import com.kjs.library.domain.user.User;
@@ -43,10 +45,10 @@ public class Book {
 	private String isbnSet;
 	
 	//남은 양(대여 가능한 책 수량)
-	private int remainAmount;
+	private String remainAmount;
 	
 	//총량(반입된 책 수량)
-	private int totalAmount;
+	private String totalAmount;
 	
 	//제목
 	private String title;
@@ -85,9 +87,6 @@ public class Book {
 	
 	//크기 128*188*20mm...
 	private String size;
-	
-	//권수
-	private String volume;
 	
 	//내용
 	@Lob

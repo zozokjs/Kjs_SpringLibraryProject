@@ -48,8 +48,11 @@ public class BookRegistrationDto {
 	//발행처
 	private String publish;
 	
+	//대출 후 남은 권 수
+	private String remainAmount;
+		
 	//권 수
-	private String volume;
+	private String totalAmount;
 	
 	//내용
 	private String contents; 
@@ -75,7 +78,8 @@ public class BookRegistrationDto {
 				.publishDate(publishDate)
 				.deliveryState(deliveryState)
 				.publish(publish)
-				.volume(volume)
+				.remainAmount(remainAmount)
+				.totalAmount(totalAmount)
 				.contents(contents)
 				.kdcTable(kdcTable)
 				.kdcCallSignFamily(kdcCallSignFamily)

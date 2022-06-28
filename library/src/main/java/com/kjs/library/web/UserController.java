@@ -70,4 +70,30 @@ public class UserController {
 		return "user/userUpdate";
 	}
 	
+
+	//반납 완료 내역 페이지로 이동
+	@GetMapping("/user/myLendHistory")
+	public String myLendHistoryForm(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		//대출된 목록 표시
+		List<UserLendListInterface> userLendHistoryList = bookService.반납완료내역(principalDetails.getUser().getId());
+
+		/*
+		for (int i = 0; i < userLendHistoryList.size(); i++) {
+			System.out.println("체크");
+			System.out.println( userLendHistoryList.get(i).getBookId() );
+		}
+
+		int a = userLendHistoryList.get(0).getBookId();
+		System.out.println("타입 체크 "+	((Object)a).getClass().getSimpleName()); //integer
+		*/
+
+		model.addAttribute("userLendHistoryList",userLendHistoryList);
+		
+		return "user/myLendHistory";
+	}
+	
+	
+
+
 }

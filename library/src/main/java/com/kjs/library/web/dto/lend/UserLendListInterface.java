@@ -8,13 +8,15 @@ import com.kjs.library.service.CommonService;
 
 public interface UserLendListInterface {
 
-	 int getId();
+	 int getId(); //Lend 테이블의 id
+	 int getBookId(); //Book 테이블의 id
 	 String getTitle();
 	 String getWriter();
 	 String getPublish(); //출판사
 	 int getBindType(); //매체구분
-	 LocalDateTime getCreateDate();
-	 String getReturnPlanDate();
+	 LocalDateTime getCreateDate(); //대출 날짜
+	 String getReturnPlanDate(); //반납 예정 날짜
+	 String getReturnDate(); //반납 날짜
 	 
 	 /**
 	  * 대출 날짜를 xxxx년 x월 x일 형식으로 변경함
