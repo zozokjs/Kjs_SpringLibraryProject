@@ -145,5 +145,4 @@
 	    </div>
 	</section>
 </div>
-<script src="/js_custom/user_userInfor.js"></script>
 <%@ include file="../layout/footer.jsp"%>

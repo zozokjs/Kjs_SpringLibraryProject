@@ -133,8 +133,6 @@
 						<li><a class="dropdown-item" href="/saseo/infraManage">시설이용관리(신청처리)</a></li>
 					</ul>
 				</li>	
-	  		
-				
 				
 			  	<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">열린공간</a>
@@ -144,16 +142,8 @@
 					</ul>
 				</li>
 				
-			  	<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">닫힌공간</a>
-					<ul class="dropdown-menu" aria-labelledby="dropdown03">
-						<li><a class="dropdown-item" href="about.html">Our company</a></li>
-						<li><a class="dropdown-item" href="pricing.html">Pricing</a></li>
-					</ul>
-				</li>
-				
 			 	<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">나의도서관</a>
+					<a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">내서재</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown05">
 						<li><a class="dropdown-item" href="blog-grid.html">Blog Grid</a></li>
 						<li><a class="dropdown-item" href="blog-sidebar.html">Blog with Sidebar</a></li>

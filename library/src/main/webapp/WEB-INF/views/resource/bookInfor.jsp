@@ -63,5 +63,5 @@
 	    </div>
 	</section>
 </div>
-<script src="/js_custom/resource_bookInfor.js"></script>
+<script src="/js_custom/resource/bookInfor.js"></script>
 <%@ include file="../layout/footer.jsp"%>

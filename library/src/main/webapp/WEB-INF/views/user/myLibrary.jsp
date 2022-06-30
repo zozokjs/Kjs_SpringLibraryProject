@@ -95,5 +95,5 @@
 	    </div>
 	</section>
 </div>
-<script src="/js_custom/user_myLibrary.js"></script>
+<script src="/js_custom/user/myLibrary.js"></script>
 <%@ include file="../layout/footer.jsp"%>

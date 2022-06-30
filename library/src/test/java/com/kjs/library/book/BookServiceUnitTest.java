@@ -12,7 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.kjs.library.domain.lend.Lend;
 import com.kjs.library.domain.lend.LendRepository;
-import com.kjs.library.service.CommonService;
+import com.kjs.library.service.common.CommonService;
 
 import lombok.extern.slf4j.Slf4j;
 

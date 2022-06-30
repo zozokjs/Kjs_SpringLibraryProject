@@ -2,7 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_Saseo.jsp"%>
-				
+   		<style>
+	        	table{
+	        		text-align :center;
+	        		border : 2px solid;
+	        	}
+	        	th, td{
+	        		border : 1px solid; 
+	        		border-collapse : collpase; 
+	        		padding : 10px 5px;
+	        	}
+	        
+	        </style>
 			
 				
 	            <!-- 우측 메인 -->
@@ -37,7 +48,8 @@
 									<c:forEach items="${sameBook}" var="item">
 										console.log("반복 중");
 										samebookArray.push({										
-											kdcCallSign : "${item.kdcCallSign}"
+											kdcCallSign : "${item.kdcCallSign}",
+											samebookId : "${item.id}"
 										});
 									</c:forEach>
 								
@@ -50,7 +62,7 @@
 											<table class="table" >
 												<thead style="border:1px solid black;">
 													<tr>
-													    <th class="tg-0pky">제목</th>
+													    <th class="tg-0pky" >제목</th>
 													    <th class="tg-0pky"></th>
 													</tr>
 												
@@ -59,7 +71,10 @@
 													    <td class="tg-0pky"></td>
 												  	</tr>
 												 	 <tr>
-													    <td class="tg-0pky" colspan="2">총 ${book.totalAmount}권</td>
+													    <td class="tg-0pky" colspan="2">기존 총 ${book.totalAmount}권</td>
+												  	</tr>
+												  	 <tr>
+													    <td class="tg-0pky" colspan="2">현재 대출 중인 청구기호는 삭제 할 수 없습니다.</td>
 												  	</tr>
 											  	</thead>
 												<tbody id="kdcCallSignList">
@@ -82,5 +97,5 @@
 	    </div>
 	</section>
 </div>
-<script src="/js_custom/saseo_bookUpdate_kdc.js"></script>
+<script src="/js_custom/saseo/bookUpdate_kdc.js"></script>
 <%@ include file="../layout/footer.jsp"%>

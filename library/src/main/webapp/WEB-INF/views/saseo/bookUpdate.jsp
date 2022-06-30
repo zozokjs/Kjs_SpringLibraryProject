@@ -186,5 +186,5 @@
 	    </div>
 	</section>
 </div>
-<script src="/js_custom/saseo_bookUpdate.js"></script>
+<script src="/js_custom/saseo/bookUpdate.js"></script>
 <%@ include file="../layout/footer.jsp"%>

@@ -1,15 +1,14 @@
 package com.kjs.library.web.api;
 
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.kjs.library.config.auth.PrincipalDetails;
-import com.kjs.library.domain.book.Book;
 import com.kjs.library.service.SaseoService;
 import com.kjs.library.web.dto.CMRespDto;
 import com.kjs.library.web.dto.book.BookUpdateDto;
@@ -57,9 +56,20 @@ public class SaseoApiController {
 		System.out.println("수정 데이터 체크 ->  "+bookUpdate_kdcDto);
 		System.out.println("로그인한 유저 아이디 -> "+loginedId);
 		
-		saseoService.책청구기호수정(bookId, bookUpdate_kdcDto,loginedId);
+		
+		//수정할 청구기호 id중 하나라도 대출 중이라면 삭제 불가 
+		
+		boolean 수정가능 = saseoService.청구기호수정가능하다(bookId, bookUpdate_kdcDto);
+		
+		if(수정가능 == false) {
+			//수정 안 됨
+			return new ResponseEntity<>(new CMRespDto<>(1,"대출 중인 책이 있어 수정할 수 없습니다.",null),HttpStatus.BAD_REQUEST);
+		}else {
+			saseoService.책청구기호수정(bookId, bookUpdate_kdcDto,loginedId);
+			saseoService.totalAmountUpdate(bookId, bookUpdate_kdcDto);
 			
-		return new ResponseEntity<>(new CMRespDto<>(1,"청구기호가 수정 되었습니다.",null),HttpStatus.OK);
+			return new ResponseEntity<>(new CMRespDto<>(0,"청구기호가 수정 되었습니다.",null),HttpStatus.OK);
+		}
 		
 	}
 	

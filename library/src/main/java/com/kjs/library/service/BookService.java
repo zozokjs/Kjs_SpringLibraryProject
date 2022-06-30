@@ -14,6 +14,8 @@ import com.kjs.library.domain.book.SamebookRepository;
 import com.kjs.library.domain.lend.Lend;
 import com.kjs.library.domain.lend.LendRepository;
 import com.kjs.library.domain.user.User;
+import com.kjs.library.service.common.CommonService;
+import com.kjs.library.service.common.DateCommonService;
 import com.kjs.library.web.dto.lend.UserLendListInterface;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,7 @@ public class BookService {
 	private final SamebookRepository samebookRepository;
 	private final LendRepository lendRepository;
 	private final CommonService commonService;
+	private final DateCommonService dateCommonService;
 	
 	
 	//책 대출, 반납, 희대도서 신청, 희망도서 신청 취소 등
@@ -78,7 +81,7 @@ public class BookService {
 		String returnPlanDate = null;
 		try {
 			//오늘 날짜를 가져와서 반납예정날자를 구함(그 날짜가 주말이면 1일 더함.. 그 이후 계산 안 됨. 미완성)
-			returnPlanDate = commonService.반납예정날짜();
+			returnPlanDate = dateCommonService.반납예정날짜();
 		} catch (Exception e) {
 			System.out.println("에러 "+e);
 		}
@@ -142,7 +145,7 @@ public class BookService {
 		
 		//2. 반납 날짜 세팅
 		LocalDateTime now = LocalDateTime.now(); 
-		String returnDate = CommonService.날짜포맷변경(now);
+		String returnDate = dateCommonService.날짜포맷변경(now);
 		
 		lend.setReturnDate(returnDate);
 	
@@ -184,7 +187,7 @@ public class BookService {
 	
 		//1. 연장 날짜 세팅
 		LocalDateTime now = LocalDateTime.now(); 
-		String extensionDate = CommonService.날짜포맷변경(now);
+		String extensionDate = dateCommonService.날짜포맷변경(now);
 		lend.setExtensionDate(extensionDate);
 		
 		
@@ -192,7 +195,7 @@ public class BookService {
 		String returnPlanDate = null;
 		try {
 			//오늘 날짜를 가져와서 반납예정날자를 구함(그 날짜가 주말이면 1일 더함.. 그 이후 계산 안 됨. 미완성)
-			returnPlanDate = commonService.반납예정날짜();
+			returnPlanDate = dateCommonService.반납예정날짜();
 		} catch (Exception e) {
 			System.out.println("에러 "+e);
 		}

@@ -109,9 +109,19 @@ public class SaseoController {
 			throw new CustomValidationException("권한이 없습니다. 등록할 수 없습니다", null);
 		}else {
 			
-			System.out.println("읽음");
-
 			saseoService.책청구기호등록(bookId, bookRegistration_kdcDto, principalDetails);
+			
+			//Book 테이블의 totalAmount 컬럼 업데이트를 위함.
+			String kdcCallSignList = bookRegistration_kdcDto.getKdcCallSign();
+			String[] array = kdcCallSignList.split(",");
+			int arrayLength = array.length;			
+			
+			System.out.println("업데이트 길이 "+arrayLength);
+			
+			
+			saseoService.totalAmountSave(bookId, arrayLength);
+			
+			
 			//업로드 잘 됐다고 스크립트로 알려줘야함
 			
 			return "main/index";
@@ -172,7 +182,7 @@ public class SaseoController {
 			
 			//책 1개의 정보를 가져옴
 			Book bookEntity = saseoService.bookSelectOne(id);
-			model.addAttribute("book",bookEntity);
+			model.addAttribute("book", bookEntity);
 			
 			//책 1권의 청구기호 정보 가져옴
 			List<Samebook> sameBookEntity = saseoService.sameBookSelectOne(id);

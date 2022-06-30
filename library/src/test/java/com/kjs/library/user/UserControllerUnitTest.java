@@ -29,9 +29,9 @@ import com.kjs.library.domain.user.User;
 import com.kjs.library.domain.user.UserRepository;
 import com.kjs.library.service.AuthService;
 import com.kjs.library.service.BookService;
-import com.kjs.library.service.CommonService;
 import com.kjs.library.service.SaseoService;
 import com.kjs.library.service.UserService;
+import com.kjs.library.service.common.CommonService;
 import com.kjs.library.testSample.TestSampleService;
 import com.kjs.library.web.dto.auth.SignupDto;
 import com.kjs.library.web.dto.lend.UserLendListInterface;
@@ -83,7 +83,7 @@ public class UserControllerUnitTest {
 	@Test
 	public void CommonServiceTest() throws ParseException {
 		
-		CommonService.날짜포맷변경2("20200707");
+	//	CommonService.날짜포맷변경2("20200707");
 		
 		
 		

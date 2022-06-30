@@ -153,5 +153,5 @@
 	    </div>
 	</section>
 </div>
-<script src="/js_custom/user_userUpdate.js"></script>
+<script src="/js_custom/user/userUpdate.js"></script>
 <%@ include file="../layout/footer.jsp"%>

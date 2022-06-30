@@ -43,22 +43,27 @@
 														<td class="tg-0pky">${book.isbn}</td>
 													</tr>
 													<tr>
-														<td colspan="2" style="text-align:center;">총 ${book.totalAmount}권</td>
-													</tr>
-													<tr>
 														<td class="tg-0pky">번호</td>
 														<td class="tg-0pky">청구기호</td>
 													</tr>
+													<tr>
+														<td colspan="2" style="text-align:center;">추가 버튼을 눌러 청구기호를 등록해주세요</td>
+													</tr>
 												</thead>
-												<tbody id="kdcCallSignList">
-													
+												<tbody  id="kdcCallSignList">
+													<tr>
+														<td colspan="2" style="text-align:center;">
+															<input type="text" name="kdcCallSign" placeholder="청구기호">
+															<button onclick="kdcAdd(event)">추가</button>
+														</td>
+													</tr>
 												</tbody>
 											</table>
 										</div>
 									</div>
 								</div>
 								<!-- 표 끝 -->
- 							<button>청구 기호 등록</button>
+ 							<button>청구 기호 등록 완료</button>
 						</form>
 							
 						</div>
@@ -70,5 +75,5 @@
 	    </div>
 	</section>
 </div>
-<script src="/js_custom/saseo_bookRegistration_kdc.js"></script>
+<script src="/js_custom/saseo/bookRegistration_kdc.js"></script>
 <%@ include file="../layout/footer.jsp"%>

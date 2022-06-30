@@ -1,6 +1,6 @@
 package com.kjs.library.web.dto.book;
 
-import org.springframework.web.multipart.MultipartFile;
+import java.util.List;
 
 import com.kjs.library.domain.book.Book;
 import com.kjs.library.domain.book.Samebook;
@@ -19,8 +19,9 @@ import lombok.NoArgsConstructor;
 public class BookUpdate_kdcDto {
 	
 	private Book book;
-	private String kdcCallSign;
-
+	private List<String> kdcCallSign;
+	private List<Integer> samebookId;
+	private List<String> deleteSamebookId; 
 	
 	public Samebook toEntity(Book bookId, String kdcCallSign) {
 		

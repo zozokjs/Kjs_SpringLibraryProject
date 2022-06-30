@@ -258,7 +258,7 @@
     </section>
 
 
-<script src="/js_custom/signup.js"></script>
+<script src="/js_custom/auth/signup.js"></script>
 
 
 <!-- Required Jquery -->

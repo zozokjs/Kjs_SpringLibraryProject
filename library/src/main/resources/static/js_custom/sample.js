@@ -4,11 +4,28 @@
 자바스크립트 및 제이쿼리 양식 작성하는 곳
 
  */
- 
+ /*
+ window.onload = function() { 
+    //alert('페이지 전체가 로드되었습니다.');
+  };
+*/
  //값 들고오기
+ //id가 book_totalAmount일 때
 const totalAmount = 	$("#book_totalAmount").val(); //권 수
 
-
+//name이 kdcCallSign일 때
+var size = $("input[name='kdcCallSign']").length;
+for(i=0;i<size;i++){
+	//console.log("type1: "+$("input[name='kdcCallSign']").eq(i).attr("value"));
+	console.log("<----------->");
+	console.log($("input[name='kdcCallSign']")[i].value.trim() == "");
+	console.log($("input[name='kdcCallSign']")[i].value.trim() === "");
+	console.log($("input[name='kdcCallSign']")[i].value.length == 0);
+	console.log($("input[name='kdcCallSign']")[i].value.length === 0);
+	console.log($("input[name='kdcCallSign']")[i].value == null);
+	console.log($("input[name='kdcCallSign']")[i].value === null);
+	console.log("값 > "+$("input[name='kdcCallSign']")[i].value)
+}
 //AJAX API 처리
 function userUpdate(userId, event) {
 	
