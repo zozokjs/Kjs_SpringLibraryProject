@@ -45,10 +45,18 @@ public class SaseoService {
 				imageFileName = commonService.사진저장(imageDto, "imageTitle");
 			}
 			
+			//같은 책 남은 권 수
 			bookRegistrationDto.setRemainAmount("0");
+			//같은 책 등록된 권 수
 			bookRegistrationDto.setTotalAmount("0");
 			
 			Book book = bookRegistrationDto.toEntity(imageFileName);
+			
+			//책 정보 입력한 사람
+			int loginedId = principalDetails.getUser().getId();
+			book.setRegistrationUserId(String.valueOf(loginedId));
+			//책 정보 수정한 사람
+			book.setEditedUserId("");
 			
 			bookRepository.save(book);
 		}
@@ -107,14 +115,13 @@ public class SaseoService {
 			System.out.println(bookUpdateDto.getTitleImageUrl());
 			System.out.println("첨부한 파일 이름");
 			System.out.println(bookUpdateDto.getFile().getOriginalFilename());
-		 	*/
-			
 			//첨부한 파일 이름
 			//bookUpdateDto.getFile().getOriginalFilename();
+		 	*/
 			
 			//파일을 첨부 안 했음
 			if(bookUpdateDto.getFile() == null || bookUpdateDto.getFile().isEmpty() ) {
-				
+				System.out.println("이미지가 변경되지 않았으므로 유지합니다.");
 				/*
 				//기존 것이 noTitleImage라면 저장 안함
 				if(bookEntity.getTitleImageUrl().equals("noTitleImage.jpg")) {
@@ -138,26 +145,25 @@ public class SaseoService {
 				//변경된 이미지 이름을 저장함.
 				bookEntity.setTitleImageUrl(imageFileName);
 				
-				System.out.println("----------------------");
-				System.out.println("변경된 이미지를 저장함");
+				System.out.println("이미지가 변경 되었으므로 새로 저장합니다.");
 			}
 			
 			
-			bookEntity.setEditedUser(loginedId);
-			
+			bookEntity.setEditedUserId(loginedId);
 			bookEntity.setTitle(bookUpdateDto.getTitle());
 			bookEntity.setWriter(bookUpdateDto.getWriter());
 			bookEntity.setBindType(bookUpdateDto.getBindType());
 			bookEntity.setPage(bookUpdateDto.getPage());
 			bookEntity.setLanguage(bookUpdateDto.getLanguage());
-			bookEntity.setPrice(bookUpdateDto.getPrice());
+			bookEntity.setPrice(String.valueOf(bookUpdateDto.getPrice()));
 			bookEntity.setPublishDate(bookUpdateDto.getPublishDate());
 			bookEntity.setDeliveryState(bookUpdateDto.getDeliveryState());
 			bookEntity.setPublish(bookUpdateDto.getPublish());
-			//bookEntity.setTotalAmount(bookUpdateDto.getTotalAmount());
 			bookEntity.setKdcTable(bookUpdateDto.getKdcTable());
 			bookEntity.setKdcCallSignFamily(bookUpdateDto.getKdcCallSignFamily());
-			//System.out.println("=-==============================");
+			bookEntity.setIsbn(bookUpdateDto.getIsbn());
+			bookEntity.setIsbnSet(bookUpdateDto.getIsbnSet());
+			bookEntity.setContents(bookUpdateDto.getContents());
 			//System.out.println(bookEntity);
 			
 			return bookEntity; //이후 더티 채킹 발생하여 업데이트 됨...

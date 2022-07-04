@@ -15,14 +15,13 @@ public class SignupDto {
 	@NotBlank
 	private String username;
 	
-	@Size(min = 4)
+	@Size(min = 4,  max = 20)
 	@NotBlank
 	private String password;
 	
 	@NotBlank
 	private String email;
 	
-	@NotBlank
 	private String name;
 	
 	private String species; 

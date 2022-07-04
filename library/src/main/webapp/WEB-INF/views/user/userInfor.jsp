@@ -27,7 +27,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
-											아이디<input type="text"   id="username"  name="username"  value = "${principal.user.username}"  class="form-control"  placeholder="아이디" readonly="readonly">
+											아이디<input type="text"   id="username"  name="username"  value = "${principal.user.username}"  class="form-control"  placeholder="아이디" readonly="readonly" >
 										</div>
 									</div>
 								</div>

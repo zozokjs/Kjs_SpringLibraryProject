@@ -46,6 +46,8 @@ function findByUsernameR() {
 /** */
 //회원가입 시 전체 유효성 체크
 function validationAll(){
+	
+	/*
 	//alert("작동됨");
 	//`회원가입 처리할 때
 	//아이디 길이, 중복여부, 비번 길이, 비번 일치 여부, 이메일?
@@ -67,13 +69,16 @@ function validationAll(){
 	}else if( !($('#password').val().length > 3) ){
 		alert("비밀번호는 4자리 이상 입력해주세요");
 		return false;
-	}else if( !($('#password').val() === $('#confirm-password').val()) ) {
+	}else 
+	
+	*/
+	if( !($('#password').val() === $('#confirm-password').val()) ) {
 		alert("비밀번호와 비밀번호 확인 값이 일치하지 않습니다.");
 		return false;
 	}
 	//alert("프론트 통과");
 	return true;
-	
+
 	
 }
 

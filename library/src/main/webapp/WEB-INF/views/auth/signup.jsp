@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-    <title>Mega Able bootstrap admin template by codedthemes </title>
+    <title>도서관 회원가입 페이지 </title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -111,27 +111,26 @@
                                     </div>
                                 </div>
                                 
-                                
                                 <!-- 아이디     --------------- -->
                                 <div id = "div_username" class="form-group form-primary">
                                     <input type="text"  id ="username" name="username" onkeyup ='findByUsernameR()' class="form-control"  required="">
                                     <span class="form-bar"></span>
-                                    <label class="float-label">아이디</label>
+                                    <label class="float-label" >아이디<label style="color:red";>(필수)</label></label>
                                 </div>
                                 <!-- 비밀번호     --------------- -->
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group form-primary">
-                                            <input type="password"  id ="password"  name="password" class="form-control" >
+                                            <input type="password"  id ="password"  name="password" class="form-control"   required="">
                                             <span class="form-bar"></span>
-                                            <label class="float-label">비밀번호</label>
+                                            <label class="float-label">비밀번호<label style="color:red";>(필수)</label></label>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group form-primary">
-                                            <input type="password" id ="confirm-password"  name="confirm-password" class="form-control" >
+                                            <input type="password" id ="confirm-password"  name="confirm-password" class="form-control"  required="">
                                             <span class="form-bar"></span>
-                                            <label class="float-label">비밀번호 확인</label>
+                                            <label class="float-label">비밀번호 확인<label style="color:red";>(필수)</label></label>
                                         </div>
                                     </div>
                                 </div>
@@ -140,19 +139,19 @@
                                 <div class="form-group form-primary">
                                     <input type="text" name="email" class="form-control" required="">
                                     <span class="form-bar"></span>
-                                    <label class="float-label">이메일</label>
+                                    <label class="float-label">이메일<label style="color:red";>(필수)</label></label>
                                 </div>
                                 
                                 <!-- 이름     --------------- -->
                                 <div class="form-group form-primary">
-                                    <input type="text"  name="name" class="form-control" required="">
+                                    <input type="text"  name="name" class="form-control" >
                                     <span class="form-bar"></span>
                                     <label class="float-label">이름</label>
                                 </div>
                                 
                                 <!-- 생년월일     --------------- -->
                                 <div class="form-group form-primary">
-                                    <input type="text" name="birth" class="form-control" required="">
+                                    <input type="text" name="birth" class="form-control" >
                                     <span class="form-bar"></span>
                                     <label class="float-label">생년월일</label>
                                 </div>
@@ -207,12 +206,12 @@
 								<div class="form-group form-primary">
                                     <input type="text" name="phoneNumber" class="form-control" required="">
                                     <span class="form-bar"></span>
-                                    <label class="float-label">연락처</label>
+                                    <label class="float-label">연락처<label style="color:red";>(필수)</label></label>
                                 </div>
 								
 								<!-- 주소     --------------- -->
 								<div class="form-group form-primary">
-                                    <input type="text" name="address" class="form-control" required="">
+                                    <input type="text" name="address" class="form-control" >
                                     <span class="form-bar"></span>
                                     <label class="float-label">주소</label>
                                 </div>
@@ -233,12 +232,11 @@
                                         <button class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">가입</button>
                                     </div>
                                 </div>
-                        
                               
                                 <hr/>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <p class="text-inverse text-left m-b-0">Thank you.</p>
+                                        <p class="text-inverse text-left m-b-0">고맙습니다</p>
                                         <p class="text-inverse text-left"><a href="index.html"><b>Back to website</b></a></p>
                                     </div>
                                     <div class="col-md-6">

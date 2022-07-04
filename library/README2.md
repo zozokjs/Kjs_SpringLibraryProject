@@ -22,6 +22,7 @@ section-sm-custom 이런 식으로 끝자리를 항상 붙임
 *메인 화면 이미지 위치 결정 파일  
 static > css > style.css > .slider   
 
+<!-- css 경로 : static > plugins > bootstrap > css > bootstrap.min.css -->
 
 
 *홈페이지 저작권 목록(템플릿 및 이미지)  

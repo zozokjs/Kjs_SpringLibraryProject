@@ -3,34 +3,55 @@ package com.kjs.library.handler.aop;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.hibernate.internal.build.AllowSysOut;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
-import com.kjs.library.config.auth.PrincipalDetails;
 import com.kjs.library.handler.aop.ex.CustomValidationApiException;
 import com.kjs.library.handler.aop.ex.CustomValidationException;
-import com.kjs.library.web.dto.book.BookRegistrationDto;
-
 @Component
 @Aspect // aop처리 되는 핸들러 명시
 public class ValidationAdvice {
+	
+	
+	@Pointcut("execution(* com.kjs.library.web.*Controller.*(..))")
+    private void allController() {
+	}
 
+	
+	@Pointcut("execution(* com.kjs.library.web.api.*Controller.*(..))")
+    private void allApiController() {
+	}
+	
+	
+	@AfterThrowing(pointcut = "allController(), allApiController() ", throwing = "exp")
+	public void afterThrowingTragetMethod(JoinPoint jp, Exception exp) throws Exception{
+		String methodName = jp.getSignature().getName(); //메소드 이름을 얻어옴
+		System.out.println(methodName + "() 실행 중 예외가 발생하였습니다.");
+		System.out.println(jp.getSignature());
+		System.err.println(exp);
+	}
+	
+	
+	
 	//Controller 검사... return CustomValidationException
 	@Around("execution(* com.kjs.library.web.*Controller.*(..))")
 	public Object advise(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 
 		// proceedingJoinPoint는 메소드의 매게변수와 메소드 내부에 접근할 수 있다.
 		// return proceedingJoinPoint.proceed(); //그 함수로 다시 돌아가라는 뜻이다.
-		
+		/**
+		 * 예를 들어 Controller의 profile() 함수를 호출 했다면,
+		 * 1. 현재 클래스의 advice() 실행... 
+		 * 2. profile()로 전달된 매개변수 검사..
+		 * 3. proceedingJoinPoint.proceed()를 읽음
+		 * 4. profile() 함수 실행 시작* */
 		Object[] args = proceedingJoinPoint.getArgs();
 		
 		//매개변수를 뽑아낸다.
@@ -49,25 +70,25 @@ public class ValidationAdvice {
 					//Map 객체를 만들어서
 					Map<String, String> errorMap = new HashMap<>();
 					
+					//bindingResult의 FieldError만
 					for(FieldError error : bindingResult.getFieldErrors()) {
+						//Map 객체에 집어 넣는다.
 						errorMap.put(error.getField(), error.getDefaultMessage());
 						
 						System.out.println("------------------------------");
+						System.out.println(error.getField());
 						System.out.println(error.getDefaultMessage());
 						System.out.println("------------------------------");
 							
-					}
-					//throw new RuntimeException("실패패패팻");
-					throw new CustomValidationException("실패",errorMap);
+					} // end of for
+					throw new CustomValidationException("Validation 검사 실패",errorMap);
 					/**
 					 * '실패'랑 errorMap를 같이 리턴시켜야 함.
 					 * */
-					
 				} //end of if
-				
-			}
+			} //end of if
 			
-		}
+		}//end of for
 	
 		return proceedingJoinPoint.proceed(); 
 	}

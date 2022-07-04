@@ -99,10 +99,10 @@
 			</c:when>
 			<c:otherwise>
 				<!-- 등록된 책이 있을 때 -->
-				<div class="team-item position-relative">
+<!-- 				<div class="team-item position-relative">
 					등록된 책이 없습니다.
 					<img src="/upload/noTitleImage.jpg">
-				</div>
+				</div> -->
 				<!--사진 반복 시작 -->
 				<c:forEach var = "booked" items ="${book}">
 				

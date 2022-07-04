@@ -5,6 +5,13 @@ function userUpdate(userId, event) {
 	
 	event.preventDefault(); //form 태그 액션 방지
 	
+	if( !($('#password').val() === $('#confirm-password').val()) ) {
+		alert("비밀번호와 비밀번호 확인 값이 일치하지 않습니다.");
+		return false;
+	}
+
+	
+	
 	let data =$(`#userUpdate`).serialize();
 
 	console.log("1");
@@ -47,4 +54,13 @@ function userUpdate(userId, event) {
 		}
 		 
 	})
+}
+
+
+function validationAll(){
+	
+	
+	return true;
+
+
 }

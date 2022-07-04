@@ -21,6 +21,19 @@
 							<form action="/saseo/bookRegistration"  method = "post" enctype="multipart/form-data" class="contact-form bg-white rounded p-5"  id="comment-form">
 								<h4 class="mb-4">도서 정보를 입력하세요</h4>
 								
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											제목<label style="color:red";>(필수)</label><input type="text"  	id="title"  name="title" class="form-control"   placeholder="제목" required="">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											저자<label style="color:red";>(필수)</label><input type="text"  id="writer"  name="writer" class="form-control"   placeholder="저자" required="">
+										</div>
+									</div>
+								</div>
+								
 								<!-- 십진 분류 1차, 2차 -->
 								<div class="row">
 									<div class="col-md-6">
@@ -35,18 +48,6 @@
 									</div>
 								</div>
 								
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											제목<input type="text"  	id="title"  name="title" class="form-control"   placeholder="제목">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											저자<input type="text"  id="writer"  name="writer" class="form-control"   placeholder="저자">
-										</div>
-									</div>
-								</div>
 								
 								이미지 <input type="file" name="file"/>
 								
@@ -58,7 +59,7 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											페이지<input type="text"   id="page" name="page" class="form-control"  placeholder="페이지">
+											페이지<label style="color:red";>(필수)</label><input type="number"   id="page" name="page" class="form-control"  placeholder="페이지"  > 
 										</div>
 									</div>
 								</div>

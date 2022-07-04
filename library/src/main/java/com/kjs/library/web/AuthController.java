@@ -38,10 +38,18 @@ public class AuthController {
 		return "auth/signup";
 	}
 	
+	//로그인 실패 시 다시 로그인 화면으로 이동시킴
+	@PostMapping("/auth/signinFail")
+	public String signinForm() {
+		System.out.println("exception 걸렸으므로 리턴 됩니다. ");
+		return "auth/signin";
+	}
+		
+	
+	
 	//회원가입 처리
 	@PostMapping("/auth/signup")
 	public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) {
-		
 		
 		log.info("--------------------------");
 		log.info(signupDto.toString());
@@ -51,6 +59,8 @@ public class AuthController {
 		
 		return "auth/signin";
 	}
+	
+	
 	
 
 }

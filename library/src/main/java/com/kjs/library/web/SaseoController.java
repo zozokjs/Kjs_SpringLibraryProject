@@ -92,11 +92,10 @@ public class SaseoController {
 
 			throw new CustomValidationException("권한이 없습니다. 등록할 수 없습니다", null);
 		}else {
-			
 			saseoService.책등록(bookRegistrationDto, principalDetails);
 			//업로드 잘 됐다고 스크립트로 알려줘야함
 			
-			return "main/index";
+			return "redirect:/saseo/bookManage";
 		}
 	}
 		

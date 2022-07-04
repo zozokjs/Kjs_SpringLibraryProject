@@ -45,7 +45,6 @@ public class User{
 	private String password;
 	
 	//이름
-	@Column(nullable = false)
 	private String name;
 	
 	//종족

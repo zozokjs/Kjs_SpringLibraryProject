@@ -22,6 +22,15 @@ public class BookUpdateDto {
 	//이미지 위치
 	private String titleImageUrl;
 	
+	//ISBN
+	private String isbn;
+	
+	//ISBN SET
+	private String isbnSet;
+	
+	//크기
+	private String size;
+	
 	//제본형식
 	private String bindType;
 	
@@ -32,7 +41,7 @@ public class BookUpdateDto {
 	private String language;
 	
 	//가격
-	private Integer price;
+	private String price;
 	
 	//발행일
 	private String publishDate;
@@ -62,6 +71,9 @@ public class BookUpdateDto {
 				.writer(writer)
 				.titleImageUrl(titleImageUrl)
 				.bindType(bindType)
+				.size(size)
+				.isbn(isbn)
+				.isbnSet(isbnSet)
 				.page(page)
 				.language(language)
 				.price(price)

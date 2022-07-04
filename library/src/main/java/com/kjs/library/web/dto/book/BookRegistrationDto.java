@@ -37,7 +37,7 @@ public class BookRegistrationDto {
 	private String language;
 	
 	//가격
-	private Integer price;
+	private String price;
 	
 	//발행일
 	private String publishDate;

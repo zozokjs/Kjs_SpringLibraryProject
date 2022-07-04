@@ -36,7 +36,14 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
-											비밀번호<input type="text"   id="password"  name="password"  class="form-control"  placeholder="비밀번호" >
+											비밀번호<label style="color:red";>(필수)</label><input type="text"   id="password"  name="password"  class="form-control"  placeholder="비밀번호"  required="">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											비밀번호확인<label style="color:red";>(필수)</label><input type="text"   id="confirm-password"  name="confirm-password"  class="form-control"  placeholder="비밀번호확인"  required="">
 										</div>
 									</div>
 								</div>
@@ -45,7 +52,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
-											이메일<input type="text"  id="email"  name="email"  value = "${principal.user.email}"   class="form-control"   placeholder="이메일"  >
+											이메일<label style="color:red";>(필수)</label><input type="text"  id="email"  name="email"  value = "${principal.user.email}"   class="form-control"   placeholder="이메일"  required="">
 										</div>
 									</div>
 								</div>
@@ -127,7 +134,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
-											연락처<input type="text"   id="phoneNumber"  name="phoneNumber"  value = "${principal.user.phoneNumber}"  class="form-control"  placeholder="연락처" >
+											연락처<label style="color:red";>(필수)</label><input type="text"   id="phoneNumber"  name="phoneNumber"  value = "${principal.user.phoneNumber}"  class="form-control"  placeholder="연락처"  required="">
 										</div> 
 									</div>
 								</div>

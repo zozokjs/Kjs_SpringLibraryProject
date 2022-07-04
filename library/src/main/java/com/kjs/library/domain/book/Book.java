@@ -51,9 +51,11 @@ public class Book {
 	private String totalAmount;
 	
 	//제목
+	@Column(nullable = false)
 	private String title;
 	
 	//저자
+	@Column(nullable = false)
 	private String writer;
 	
 	//이미지 위치
@@ -66,13 +68,16 @@ public class Book {
 	private String bindType;
 	
 	//페이지
+	@Column(columnDefinition = "int default '0' ")
 	private int page;
 	
 	//언어
 	private String language;
 	
 	//가격
-	private int price;
+	/* 책의 발행처에 따라 '원'이 될 수도 '달러'가 될 수 도 있기에 String
+	 * **/
+	private String price;
 	
 	//발행일
 	private String publishDate;
@@ -118,9 +123,11 @@ public class Book {
 	private User user;*/
 
 	//책 정보 수정한 사람. 일단 String으로 저장함...
-	private String editedUser;
+	@Column(nullable = false)
+	private String editedUserId;
 	
 	//책 정보를 입력한 사람. 일단 String으로 저장함...
+	@Column(nullable = false)
 	private String registrationUserId;
 		
 	//등록 날짜

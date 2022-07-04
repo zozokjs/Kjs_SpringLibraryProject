@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+	
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ㄴㅇㄴ</title>
+    <title>도서관 로그인 페이지</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
@@ -29,6 +32,16 @@
       <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 </head>
 <body>
+<!-- LoginFailureHandler.java 참조. 여기서 msg를 던짐. -->
+<!-- errorMsg가 비어 있지 않을 때 -> 값이 있을 때 -->
+<c:choose>
+	<c:when test ="${not empty errorMsg}">
+		<script>
+			const a = `${errorMsg}`;
+			alert( a );
+		</script>
+	</c:when>
+</c:choose>
 
 <section class="login-block">
         <!-- Container-fluid starts -->
@@ -50,16 +63,16 @@
 	                            
 		                            <!-- 아이디 -->
 		                            <div class="form-group form-primary">
-		                                <input type="text" name="username"   value="zozo" class="form-control" required="required">
+		                                <input type="text" name="username"   value="zozo" class="form-control" required="">
 		                                <span class="form-bar"></span>
-		                                <label class="float-label">ID</label>
+		                                <label class="float-label">아이디</label>
 		                            </div>
 		                            
 		                            <!-- 비번 -->
 		                            <div class="form-group form-primary">
-		                                <input type="password" name="password"   value="1234"  class="form-control" required="required">
+		                                <input type="password" name="password"   value="1234"  class="form-control" required="">
 		                                <span class="form-bar"></span>
-		                                <label class="float-label">Password</label>
+		                                <label class="float-label">비밀번호</label>
 		                            </div>
 		                            
 		                            <div class="row m-t-25 text-left">

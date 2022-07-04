@@ -109,8 +109,8 @@
 			  
 		  		<!-- 샘플 -->
 				<li class="nav-item"><a class="nav-link" href="/resource/newBook">공사중</a></li>
-				<li class="nav-item"><a class="nav-link" href="/board/boardSample">샘플</a></li>
-				
+<!-- 				<li class="nav-item"><a class="nav-link" href="/board/boardSample">샘플</a></li> -->				
+
 				<!-- 자료 검색 -->
 			  	<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="/board/boardSample2" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">자료검색</a>
@@ -151,8 +151,7 @@
 					</ul>
 				</li>
 				
-			   <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-     			
+			<!--    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li> -->     			
      			<!-- 상단메뉴 End -->
 			</ul>
 		  </div>
