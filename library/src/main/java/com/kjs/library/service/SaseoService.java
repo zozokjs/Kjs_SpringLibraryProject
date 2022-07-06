@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.hibernate.internal.build.AllowSysOut;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.kjs.library.config.auth.PrincipalDetails;
@@ -60,7 +62,6 @@ public class SaseoService {
 			
 			bookRepository.save(book);
 		}
-		
 		
 		
 		// SAVE 책 청구기호 최초 등록
@@ -265,24 +266,27 @@ public class SaseoService {
 		}
 		
 		
-		// SELECT 책 전부 조회
+		// SELECT 책 전부 조회(페이징 추가)
 		@Transactional(readOnly = true)
-		// 서비스 단에는 select만 하더라도 Transactional을 걸어주는 게 좋다.
-		// readonly True를 넣으면 읽기전용으로 인식하므로 jpa는
-		// 영속성 컨텍스트 내의 변경 여부를 감시 및 감지 하지 않는다.
-		public List<Book> bookSelect() {
+		public Page<Book> bookSelectAllToPage(Pageable pageable) {
 			
-			List<Book> bookList = bookRepository.findAll();
+			//Page 처리를 위해 DESC 정렬된 쿼리를 사용함
+			Page<Book> bookList = bookRepository.findByAll(pageable);
+			return bookList;
+		}
+		
+		
+		//createDate 기준으로 가장 최근에 등록된 책 3권만 조회
+		@Transactional(readOnly = true)
+		public List<Book> bookSelectLimit3() {
 			
-			//System.out.println("--------------------------");
-			//System.out.println(bookList.get(0).getTitleImageUrl() );
-			//System.out.println(bookList.get(1).getTitleImageUrl() );
+			List<Book> bookList = bookRepository.findBookLimit3();
 			
 			return bookList;
 		}
 		
 		
-		//Update 책 1개의 remainAmount 수정
+		//UPDATE 책 1개의 remainAmount 수정
 		@Transactional
 		public Book remainAmount수정(int bookId, int remainAmount) {
 			
@@ -329,7 +333,7 @@ public class SaseoService {
 		}
 
 		
-		// Update [청구기호 최초 등록 시] Book 테이블 업데이트를 위한 함수
+		// UPDATE [청구기호 최초 등록 시] Book 테이블 업데이트를 위한 함수
 		@Transactional
 		public Book totalAmountSave(int bookId, int totalAmount) {
 			
@@ -342,7 +346,7 @@ public class SaseoService {
 		}
 		
 		
-		// Update [청구기호 수정 시] Book 테이블 업데이트를 위한 함수
+		// UPDATE [청구기호 수정 시] Book 테이블 업데이트를 위한 함수
 		@Transactional
 		public Book totalAmountUpdate(int bookId, BookUpdate_kdcDto bookUpdate_kdcDto) {
 			
@@ -371,7 +375,9 @@ public class SaseoService {
 		}
 		
 		
-		
+		// SELECT
+		/** 청구기호 수정 가능 여부 return
+		수정 가능하면 True */
 		@Transactional(readOnly = true)
 		public boolean 청구기호수정가능하다(int bookId, BookUpdate_kdcDto bookUpdate_kdcDto ) {
 			

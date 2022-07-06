@@ -27,7 +27,8 @@ public class MainController {
 	public String index(Model model) {
 		
 		//신규 등록된 도서가 표시되어야 함
-		List<Book> book = saseoService.bookSelect();
+		//가장 최근에 등록된 3건만
+		List<Book> book = saseoService.bookSelectLimit3();
 		
 		if(book.size() == 0) {
 			System.out.println("등록된 책이 없습니다.");
@@ -38,7 +39,12 @@ public class MainController {
 		return "main/index";
 	}
 	
-	
+	//공사중 화면으로이동
+	@GetMapping("/공사중")
+	public String constructionForm(Model model) {
+		
+		return "main/공사중";
+	}
 
 	
 }

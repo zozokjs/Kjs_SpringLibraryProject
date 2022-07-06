@@ -1,10 +1,11 @@
 package com.kjs.library.service;
 
 import java.text.ParseException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,7 +34,7 @@ public class BookService {
 	//책 대출, 반납, 희대도서 신청, 희망도서 신청 취소 등
 	
 	//사용자 1명의 반납 안 한 대출 목록 
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<UserLendListInterface> 대출목록(int loginId){
 		
 		List<UserLendListInterface> lend = lendRepository.findUserLendListByUserId(loginId);
@@ -233,8 +234,8 @@ public class BookService {
 	
 	//사람 1명의 반납 완료된 내역
 	@Transactional(readOnly = true)
-	public List<UserLendListInterface> 반납완료내역(int loginId){
-		List<UserLendListInterface> lendHistory = lendRepository.findUserLendHistoryByUserId(loginId);
+	public Page<UserLendListInterface> 반납완료내역(int loginId, Pageable pageable){
+		Page<UserLendListInterface> lendHistory = lendRepository.findUserLendHistoryByUserId(loginId, pageable);
 		return lendHistory;
 	}
 	

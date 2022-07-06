@@ -3,7 +3,9 @@ package com.kjs.library.service.common;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -24,8 +26,9 @@ public class CommonService {
 	private String uploadProfileFolder;
 	
 	
-	// 책 타이틀 이미지, 유저 프로필 이미지 등...
-	//사진만 저장함.
+
+	/**사진만 저장함(책 타이틀 이미지, 유저 프로필 이미지 등)
+	 * */
 	public String 사진저장(ImageDto imageDto, String imagePath) {
 		
 		String imageFileName = "";
@@ -75,6 +78,68 @@ public class CommonService {
 			
 	}
 	
+	
+	/**시작과 끝 페이지 구함
+	 * */
+	public Map<String, Integer> 시작끝페이지구하기(int pageCurrent, int pageTotal, int pageButtonLength) {
+		
+		int pageStart = 0;
+		int pageEnd = 0;
+		
+		/**현재 페이지가 11일 때, 버튼 숫자가 1 ~ 10으로 나타나는 것에 대한 처리
+		pageCurrent를 10으로 나눴을 때의 나머지가 0일 때 */
+		if(Math.floorMod(pageCurrent, 10) == 0){
+			pageStart = ( pageCurrent  / pageButtonLength ) * pageButtonLength + 1;
+			
+			/**마지막 페이지에 대한 처리
+			현재 페이지가 전체 페이지와 같을 때 
+			마지막 페이지 = 전체페이지*/
+			if(pageCurrent + 1 == pageTotal) {
+				pageEnd = pageTotal;
+				//System.out.println("-마지막 페이지가 있습니다.");
+			}
+			/**현재페이지가 전체페이지보다 작을 때
+			 * 예) 현재페이지 : 24, 전체페이지 : 22 
+			 * 마지막 페이지 = 24 */
+			else if(pageCurrent + 1 < pageTotal){
+				pageEnd = pageStart + pageButtonLength - 1;
+				
+				/**마지막페이지가 전체페이지보다 크거나 같을 때
+				 * 예) 마지막페이지 : 30, 전체페이지 : 24 
+				 * 마지막 페이지 = 전체페이지* */
+				if(pageEnd >= pageTotal) {
+					pageEnd = pageTotal;
+				}
+			}
+		}else {
+			pageStart = ((pageCurrent - 1) / pageButtonLength ) * pageButtonLength + 1; 
+			/**마지막 페이지에 대한 처리
+			현재 페이지가 전체 페이지와 같을 때 */
+			if(pageCurrent + 1 == pageTotal) {
+				pageEnd = pageTotal;
+			}else if(pageCurrent + 1 < pageTotal){
+				pageEnd = pageStart + pageButtonLength - 1;
+				
+				/**마지막페이지가 전체페이지보다 크거나 같을 때
+				 * 예) 마지막페이지 : 30, 전체페이지 : 24 
+				 * 마지막 페이지 = 전체페이지* */
+				if(pageEnd >= pageTotal) {
+					pageEnd = pageTotal;
+				}
+			}
+		}
+		
+		//값 체크
+		//System.out.println("pageCurrent : "+pageCurrent +"/ pageTotal : "+pageTotal+" /pageButtonLength : "+pageButtonLength);
+		//System.out.println("startPage : "+pageStart +"/ endPage : "+pageEnd);
+		
+		Map<String, Integer> pageMap = new HashMap<>();
+		pageMap.put("pageStart", pageStart);
+		pageMap.put("pageEnd", pageEnd);
+		
+		return pageMap;
+		
+	}
 	
 	
 

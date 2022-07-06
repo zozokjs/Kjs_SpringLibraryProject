@@ -10,7 +10,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,8 +84,24 @@ public class UserControllerUnitTest {
 	
 	@Test
 	public void CommonServiceTest() throws ParseException {
+		log.info("테스트 시작");
 		
-	//	CommonService.날짜포맷변경2("20200707");
+		Map<String, Integer> pageMap = commonService.시작끝페이지구하기(12, 1200, 10);
+		
+		log.info("> "+ pageMap.get("pageStart"));
+		log.info(">> " + pageMap.get("pageEnd"));
+		log.info(">>> " + pageMap.get("a"));
+		
+		
+		Iterator<String> pages = pageMap.keySet().iterator();
+		
+		log.info("check "+pages.hasNext());
+		
+		while(pages.hasNext()) {
+			String keys = pages.next();
+			System.out.println("key "+keys +"val :" + pageMap.get(keys));
+			log.info("3");
+		}
 		
 		
 		

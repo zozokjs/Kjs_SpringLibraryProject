@@ -113,12 +113,12 @@
 
 				<!-- 자료 검색 -->
 			  	<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="/board/boardSample2" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">자료검색</a>
+					<a class="nav-link dropdown-toggle" href="/resource/newBook"" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">자료검색</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
 						<!-- 1 depth resource -->
-						<li><a class="dropdown-item" href="/">통합검색</a></li>
+						<li><a class="dropdown-item" href="/공사중">통합검색</a></li>
 						<li><a class="dropdown-item" href="/resource/newBook">신착도서</a></li>
-						<li><a class="dropdown-item" href="/">인기도서</a></li>
+						<li><a class="dropdown-item" href="/공사중">인기도서</a></li>
 					</ul>
 				</li>
 				
@@ -143,11 +143,13 @@
 				</li>
 				
 			 	<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">내서재</a>
+					<a class="nav-link dropdown-toggle" href="/user/myLibrary" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">내서재</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown05">
-						<li><a class="dropdown-item" href="blog-grid.html">Blog Grid</a></li>
-						<li><a class="dropdown-item" href="blog-sidebar.html">Blog with Sidebar</a></li>
-						<li><a class="dropdown-item" href="blog-single.html">Blog Single</a></li>
+						<li><a class="dropdown-item" href="/user/${principal.user.id}/userInfor">회원정보</a></li>
+						<li><a class="dropdown-item" href="/user/myLibrary">대출관리(연장/반납)</a></li>
+						<li><a class="dropdown-item" href="/user/myLendHistory">반납완료내역</a></li>
+						<li><a class="dropdown-item" href="/공사중">희망도서신청관리</a></li>
+						<li><a class="dropdown-item" href="/공사중">작성글목록</a></li>
 					</ul>
 				</li>
 				

@@ -13,6 +13,7 @@ public interface UserLendListInterface {
 	 String getTitle();
 	 String getWriter();
 	 String getPublish(); //출판사
+	 String getTitleImageUrl(); //타이틀 이미지
 	 int getBindType(); //매체구분
 	 LocalDateTime getCreateDate(); //대출 날짜
 	 String getReturnPlanDate(); //반납 예정 날짜

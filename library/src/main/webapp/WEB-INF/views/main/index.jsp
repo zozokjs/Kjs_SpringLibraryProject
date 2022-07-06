@@ -94,8 +94,7 @@
 		<div class="row justify-content-center">
 		<c:choose>
 			<c:when test="${empty book}">
-				<!-- 등록된 책이 없을 때 -->
-				
+				<h3>등록된 책이 없습니다</h3>
 			</c:when>
 			<c:otherwise>
 				<!-- 등록된 책이 있을 때 -->
