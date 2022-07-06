@@ -6,6 +6,10 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.resource.PathResourceResolver;
 
+/**
+ * Web Mvc 패턴 설정 클래스 파일
+ * 
+ * */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer{
 

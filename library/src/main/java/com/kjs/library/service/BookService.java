@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kjs.library.domain.book.Book;
+import com.kjs.library.domain.book.BookRepository;
 import com.kjs.library.domain.book.Samebook;
 import com.kjs.library.domain.book.SamebookRepository;
 import com.kjs.library.domain.lend.Lend;
@@ -25,30 +26,18 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class BookService {
 
+	private final BookRepository bookRepository;
 	private final SamebookRepository samebookRepository;
 	private final LendRepository lendRepository;
-	private final CommonService commonService;
 	private final DateCommonService dateCommonService;
 	
-	
-	//책 대출, 반납, 희대도서 신청, 희망도서 신청 취소 등
-	
-	//사용자 1명의 반납 안 한 대출 목록 
-	@Transactional(readOnly = true)
-	public List<UserLendListInterface> 대출목록(int loginId){
-		
-		List<UserLendListInterface> lend = lendRepository.findUserLendListByUserId(loginId);
-
-		/* 값 체크
-		for (int i = 0; i < lend.size(); i++) {
-			System.out.println(lend.get(i).getCreateDate() + "    /  " +lend.get(i).getBindType());
-		}
-		*/
-		return lend;
-	}
+	private final BookSelectService bookSelectService;
 	
 	
+	
+	//INSERT
 	//1권 씩 대출할 때
+	/**한 권 대출 처리*/
 	@Transactional
 	public void 책대출(int bookId, int loginId) {                       
 		
@@ -60,7 +49,7 @@ public class BookService {
 		//대출 가능한 청구 기호가 없거나 이미 대출된 책bookId인 경우
 		
 		//1. 청구기호 찾기 및 세팅
-		int samebookId = 청구기호아이디찾기(bookId);
+		int samebookId = bookSelectService.청구기호아이디찾기(bookId);
 		samebook.setId(samebookId); 	
 		lend.setSamebook(samebook); //청구기호 세팅	
 		
@@ -98,46 +87,26 @@ public class BookService {
 		
 	}
 	
-	@Transactional(readOnly = true)
-	public Integer 청구기호아이디찾기(int bookId) {
+	
+	//UPDATE
+	/**한 권 대출할 때 Book 테이블의 remainAmount 수정*/
+	@Transactional
+	public Book 책대출2차처리(int bookId) {
+		Book bookEntity = bookRepository.findById(bookId).orElseThrow(); //영속화
 		
-		//bookId 기준, 대출 상태가 아닌(lendId가 null) 가장 빠른 청구기호 1개 검색
-		int samebooId =  lendRepository.findKdcCallSignBybookid(bookId);
-			
-		return samebooId;
-	}
+		String remainAmount = bookEntity.getRemainAmount();
+		System.out.println("대출 전 remain > "+remainAmount);
 
-	
-	@Transactional(readOnly = true)
-	public boolean 대출했다(int bookId, int loginId) {
+		int remainAmount_int = Integer.parseInt(remainAmount);
+		bookEntity.setRemainAmount(String.valueOf(remainAmount_int-1)); //수정하고 세팅
 		
-		//로그인 된 아이디로 bookid를 대출 했는가?
-		Lend lend = lendRepository.findLendAbleByBookIdAndUserId(bookId, loginId);
-		//lend 값이 있다 > 대출
-		
-		if(lend != null) {
-			return true; //대출 했음
-		}else {
-			return false; //대출 안 했음
-		}
+		System.out.println("대출 후 remain > "+bookEntity.getRemainAmount());
+		return bookEntity;
 	}
 	
 	
-	@Transactional(readOnly = true)
-	public boolean 잔여책존재한다(int bookId) {
-		
-		//bookId로 검색했을 때, 대여 가능한 책이 있는가?
-		List<Integer> samebookVolume = lendRepository.findLendAbleSamebookVolume(bookId);
-		
-		//lend 값이 있으면 대출 가능
-		if(!samebookVolume.isEmpty()) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
-	
+	//UPDATE
+	/**한 권  반납 처리*/
 	@Transactional
 	public Lend 책반납(int lendId) throws ParseException {
 		
@@ -149,13 +118,32 @@ public class BookService {
 		String returnDate = dateCommonService.날짜포맷변경(now);
 		
 		lend.setReturnDate(returnDate);
-	
 		return lend;
 	}
 	
+	/**한 권 반납할 때 Book 테이블의 remainAmount 수정*/
+	@Transactional
+	public Book 책반납2차처리(int lendId) {
+		
+		//1. bookId 가져오기
+		Lend lendEntity = lendRepository.findById(lendId).orElseThrow();
+		int bookId = lendEntity.getBook().getId();
+		
+		//2. bookId로 영속화
+		Book bookEntity = bookRepository.findById(bookId).orElseThrow(); //영속화
+		
+		String remainAmount = bookEntity.getRemainAmount();
+		System.out.println("반납 전 remain > "+remainAmount);
+
+		int remainAmount_int = Integer.parseInt(remainAmount);
+		bookEntity.setRemainAmount(String.valueOf(remainAmount_int+1)); //수정하고 세팅
+		
+		System.out.println("반납 후 remain > "+bookEntity.getRemainAmount());
+		return bookEntity;
+	}
 	
-	/** 대출 상태를 false(반납상태)로 변경
-	 * **/
+	//UPDATE
+	/** 대출 상태를 false(반납상태)로 변경*/
 	@Transactional
 	public Samebook 대출상태false변경(int lendId) {
 		
@@ -170,9 +158,8 @@ public class BookService {
 	}
 	
 	
-	
-	
-	
+	//UPDATE
+	/**책 대출 기한 연장 처리*/
 	@Transactional
 	public Lend 책연장(int lendId) throws Exception {
 		Lend lend = lendRepository.findById(lendId).orElseThrow();
@@ -211,32 +198,8 @@ public class BookService {
 		return lend;
 	}
 	
-	
-	@Transactional(readOnly = true)
-	public boolean 책연장가능하다(int lendId) {
-		
-		Lend lend = lendRepository.findById(lendId).orElseThrow();
-		int bookExtensionAbleCount = lend.getExtensionAbleCount();
-		
-		System.out.println("전달 받은 id " + lendId);
-		System.out.println("결과 " + bookExtensionAbleCount);
-		
-		
-		if(bookExtensionAbleCount == 0) {
-			return false; //연장 불가
-		}else {
-			return true; //연장 가능
-		}
-		
-	}
-	
-	
-	
-	//사람 1명의 반납 완료된 내역
-	@Transactional(readOnly = true)
-	public Page<UserLendListInterface> 반납완료내역(int loginId, Pageable pageable){
-		Page<UserLendListInterface> lendHistory = lendRepository.findUserLendHistoryByUserId(loginId, pageable);
-		return lendHistory;
-	}
+
+
+
 	
 }

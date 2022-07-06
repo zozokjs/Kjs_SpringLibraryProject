@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.kjs.library.config.auth.PrincipalDetails;
+import com.kjs.library.service.BookSelectService;
 import com.kjs.library.service.BookService;
 import com.kjs.library.service.common.CommonService;
 import com.kjs.library.web.dto.lend.UserLendListInterface;
@@ -27,13 +28,14 @@ public class UserController {
 	
 	private final BookService bookService;
 	private final CommonService commonService;
+	private final BookSelectService bookSelectService;
 	
 	//내 서재 페이지로 이동
 	@GetMapping("/user/myLibrary")
 	public String myLibraryForm(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) throws ParseException {
 		
 		//대출된 목록 표시
-		List<UserLendListInterface> userLendList = bookService.대출목록(principalDetails.getUser().getId());
+		List<UserLendListInterface> userLendList = bookSelectService.대출목록(principalDetails.getUser().getId());
 
 		/*
 		for (int i = 0; i < userLendList.size(); i++) {
@@ -82,7 +84,7 @@ public class UserController {
 	public String myLendHistoryForm(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails,  @PageableDefault( size = 1 ) Pageable pageable) {
 		
 		//대출된 목록 표시
-		Page<UserLendListInterface> userLendHistoryList = bookService.반납완료내역(principalDetails.getUser().getId(), pageable);
+		Page<UserLendListInterface> userLendHistoryList = bookSelectService.반납완료내역(principalDetails.getUser().getId(), pageable);
 		model.addAttribute("userLendHistoryList",userLendHistoryList);
 		
 		

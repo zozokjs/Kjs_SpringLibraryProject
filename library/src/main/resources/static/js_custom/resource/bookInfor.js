@@ -1,10 +1,7 @@
-/**
 
 
-자바스크립트 및 제이쿼리 양식 작성하는 곳
-
- */
- 
+ /*
+ 도서 대출 완료 처리 */
 function bookLending(bookId, event) {
 	event.preventDefault(); //form 태그 액션 방지
 
@@ -26,7 +23,7 @@ function bookLending(bookId, event) {
 		alert("대출 목록으로 이동하시겠습니까?")
 		
 		//내 서재의 대여 목록으로 이동되어야 함
-		location.href = `/`; 
+		location.href = `/user/myLibrary/`; 
 		
 	}).fail(error =>{
 		

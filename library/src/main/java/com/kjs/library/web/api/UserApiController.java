@@ -1,7 +1,5 @@
 package com.kjs.library.web.api;
 
-import java.text.ParseException;
-
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kjs.library.config.auth.PrincipalDetails;
 import com.kjs.library.domain.user.User;
+import com.kjs.library.service.BookSelectService;
 import com.kjs.library.service.BookService;
 import com.kjs.library.service.UserService;
 import com.kjs.library.web.dto.CMRespDto;
@@ -28,8 +27,8 @@ public class UserApiController {
 	
 	private final UserService userService;
 	private final BookService bookService;
-		
-	
+	private final BookSelectService bookSelectService;
+			
 	//회원 수정 완료 처리
 	@PutMapping("/user/api/{userId}/updater")
 	public CMRespDto<?> userUpdate(
@@ -60,25 +59,37 @@ public class UserApiController {
 	@PutMapping("/user/api/{lendId}/bookReturn")
 	public ResponseEntity<?> bookReturn(@PathVariable int lendId) throws Exception {
 		
-		bookService.책반납(lendId);
-		bookService.대출상태false변경(lendId);
+		boolean bookReturnAble =  bookSelectService.책반납가능하다(lendId);
 		
-		return new ResponseEntity<>(new CMRespDto<>(1,"반납 되었습니다.",null),HttpStatus.OK);
-	}
+		if(bookReturnAble == true) {
+			//반납 처리
+			bookService.책반납(lendId);
+			bookService.책반납2차처리(lendId);
+			bookService.대출상태false변경(lendId);
+			
+			return new ResponseEntity<>(new CMRespDto<>(0,"반납 되었습니다.",null),HttpStatus.OK);
+
+		}else {
+
+			return new ResponseEntity<>(new CMRespDto<>(1,"반납 날짜에 값이 있어 반납 불가능합니다.",null),HttpStatus.BAD_REQUEST);
+
+		}
+		
+		}
 	
 	//책 연장 처리
 	@PutMapping("/user/api/{lendId}/bookExtension")
 	public ResponseEntity<?> bookExtension(@PathVariable int lendId) throws Exception{
 		
-		boolean bookExtensionAble = bookService.책연장가능하다(lendId);
+		boolean bookExtensionAble = bookSelectService.책연장가능하다(lendId);
 		
 		if(bookExtensionAble == true) {
 			//연장 처리
-			System.out.println("연장 됨");
+			//System.out.println("연장 됨");
 			bookService.책연장(lendId);
 			return new ResponseEntity<>(new CMRespDto<>(0,"연장 되었습니다.",null),HttpStatus.OK);
 		}else {
-			System.out.println("연장 불가");
+			//System.out.println("연장 불가");
 
 			return new ResponseEntity<>(new CMRespDto<>(1,"연장 횟수를 초과하여 더 이상 연장할 수 없습니다.",null),HttpStatus.BAD_REQUEST);
 			

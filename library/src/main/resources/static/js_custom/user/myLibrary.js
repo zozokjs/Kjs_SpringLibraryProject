@@ -7,7 +7,7 @@ function bookExtensionConfirm(lendId){
 }
 
 
-
+/**책 반납 기한 연장 처리 */
 function bookExtension(lendId) {
 	
 	$.ajax({
@@ -42,7 +42,7 @@ function bookExtension(lendId) {
 
 }
 
-
+/**책 반납 처리 질문*/
 function bookReturnConfirm(lendId){
 	
 	if(confirm("정말로 반납하시겠습니까?")){
