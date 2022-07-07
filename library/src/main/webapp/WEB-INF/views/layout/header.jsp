@@ -108,7 +108,7 @@
 				</li>
 			  
 		  		<!-- 샘플 -->
-				<li class="nav-item"><a class="nav-link" href="/resource/newBook">공사중</a></li>
+				<li class="nav-item"><a class="nav-link" href="/auth/isEnableTrue">공사중</a></li>
 <!-- 				<li class="nav-item"><a class="nav-link" href="/board/boardSample">샘플</a></li> -->				
 
 				<!-- 자료 검색 -->

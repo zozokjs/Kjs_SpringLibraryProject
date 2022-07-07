@@ -13,12 +13,10 @@ import lombok.Data;
 @Data
 public class PrincipalDetails implements UserDetails{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private User user;
+	private boolean isEnabled;
 	
 	public PrincipalDetails(User user) {
 		this.user=user;
@@ -68,7 +66,8 @@ public class PrincipalDetails implements UserDetails{
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		this.isEnabled = isEnabled;
+		return isEnabled;
 	}
 
 }

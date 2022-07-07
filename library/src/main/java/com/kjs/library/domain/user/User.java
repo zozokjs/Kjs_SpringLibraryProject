@@ -47,6 +47,10 @@ public class User{
 	//이름
 	private String name;
 	
+	//계정 활성화 여부(기본값 0(false))
+	@Column(nullable = false, columnDefinition = "int default '0' ")
+	private boolean isEnabled;
+	
 	//종족
 	private String species; //Human, Elf, Dwarf, Ork, Fairy(요정), Furry(수인), Other
 	
@@ -84,4 +88,16 @@ public class User{
 	public void createDate() {
 		this.createDate = LocalDateTime.now();
 	}
+
+	public User(String username, String password, boolean isEnabled, String email,String phoneNumber,String role) {
+		
+		this.username = username;
+		this.password = password;
+		this.isEnabled = isEnabled;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.role = role;
+	}
+	
+	
 }

@@ -1,5 +1,6 @@
 package com.kjs.library.config.auth;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,6 +18,7 @@ public class PrincipalDetailsService implements UserDetailsService{
 
 	private final UserRepository userRepository;
 	
+	//사용자가 로그인하면 그때 입력한 아이디가 username의 형태로 여기로 전달됨.
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
@@ -24,12 +26,20 @@ public class PrincipalDetailsService implements UserDetailsService{
 		//그 결과를 리턴해줘야 함
 		User userEntity = userRepository.findByUsername(username);
 		
-		
 		//db 검색 결과 없음
 		if(userEntity == null) {			
 			return null;
 		}else {	 //결과 있음		
+			//인증 처리.
+			
+			PrincipalDetails principalDetails = new PrincipalDetails(userEntity);
+			
+			
+			principalDetails.setEnabled(true);
+			System.out.println("Enable이 true 세팅 됨");
+			
 			return new PrincipalDetails(userEntity);			
+			//return principalDetails;
 		}
 			
 	}

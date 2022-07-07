@@ -16,6 +16,21 @@ spring:
     url: jdbc:mariadb://localhost:3307/library?serverTimezone=Asia/Seoul
     username: cos
     password: cos1234
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: zozokjsinfinite
+    password: gksmfrkxdl1@
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+            required: true
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
     
   jpa:
     open-in-view: true

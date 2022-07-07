@@ -4,11 +4,13 @@ import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.kjs.library.config.auth.PrincipalDetails;
 import com.kjs.library.domain.user.User;
 import com.kjs.library.service.AuthService;
 import com.kjs.library.web.dto.auth.SignupDto;
@@ -54,12 +56,25 @@ public class AuthController {
 		log.info("--------------------------");
 		log.info(signupDto.toString());
 		
+		//(String email, String authToken) 
 		User user = signupDto.toEntity();
 		authService.회원가입(user);
+		
 		
 		return "auth/signin";
 	}
 	
+	//인증 처리?
+	/*
+	@GetMapping("/auth/isEnableTrue")
+	public String isAuth(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		log.info("--------------------------");
+		
+		authService.isAuthSystem(principalDetails);
+		
+		return "main/index";
+	}*/
 	
 	
 

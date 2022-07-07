@@ -8,15 +8,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.kjs.library.domain.user.EmailAuthRepository;
 import com.kjs.library.web.dto.book.ImageDto;
+
+import lombok.NoArgsConstructor;
 
 //어딘든지 공통으로 사용되는 서비스 모음
 @Service
 public class CommonService {
 
+	
 	//책 타이틀 이미지만 모아두는 곳
 	@Value("${file.path.upload_imageTitle}")
 	private String uploadTitleFolder;
@@ -24,11 +30,11 @@ public class CommonService {
 	//유저 프로필 이미지만 모아두는 곳
 	@Value("${file.path.upload_imageProfile}")
 	private String uploadProfileFolder;
-	
-	
 
+	
 	/**사진만 저장함(책 타이틀 이미지, 유저 프로필 이미지 등)
 	 * */
+	@Transactional
 	public String 사진저장(ImageDto imageDto, String imagePath) {
 		
 		String imageFileName = "";
@@ -81,6 +87,7 @@ public class CommonService {
 	
 	/**시작과 끝 페이지 구함
 	 * */
+	@Transactional(readOnly = true)
 	public Map<String, Integer> 시작끝페이지구하기(int pageCurrent, int pageTotal, int pageButtonLength) {
 		
 		int pageStart = 0;
@@ -141,7 +148,7 @@ public class CommonService {
 		
 	}
 	
-	
+
 
 	//List 받아서 공백 체크하고 새로운 List 리턴
 	/*
