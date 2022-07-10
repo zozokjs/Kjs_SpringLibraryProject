@@ -24,14 +24,15 @@ import com.kjs.library.web.dto.book.ImageDto;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class SaseoService {
 
 		private final CommonService commonService;
 		private final BookRepository bookRepository;
 		private final SamebookRepository sameBookRepository;
-		
+		private final SaseoSelectService saseoSelectService;
+        		
 		// SAVE 책 등록
 		@Transactional
 		public void 책등록(BookRegistrationDto bookRegistrationDto, PrincipalDetails principalDetails) {                       
@@ -266,25 +267,7 @@ public class SaseoService {
 		}
 		
 		
-		// SELECT 책 전부 조회(페이징 추가)
-		@Transactional(readOnly = true)
-		public Page<Book> bookSelectAllToPage(Pageable pageable) {
-			
-			//Page 처리를 위해 DESC 정렬된 쿼리를 사용함
-			Page<Book> bookList = bookRepository.findByAll(pageable);
-			return bookList;
-		}
-		
-		
-		//createDate 기준으로 가장 최근에 등록된 책 3권만 조회
-		@Transactional(readOnly = true)
-		public List<Book> bookSelectLimit3() {
-			
-			List<Book> bookList = bookRepository.findBookLimit3();
-			
-			return bookList;
-		}
-		
+	
 		
 		//UPDATE 책 1개의 remainAmount 수정
 		@Transactional
@@ -292,7 +275,7 @@ public class SaseoService {
 			
 			System.out.println("남은 양 >"+remainAmount);
 			
-			Book bookEntity = bookSelectOne(bookId);
+			Book bookEntity = saseoSelectService.bookSelectOne(bookId);
 			
 			bookEntity.setRemainAmount(String.valueOf(remainAmount));
 			//bookEntity
@@ -301,43 +284,13 @@ public class SaseoService {
 		}
 		
 		
-		// SELECT 책 1개의 정보만 가져옴
-		@Transactional(readOnly = true)
-		public Book bookSelectOne(int id) {
 		
-			Book bookEntity = bookRepository.findById(id).orElseThrow(()->{
-				throw new CustomApiException("해당하는 책이 존재하지 않습니다! 관리자에게 문의하셈");
-			});
-			
-			return bookEntity;
-		 }
-		
-		
-		// SELECT 책 1개의 청구기호 정보만 가져옴		
-		@Transactional(readOnly = true)
-		public List<Samebook> sameBookSelectOne(int bookId) {
-			
-			//청구기호가 존재하지 않는다면 아무 조치도 취하지 않음
-			//System.out.println("전달된 책 아이디 >"+bookId);
-			
-			List<Samebook> sameBookEntity = sameBookRepository.findBybookid(bookId);
-			
-			if(sameBookEntity.isEmpty()) {
-				System.out.println("등록된 청구기호가 없음");
-				
-			}else {
-				System.out.println("등록된 청구기호가 잇음");
-				
-			}
-			return sameBookEntity;
-		}
-
 		
 		// UPDATE [청구기호 최초 등록 시] Book 테이블 업데이트를 위한 함수
 		@Transactional
 		public Book totalAmountSave(int bookId, int totalAmount) {
 			
-			Book bookEntity = bookSelectOne(bookId);
+			Book bookEntity = saseoSelectService.bookSelectOne(bookId);
 			
 			bookEntity.setTotalAmount(String.valueOf(totalAmount));
 			bookEntity.setRemainAmount(String.valueOf(totalAmount));
@@ -366,7 +319,7 @@ public class SaseoService {
 			int samebookSize = kdcCallSignList_공백제거.size();
 			
 			/** 1. 현재 book 테이블의 remainAmount를 가져 옴*/
-			Book bookEntity = bookSelectOne(bookId);
+			Book bookEntity = saseoSelectService.bookSelectOne(bookId);
 			
 			bookEntity.setTotalAmount(String.valueOf(samebookSize));
 			bookEntity.setRemainAmount(String.valueOf(samebookSize));
@@ -375,35 +328,9 @@ public class SaseoService {
 		}
 		
 		
-		// SELECT
-		/** 청구기호 수정 가능 여부 return
-		수정 가능하면 True */
-		@Transactional(readOnly = true)
-		public boolean 청구기호수정가능하다(int bookId, BookUpdate_kdcDto bookUpdate_kdcDto ) {
+		
 			
-			//bookId로 등록된 samebook 데이터 들고옴
-			List<Samebook> samebookEntity = sameBookRepository.findBybookid(bookId); 
 			
-			//수정하려는 청구기호를 나눔
-			List<Integer> samebookIdList = bookUpdate_kdcDto.getSamebookId();
 			
-			List<Boolean> result = sameBookRepository.editAbleKdcCallSign(samebookIdList);
-			
-			/* 값 체크
-			for (int i = 0; i < result.size(); i++) {
-				System.out.println("결과 "+result.get(i));
-			}
-			*/
-
-			//result에 true 포함여부 확인
-			boolean resultB = result.contains(true);
-			System.out.println();
-			if(resultB == true) {
-				return false;
-			}else {
-				return true;
-			}
-			
-		}
 		
 }

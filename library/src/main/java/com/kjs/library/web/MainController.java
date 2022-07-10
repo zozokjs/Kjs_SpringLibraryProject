@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import com.kjs.library.domain.book.Book;
+import com.kjs.library.service.SaseoSelectService;
 import com.kjs.library.service.SaseoService;
 
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class MainController {
 	
 	private final SaseoService saseoService;
-	
+	private final SaseoSelectService saseoSelectService;
 	
 	//메인 화면으로 이동
 	@GetMapping("/")
@@ -28,7 +29,7 @@ public class MainController {
 		
 		//신규 등록된 도서가 표시되어야 함
 		//가장 최근에 등록된 3건만
-		List<Book> book = saseoService.bookSelectLimit3();
+		List<Book> book = saseoSelectService.bookSelectLimit3();
 		
 		if(book.size() == 0) {
 			System.out.println("등록된 책이 없습니다.");

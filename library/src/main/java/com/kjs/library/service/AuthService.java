@@ -3,7 +3,8 @@ package com.kjs.library.service;
 import java.util.UUID;
 
 import org.springframework.transaction.annotation.Transactional;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
@@ -26,11 +27,10 @@ public class AuthService {
 	
 	private final UserRepository userRepository;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
-	private final JavaMailSender javaMailSender;
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Transactional
 	public void 회원가입(User user) {
-		
 		//1. 비번 암호화
 		String rawPassword = user.getPassword();
 		String encPassword = bCryptPasswordEncoder.encode(rawPassword);
@@ -40,39 +40,58 @@ public class AuthService {
 		user.setRole("ROLE_USER");
 		//4. 회원정보 INSERT
 		userRepository.save(user);
+	}
 
-		//https://gilssang97.tistory.com/60
-		//5. 이메일인증정보 INSERT
-		/*
-		emailAuthRepository.save(
-				EmailAuth.builder()
-				.email(user.getEmail())
-				.authToken(UUID.randomUUID().toString())
-				.expired(false)
-				.build());
-		가입인증이메일전송("emailAuthRepository","ㅁㅇㄹ");*/
-		
-	}
-	//Not Used
-	/*
-	@Async //비동기처리(메일을 전송하는 동안 대기 상태가 되기 때문에 비동기처리 해야 함)
-	public void 가입인증이메일전송(String email, String authToken) {
-		SimpleMailMessage smm = new SimpleMailMessage();
-		smm.setTo(email+"@gmail.com"); //누구에게 보내는가? 
-		smm.setSubject("회원 가입 이메일 인증"); //메일 제목
-		smm.setText("http://localhost:8080/sign/confirm-email?email="+email+"&authToken="+authToken); //메일 내용
-		javaMailSender.send(smm);
-	}
-	*/
 	
-	//Not use
-	/*@Transactional
-	public User isAuthSystem(PrincipalDetails principalDetails) {
-		User userEntity = userRepository.findById(principalDetails.getUser().getId()).orElseThrow();
-		userEntity.setEnabled(true);
-		System.out.println("enabled가 true로 변경됩니다. ");
+	@Transactional
+	public User 로그인실패횟수증가(String username) {
+		//초기화
+		int 로그인실패횟수;
+		//db에서 가져옴
+		User userEntity = userRepository.findByUsername(username);
+		로그인실패횟수 = userEntity.getLoginFailCount();
+		log.info("초기값 : "+로그인실패횟수);
+
+		로그인실패횟수 = 로그인실패횟수 + 1;
+
+		log.info("변경된 로그인 실패 횟수 : "+로그인실패횟수);
+		log.info("업데이트 되나요?");
+		userEntity.setLoginFailCount(로그인실패횟수);
+		
 		return userEntity;
-	}*/
+	}
+	
+	
+	@Transactional(readOnly = true)
+	public Integer 로그인실패횟수조회(String username) {
+		
+		int 로그인실패횟수 = userRepository.findLoginFailCount(username);
+		
+		return 로그인실패횟수;
+	}
+	
+	
+	@Transactional
+	public User 로그인실패횟수초기화(String username) {
+		
+		User userEntity = userRepository.findByUsername(username);
+		userEntity.setLoginFailCount(0);
+		
+		return userEntity;
+	}
+	
+	
+	/**Enabled 컬럼을 True로 변경함*/
+	@Transactional
+	public User 계정잠금(String username) {
+		
+		User userEntity = userRepository.findByUsername(username);
+		
+		userEntity.setEnabled(true);
+		
+		return userEntity;
+	}
+	
 	
 	
 

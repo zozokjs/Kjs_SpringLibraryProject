@@ -56,14 +56,12 @@ public class AuthController {
 		log.info("--------------------------");
 		log.info(signupDto.toString());
 		
-		//(String email, String authToken) 
 		User user = signupDto.toEntity();
 		authService.회원가입(user);
-		
-		
 		return "auth/signin";
 	}
 	
+	// return "redirect:/" + "settings/profile";
 	//인증 처리?
 	/*
 	@GetMapping("/auth/isEnableTrue")

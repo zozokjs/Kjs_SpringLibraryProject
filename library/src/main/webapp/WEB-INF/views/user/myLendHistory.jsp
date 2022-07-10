@@ -19,7 +19,8 @@
 	            <div class="col-lg-8">
 	               <div class="row">
 						<div class="col-lg-12 mb-5">
-						
+							
+							<!-- 2depth 타이틀 영역 -->
 							<div class="col-lg-7">
 								<div class="">
 									<h2 class="mt-3 content-title ">

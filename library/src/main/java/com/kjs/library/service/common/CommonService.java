@@ -11,9 +11,9 @@ import java.util.UUID;
 import org.springframework.transaction.annotation.Transactional;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import com.kjs.library.domain.user.EmailAuthRepository;
 import com.kjs.library.web.dto.book.ImageDto;
 
 import lombok.NoArgsConstructor;
@@ -88,10 +88,13 @@ public class CommonService {
 	/**시작과 끝 페이지 구함
 	 * */
 	@Transactional(readOnly = true)
-	public Map<String, Integer> 시작끝페이지구하기(int pageCurrent, int pageTotal, int pageButtonLength) {
+	public Map<String, Integer> 시작끝페이지구하기(Page<?> page, int pageButtonLength) {
 		
-		int pageStart = 0;
-		int pageEnd = 0;
+		int pageCurrent = page.getPageable().getPageNumber();//현재 페이지
+		int pageTotal = page.getTotalPages(); //전체 페이지 수
+		//int pageButtonLength = 10; //한 번에 표시할 페이지 버튼 수
+		int pageStart = 0; //페이지 버튼 처음 숫자
+		int pageEnd = 0; //페이지 버튼 마지막 숫자
 		
 		/**현재 페이지가 11일 때, 버튼 숫자가 1 ~ 10으로 나타나는 것에 대한 처리
 		pageCurrent를 10으로 나눴을 때의 나머지가 0일 때 */
@@ -136,13 +139,16 @@ public class CommonService {
 			}
 		}
 		
-		//값 체크
-		//System.out.println("pageCurrent : "+pageCurrent +"/ pageTotal : "+pageTotal+" /pageButtonLength : "+pageButtonLength);
-		//System.out.println("startPage : "+pageStart +"/ endPage : "+pageEnd);
+		//페이징 값 체크
+		System.out.println("pageCurrent : "+pageCurrent +"/ pageTotal : "+pageTotal+" /pageButtonLength : "+pageButtonLength);
+		System.out.println("startPage : "+pageStart +"/ endPage : "+pageEnd);
 		
 		Map<String, Integer> pageMap = new HashMap<>();
 		pageMap.put("pageStart", pageStart);
 		pageMap.put("pageEnd", pageEnd);
+		pageMap.put("pageCurrent", pageCurrent);
+		pageMap.put("pageTotal", pageTotal);
+		pageMap.put("pageButtonLength", pageButtonLength);
 		
 		return pageMap;
 		

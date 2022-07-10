@@ -10,18 +10,25 @@ import com.kjs.library.domain.user.User;
 
 import lombok.Data;
 
+/**
+ * 로그인 완료되면 UserDetails 타입의 오브젝트를 시큐리티의 고유한 세션 저장소에 저장한다.
+ * */
 @Data
 public class PrincipalDetails implements UserDetails{
 
 	private static final long serialVersionUID = 1L;
 	
 	private User user;
-	private boolean isEnabled;
+	//private boolean isEnabled;
 	
 	public PrincipalDetails(User user) {
 		this.user=user;
 	}
 	
+	//계정 잠김 여부 세팅
+	public void setEnabled(User user) {
+		//this.isEnabled = user.getena
+	}
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -64,10 +71,10 @@ public class PrincipalDetails implements UserDetails{
 		return true;
 	}
 
+	//계정 잠김 여부
 	@Override
 	public boolean isEnabled() {
-		this.isEnabled = isEnabled;
-		return isEnabled;
+		return user.isEnabled();
 	}
 
 }

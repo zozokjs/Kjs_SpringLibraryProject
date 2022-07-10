@@ -86,6 +86,7 @@ public class UserControllerUnitTest {
 	public void CommonServiceTest() throws ParseException {
 		log.info("테스트 시작");
 		
+		/*
 		Map<String, Integer> pageMap = commonService.시작끝페이지구하기(12, 1200, 10);
 		
 		log.info("> "+ pageMap.get("pageStart"));
@@ -101,7 +102,7 @@ public class UserControllerUnitTest {
 			String keys = pages.next();
 			System.out.println("key "+keys +"val :" + pageMap.get(keys));
 			log.info("3");
-		}
+		}*/
 		
 		
 		

@@ -32,12 +32,6 @@ public class PrincipalDetailsService implements UserDetailsService{
 		}else {	 //결과 있음		
 			//인증 처리.
 			
-			PrincipalDetails principalDetails = new PrincipalDetails(userEntity);
-			
-			
-			principalDetails.setEnabled(true);
-			System.out.println("Enable이 true 세팅 됨");
-			
 			return new PrincipalDetails(userEntity);			
 			//return principalDetails;
 		}

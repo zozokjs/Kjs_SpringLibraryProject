@@ -51,6 +51,12 @@ public class User{
 	@Column(nullable = false, columnDefinition = "int default '0' ")
 	private boolean isEnabled;
 	
+	/**로그인 실패 횟수(기본값 0) 
+	 * 로그인 5회 실패 시 잠김.
+	 * 로그인 성공시 0으로 초기화*/
+	@Column(nullable = false, columnDefinition = "int default '0' ")
+	private int loginFailCount;
+	
 	//종족
 	private String species; //Human, Elf, Dwarf, Ork, Fairy(요정), Furry(수인), Other
 	
@@ -88,6 +94,11 @@ public class User{
 	public void createDate() {
 		this.createDate = LocalDateTime.now();
 	}
+	
+	/*
+	public boolean getEnable() {
+		return this.enable;
+	}*/
 
 	public User(String username, String password, boolean isEnabled, String email,String phoneNumber,String role) {
 		
@@ -98,6 +109,7 @@ public class User{
 		this.phoneNumber = phoneNumber;
 		this.role = role;
 	}
+
 	
 	
 }

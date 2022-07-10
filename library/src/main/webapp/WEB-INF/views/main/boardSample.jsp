@@ -20,10 +20,10 @@
 	               <div class="row">
 						<div class="col-lg-12 mb-5">
 						
+							<!-- 2depth 타이틀 영역 -->
 							<div class="col-lg-7">
 								<div class="">
 									<h2 class="mt-3 content-title ">
-									<!-- 추후에 도서 대출 내역으로 바꾸기 -->
 									2 depth 메뉴
 									</h2>
 								</div>
@@ -37,6 +37,13 @@
 							
 							<input  type="hidden" name="titleImageUrl"  value="${book.titleImageUrl}"/>
 							
+							<!-- 본문 Start -->
+							<c:choose>
+								<c:when test="${empty userList}">
+								</c:when>
+								<c:otherwise>
+								</c:otherwise>
+							</c:choose>
 							
 							<!-- 내용 Start-->
 						</div>
@@ -51,4 +58,5 @@
 <!-- 
 				<script src="/js_custom/saseo_bookUpdate.js"></script>
  -->
+ <script src="/js_custom/saseo_bookUpdate_kdc.js"></script>
 <%@ include file="../layout/footer.jsp"%>

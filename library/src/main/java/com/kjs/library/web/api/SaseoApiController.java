@@ -1,6 +1,5 @@
 package com.kjs.library.web.api;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -9,7 +8,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kjs.library.config.auth.PrincipalDetails;
+import com.kjs.library.service.SaseoSelectService;
 import com.kjs.library.service.SaseoService;
+import com.kjs.library.service.UserService;
 import com.kjs.library.web.dto.CMRespDto;
 import com.kjs.library.web.dto.book.BookUpdateDto;
 import com.kjs.library.web.dto.book.BookUpdate_kdcDto;
@@ -20,8 +21,10 @@ import lombok.RequiredArgsConstructor;
 @RestController
 public class SaseoApiController {
 
-	
 	private final SaseoService saseoService;
+	private final SaseoSelectService saseoSelectService;
+	private final UserService userService;
+	
 	
 	//도서 수정 완료 처리
 	@PutMapping("/saseo/api/{bookId}/update")
@@ -59,7 +62,7 @@ public class SaseoApiController {
 		
 		//수정할 청구기호 id중 하나라도 대출 중이라면 삭제 불가 
 		
-		boolean 수정가능 = saseoService.청구기호수정가능하다(bookId, bookUpdate_kdcDto);
+		boolean 수정가능 = saseoSelectService.청구기호수정가능하다(bookId, bookUpdate_kdcDto);
 		
 		if(수정가능 == false) {
 			//수정 안 됨
@@ -72,5 +75,17 @@ public class SaseoApiController {
 		}
 		
 	}
+
 	
+	
+	//회원 가입 승인 처리
+	@PutMapping("/saseo/api/{userId}/userPermit")
+	public ResponseEntity<?> userPermit(@PathVariable int userId){
+		
+		System.out.println("전달 받은 id "+userId);
+		
+		userService.가입승인처리(userId);
+
+		return new ResponseEntity<>(new CMRespDto<>(1,"가입 승인 되었습니다.",null),HttpStatus.OK);
+	}
 }

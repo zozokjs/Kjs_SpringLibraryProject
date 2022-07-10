@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.kjs.library.config.auth.PrincipalDetails;
 import com.kjs.library.domain.book.Book;
 import com.kjs.library.domain.book.Samebook;
+import com.kjs.library.domain.user.User;
 import com.kjs.library.handler.aop.ex.CustomValidationException;
+import com.kjs.library.service.SaseoSelectService;
 import com.kjs.library.service.SaseoService;
+import com.kjs.library.service.UserService;
 import com.kjs.library.service.common.CommonService;
 import com.kjs.library.web.dto.book.BookRegistrationDto;
 import com.kjs.library.web.dto.book.BookRegistration_kdcDto;
@@ -29,14 +32,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Controller
 public class SaseoController {
-	
-	//도서관리화면으로 이동
-	//신규 도서 등록/수정/삭제
-	//보유 도서 권수수정
-	//보유 도서의 십진분류(자동 채번?)
 
 	private final SaseoService saseoService;
 	private final CommonService commonService;
+	private final SaseoSelectService saseoSelectService;
+	private final UserService userService;
 	
 	
 	//도서 목록(도서 관리를 위한) 화면으로 이동
@@ -44,29 +44,21 @@ public class SaseoController {
 	public String bookManageForm(Model model, @PageableDefault(size=9) Pageable pageable) {
 		
 		//신규 등록된 도서가 표시되어야 함
-		Page<Book> book = saseoService.bookSelectAllToPage(pageable);
+		Page<Book> book = saseoSelectService.bookSelectAllToPage(pageable);
 		
 		model.addAttribute("book",book);
-		
+		/*
 		int pageCurrent = book.getPageable().getPageNumber();//현재 페이지
 		int pageTotal = book.getTotalPages(); //전체 페이지 수
 		int pageButtonLength = 10; //한 번에 표시할 페이지 버튼 수
 		int pageStart = 0; //페이지 버튼 처음 숫자
 		int pageEnd = 0; //페이지 버튼 마지막 숫자
+		*/
 		
-		Map<String, Integer> pageMap = commonService.시작끝페이지구하기(pageCurrent, pageTotal, pageButtonLength);
+		Map<String, Integer> pageMap = commonService.시작끝페이지구하기(book, 10);
 		
-		System.out.println(pageCurrent +"/ "+pageTotal+" / "+pageButtonLength);
-		
-		pageStart = pageMap.get("pageStart");
-		pageEnd = pageMap.get("pageEnd");
-		
-		
-		//System.out.println("current : "+pageCurrent +" / total : "+pageTotal);
-		//System.out.println("pageStart : "+pageStart +" / pageEnd : "+pageEnd);
-		
-		model.addAttribute("startPage",pageStart);
-		model.addAttribute("endPage",pageEnd);
+		model.addAttribute("startPage",pageMap.get("pageStart"));
+		model.addAttribute("endPage",pageMap.get("pageEnd"));
 		
 		return "saseo/bookManage";
 	}
@@ -89,7 +81,7 @@ public class SaseoController {
 	public String bookRegistrationForm2(@PathVariable int id,  Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		//System.out.println("전달 된 책 아이디 "+id);
 		
-		Book bookEntity = saseoService.bookSelectOne(id);
+		Book bookEntity = saseoSelectService.bookSelectOne(id);
 		model.addAttribute("book",bookEntity);
 		//System.out.println("> "+bookEntity.getVolume());
 		return "saseo/bookRegistration_kdc";
@@ -162,11 +154,11 @@ public class SaseoController {
 		}else {
 				
 			//책 1개의 정보
-			Book bookEntity = saseoService.bookSelectOne(id);
+			Book bookEntity = saseoSelectService.bookSelectOne(id);
 			model.addAttribute("book",bookEntity);
 				
 			//책 1개의 청구기호 정보
-			List<Samebook> sameBookEntity = saseoService.sameBookSelectOne(id);
+			List<Samebook> sameBookEntity = saseoSelectService.sameBookSelectOne(id);
 				
 			model.addAttribute("sameBook",sameBookEntity);
 				
@@ -186,7 +178,7 @@ public class SaseoController {
 			//System.out.println("--------------------------");
 			//System.out.println("전달 받은 책 id > "+id);
 
-			Book bookEntity = saseoService.bookSelectOne(id);
+			Book bookEntity = saseoSelectService.bookSelectOne(id);
 			
 			model.addAttribute("book",bookEntity);
 
@@ -206,11 +198,11 @@ public class SaseoController {
 			//System.out.println("전달 받은 책 id > "+id);
 			
 			//책 1개의 정보를 가져옴
-			Book bookEntity = saseoService.bookSelectOne(id);
+			Book bookEntity = saseoSelectService.bookSelectOne(id);
 			model.addAttribute("book", bookEntity);
 			
 			//책 1권의 청구기호 정보 가져옴
-			List<Samebook> sameBookEntity = saseoService.sameBookSelectOne(id);
+			List<Samebook> sameBookEntity = saseoSelectService.sameBookSelectOne(id);
 			model.addAttribute("sameBook",sameBookEntity);
 	
 			return "saseo/bookUpdate_kdc";
@@ -218,7 +210,22 @@ public class SaseoController {
 	}
 	
 	
-	
+	//회원 관리 화면으로 이동
+	@GetMapping("/saseo/userManage")
+	public String userManageForm(Model model, @PageableDefault(size=2) Pageable pageable) {
+		
+		//가입 대기 회원 목록
+		Page<User> userEntity = userService.가입대기회원목록(pageable);
+		
+		model.addAttribute("userList",userEntity);
+		
+		Map<String, Integer> pageMap = commonService.시작끝페이지구하기(userEntity, 10);
+		
+		model.addAttribute("startPage",pageMap.get("pageStart"));
+		model.addAttribute("endPage",pageMap.get("pageEnd"));
+		
+		return "saseo/userManage";
+	}
 	
 	
 	

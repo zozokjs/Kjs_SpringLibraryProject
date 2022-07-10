@@ -1,14 +1,14 @@
 package com.kjs.library.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.kjs.library.domain.book.Book;
 import com.kjs.library.domain.user.User;
 import com.kjs.library.domain.user.UserRepository;
 import com.kjs.library.handler.aop.ex.CustomValidationApiException;
-import com.kjs.library.web.dto.user.UserUpdateDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -39,15 +39,31 @@ public class UserService {
 		userEntity2.setEmail(user.getEmail());
 		userEntity2.setPhoneNumber(user.getPhoneNumber());
 		
-		System.out.println("-check-");
-			
 		return userEntity2;
-	
-		
-		
-		
-		
-		
 	}
+	
+	
+	
+	@Transactional(readOnly = true)
+	public Page<User> 가입대기회원목록(Pageable pageable){
+		
+		Page<User> userEntity = userRepository.findEnabledFalseUserList(pageable);
+		
+		return userEntity;
+	}
+	
+	
+	
+	
+	@Transactional
+	public User 가입승인처리(int userId){
+		
+		User userEntity = userRepository.findById(userId).orElseThrow();
+		
+		userEntity.setEnabled(true);
+		
+		return userEntity;
+	}
+	
 
 }
