@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kjs.library.domain.user.User;
 import com.kjs.library.domain.user.UserRepository;
 import com.kjs.library.service.AuthService;
+import com.kjs.library.util.Custom_UserNotApprovalException;
 
 /**
  * final 붙은 필드는 반드시 초기화되어야 한다.
@@ -31,31 +32,14 @@ public class LoginFailureHandler implements AuthenticationFailureHandler{
 
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	private final String DEFAULT_FAILURE_URL= "/auth/signinFail";
-	private int 로그인실패횟수;
 	String errorMessage = null;
-	
-	//private final UserRepository userRepository;
 	
 	@Autowired
 	AuthService authService;
 	
 	@Autowired
 	UserRepository userRepository;
-	//public LoginFailureHandler(UserRepository userRepository) {
-	//	this.userRepository = userRepository;
-		//this.authService = authService;
-	//}
 	
-	/*
-	public LoginFailureHandler() {}
-	private UserRepository userRepository;
-	public LoginFailureHandler(Logger log, int 로그인실패횟수, String errorMessage, UserRepository userRepository) {
-		this.log = log;
-		this.로그인실패횟수 = 로그인실패횟수;
-		this.errorMessage = errorMessage;
-		this.userRepository = userRepository;
-	}
-	 */
 	/**
 	 * HttpServletRequest -> Front에서 넘어온 request 값을 갖고 있음
 	 * HttpServletResponse -> 출력을 정의함
@@ -65,20 +49,18 @@ public class LoginFailureHandler implements AuthenticationFailureHandler{
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
-		/*
-		 * request.getParameter(username));
-		 * request.getParameter(password));
-		 * 
-		 * */
-		userRepository.count();
 		
-		User userEntity = userRepository.findByUsername(request.getParameter("username"));
-		
-		
-		if(exception instanceof DisabledException) {
+		if(exception instanceof Custom_UserNotApprovalException) {
+			
+			errorMessage = "아직 가입이 승인되지 않았습니다. 관리자에게 문의하세요. ";
+			
+		}
+		else if(exception instanceof DisabledException) {
 			
 			errorMessage = "계정이 비활성화 되어 있습니다. 관리자에게 문의하세요. ";
+			
 		}else if(exception instanceof UsernameNotFoundException) {
+
 			errorMessage = "아이디가 존재하지 않습니다.";
 		
 		}
@@ -97,8 +79,6 @@ public class LoginFailureHandler implements AuthenticationFailureHandler{
 				errorMessage += "로그인 실패 횟수가 5회 입니다. 계정이 잠겼습니다. 관리자에게 문의하세요 ";
 				
 			}
-			
-			
 			
 		}else if (exception instanceof InternalAuthenticationServiceException ){
 			errorMessage = "내부적으로 발생한 시스템 문제로 인해 해당 요청을 처리할 수 없습니다. 관리자에게 문의하세요";
@@ -119,75 +99,6 @@ public class LoginFailureHandler implements AuthenticationFailureHandler{
 		request.getRequestDispatcher(DEFAULT_FAILURE_URL).forward(request, response);
 	}
 	
-	
-	@Transactional
-	private User 로그인실패횟수증가(String username) {
-		//초기화
-		
-		//db에서 가져옴
-		//User userEntity = userRepository.findById(loginId).orElseThrow();
-		User userEntity = userRepository.findByUsername(username);
-		//로그인실패횟수 = userEntity.getLoginFailCount();
-	//	log.info("초기값 : "+로그인실패횟수);
-
-	//	로그인실패횟수 = 로그인실패횟수 + 1;
-
-		userEntity.getId();
-		
-		log.info(userEntity.getUsername());
-		log.info(String.valueOf(userEntity.getId()));
-		
-		
-		//log.info("변경된 로그인 실패 횟수 : "+로그인실패횟수);
-		log.info("업데이트 되나요?");
-		userEntity.setLoginFailCount(3);
-		
-		return userEntity;
-		
-	}
-	
-	
-	/*
-	@Transactional
-	private boolean 계정잠금처리(int loginId) {
-		
-		//실패 횟수 초기화
-		로그인실패횟수 = 0;
-		boolean 계정잠김 = false;
-		
-		//계정 잠김 여부 가져옴
-		User userEntity = userRepository.findById(loginId).orElseThrow();
-		계정잠김 = userEntity.isEnabled();
-		
-		로그인실패횟수 =userEntity.getLoginFailCount();
-
-		log.info("기존 계정잠김상태 : "+계정잠김);
-		log.info("시도된 아이디 : "+loginId);
-		log.info("기존 로그인 실패 횟수 : "+로그인실패횟수);
-		
-		
-		//계정 안 잠겼음
-		if(계정잠김 == false) {
-			
-			//로그인 실패 횟수가 5회 이하인 경우
-			if(로그인실패횟수 < 5) {
-				//1회 증가
-				로그인실패횟수 = 로그인실패횟수 + 1;
-
-				log.info("변경된 로그인 실패 횟수 : "+로그인실패횟수);
-				log.info("업데이트 되나요?");
-				userEntity.setLoginFailCount(로그인실패횟수);
-			}else {
-				//로그인 실패 횟수가 5회 이상인 경우
-				//잠금 처리
-				계정잠김 = true;
-				log.info("계정이 잠금 처리 됩니다.: ");
-				userEntity.setEnabled(계정잠김);
-			}
-		}
-		
-		return 계정잠김;
-	}*/
 	
 	
 	

@@ -13,12 +13,19 @@ public interface UserRepository extends JpaRepository<User,Integer>{
 	//JPA QUERY METHOD 양식을 써서 메소드 생성함. db와 통신하려면 정해진 양식 써야 됨
 	User findByUsername(String username);
 	
-	/**비활성화된 계정 모음*/
+	/** 정지된(비밀번호 틀린 횟수 5번 틀림 등) 계정 모음*/
 	@Query(value = "SELECT * FROM user WHERE isEnabled IS FALSE", 
 					countQuery = "SELECT count(*) FROM user WHERE isEnabled IS FALSE",
 					nativeQuery = true)
 	Page<User> findEnabledFalseUserList(Pageable pageable);
 
+	
+	/** 회원 가입은 했는데 관리자 미승인 상태인 계정 모음*/
+	@Query(value = "SELECT * FROM user WHERE role = \"ROLE_NOT\" ", 
+			countQuery = "SELECT count(*) FROM user WHERE role = \"ROLE_NOT\" ",
+			nativeQuery = true)
+    Page<User> findSigninRequestUserList(Pageable pageable);
+	
 	
 	/**해당 id가 비활성화 되었는지 확인함*/
 	@Query(value="SELECT isEnabled FROM user WHERE id = :userId ", nativeQuery = true)

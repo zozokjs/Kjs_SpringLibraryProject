@@ -81,7 +81,7 @@ public class User{
 	private String phoneNumber;
 	
 	//권한
-	@Column(nullable = false) //ROLE_USER, ROLE_SASEO, ROLE_ADMIN
+	@Column(nullable = false) //ROLE_NOT, ROLE_USER, ROLE_SASEO, ROLE_ADMIN
 	private String role;
 	
 	//프로필 이미지

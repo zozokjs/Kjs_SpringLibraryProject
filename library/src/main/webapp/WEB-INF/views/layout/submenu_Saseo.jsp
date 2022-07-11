@@ -43,7 +43,15 @@
 							<div class="media border-bottom py-3">
 								<div class="media-body">
 									<h6 class="my-2">
-										<a href="/saseo/userManage">회원관리</a>
+										<a href="/saseo/signinRequest">회원가입 신청 관리</a>
+									</h6>
+								</div>
+							</div>
+							
+							<div class="media border-bottom py-3">
+								<div class="media-body">
+									<h6 class="my-2">
+										<a href="/saseo/userLockManage">회원 잠금 관리</a>
 									</h6>
 								</div>
 							</div>

@@ -37,7 +37,7 @@ public class AuthService {
 		//2, 비번 세팅
 		user.setPassword(encPassword);
 		//3. 권한 세팅
-		user.setRole("ROLE_USER");
+		user.setRole("ROLE_NOT"); //가입 미승인 상태
 		//4. 회원정보 INSERT
 		userRepository.save(user);
 	}
@@ -45,19 +45,16 @@ public class AuthService {
 	
 	@Transactional
 	public User 로그인실패횟수증가(String username) {
-		//초기화
+		
 		int 로그인실패횟수;
-		//db에서 가져옴
 		User userEntity = userRepository.findByUsername(username);
 		로그인실패횟수 = userEntity.getLoginFailCount();
-		log.info("초기값 : "+로그인실패횟수);
+		//log.info("초기값 : "+로그인실패횟수);
 
 		로그인실패횟수 = 로그인실패횟수 + 1;
 
-		log.info("변경된 로그인 실패 횟수 : "+로그인실패횟수);
-		log.info("업데이트 되나요?");
+		//log.info("변경된 로그인 실패 횟수 : "+로그인실패횟수);
 		userEntity.setLoginFailCount(로그인실패횟수);
-		
 		return userEntity;
 	}
 	
@@ -66,17 +63,14 @@ public class AuthService {
 	public Integer 로그인실패횟수조회(String username) {
 		
 		int 로그인실패횟수 = userRepository.findLoginFailCount(username);
-		
 		return 로그인실패횟수;
 	}
-	
 	
 	@Transactional
 	public User 로그인실패횟수초기화(String username) {
 		
 		User userEntity = userRepository.findByUsername(username);
 		userEntity.setLoginFailCount(0);
-		
 		return userEntity;
 	}
 	
@@ -86,9 +80,7 @@ public class AuthService {
 	public User 계정잠금(String username) {
 		
 		User userEntity = userRepository.findByUsername(username);
-		
 		userEntity.setEnabled(true);
-		
 		return userEntity;
 	}
 	

@@ -46,21 +46,36 @@ public class UserService {
 	
 	@Transactional(readOnly = true)
 	public Page<User> 가입대기회원목록(Pageable pageable){
-		
-		Page<User> userEntity = userRepository.findEnabledFalseUserList(pageable);
-		
+		//Page<User> userEntity = userRepository.findEnabledFalseUserList(pageable);
+		Page<User> userEntity = userRepository.findSigninRequestUserList(pageable);
 		return userEntity;
 	}
 	
 	
+	@Transactional(readOnly = true)
+	public Page<User> 정지된회원목록(Pageable pageable){
+		Page<User> userEntity = userRepository.findEnabledFalseUserList(pageable);
+		return userEntity;
+	}
 	
 	
+	//정지된 회원의 활성화 처리
+	@Transactional
+	public User 회원활성화처리(int userId){
+		
+		User userEntity = userRepository.findById(userId).orElseThrow();
+		userEntity.setEnabled(true);
+		return userEntity;
+	}
+	
+	
+	//
 	@Transactional
 	public User 가입승인처리(int userId){
 		
 		User userEntity = userRepository.findById(userId).orElseThrow();
 		
-		userEntity.setEnabled(true);
+		userEntity.setRole("ROLE_USER");
 		
 		return userEntity;
 	}

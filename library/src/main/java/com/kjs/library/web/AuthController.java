@@ -44,7 +44,9 @@ public class AuthController {
 	@PostMapping("/auth/signinFail")
 	public String signinForm() {
 		System.out.println("exception 걸렸으므로 리턴 됩니다. ");
-		return "auth/signin";
+		 //return "redirect:/auth/signin";
+		 return "auth/signin";
+
 	}
 		
 	

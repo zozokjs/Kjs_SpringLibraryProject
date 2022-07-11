@@ -25,7 +25,7 @@
 							<div class="col-lg-7">
 								<div class="">
 									<h2 class="mt-3 content-title ">
-									가입 신청한 회원 목록
+									사용 정지된 회원 목록(비번 5회 틀림)
 									</h2>
 								</div>
 							</div>		
@@ -35,7 +35,7 @@
 							<!-- 본문 Start -->
 							<c:choose>
 								<c:when test="${empty userList}">
-									<h3>가입 신청 사용자가 없습니다</h3>
+									<h3>사용 정지된 회원이 없습니다.</h3>
 								</c:when>
 								<c:otherwise>
 									<div class="col-lg-12 col-md-8 mb-1">
@@ -60,7 +60,7 @@
 																 <td class="tg-0pky">${users.username}</td>
 																 <td class="tg-0pky">${users.email}</td>
 																 <td class="tg-0pky">
-																 	<button onclick="userPermit(${users.id},event)">승인</button> 
+																 	<button onclick="userPermit(${users.id},event)">계정활성화</button> 
 																 </td>
 															</tr>
 														</c:forEach>
@@ -133,5 +133,5 @@
 	    </div>
 	</section>
 </div>
-<script src="/js_custom/saseo/userManage.js"></script>
+<script src="/js_custom/saseo/userLockManage.js"></script>
 <%@ include file="../layout/footer.jsp"%>

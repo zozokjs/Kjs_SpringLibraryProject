@@ -77,6 +77,17 @@ public class SaseoApiController {
 	}
 
 	
+	//정지된 회원의 활성화 처리
+	@PutMapping("/saseo/api/{userId}/userActivation")
+	public ResponseEntity<?> userActivation(@PathVariable int userId){
+		
+		System.out.println("전달 받은 id "+userId);
+		
+		userService.회원활성화처리(userId);
+
+		return new ResponseEntity<>(new CMRespDto<>(1,"회원 정지가 활성화 되었습니다.",null),HttpStatus.OK);
+	}
+
 	
 	//회원 가입 승인 처리
 	@PutMapping("/saseo/api/{userId}/userPermit")

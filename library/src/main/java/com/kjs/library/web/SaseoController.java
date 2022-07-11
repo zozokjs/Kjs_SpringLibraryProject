@@ -210,9 +210,9 @@ public class SaseoController {
 	}
 	
 	
-	//회원 관리 화면으로 이동
-	@GetMapping("/saseo/userManage")
-	public String userManageForm(Model model, @PageableDefault(size=2) Pageable pageable) {
+	//가입 승인 화면으로 이동
+	@GetMapping("/saseo/signinRequest")
+	public String signinRequestForm(Model model, @PageableDefault(size=2) Pageable pageable) {
 		
 		//가입 대기 회원 목록
 		Page<User> userEntity = userService.가입대기회원목록(pageable);
@@ -224,9 +224,25 @@ public class SaseoController {
 		model.addAttribute("startPage",pageMap.get("pageStart"));
 		model.addAttribute("endPage",pageMap.get("pageEnd"));
 		
-		return "saseo/userManage";
+		return "saseo/userSigninRequest";
 	}
 	
 	
+	//정지 회원 관리 화면으로 이동
+	@GetMapping("/saseo/userLockManage")
+	public String userLockManageForm(Model model, @PageableDefault(size=2) Pageable pageable) {
+		
+		//가입 대기 회원 목록
+		Page<User> userEntity = userService.정지된회원목록(pageable);
+		
+		model.addAttribute("userList",userEntity);
+		
+		Map<String, Integer> pageMap = commonService.시작끝페이지구하기(userEntity, 10);
+		
+		model.addAttribute("startPage",pageMap.get("pageStart"));
+		model.addAttribute("endPage",pageMap.get("pageEnd"));
+		
+		return "saseo/userLockManage";
+	}
 	
 }

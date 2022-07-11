@@ -8,6 +8,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +16,7 @@ import com.kjs.library.config.auth.PrincipalDetails;
 import com.kjs.library.config.auth.PrincipalDetailsService;
 import com.kjs.library.domain.user.User;
 import com.kjs.library.domain.user.UserRepository;
+import com.kjs.library.util.Custom_UserNotApprovalException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -52,19 +54,29 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 		//Front에서 사용자가 직접 입력한 id를 갖고 DB에 전달하여 user 정보를 받아온다.
 		PrincipalDetails principalDetails = (PrincipalDetails) principalDetailsService.loadUserByUsername(loginId);
 		
-		System.out.println("chekcer > "+principalDetails.isEnabled());
-		System.out.println("chekcer2 > "+principalDetails.getUser().isEnabled());
+		//System.out.println("chekcer > "+principalDetails.isEnabled());
+		//System.out.println("chekcer2 > "+principalDetails.getUser().isEnabled());
+		
+		//log.info("role 체크 "+principalDetails.getUser().getRole());
 		
 		
-		//authentication에서 가져온 비번과 db에서 가져온 비번의 일치여부를 비교한다.
-		//비번 비교 결과가 false일 때
-		if(비번일치함(password, principalDetails.getPassword() )== false) {
-			throw new BadCredentialsException(loginId);
+		//계정이 잠겼을 때(비번 5번 틀림)
+		if(principalDetails == null) {
+			throw new UsernameNotFoundException(loginId);
 		}
-		//만료 및 정지된 회원일 때
-		else if(principalDetails.isEnabled()) {
+		else if(!principalDetails.isEnabled()) {
 			throw new DisabledException(loginId);
 		}
+		//비번 틀렸을 때
+		else if(비번일치함(password, principalDetails.getPassword() )== false) {
+			throw new BadCredentialsException(loginId);
+		}
+		//가입 미승인 상태일 때
+		else if(principalDetails.getUser().getRole().equals("ROLE_NOT")) {
+			log.info("가입 미승인 상태입니다.");
+			throw new Custom_UserNotApprovalException("ABC", 0);
+		}
+		//아무런 문제 없을 때
 		else {
 		//매개변수가 2개 = 인증 전에 호출되는 생성자임
 		//매개변수가 3개 = 인증 후에 호출되는 생성자임

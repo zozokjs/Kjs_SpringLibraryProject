@@ -129,16 +129,16 @@
 						<!-- 1 depth guide -->
 						<li><a class="dropdown-item" href="/saseo/bookManage">도서관리(등록/수정/삭제/권수수정/십진분류)</a></li>
 						<li><a class="dropdown-item" href="/saseo/bookRequestManage">희망도서관리(신청처리)</a></li>
-						<li><a class="dropdown-item" href="/saseo/userManage">회원관리(가입허가/정지/경고)</a></li>
+						<li><a class="dropdown-item" href="/saseo/signinRequest">회원관리(가입허가/정지/경고)</a></li>
 						<li><a class="dropdown-item" href="/saseo/infraManage">시설이용관리(신청처리)</a></li>
 					</ul>
 				</li>	
 				
 			  	<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">열린공간</a>
+					<a class="nav-link dropdown-toggle" href="#" id="/community/freeBoard" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">열린공간</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
-						<li><a class="dropdown-item" href="about.html">Our company</a></li>
-						<li><a class="dropdown-item" href="pricing.html">Pricing</a></li>
+						<li><a class="dropdown-item" href="/community/freeBoard">자유게시판</a></li>
+						<li><a class="dropdown-item" href="/community/notice">공지사항</a></li>
 					</ul>
 				</li>
 				

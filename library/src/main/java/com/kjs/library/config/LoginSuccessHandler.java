@@ -20,10 +20,6 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 	
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	private String username;
-	private String defaulUrl;
-	
-	
 	private RedirectStrategy redirectStragtegy = new DefaultRedirectStrategy();
 	
 	@Autowired

@@ -16,7 +16,7 @@ function userPermit(userId, event) {
 		console.log("성공", res);
 		
 		alert("가입 승인 되었습니다");
-		location.href = `/saseo/userManage`;
+		location.href = `/saseo/signinRequest`;
 		
 	}).fail(error =>{
 		
