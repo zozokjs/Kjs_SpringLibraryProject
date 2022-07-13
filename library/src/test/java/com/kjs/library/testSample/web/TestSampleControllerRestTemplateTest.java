@@ -68,7 +68,7 @@ public class TestSampleControllerRestTemplateTest {
 
 		// when
 		ResponseEntity<String> response = restTemplate.getForEntity("/testSample", String.class);
-		System.out.println(response.getBody());
+		//System.out.println(response.getBody());
 
 		// then
 		DocumentContext dc = JsonPath.parse(response.getBody());

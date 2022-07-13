@@ -33,10 +33,10 @@ public class ResourceApiController {
 		lendAbleByBookId = bookSelectService.대출했다(bookId, loginId);
 		lendAbleBySamebookVolume = bookSelectService.잔여책존재한다(bookId);
 		
-		System.out.println("로그인한 유저 이름:  "+principalDetails.getUser().getUsername());
-		System.out.println("책 아이디:  "+bookId);
-		System.out.println("대출했다 : "+lendAbleByBookId);
-		System.out.println("대여 가능한 samebook 존재한다 :  "+lendAbleBySamebookVolume);
+		//System.out.println("로그인한 유저 이름:  "+principalDetails.getUser().getUsername());
+		//System.out.println("책 아이디:  "+bookId);
+		//System.out.println("대출했다 : "+lendAbleByBookId);
+		//System.out.println("대여 가능한 samebook 존재한다 :  "+lendAbleBySamebookVolume);
 		
 		
 		/**

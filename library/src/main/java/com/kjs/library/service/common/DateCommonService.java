@@ -30,14 +30,28 @@ public class DateCommonService {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");
 		
 		//포맷 적용
-		String lend2 = givenDate.format(formatter); 
+		String formatted = givenDate.format(formatter); 
 		
 		//System.out.println(lend2);
 		
-		return lend2;
+		return formatted;
 	}
 	
-	
+	/**
+	 *  2022-06-23 17:21:59.959571 등의 LocalDateTime 형식으로 오는 것을
+	 *  2022년 6월 23일 23시 21분 34초 String 형식으로 바꿈
+	 * **/
+	public static String 날짜포맷변경시간추가(LocalDateTime givenDate) throws ParseException {
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초");
+		
+		//포맷 적용
+		String formatted = givenDate.format(formatter); 
+		
+		//System.out.println(lend2);
+		
+		return formatted;
+	}
 	
 	/**
 	 * 20200623 등의 String 형식으로 오는 것을

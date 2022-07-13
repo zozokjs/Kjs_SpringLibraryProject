@@ -72,7 +72,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 			throw new BadCredentialsException(loginId);
 		}
 		//가입 미승인 상태일 때
-		else if(principalDetails.getUser().getRole().equals("ROLE_NOT")) {
+		else if(principalDetails.getUser().getRoleType().equals("ROLE_NOT")) {
 			log.info("가입 미승인 상태입니다.");
 			throw new Custom_UserNotApprovalException("ABC", 0);
 		}

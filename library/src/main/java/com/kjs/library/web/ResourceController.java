@@ -54,8 +54,8 @@ public class ResourceController {
 	@GetMapping("/resource/{id}/bookInfor")
 	public String bookInformationForm(@PathVariable int id, Model model) {
 		
-		System.out.println("-=-----------------------");
-		System.out.println(id);
+		//System.out.println("-=-----------------------");
+		//System.out.println(id);
 		//책 1개의 정보
 		Book bookEntity = saseoSelectService.bookSelectOne(id);
 		model.addAttribute("book",bookEntity);

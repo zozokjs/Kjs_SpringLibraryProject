@@ -2,7 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_BookDatajsp"%>
-           <style>
+        <!--         
+		*메인 화면 이미지 위치 결정 파일  
+		static > css > style.css > .slider   
+		css 경로 : static > plugins > bootstrap > css > bootstrap.min.css 
+		-->
+		
+		   <style>
 	        	table{
 	        		border : 2px solid;
 	        	}
@@ -15,6 +21,8 @@
 	        
 	        </style>
 	        
+	        	
+		
 	            <!-- 우측 메인 -->
 	            <div class="col-lg-8">
 	               <div class="row">
@@ -45,6 +53,10 @@
 								</c:otherwise>
 							</c:choose>
 							
+							<!-- textarea 태그 쓸 때 이렇게 꺽쇠 사이에 공간이 없어야 됨. 
+				        	공간 있으면 새로고침해도 텍스트 필드 안에 공백이 포함되어 있다. -->
+				        	<textarea></textarea>
+							
 							<!-- 내용 Start-->
 						</div>
 					</div>
@@ -58,5 +70,5 @@
 <!-- 
 				<script src="/js_custom/saseo_bookUpdate.js"></script>
  -->
- <script src="/js_custom/saseo_bookUpdate_kdc.js"></script>
+<script src="/js_custom/saseo_bookUpdate_kdc.js"></script>
 <%@ include file="../layout/footer.jsp"%>

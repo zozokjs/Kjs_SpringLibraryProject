@@ -39,8 +39,8 @@ public class UserApiController {
 		
 		//String loginedId = principalDetails.getUsername();
 		
-		System.out.println("수정 데이터 체크 ->  "+userUpdateDto);
-		System.out.println("넘어온 아이디 -> "+userId);
+		//System.out.println("수정 데이터 체크 ->  "+userUpdateDto);
+		//System.out.println("넘어온 아이디 -> "+userId);
 		//System.out.println("로그인한 유저 아이디 -> "+loginedId);
 		
 		User userEntity = 

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kjs.library.domain.book.Book;
 import com.kjs.library.domain.lend.Lend;
 
@@ -33,6 +36,7 @@ public class User{
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 자동 증가 설정함. 정책은 DB처럼 번호 증가함
 	private int id;
 
+	@JsonIgnoreProperties({"user"})
 	@OneToMany(mappedBy="user")//기본 전력은 LAZY
 	private List<Lend> lend;
 	
@@ -81,8 +85,12 @@ public class User{
 	private String phoneNumber;
 	
 	//권한
-	@Column(nullable = false) //ROLE_NOT, ROLE_USER, ROLE_SASEO, ROLE_ADMIN
-	private String role;
+	//@Column(nullable = false) //ROLE_NOT, ROLE_USER, ROLE_SASEO, ROLE_ADMIN
+	//private String role;
+	
+	//권한 EnumType을 String으로 해야 차후에 혼란이 없다고 함.
+	@Enumerated(EnumType.STRING)
+	private RoleType roleType;
 	
 	//프로필 이미지
 	private String profileImageUrl;
@@ -100,14 +108,15 @@ public class User{
 		return this.enable;
 	}*/
 
-	public User(String username, String password, boolean isEnabled, String email,String phoneNumber,String role) {
+	public User(String username, String password, boolean isEnabled, String email,String phoneNumber, RoleType roleType) {
 		
 		this.username = username;
 		this.password = password;
 		this.isEnabled = isEnabled;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
-		this.role = role;
+		this.roleType = roleType;
+		//this.roleType = role;
 	}
 
 	

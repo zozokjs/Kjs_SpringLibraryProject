@@ -100,7 +100,6 @@ public class SaseoSelectService {
 	
 			//result에 true 포함여부 확인
 			boolean resultB = result.contains(true);
-			System.out.println();
 			if(resultB == true) {
 				return false;
 			}else {

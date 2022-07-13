@@ -76,8 +76,8 @@ public class ValidationAdvice {
 						errorMap.put(error.getField(), error.getDefaultMessage());
 						
 						System.out.println("------------------------------");
-						System.out.println(error.getField());
-						System.out.println(error.getDefaultMessage());
+						//System.out.println(error.getField());
+						//System.out.println(error.getDefaultMessage());
 						System.out.println("------------------------------");
 							
 					} // end of for

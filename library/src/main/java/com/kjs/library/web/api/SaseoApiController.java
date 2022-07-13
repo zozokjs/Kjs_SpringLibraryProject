@@ -35,8 +35,8 @@ public class SaseoApiController {
 		
 		String loginedId = principalDetails.getUsername();
 		
-		System.out.println("수정 데이터 체크 ->  "+bookUpdateDto);
-		System.out.println("로그인한 유저 아이디 -> "+loginedId);
+		//System.out.println("수정 데이터 체크 ->  "+bookUpdateDto);
+		//System.out.println("로그인한 유저 아이디 -> "+loginedId);
 		
 		saseoService.책수정(bookId, bookUpdateDto,loginedId);
 			
@@ -55,9 +55,9 @@ public class SaseoApiController {
 		
 		String loginedId = principalDetails.getUsername();
 		
-		System.out.println("수정할 책 아이디 -> "+bookId);
-		System.out.println("수정 데이터 체크 ->  "+bookUpdate_kdcDto);
-		System.out.println("로그인한 유저 아이디 -> "+loginedId);
+		//System.out.println("수정할 책 아이디 -> "+bookId);
+		//System.out.println("수정 데이터 체크 ->  "+bookUpdate_kdcDto);
+		//System.out.println("로그인한 유저 아이디 -> "+loginedId);
 		
 		
 		//수정할 청구기호 id중 하나라도 대출 중이라면 삭제 불가 
@@ -81,7 +81,7 @@ public class SaseoApiController {
 	@PutMapping("/saseo/api/{userId}/userActivation")
 	public ResponseEntity<?> userActivation(@PathVariable int userId){
 		
-		System.out.println("전달 받은 id "+userId);
+		//System.out.println("전달 받은 id "+userId);
 		
 		userService.회원활성화처리(userId);
 
@@ -93,7 +93,7 @@ public class SaseoApiController {
 	@PutMapping("/saseo/api/{userId}/userPermit")
 	public ResponseEntity<?> userPermit(@PathVariable int userId){
 		
-		System.out.println("전달 받은 id "+userId);
+		//System.out.println("전달 받은 id "+userId);
 		
 		userService.가입승인처리(userId);
 

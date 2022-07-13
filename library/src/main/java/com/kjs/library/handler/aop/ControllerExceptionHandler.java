@@ -4,6 +4,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.InvalidDataAccessResourceUsageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -64,6 +65,15 @@ public class ControllerExceptionHandler {
 		return Script.back(exc.getMessage()); //자바스크립트 리턴
 	}
 	
+	//JpaSystemException
+	
+	@ExceptionHandler(JpaSystemException.class)
+	public String JpaSystemExp(JpaSystemException exc) {
+		System.out.println("JpaSystemException. JPA System 로딩 에러가 발생했습니다.");
+		System.out.println(exc);
+		printStackTraceCustom(exc);
+		return Script.back(exc.getMessage()); //자바스크립트 리턴
+	}
 	
 	public void printStackTraceCustom(Exception exc) {
 

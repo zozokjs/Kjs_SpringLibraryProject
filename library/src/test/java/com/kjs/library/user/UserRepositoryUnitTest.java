@@ -57,7 +57,6 @@ public class UserRepositoryUnitTest {
 		user2.setPhoneNumber("pe");
 		user2.setEnabled(false);
 		user2.setLoginFailCount(0);
-		user2.setRole("USER");
 		//userRepository.save(user2);
 		
 		//userRepository.save(new User("zozo","1234"));
@@ -66,7 +65,7 @@ public class UserRepositoryUnitTest {
 		int result = userRepository.findLoginFailCount("zozo");
 		
 		// then
-		log.info("result : "+result );
+		//log.info("result : "+result );
 		assertNotEquals("ad",1);
 		assertEquals("as",0);
 	}

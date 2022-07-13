@@ -14,6 +14,7 @@ import javax.persistence.PrePersist;
 
 import org.hibernate.annotations.DynamicInsert;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kjs.library.domain.book.Book;
 import com.kjs.library.domain.book.Samebook;
 import com.kjs.library.domain.user.User;
@@ -34,6 +35,7 @@ public class Lend {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 자동 증가 설정함. 정책은 DB처럼 번호 증가함
 	private int id;
 	
+	@JsonIgnoreProperties({"lend"})
 	@JoinColumn(name="userId")
 	@ManyToOne
 	private User user; //자식 entity는 List<Lend>

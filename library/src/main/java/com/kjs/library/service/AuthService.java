@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kjs.library.config.auth.PrincipalDetails;
+import com.kjs.library.domain.user.RoleType;
 import com.kjs.library.domain.user.User;
 import com.kjs.library.domain.user.UserRepository;
 
@@ -37,7 +38,7 @@ public class AuthService {
 		//2, 비번 세팅
 		user.setPassword(encPassword);
 		//3. 권한 세팅
-		user.setRole("ROLE_NOT"); //가입 미승인 상태
+		user.setRoleType(RoleType.NOT);
 		//4. 회원정보 INSERT
 		userRepository.save(user);
 	}

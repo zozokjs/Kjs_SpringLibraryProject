@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import com.kjs.library.config.auth.PrincipalDetails;
+import com.kjs.library.domain.user.RoleType;
+import com.kjs.library.handler.aop.ex.CustomValidationException;
 import com.kjs.library.web.dto.book.ImageDto;
 
 import lombok.NoArgsConstructor;
@@ -86,6 +89,7 @@ public class CommonService {
 	
 	
 	/**시작과 끝 페이지 구함
+	 *  (Entity, 표시할 버튼 갯수)
 	 * */
 	@Transactional(readOnly = true)
 	public Map<String, Integer> 시작끝페이지구하기(Page<?> page, int pageButtonLength) {
@@ -155,7 +159,62 @@ public class CommonService {
 	}
 	
 
+	/**로그인 안 되어 있으면 throws 됨*/
+	public void 로그인검사(PrincipalDetails principalDetails) {
+		if(principalDetails == null) {
+			throw new CustomValidationException("로그인 해야합니다", null);
+		}
+	}
+	
+	/**(PrincipalDetails, 최소권한)
+	 * 최소권한이 SESEO인데, PrincipalDetails가 USER 권한이면 throws 됨*/
+	public void 권한검사(PrincipalDetails principalDetails, RoleType roleType) {
+		
+		//System.out.println("보유권한 "+principalDetails.getUser().getRoleType());
+		//System.out.println("요구권한 "+roleType);
+		
+		//요구 권한이 USER일 때
+		if(roleType.equals(RoleType.USER)) {
+			//보유 권한이 USER, SASEO, ADMIN이 아니면 throws
+			if(    !(     (principalDetails.getUser().getRoleType().equals(RoleType.USER))  
+					     || (principalDetails.getUser().getRoleType().equals(RoleType.SASEO)) 
+					     || (principalDetails.getUser().getRoleType().equals(RoleType.ADMIN)) 
+					  )   
+				){
+				System.out.println(roleType+" 권한이 있어야 합니다");
+				throw new CustomValidationException("권한이 없습니다. 등록할 수 없습니다", null);
 
+			}
+		}
+		else if(roleType.equals(RoleType.SASEO)) {
+			if(    !(    (principalDetails.getUser().getRoleType().equals(RoleType.SASEO))  
+					    || (principalDetails.getUser().getRoleType().equals(RoleType.ADMIN)) 
+					   )   
+			    ){
+				System.out.println(roleType+" 권한이 있어야 합니다");
+				throw new CustomValidationException("권한이 없습니다. 등록할 수 없습니다", null);
+
+			}
+		}
+		else if(roleType.equals(RoleType.ADMIN)) {
+			if(    !( (principalDetails.getUser().getRoleType().equals(RoleType.ADMIN)) )   ){
+				System.out.println(roleType+" 권한이 있어야 합니다");
+				throw new CustomValidationException("권한이 없습니다. 등록할 수 없습니다", null);
+
+			}
+		}
+		
+		/**
+		  1. CustomValidationException 실행. 이것의 생성자에는 String과 ErrorMap이 전달되어야 함.
+		  2. CustomValidationException의 부모클래스가 String을 전달 받고 get한다.
+		  3. ControllerExceptionHandler에서 CustomValidationException을 @ExceptionHandler을 통해 핸들링하고 있으므로
+		  이것을 잡아채게 되고
+		  결과적으로 Script가 리턴됨.
+		 * */
+		
+	}
+	
+	
 	//List 받아서 공백 체크하고 새로운 List 리턴
 	/*
 	public List<?> List공백제거( List<?> originalList) {

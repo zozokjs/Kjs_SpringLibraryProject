@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.kjs.library.domain.user.RoleType;
 import com.kjs.library.domain.user.User;
 
 import lombok.Data;
@@ -39,7 +40,7 @@ public class PrincipalDetails implements UserDetails{
 			
 			@Override
 			public String getAuthority() {
-				return user.getRole();
+				return "ROLE_"+user.getRoleType();
 			}
 		});
 		

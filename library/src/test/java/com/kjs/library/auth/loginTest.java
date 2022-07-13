@@ -165,7 +165,6 @@ public class loginTest {
 				.password("1234")
 				.email("zo@naver,cvom")
 				.phoneNumber("010-1")
-				.role("roleeee")
 				.build());
 	}
 	

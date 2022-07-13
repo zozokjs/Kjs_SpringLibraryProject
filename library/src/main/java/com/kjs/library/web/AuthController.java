@@ -55,8 +55,8 @@ public class AuthController {
 	@PostMapping("/auth/signup")
 	public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) {
 		
-		log.info("--------------------------");
-		log.info(signupDto.toString());
+		//log.info("--------------------------");
+		//log.info(signupDto.toString());
 		
 		User user = signupDto.toEntity();
 		authService.회원가입(user);

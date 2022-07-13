@@ -25,8 +25,10 @@
 
   <title>토르두스 국립도서관</title>
 
+
   <!-- bootstrap.min css -->
   <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
+  
   <!-- Icon Font Css -->
   <link rel="stylesheet" href="/plugins/themify/css/themify-icons.css">
   <link rel="stylesheet" href="/plugins/fontawesome/css/all.css">
@@ -38,6 +40,8 @@
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="/css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
 
 
 	<!-- other TEMPLATE -->
@@ -135,9 +139,9 @@
 				</li>	
 				
 			  	<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="/community/freeBoard" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">열린공간</a>
+					<a class="nav-link dropdown-toggle" href="#" id="/community/boardFree" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">열린공간</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
-						<li><a class="dropdown-item" href="/community/freeBoard">자유게시판</a></li>
+						<li><a class="dropdown-item" href="/community/boardFree">자유게시판</a></li>
 						<li><a class="dropdown-item" href="/community/notice">공지사항</a></li>
 					</ul>
 				</li>

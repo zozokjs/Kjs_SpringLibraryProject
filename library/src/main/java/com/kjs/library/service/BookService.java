@@ -78,8 +78,8 @@ public class BookService {
 		lend.setReturnPlanDate(returnPlanDate);
 		
 		
-		System.out.println("세팅된 책번호  " +bookId);
-		System.out.println("세팅된 청구기호 아이디 " +samebookId);
+		//System.out.println("세팅된 책번호  " +bookId);
+		//System.out.println("세팅된 청구기호 아이디 " +samebookId);
 		
 		lend.setSamebook(samebook);
 		
@@ -95,12 +95,12 @@ public class BookService {
 		Book bookEntity = bookRepository.findById(bookId).orElseThrow(); //영속화
 		
 		String remainAmount = bookEntity.getRemainAmount();
-		System.out.println("대출 전 remain > "+remainAmount);
+		//System.out.println("대출 전 remain > "+remainAmount);
 
 		int remainAmount_int = Integer.parseInt(remainAmount);
 		bookEntity.setRemainAmount(String.valueOf(remainAmount_int-1)); //수정하고 세팅
 		
-		System.out.println("대출 후 remain > "+bookEntity.getRemainAmount());
+		//System.out.println("대출 후 remain > "+bookEntity.getRemainAmount());
 		return bookEntity;
 	}
 	
@@ -133,12 +133,12 @@ public class BookService {
 		Book bookEntity = bookRepository.findById(bookId).orElseThrow(); //영속화
 		
 		String remainAmount = bookEntity.getRemainAmount();
-		System.out.println("반납 전 remain > "+remainAmount);
+		//System.out.println("반납 전 remain > "+remainAmount);
 
 		int remainAmount_int = Integer.parseInt(remainAmount);
 		bookEntity.setRemainAmount(String.valueOf(remainAmount_int+1)); //수정하고 세팅
 		
-		System.out.println("반납 후 remain > "+bookEntity.getRemainAmount());
+		//System.out.println("반납 후 remain > "+bookEntity.getRemainAmount());
 		return bookEntity;
 	}
 	
@@ -192,9 +192,9 @@ public class BookService {
 		//3. 연장 횟수 세팅
 		lend.setExtensionAbleCount(0);
 		
-		System.out.println("연장 날짜 "+extensionDate);
-		System.out.println("반납 날짜 "+returnPlanDate);
-		
+		//System.out.println("연장 날짜 "+extensionDate);
+		//System.out.println("반납 날짜 "+returnPlanDate);
+		//
 		return lend;
 	}
 	

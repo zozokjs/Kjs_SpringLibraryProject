@@ -37,8 +37,6 @@ public class AuthApiController {
 			return new ResponseEntity<>(new CMRespDto<>(2,"전송성공","아이디가 중복 됩니다"), HttpStatus.OK);
 		}
 		
-				
-		
 	}
 	
 }

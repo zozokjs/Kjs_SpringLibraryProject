@@ -67,7 +67,7 @@ public class TestSampleRepositoryUnitTest {
 		List<TestSample> bookEntitys = testSampleRepository.findAll();
 		
 		// then
-		log.info("bookEntitys : "+bookEntitys.size() );
+		//log.info("bookEntitys : "+bookEntitys.size() );
 		assertNotEquals(0, bookEntitys.size());
 		assertEquals(2, bookEntitys.size());
 	}

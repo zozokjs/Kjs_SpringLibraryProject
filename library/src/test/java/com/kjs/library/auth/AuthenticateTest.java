@@ -41,7 +41,6 @@ public class AuthenticateTest {
 		user2.setPhoneNumber("pe");
 		user2.setEnabled(false);
 		user2.setLoginFailCount(0);
-		user2.setRole("USER");
 		userRepository.save(user2);
 		
 		List<User> users = userRepository.findAll();

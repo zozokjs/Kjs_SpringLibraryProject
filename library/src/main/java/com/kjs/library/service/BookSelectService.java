@@ -96,8 +96,8 @@ public class BookSelectService {
 		Lend lend = lendRepository.findById(lendId).orElseThrow();
 		int bookExtensionAbleCount = lend.getExtensionAbleCount();
 		
-		System.out.println("전달 받은 id " + lendId);
-		System.out.println("결과 " + bookExtensionAbleCount);
+		//System.out.println("전달 받은 id " + lendId);
+		//System.out.println("결과 " + bookExtensionAbleCount);
 		
 		
 		if(bookExtensionAbleCount == 0) {

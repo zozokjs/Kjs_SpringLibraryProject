@@ -6,6 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.kjs.library.domain.user.RoleType;
 import com.kjs.library.domain.user.User;
 import com.kjs.library.domain.user.UserRepository;
 import com.kjs.library.handler.aop.ex.CustomValidationApiException;
@@ -75,7 +76,7 @@ public class UserService {
 		
 		User userEntity = userRepository.findById(userId).orElseThrow();
 		
-		userEntity.setRole("ROLE_USER");
+		userEntity.setRoleType(RoleType.USER);
 		
 		return userEntity;
 	}

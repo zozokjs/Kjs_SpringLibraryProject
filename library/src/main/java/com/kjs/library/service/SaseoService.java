@@ -70,9 +70,9 @@ public class SaseoService {
 		public void 책청구기호등록(int bookId, BookRegistration_kdcDto bookRegistration_kdcDto, PrincipalDetails principalDetails) {                       
 			
 			//넘어온 청구 기호 출력
-			System.out.println("-------------------------");
-			System.out.println(bookRegistration_kdcDto); //BookRegistration_kdcDto(bookId=1, kdcCallSign=7,8,9)
-			System.out.println(bookRegistration_kdcDto.getKdcCallSign());
+		//	System.out.println("-------------------------");
+			//System.out.println(bookRegistration_kdcDto); //BookRegistration_kdcDto(bookId=1, kdcCallSign=7,8,9)
+			//System.out.println(bookRegistration_kdcDto.getKdcCallSign());
 			
 			String kdcCallSignList = bookRegistration_kdcDto.getKdcCallSign(); // 2,3,4
 			String[] array = kdcCallSignList.split(",");
@@ -214,7 +214,7 @@ public class SaseoService {
 			/**9. 값 변경 시작 */
 			for(int index = 0; index < 변경된kdc크기; index++) {
 				
-				System.out.println( index+"번째 청구기호 : "+kdcCallSignList_공백제거.get(index));
+				//System.out.println( index+"번째 청구기호 : "+kdcCallSignList_공백제거.get(index));
 
 				//영속화된 객체에 새 것이 추가되는 경우
 				/**기존 samebook에 새 것이 추가될 때*/
@@ -273,7 +273,7 @@ public class SaseoService {
 		@Transactional
 		public Book remainAmount수정(int bookId, int remainAmount) {
 			
-			System.out.println("남은 양 >"+remainAmount);
+			//System.out.println("남은 양 >"+remainAmount);
 			
 			Book bookEntity = saseoSelectService.bookSelectOne(bookId);
 			
