@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kjs.library.config.auth.PrincipalDetails;
+import com.kjs.library.domain.community.BoardFree;
 import com.kjs.library.domain.user.User;
 import com.kjs.library.domain.user.UserRepository;
 import com.kjs.library.service.CommunityService;
@@ -31,6 +32,24 @@ public class CommunityApiController {
 	
 	private final CommunityService commuService;
 	private final CommonService commonService;
+	/*
+	@PostMapping("/api/community/{boardFreeId}/read")
+	public  ResponseEntity<?> rad(@PathVariable int boardFreeId){
+		
+		System.err.println("> "+boardFreeId);
+		
+		BoardFree boardFree = commuService.게시글조회(boardFreeId);
+		
+		if(boardFree == null) {
+			System.err.println("null");
+		}else {
+			System.err.println("null 아님");
+			
+		}
+		
+		return new ResponseEntity<>(new CMRespDto<>(1,"조회 성공.",boardFree),HttpStatus.OK);
+	}*/
+	
 	
 	/**게시글 삭제 처리*/
 	@PostMapping("/api/community/{boardFreeId}/boardFreeDelete")

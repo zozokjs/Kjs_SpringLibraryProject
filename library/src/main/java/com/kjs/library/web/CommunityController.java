@@ -26,6 +26,7 @@ import com.kjs.library.domain.user.RoleType;
 import com.kjs.library.service.CommunityService;
 import com.kjs.library.service.common.CommonService;
 import com.kjs.library.service.common.DateCommonService;
+import com.kjs.library.web.dto.boardFree.BFreeResponseDto;
 import com.kjs.library.web.dto.boardFree.BoardFreeRegistrationDto;
 
 import lombok.RequiredArgsConstructor;
@@ -90,21 +91,21 @@ public class CommunityController {
 	}
 	
 
-	//게시글 1개 조회
+	//게시글 1개 조회	
 	@GetMapping("/community/{boardFreeId}/infor")
-	public String boardFreeInfor(@PathVariable int boardFreeId, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ParseException {
+	public String boardFreeInforForm(@PathVariable int boardFreeId, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ParseException {
 		
-		BoardFree community = communityService.게시글조회(boardFreeId);
-		String createDate =dateCommonService.날짜포맷변경시간추가(community.getCreateDate());
+		BFreeResponseDto bfResponseDto = communityService.게시글조회(boardFreeId) ;
+		
+		//게시글 날짜 포맷 변경
+		String createDate =dateCommonService.날짜포맷변경시간추가(bfResponseDto.getCreateDate());
 
-		//System.err.println(createDate);
 		//게시글 1개의 조회수 증가
 		communityService.게시글조회수증가(boardFreeId, request, response, session);
 		
 		model.addAttribute("createDate", createDate);
-		model.addAttribute("community", community);
+		model.addAttribute("boardFree", bfResponseDto);
 		return "community/boardFreeInfor";
-		//return "redirect:/community/boardFreeInfor";
 	}
 	
 	
@@ -112,9 +113,9 @@ public class CommunityController {
 	@GetMapping("/community/{id}/boardFreeUpdate")
 	public String boardFreeEditForm(@PathVariable int id, Model model) {
 		
-		BoardFree community = communityService.게시글조회(id);
+		//BoardFree community = communityService.게시글조회(id);
 		
-		model.addAttribute("community", community);
+	//	model.addAttribute("community", community);
 		return "community/boardFreeUpdate";
 	}
 	

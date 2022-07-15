@@ -31,8 +31,7 @@ import lombok.NoArgsConstructor;
 //setter 대신 변경 지점이 명확하도록 메소드를 별도 지정함. 
 @Entity
 @NoArgsConstructor//
-@Data
-@AllArgsConstructor
+@Data@AllArgsConstructor
 @Builder
 public class BoardFree {
 	
@@ -57,9 +56,9 @@ public class BoardFree {
 		 * 따라서 연관관계의 주인인 Comment는 테이블은 외래키를 등록, 수정, 삭제할 수 있고
 		 * 주인이 아닌 BoardFree는 읽기만 할 수 있다.
 		 * */
-		@JsonIgnoreProperties({"boardFree"})
-		@OneToMany(mappedBy = "boardFree", fetch = FetchType.EAGER)
-		private List<Comment> comment;
+		//@JsonIgnoreProperties({"boardFree"}) /////
+		@OneToMany(mappedBy = "boardFree", fetch = FetchType.LAZY)
+		private List<Comment> comments;
 		
 		//게시글 제목
 		@Column(nullable = false, length = 100)
@@ -88,6 +87,11 @@ public class BoardFree {
 		}
 		
 		/**	SETTER                                  */
+		//조회수 1증가
+		public void addReadCount(int id) {
+			this.readCount += 1;
+		}
+		/*
 		//작성자 정보 세팅
 		public void setUser(User user) {
 			this.user = user;
@@ -98,11 +102,7 @@ public class BoardFree {
 			this.content = content;
 		}
 		
-		//조회수 1증가
-		public void addReadCount(int id) {
-			this.readCount += 1;
-		}
-		
+	
 		//제목 세팅
 		public void setTitle(String title) {
 			this.title=title;
@@ -111,7 +111,7 @@ public class BoardFree {
 		//게시글 수정 날짜 세팅
 		public void setEditDate(String editDate) {
 			this.editDate=editDate;
-		}
+		}*/
 
 		
 }

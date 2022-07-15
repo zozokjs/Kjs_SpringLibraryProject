@@ -32,7 +32,7 @@ public class Comment {
 	private int id;
 	
 	//여러 개의 댓글은 하나의 게시글에 존재한다.
-	//@JsonIgnoreProperties({"comment"})
+	//@JsonIgnoreProperties({"comments"})
 	@ManyToOne
 	@JoinColumn(name="boardFreeId")
 	private BoardFree boardFree;

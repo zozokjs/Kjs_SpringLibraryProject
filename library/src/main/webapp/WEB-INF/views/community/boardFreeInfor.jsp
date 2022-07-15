@@ -23,28 +23,30 @@
 							</div>		
 							<hr>	
 							
+							<input type ="hidden" id="boardFreeId">
+							
 							<div class="row">
 								<!-- 첫째줄 -->
 								<div class="col-md-12">
 									<div class="form-group">
 										제목
-										<input type="text"  	id="title"  name="title" value = "${community.title}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
+										<input type="text"  	id="title"  name="title" value = "${boardFree.title}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
 									</div>
 								</div>
 								
 								<!-- 둘째줄 -->
 								<c:choose>
-									<c:when test="${empty community.editDate}">
+									<c:when test="${empty boardFree.editDate}">
 										<div class="col-md-6">
 											<div class="form-group">
 												작성자
-												<input type="text"  	id="title"  name="title" value = "${community.user.username}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
-											</div>
+												 <input type="text"  	id="title"  name="title" value = "${boardFree.user.username}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
+										</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												등록일
-												<input type="text"  	id="title"  name="title"  value = "${createDate}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
+												<input type="text"  	id="title"  name="title"  value = "${boardFree.createDate}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
 											</div>
 										</div>
 									</c:when>
@@ -52,19 +54,19 @@
 										<div class="col-md-4">
 											<div class="form-group">
 												작성자
-												<input type="text"  	id="title"  name="title" value = "${community.user.username}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
+												<input type="text"  	id="title"  name="title" value = "${boardFree.user.username}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="form-group">
 												등록일
-												<input type="text"  	id="title"  name="title" value = "${createDate}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
+												<input type="text"  	id="title"  name="title" value = "${boardFree.createDate}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="form-group">
 												수정일
-												<input type="text"  	id="title"  name="title" value = "${community.editDate}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
+												<input type="text"  	id="title"  name="title" value = "${boardFree.editDate}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
 											</div>
 										</div>
 									</c:otherwise>
@@ -76,7 +78,7 @@
 										내용
 										<div>
 											<textarea  id="contents"  name="contents" class="form-control mb-3"  cols="30" rows="5" onfocus= "this.blur();"  readonly="readonly">
-												${community.content}
+												${boardFree.content}
 											</textarea>
 										</div>										
 									</div>
@@ -84,12 +86,12 @@
 								<!-- 작성자 id와 로그인한 사람의 id가 같을 때 -->
 								<div class="col-md-12">
 									<c:choose>
-										<c:when test="${principal.user.id eq community.user.id}">
-											<button onclick="location.href='/community/${community.id}/boardFreeUpdate'">수정</button>
-											<button onclick="boardFreeDeleteConfirm(${community.id})">삭제</button> 
+										<c:when test="${principal.user.id eq boardFree.user.id}">
+											<button onclick="location.href='/community/${boardFree.id}/boardFreeUpdate'">수정</button>
+											<button onclick="boardFreeDeleteConfirm(${boardFree.id})">삭제</button> 
 										</c:when>
-									</c:choose>
-								
+									</c:choose> 
+								</div>
 								<br>
 								<br>
 								<!-- 댓글 시작 -->
@@ -97,16 +99,15 @@
 								<div class="col-md-12">
 									<table class="table">
 										<tbody>
-										<!-- 
-											<c:forEach var="comment" items=" ${community.comment}"  varStatus="index">
+											<c:forEach var="comments" items="${boardFree.comments}">
 												<tr>
-													 <td class="tg-0pky">${comment.id}</td>
-													 <td class="tg-0pky">${comment.content}</td>
-													 <td class="tg-0pky">${comment.createDate}</td>
-													 <td class="tg-0pky">버튼</td>
+													<td>${comments.id}</td>
+													<td>${comments.content}</td>
+													<td>${comments.user.username}</td>
+													<td>${comments.createDate}</td>
+													
 												</tr>
 											</c:forEach>
-											 -->
 										</tbody>
 									</table>
 								</div>
@@ -127,7 +128,7 @@
 													</div>
 												</div>
 												<div class="col-md-2">
-													<button onclick="boardFreeCommentRegistration(${community.id}, ${principal.user.id})" >등록</button>
+													<button onclick="boardFreeCommentRegistration(${boardFree.id}, ${principal.user.id})" >등록</button>
 												</div>
 											</div>
 										</c:otherwise>

@@ -1,5 +1,34 @@
 
+function boardFreeInforLoad(){
+	
+	
+	//const boardFreeId = $("#boardFreeId").val();
+	const boardFreeId =1;
+	alert("ad"+boardFreeId);
+	
+	$.ajax({
+		type: "post",
+		url : `/api/community/${boardFreeId}/read`,
+		dataType : "json"
+	}).done(res=>{
+		console.log(res);
+		
+		/*
+			res.data.content.forEach((image)=> {
+			let storyItem = getStoryItem(image);
+			$("#storyList").append(storyItem);
+		});*/
+		
+	}).fail(error=>{
+		console.log(error);		
+	});
+}
 
+
+
+
+
+//boardFreeInforLoad(); //////////////
 
 //댓글 등록 처리
 function boardFreeCommentRegistration(boardFreeId, userId){

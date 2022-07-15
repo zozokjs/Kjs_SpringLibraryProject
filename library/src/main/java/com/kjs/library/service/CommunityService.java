@@ -2,6 +2,7 @@ package com.kjs.library.service;
 
 import java.text.ParseException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +22,8 @@ import com.kjs.library.domain.comment.CommentRepository;
 import com.kjs.library.domain.community.BoardFree;
 import com.kjs.library.domain.community.BoardFreeRepository;
 import com.kjs.library.service.common.DateCommonService;
+import com.kjs.library.web.dto.boardFree.BFreeCommentResponseDto;
+import com.kjs.library.web.dto.boardFree.BFreeResponseDto;
 import com.kjs.library.web.dto.boardFree.BoardFreeRegistrationDto;
 import com.kjs.library.web.dto.boardFree.CommentRegistrationDto;
 
@@ -53,11 +57,33 @@ public class CommunityService {
 	
 	//게시글 1개 조회
 	@Transactional(readOnly = true)
-	public BoardFree 게시글조회(int id) {
+	public BFreeResponseDto 게시글조회(int id) {
 		
-		BoardFree comEntity = boardFreeRepository.findById(id).orElseThrow();
+		BoardFree boardFree = boardFreeRepository.findById(id).orElseThrow();
 		
-		return comEntity;
+		return getBoardFreeAndCommentRequest(boardFree);
+	}
+	
+	private BFreeResponseDto getBoardFreeAndCommentRequest(BoardFree boardFree) {
+		
+		BFreeResponseDto bfdto = new BFreeResponseDto(boardFree);
+		
+		List<BFreeCommentResponseDto> commentList = new ArrayList<>();
+				
+		for(int i =0; i < boardFree.getComments().size(); i++) {
+			
+			BFreeCommentResponseDto bfComment = new BFreeCommentResponseDto();
+			bfComment.setId(boardFree.getComments().get(i).getId());
+			bfComment.setContent(boardFree.getComments().get(i).getContent());
+			bfComment.setCreateDate(boardFree.getComments().get(i).getCreateDate());
+			bfComment.setUser(boardFree.getComments().get(i).getUser());
+			commentList.add(bfComment);
+		}
+		
+		bfdto.setComments(commentList);
+				
+		
+		return bfdto;
 	}
 	
 
