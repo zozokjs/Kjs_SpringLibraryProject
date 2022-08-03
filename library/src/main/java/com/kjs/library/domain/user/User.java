@@ -51,7 +51,8 @@ public class User{
 	//이름
 	private String name;
 	
-	//계정 활성화 여부(기본값 0(false))
+	/** 계정 활성화 여부(기본값 0(false)), 비번이 5번 틀리면 비활성화 된다. */
+
 	@Column(nullable = false, columnDefinition = "int default '0' ")
 	private boolean isEnabled;
 	
@@ -89,6 +90,7 @@ public class User{
 	//private String role;
 	
 	//권한 EnumType을 String으로 해야 차후에 혼란이 없다고 함.
+	/**YET : 가입 미승인, NOT : 계정 정지, USER : 일반 사용자, SESEO : 관리자, ADMIN : 최종관리자 */
 	@Enumerated(EnumType.STRING)
 	private RoleType roleType;
 	

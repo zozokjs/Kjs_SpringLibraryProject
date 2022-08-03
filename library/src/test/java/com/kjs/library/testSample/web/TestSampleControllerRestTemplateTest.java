@@ -40,7 +40,7 @@ public class TestSampleControllerRestTemplateTest {
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 	}
 
-	@Test
+	//@Test
 	public void save_테스트() throws Exception {
 		// given
 		String content = new ObjectMapper().writeValueAsString(new TestSample(0, "스프링부트 따라하기", "코스"));
@@ -62,7 +62,7 @@ public class TestSampleControllerRestTemplateTest {
 	 * ObjectMapper().writeValueAsString(자바오브젝트); // json으로 변경 new
 	 * ObjectMapper().readValue(제이슨데이터, 자바오브젝트.class); // java object로 변경
 	 */
-	@Test
+	//@Test
 	public void findAll_테스트() {
 		// given
 

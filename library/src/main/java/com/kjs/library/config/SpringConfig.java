@@ -25,9 +25,6 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 	
-	//private final UserRepository userRepository;
-	//private AuthService authService;
-	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
@@ -37,10 +34,9 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
 		 * CSRF 토큰은 사용자가 받는 데이터가 내 서버에서 보낸 데이터가 맞는지 검증하는 방법 중 하나
 	
 		 * */
-		
 		http.authorizeRequests()
-			.antMatchers("/user/**").authenticated() //이 주소는 인증 필요
-			//.antMatchers("/saseo/**").hasRole("ROLE_USER") //user 권한이 있는 경우 접근 가능
+			.antMatchers("/user/**","/community/boardFreeRegistration").authenticated() //이 주소는 인증 필요
+			.antMatchers("/saseo/**").hasAnyRole("SASEO", "ADMIN") //SASEO 및 ADMIN 권한이 있는 경우 접근 가능
 			.anyRequest().permitAll() //그 외의 요청은 허용
 			.and()
 			.formLogin()

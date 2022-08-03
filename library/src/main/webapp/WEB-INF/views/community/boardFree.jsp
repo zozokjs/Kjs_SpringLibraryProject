@@ -63,9 +63,9 @@
 													 <td class="tg-0pky">
 													 	<a href="/community/${community.id}/infor">${community.title}</a>
 													 </td>
-													 <td class="tg-0pky">${community.user.username}</td>
-													 <td class="tg-0pky">댓글수</td>
-													 <td class="tg-0pky">조회수</td>
+													 <%-- <td class="tg-0pky">${community.username}</td> --%>
+													 <td class="tg-0pky">${community.commentCount}</td>
+													 <td class="tg-0pky">${community.readCount}</td>
 													 <td class="tg-0pky">${community.createDate}</td>
 												</tr>
 											</c:forEach>

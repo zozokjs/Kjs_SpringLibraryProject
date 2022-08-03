@@ -95,7 +95,7 @@ public class TestSampleControllerIntegreTest {
 	}
 	
 	
-	@Test
+	//@Test
 	public void finalAll테스트() throws Exception{
 		//given
 		//진짜 db로 하는데 값이 없으니까 이렇게 데이터를 넣어줘야 함
@@ -120,7 +120,7 @@ public class TestSampleControllerIntegreTest {
 	
 	
 	
-	@Test
+	//@Test
 	public void findById_테스트() throws Exception{
 		//given
 	
@@ -146,7 +146,7 @@ public class TestSampleControllerIntegreTest {
 	
 	
 	
-	@Test
+	//@Test
 	public void update_테스트() throws Exception{
 		
 		//given

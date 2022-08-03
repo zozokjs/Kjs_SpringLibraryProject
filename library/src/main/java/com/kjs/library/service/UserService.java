@@ -52,12 +52,27 @@ public class UserService {
 		return userEntity;
 	}
 	
-	
+	/**관리자에 의한 계정 정지된 회원 목록 표시*/
 	@Transactional(readOnly = true)
 	public Page<User> 정지된회원목록(Pageable pageable){
-		Page<User> userEntity = userRepository.findEnabledFalseUserList(pageable);
+		//Page<User> userEntity = userRepository.findEnabledFalseUserList(pageable);
+		Page<User> userEntity = userRepository.findRoleNotUserList(pageable);
+		//findRoleNotUserList
+		
 		return userEntity;
 	}
+
+	/**비번 5번 틀림 등의 이유로 비활성화된 회원 목록 표시*/
+	@Transactional(readOnly = true)
+	public Page<User> 비활성화된회원목록(Pageable pageable){
+		//Page<User> userEntity = userRepository.findEnabledFalseUserList(pageable);
+		Page<User> userEntity = userRepository.findEnabledFalseUserList(pageable);
+		//findRoleNotUserList
+		
+		return userEntity;
+	}
+
+	
 	
 	
 	//정지된 회원의 활성화 처리

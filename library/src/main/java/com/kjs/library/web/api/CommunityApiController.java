@@ -69,7 +69,9 @@ public class CommunityApiController {
 			@RequestBody  @Valid CommentRegistrationDto commentRegistrationDto, BindingResult bindingResult,
 			@AuthenticationPrincipal PrincipalDetails principalDetails) {
 		
-		commonService.로그인검사(principalDetails);
+		if(commonService.로그인검사TrueFalse(principalDetails) == false) {
+			return new ResponseEntity<>(new CMRespDto<>(0,"로그인 해야 합니다.",null),HttpStatus.BAD_REQUEST);
+		}
 		
 		//System.err.println("1 "+commentRegistrationDto.getBoardFreeId());
 		//System.err.println("2"+commentRegistrationDto.getContent());
@@ -82,5 +84,21 @@ public class CommunityApiController {
 		
 	}
 
+	/**게시글의 댓글 삭제 처리*/
+	@PutMapping("/api/community/{boardFreeId}/boardFreeCommentDelete")
+	public ResponseEntity<?> boardFreeCommentDelete(
+			@PathVariable int boardFreeId, 
+			@AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		if(commonService.로그인검사TrueFalse(principalDetails) == false) {
+			return new ResponseEntity<>(new CMRespDto<>(0,"로그인 해야 합니다.",null),HttpStatus.BAD_REQUEST);
+		}
+		
+		commuService.댓글삭제(boardFreeId);
+		
+		return new ResponseEntity<>(new CMRespDto<>(1,"댓글 삭제 되었습니다.",null),HttpStatus.OK);
+		
+	}
+	
 	
 }

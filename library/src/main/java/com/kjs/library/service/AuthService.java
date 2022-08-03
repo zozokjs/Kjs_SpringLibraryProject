@@ -38,7 +38,7 @@ public class AuthService {
 		//2, 비번 세팅
 		user.setPassword(encPassword);
 		//3. 권한 세팅
-		user.setRoleType(RoleType.NOT);
+		user.setRoleType(RoleType.YET);
 		//4. 회원정보 INSERT
 		userRepository.save(user);
 	}

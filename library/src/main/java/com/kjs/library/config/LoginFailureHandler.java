@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kjs.library.domain.user.User;
 import com.kjs.library.domain.user.UserRepository;
 import com.kjs.library.service.AuthService;
+import com.kjs.library.util.Custom_UserLoginFailCountOverException;
 import com.kjs.library.util.Custom_UserNotApprovalException;
 
 /**
@@ -53,16 +54,18 @@ public class LoginFailureHandler implements AuthenticationFailureHandler{
 		if(exception instanceof Custom_UserNotApprovalException) {
 			
 			errorMessage = "아직 가입이 승인되지 않았습니다. 관리자에게 문의하세요. ";
-			
 		}
 		else if(exception instanceof DisabledException) {
 			
-			errorMessage = "계정이 비활성화 되어 있습니다. 관리자에게 문의하세요. ";
-			
-		}else if(exception instanceof UsernameNotFoundException) {
+			errorMessage = "계정이 잠겼습니다. 관리자에게 문의하세요. ";
+		}
+		else if(exception instanceof UsernameNotFoundException) {
 
 			errorMessage = "아이디가 존재하지 않습니다.";
-		
+		}
+		else if(exception instanceof Custom_UserLoginFailCountOverException) {
+
+			errorMessage = "비밀번호가 5번 이상 틀렸습니다. 관리자에게 문의하세요";
 		}
 		else if(exception instanceof BadCredentialsException){
 

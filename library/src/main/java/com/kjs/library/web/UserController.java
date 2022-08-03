@@ -52,7 +52,8 @@ public class UserController {
 	
 	
 	//회원 정보 페이지로 이동
-	@GetMapping("/user/{id}/userInfor")
+	//@GetMapping("/user/{id}/userInfor")
+	@GetMapping("/user/userInfor/{id}")
 	public String userInforForm(@AuthenticationPrincipal PrincipalDetails principalDetails) {
 		
 		/**

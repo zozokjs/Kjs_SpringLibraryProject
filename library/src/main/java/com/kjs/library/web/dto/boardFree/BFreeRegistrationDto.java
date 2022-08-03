@@ -11,7 +11,7 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
-public class BoardFreeRegistrationDto {
+public class BFreeRegistrationDto {
 	
 	@NotBlank
 	private String title;

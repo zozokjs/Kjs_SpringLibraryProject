@@ -144,8 +144,8 @@ public class CommonService {
 		}
 		
 		//페이징 값 체크
-		System.out.println("pageCurrent : "+pageCurrent +"/ pageTotal : "+pageTotal+" /pageButtonLength : "+pageButtonLength);
-		System.out.println("startPage : "+pageStart +"/ endPage : "+pageEnd);
+		//System.out.println("pageCurrent : "+pageCurrent +"/ pageTotal : "+pageTotal+" /pageButtonLength : "+pageButtonLength);
+		//System.out.println("startPage : "+pageStart +"/ endPage : "+pageEnd);
 		
 		Map<String, Integer> pageMap = new HashMap<>();
 		pageMap.put("pageStart", pageStart);
@@ -164,6 +164,14 @@ public class CommonService {
 		if(principalDetails == null) {
 			throw new CustomValidationException("로그인 해야합니다", null);
 		}
+	}
+	
+	/**로그인 안 되어 있으면 false 리턴 */
+	public Boolean 로그인검사TrueFalse(PrincipalDetails principalDetails) {
+		if(principalDetails == null) {
+			return false;
+		}
+		return true;
 	}
 	
 	/**(PrincipalDetails, 최소권한)

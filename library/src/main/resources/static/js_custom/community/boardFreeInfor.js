@@ -1,34 +1,64 @@
+//댓글 삭제 검사
+function boardFreeCommentDeleteConfirm(commentId){
+	if(confirm("정말 삭제 하실거에요? 삭제하면 복구할 수 없습니다.")){
+		boardFreeCommentDelete(commentId);
+	}
+}
 
-function boardFreeInforLoad(){
+//댓글 삭제 처리
+function boardFreeCommentDelete(commentId){
 	
+	const boardFreeId = $("#boardFreeId").val();
 	
-	//const boardFreeId = $("#boardFreeId").val();
-	const boardFreeId =1;
-	alert("ad"+boardFreeId);
 	
 	$.ajax({
-		type: "post",
-		url : `/api/community/${boardFreeId}/read`,
-		dataType : "json"
-	}).done(res=>{
-		console.log(res);
 		
-		/*
-			res.data.content.forEach((image)=> {
-			let storyItem = getStoryItem(image);
-			$("#storyList").append(storyItem);
-		});*/
+		type : "PUT",  
+		url : `/api/community/${commentId}/boardFreeCommentDelete`,
+		dataType : "json",
+		contentType : "application/json; charset=utf-8"
 		
-	}).fail(error=>{
-		console.log(error);		
-	});
+	}).done(res =>{
+		
+		alert("삭제 되었습니다");
+		
+		location.href = `/community/${boardFreeId}/infor`; 
+	}).fail(error =>{
+		
+		if(error.data == null){
+			alert(error.responseJSON.message);
+			console.log(error.responseJSON.message);
+			
+		}else{
+			console.log("삭제 실패", error);	 		
+			alert(JSON.stringify(error.responseJSON.data));
+		
+		};
+		
+	})
 }
 
 
 
 
+//댓글 등록 검사
+function boardFreeCommentRegistrationConfirm(boardFreeId, userId){
+	
+	const loginId = $("#loginUserId").val();
+	const commentContent = $(`#commentContent`).val();
+	
+	
+	if(loginId == "" || loginId == null || loginId == undefined){
+		alert("로그인 해주세요");
+	}else if(commentContent.replace(/\s | /gi, "").length == 0){
+		alert("내용을 넣어주세요");
+	}else{
+		boardFreeCommentRegistration(boardFreeId, userId);
+	}
+		//boardFreeCommentRegistration(boardFreeId, userId);
+}
 
-//boardFreeInforLoad(); //////////////
+
 
 //댓글 등록 처리
 function boardFreeCommentRegistration(boardFreeId, userId){
@@ -55,8 +85,7 @@ function boardFreeCommentRegistration(boardFreeId, userId){
 		
 		alert("등록 되었습니다");
 		
-		location.href = `/community/boardFree`; 
-		
+		location.href = `/community/${boardFreeId}/infor`; 
 	}).fail(error =>{
 		
 		if(error.data == null){
@@ -77,7 +106,6 @@ function boardFreeCommentRegistration(boardFreeId, userId){
 function boardFreeDeleteConfirm(freeBoardId){
 	if(confirm("정말 삭제 하실거에요? 삭제하면 복구할 수 없습니다.")){
 		boardFreeDelete(freeBoardId);
-	}else{
 	}
 }
 

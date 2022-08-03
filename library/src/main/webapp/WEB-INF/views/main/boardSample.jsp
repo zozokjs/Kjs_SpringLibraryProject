@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
-<%@ include file="../layout/submenu_BookDatajsp"%>
+<%-- <%@ include file="../layout/submenu_BookDatajsp"%> --%>
         <!--         
 		*메인 화면 이미지 위치 결정 파일  
 		static > css > style.css > .slider   

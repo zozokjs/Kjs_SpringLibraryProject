@@ -201,7 +201,7 @@ public class SaseoController {
 		return "saseo/userSigninRequest";
 	}
 
-	// 정지 회원 관리 화면으로 이동
+	// 비활성화된 회원 관리 화면으로 이동
 	@GetMapping("/saseo/userLockManage")
 	public String userLockManageForm(Model model, @PageableDefault(size = 2) Pageable pageable) {
 

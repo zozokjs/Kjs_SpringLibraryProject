@@ -22,20 +22,12 @@
 	            <div class="col-lg-3-c col-lg-3">
 	                <div class="sidebar-wrap">
 						<div class="sidebar-widget latest-post card border-0 p-4 mb-3">
-							<h5>도서관이용안내</h5>
+							<h5>열린공간</h5>
 
 							<div class="media border-bottom py-3">
 								<div class="media-body">
 									<h6 class="my-2">
-										<a href="/guide/wayToHome">오시는 길</a>
-									</h6>
-								</div>
-							</div>
-
-							<div class="media border-bottom py-3">
-								<div class="media-body">
-									<h6 class="my-2">
-										<a href="/guide/guideSignup">회원가입안내</a>
+										<a href="/community/boardFree">자유게시판</a>
 									</h6>
 								</div>
 							</div>
@@ -43,39 +35,7 @@
 							<div class="media border-bottom py-3">
 								<div class="media-body">
 									<h6 class="my-2">
-										<a href="/guide/closeTime">이용시간과휴관일</a>
-									</h6>
-								</div>
-							</div>
-
-							<div class="media border-bottom py-3">
-								<div class="media-body">
-									<h6 class="my-2">
-										<a href="/guide/infraUse">시설이용안내</a>
-									</h6>
-								</div>
-							</div>
-
-							<div class="media border-bottom py-3">
-								<div class="media-body">
-									<h6 class="my-2">
-										<a href="/guide/loanReturnReserveExtension">대출/반납/예약/연장</a>
-									</h6>
-								</div>
-							</div>
-							
-							<div class="media border-bottom py-3">
-								<div class="media-body">
-									<h6 class="my-2">
-										<a href="/guide/donation">자료기증</a>
-									</h6>
-								</div>
-							</div>
-							
-							<div class="media border-bottom py-3">
-								<div class="media-body">
-									<h6 class="my-2">
-										<a href="/guide/organizationChart">조직도및담당업무</a>
+										<a href="/asd">공지사항</a>
 									</h6>
 								</div>
 							</div>

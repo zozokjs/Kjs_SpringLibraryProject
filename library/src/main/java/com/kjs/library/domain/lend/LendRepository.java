@@ -12,17 +12,17 @@ import com.kjs.library.web.dto.lend.UserLendListInterface;
 public interface LendRepository  extends JpaRepository<Lend, Integer>{
 	
 	//bookId 기준, 대출 상태가 아닌(lendId가 null) 가장 빠른 청구기호 1개 검색
-	@Query(value=" SELECT id FROM samebook where bookId = :bookId AND lendState = 0 ORDER BY id LIMIT 1" , nativeQuery = true)
+	@Query(value=" SELECT id FROM Samebook where bookId = :bookId AND lendState = 0 ORDER BY id LIMIT 1" , nativeQuery = true)
 	int findKdcCallSignBybookid(int bookId);
 	
 	
 	//대출 가능 여부 확인
-	@Query(value="SELECT * FROM lend WHERE bookId =  :bookId AND userId = :userId AND returnDate IS NULL" , nativeQuery = true)
+	@Query(value="SELECT * FROM Lend WHERE bookId =  :bookId AND userId = :userId AND returnDate IS NULL" , nativeQuery = true)
 	Lend findLendAbleByBookIdAndUserId(int bookId, int userId);
 	
 	
 	//잔여 책 존재여부
-	@Query(value = "SELECT id FROM samebook where bookId = :bookId AND lendState = 0", nativeQuery = true)
+	@Query(value = "SELECT id FROM Samebook where bookId = :bookId AND lendState = 0", nativeQuery = true)
 	List<Integer> findLendAbleSamebookVolume(int bookId);
 	
 
@@ -30,10 +30,10 @@ public interface LendRepository  extends JpaRepository<Lend, Integer>{
 	@Query(value="SELECT L.id, B.id AS bookId, B.title, B.writer,  B.publish,  B.bindType,  B.titleImageUrl, L.createDate, L.returnPlanDate "
 			+ "FROM("
 			+ "SELECT returnPlanDate, samebookId, bookId, id, createDate "
-			+ "FROM lend "
+			+ "FROM Lend "
 			+ "WHERE returnDate IS NULL AND userId = :userId) AS L "
-			+ "INNER JOIN samebook AS S ON L.samebookId = S.id "
-			+ "INNER JOIN book AS B ON L.bookId = B.id",nativeQuery = true)
+			+ "INNER JOIN Samebook AS S ON L.samebookId = S.id "
+			+ "INNER JOIN Book AS B ON L.bookId = B.id",nativeQuery = true)
 	List<UserLendListInterface> findUserLendListByUserId(int userId);
 		
 	
@@ -41,11 +41,11 @@ public interface LendRepository  extends JpaRepository<Lend, Integer>{
 	@Query(value="SELECT L.id,  L.returnDate, B.id AS bookId,  B.title, B.writer,  B.publish,  B.bindType,  B.titleImageUrl, L.createDate, L.returnPlanDate "
 			+ "FROM("
 			+ "SELECT returnPlanDate, samebookId, bookId, id, createDate, returnDate "
-			+ "FROM lend "
+			+ "FROM Lend "
 			+ "WHERE returnDate IS NOT NULL AND userId = :userId) AS L "
-			+ "INNER JOIN samebook AS S ON L.samebookId = S.id "
-			+ "INNER JOIN book AS B ON L.bookId = B.id",
-			countQuery = "SELECT count(*) FROM lend WHERE userId =  :userId AND returnDate IS NOT NULL", 
+			+ "INNER JOIN Samebook AS S ON L.samebookId = S.id "
+			+ "INNER JOIN Book AS B ON L.bookId = B.id",
+			countQuery = "SELECT count(*) FROM Lend WHERE userId =  :userId AND returnDate IS NOT NULL", 
 			nativeQuery = true)
 	Page<UserLendListInterface> findUserLendHistoryByUserId(int userId, Pageable pageable);
 }

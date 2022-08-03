@@ -30,7 +30,7 @@
 									<div class="col-md-12">
 										<div class="form-group">
 											내용<label style="color:red";>(필수)</label>
-											<textarea  id="content"  name="content" class="form-control mb-3"  cols="30" rows="5"  required=""></textarea>
+											<textarea  id="content"  name="content" placeholder="a" class="form-control mb-3"  cols="30" rows="5"  required=""></textarea>
 										</div>
 									</div>
 								</div>

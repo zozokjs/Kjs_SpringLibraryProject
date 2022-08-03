@@ -7,12 +7,26 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.kjs.library.web.dto.boardFree.BoardFreeListInterface;
+
 
 public interface BoardFreeRepository extends JpaRepository<BoardFree, Integer>{
 
-	@Query(value = "SELECT * FROM boardFree ORDER BY createDate DESC", 
-		       countQuery = "SELECT count(*) FROM boardFree ORDER BY createDate DESC",           
-            nativeQuery = true)
-	Page<BoardFree> findByAllDesc(Pageable pageable);
+	/*	@Query(value = "SELECT * FROM BoardFree ORDER BY createDate DESC", 
+		       countQuery = "SELECT count(*) FROM BoardFree ORDER BY createDate DESC",           
+            nativeQuery = true)*/
+	@Query(value = "SELECT b.id, b.title, b.content, b.readCount, b.createDate, b.editDate, u.username, count(c.boardFreeId) AS commentCount"
+		+ " FROM Boardfree b "
+		+ " INNER JOIN Comment c "
+		+ " ON b.id = c.boardFreeId "
+		+ " INNER JOIN User u "
+		+ " ON b.userId = u.id "
+		+ " GROUP BY c.boardFreeId "
+		+ " ORDER BY b.createDate desc ",
+    countQuery = "SELECT count(*) FROM BoardFree ORDER BY createDate DESC", 
+    nativeQuery = true)
+	Page<BoardFreeListInterface> findByAllDesc(Pageable pageable);
+	//SELECT b.id, b.content, b.userId, b.createDate, b.title,b.editDate, count(c.boardFreeId) AS commentCount FROM Boardfree b INNER JOIN Comment c ON b.id = c.boardFreeId GROUP BY c.boardFreeId ORDER BY b.createDate desc 
+
 	
 }

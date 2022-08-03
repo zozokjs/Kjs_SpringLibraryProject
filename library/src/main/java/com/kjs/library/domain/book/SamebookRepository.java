@@ -8,9 +8,9 @@ import org.springframework.data.repository.query.Param;
 
 public interface SamebookRepository  extends JpaRepository<Samebook, Integer>{
 
-	@Query(value="SELECT * FROM samebook WHERE bookId = :bookId", nativeQuery = true)
+	@Query(value="SELECT * FROM Samebook WHERE bookId = :bookId", nativeQuery = true)
 	List<Samebook> findBybookid(int bookId);
 	
-	@Query(value = "SELECT lendState FROM samebook WHERE id IN (:samebookIdList)", nativeQuery = true)
+	@Query(value = "SELECT lendState FROM Samebook WHERE id IN (:samebookIdList)", nativeQuery = true)
 	List<Boolean> editAbleKdcCallSign(@Param("samebookIdList") List<Integer> samebookIdList);
 }

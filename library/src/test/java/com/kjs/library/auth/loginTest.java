@@ -74,7 +74,7 @@ public class loginTest {
 		//userRepository.save(user);
 	}
 	
-	@Test
+	//@Test
 	public void loginTest111() throws Exception{
 		
 		//given
@@ -130,14 +130,14 @@ public class loginTest {
 	//지정한 사용자 이름, 비번, 권한으로 UserDetails를 생성한다.
 	//지정하지 않았다면 기본값을 가짐.
 	@WithMockUser
-	@Test
+	//@Test
 	public void testWithMockUser() throws Exception {
 		
 	}
 	
 	//익명 유저를 생성한다.
 	@WithAnonymousUser
-	@Test
+	//@Test
 	public void testAnonymousUser() throws Exception {
 		
 	}
@@ -149,7 +149,7 @@ public class loginTest {
 	 * */
 	//@WithUserDetails(value="zozo") //성공
 	@WithUserDetails(value="1234", userDetailsServiceBeanName = "principalDetailsService") //db에 value에 명시한 아이디가 있을 때 성공
-	@Test
+	//@Test
 	public void testUserDetails() throws Exception {
 		
 	}
@@ -170,7 +170,7 @@ public class loginTest {
 	
 	
 	/**성공-단순 무작위 유저를 사용하여 인증 테스트*/
-	@Test
+	//@Test
 	public void testAnonymous() throws Exception{
 		mvc.perform(get("/").with(anonymous())
 				)//인증되지 않은 유저
@@ -179,7 +179,7 @@ public class loginTest {
 	}
 	
 	/**성공-DB에 유저가 없더라도, 그 유저가 로그인한 상태라고 가정하여 인증 테스트*/
-	@Test
+	//@Test
 	public void testUser() throws Exception{
 		mvc.perform(get("/").with(user("1234").roles("USER"))
 				)//유저 인증 정보를 MOCKING 하고 테스트 진행. DB에는 없음

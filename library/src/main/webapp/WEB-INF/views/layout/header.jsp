@@ -149,7 +149,7 @@
 			 	<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="/user/myLibrary" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">내서재</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown05">
-						<li><a class="dropdown-item" href="/user/${principal.user.id}/userInfor">회원정보</a></li>
+						<li><a class="dropdown-item" href="/user/userInfor/${principal.user.id}">회원정보</a></li>
 						<li><a class="dropdown-item" href="/user/myLibrary">대출관리(연장/반납)</a></li>
 						<li><a class="dropdown-item" href="/user/myLendHistory">반납완료내역</a></li>
 						<li><a class="dropdown-item" href="/공사중">희망도서신청관리</a></li>

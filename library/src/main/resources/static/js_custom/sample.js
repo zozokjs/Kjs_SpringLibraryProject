@@ -1,6 +1,5 @@
 /**
 
-
 자바스크립트 및 제이쿼리 양식 작성하는 곳
 
  */
@@ -9,6 +8,21 @@
     //alert('페이지 전체가 로드되었습니다.');
   };
 */
+
+//null 검사
+var isEmpty = function(value) {
+	if (value == "" || value == null || value == undefined || (value != null && typeof value == "object" && !Object.keys(value).length)) {
+		return true
+	} else {
+		return false
+	}
+};
+
+//textarea 공백 검사
+//id가 commentContent 인 textarea의 공백을 제거하여 길이 검사.
+commentContent.replace(/\s | /gi, "").length == 0
+
+
  //값 들고오기
  //id가 book_totalAmount일 때
 const totalAmount = 	$("#book_totalAmount").val(); //권 수
@@ -26,6 +40,9 @@ for(i=0;i<size;i++){
 	console.log($("input[name='kdcCallSign']")[i].value === null);
 	console.log("값 > "+$("input[name='kdcCallSign']")[i].value)
 }
+
+
+
 //AJAX API 처리
 function userUpdate(userId, event) {
 	

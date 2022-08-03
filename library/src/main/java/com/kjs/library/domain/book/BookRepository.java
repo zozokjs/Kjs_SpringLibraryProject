@@ -10,13 +10,13 @@ import org.springframework.data.jpa.repository.Query;
 public interface BookRepository extends JpaRepository<Book, Integer>{
 	
 	
-	@Query(value = "SELECT * FROM book ORDER BY id", 
+	@Query(value = "SELECT * FROM Book ORDER BY id", 
 			       countQuery = "SELECT count(*) FROM book",           
                    nativeQuery = true)
 	Page<Book> findByAll(Pageable pageable);
 	
 	
-	@Query(value = "SELECT * FROM book ORDER BY createDate DESC LIMIT 3" , nativeQuery = true)
+	@Query(value = "SELECT * FROM Book ORDER BY createDate DESC LIMIT 3" , nativeQuery = true)
 	List<Book> findBookLimit3();
 
 }

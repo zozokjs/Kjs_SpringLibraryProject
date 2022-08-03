@@ -23,7 +23,9 @@
 							</div>		
 							<hr>	
 							
-							<input type ="hidden" id="boardFreeId">
+							<input type ="hidden" id="loginUserId" value="${principal.user.id}">
+							<input type ="hidden" id="boardFreeId" value="${boardFree.id}">
+							
 							
 							<div class="row">
 								<!-- 첫째줄 -->
@@ -46,7 +48,7 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												등록일
-												<input type="text"  	id="title"  name="title"  value = "${boardFree.createDate}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
+												<input type="text"  	id="title"  name="title"  value = "${boardFree.createDateFormatted}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
 											</div>
 										</div>
 									</c:when>
@@ -60,7 +62,7 @@
 										<div class="col-md-4">
 											<div class="form-group">
 												등록일
-												<input type="text"  	id="title"  name="title" value = "${boardFree.createDate}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
+												<input type="text"  	id="title"  name="title" value = "${boardFree.createDateFormatted}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
 											</div>
 										</div>
 										<div class="col-md-4">
@@ -101,11 +103,17 @@
 										<tbody>
 											<c:forEach var="comments" items="${boardFree.comments}">
 												<tr>
-													<td>${comments.id}</td>
-													<td>${comments.content}</td>
 													<td>${comments.user.username}</td>
-													<td>${comments.createDate}</td>
-													
+													<td>${comments.content}</td>
+													<td>${comments.createDateFormatted}</td>
+													<!-- 로그인 한 사람만 삭제 버튼 보임 -->
+													<c:choose>
+														<c:when test="${not empty principal.user.id}">
+															<td>
+																<button onclick="boardFreeCommentDeleteConfirm(${comments.id})" >삭제</button>
+															</td>
+														</c:when>
+													</c:choose>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -117,22 +125,16 @@
 								
 								<!-- 로그인 안 되어 있으면 표시 안 됨 -->
 								<div class="col-md-12">
-									<c:choose>
-										<c:when test="${empty principal.user.id}">
-										</c:when>
-										<c:otherwise>
-											<div class="row">
-												<div class="col-md-10">
-													<div class="form-group">
-														<textarea id="commentContent"  class="form-control mb-3" cols="30" rows="5"  placeholder = "댓글 작성시 타인에 대한 배려를 담아주세요" required=""></textarea>
-													</div>
-												</div>
-												<div class="col-md-2">
-													<button onclick="boardFreeCommentRegistration(${boardFree.id}, ${principal.user.id})" >등록</button>
-												</div>
+									<div class="row">
+										<div class="col-md-10">
+											<div class="form-group">
+												<textarea id="commentContent"  class="form-control mb-3" cols="30" rows="5"  placeholder = "댓글 작성시 타인에 대한 배려를 담아주세요" required=""></textarea>
 											</div>
-										</c:otherwise>
-									</c:choose>
+										</div>
+										<div class="col-md-2">
+											<button onclick="boardFreeCommentRegistrationConfirm(${boardFree.id}, ${principal.user.id})" >등록</button>
+										</div>
+									</div>
 								</div>
 								
 								<!-- 댓글 끝 -->

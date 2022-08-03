@@ -14,8 +14,10 @@ import org.springframework.stereotype.Component;
 
 import com.kjs.library.config.auth.PrincipalDetails;
 import com.kjs.library.config.auth.PrincipalDetailsService;
+import com.kjs.library.domain.user.RoleType;
 import com.kjs.library.domain.user.User;
 import com.kjs.library.domain.user.UserRepository;
+import com.kjs.library.util.Custom_UserLoginFailCountOverException;
 import com.kjs.library.util.Custom_UserNotApprovalException;
 
 import lombok.RequiredArgsConstructor;
@@ -59,21 +61,31 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 		
 		//log.info("role 체크 "+principalDetails.getUser().getRole());
 		
+		//비번이 5번 이상 틀였을 때 
+		//가입 했는데 관리자 승인이 없다면 isEnabled 컬림이 1(True)이 된다.
+		//계정이 관리자에 의해 정지되면 NOT이된다.
 		
-		//계정이 잠겼을 때(비번 5번 틀림)
+		//로그인이 불가능한 경우 > 계정 없음, 비번 틀림, 비번 5번 틀림, 가입 미승인, 계정 정지
+		
 		if(principalDetails == null) {
+			log.info("username이 없습니다.");
 			throw new UsernameNotFoundException(loginId);
 		}
-		else if(!principalDetails.isEnabled()) {
+		else if(principalDetails.getUser().getRoleType()  == RoleType.NOT) {
+			log.info("계정이 잠겼습니다. RoleType이 NOT");
 			throw new DisabledException(loginId);
 		}
-		//비번 틀렸을 때
+		else if( (principalDetails.getUser().getLoginFailCount() > 5) == true   ) {
+			log.info("비번이 5번 이상 틀렸습니다.");
+			throw new Custom_UserLoginFailCountOverException("ABC", 0);
+		}
 		else if(비번일치함(password, principalDetails.getPassword() )== false) {
+			log.info("비번이 틀렸습니다.");
 			throw new BadCredentialsException(loginId);
 		}
-		//가입 미승인 상태일 때
-		else if(principalDetails.getUser().getRoleType().equals("ROLE_NOT")) {
-			log.info("가입 미승인 상태입니다.");
+		//else if(principalDetails.getUser().getRoleType().equals("YET")) {
+		else if(principalDetails.getUser().getRoleType() == RoleType.YET) {
+			log.info("가입 미승인 상태입니다. Role_Type이 YET");
 			throw new Custom_UserNotApprovalException("ABC", 0);
 		}
 		//아무런 문제 없을 때

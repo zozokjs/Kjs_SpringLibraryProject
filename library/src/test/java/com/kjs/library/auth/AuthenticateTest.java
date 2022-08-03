@@ -5,19 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kjs.library.domain.user.User;
 import com.kjs.library.domain.user.UserRepository;
-import com.kjs.library.testSample.domain.TestSampleRepositoryUnitTest;
-import com.kjs.library.web.dto.user.UserUpdateDto;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -31,7 +25,7 @@ public class AuthenticateTest {
 	private UserRepository userRepository;
 	
 	
-	@Test
+	//@Test
 	public void jpaTest() {
 		//(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities
 		User user2 = new User();

@@ -27,7 +27,8 @@ import com.kjs.library.service.CommunityService;
 import com.kjs.library.service.common.CommonService;
 import com.kjs.library.service.common.DateCommonService;
 import com.kjs.library.web.dto.boardFree.BFreeResponseDto;
-import com.kjs.library.web.dto.boardFree.BoardFreeRegistrationDto;
+import com.kjs.library.web.dto.boardFree.BoardFreeListInterface;
+import com.kjs.library.web.dto.boardFree.BFreeRegistrationDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -56,7 +57,7 @@ public class CommunityController {
 	public String boardFreeForm(@PageableDefault(size = 5) Pageable pageable, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) throws ParseException {
 
 		//댓글 수, 작성자, 제목, 등록날짜, 조회수 등 표시
-		Page <BoardFree> community = communityService.게시글목록(pageable);
+		Page <BoardFreeListInterface> community = communityService.게시글목록(pageable);
 		model.addAttribute("community",community);
 
 		
@@ -78,7 +79,7 @@ public class CommunityController {
 	//자유게시판 게시글 등록 처리
 	@GetMapping("/community/boardFreeRegistration")
 	public String boardFreeRegistration(
-			@Valid BoardFreeRegistrationDto freeRegistrationDto,
+			@Valid BFreeRegistrationDto freeRegistrationDto,
 			BindingResult bindingResult, 
 			@AuthenticationPrincipal PrincipalDetails principalDetails) throws ParseException {
 		
@@ -98,12 +99,12 @@ public class CommunityController {
 		BFreeResponseDto bfResponseDto = communityService.게시글조회(boardFreeId) ;
 		
 		//게시글 날짜 포맷 변경
-		String createDate =dateCommonService.날짜포맷변경시간추가(bfResponseDto.getCreateDate());
+	//	String createDate =dateCommonService.날짜포맷변경시간추가(bfResponseDto.getCreateDate());
 
 		//게시글 1개의 조회수 증가
 		communityService.게시글조회수증가(boardFreeId, request, response, session);
 		
-		model.addAttribute("createDate", createDate);
+		//model.addAttribute("createDate", createDate);
 		model.addAttribute("boardFree", bfResponseDto);
 		return "community/boardFreeInfor";
 	}
@@ -124,7 +125,7 @@ public class CommunityController {
 	@PostMapping("/community/{id}/boardFreeUpdate")
 	public String boardFreeEdit(
 			@PathVariable int id,
-			@Valid BoardFreeRegistrationDto boardFreeRegistrationDto,
+			@Valid BFreeRegistrationDto boardFreeRegistrationDto,
 			BindingResult bindingResult, 
 			@AuthenticationPrincipal PrincipalDetails principalDetails) throws ParseException {
 		

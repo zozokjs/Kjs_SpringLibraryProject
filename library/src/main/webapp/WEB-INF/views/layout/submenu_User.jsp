@@ -27,7 +27,7 @@
 							
 					        <div class="media border-bottom py-3">
 					            <div class="media-body">
-					                <h6 class="my-2"><a href="/user/${principal.user.id}/userInfor"> 회원정보 </a></h6>
+					                <h6 class="my-2"><a href="/user/userInfor/${principal.user.id}"> 회원정보 </a></h6>
 					            </div>
 					        </div>
 	   				        <div class="media border-bottom py-3">
