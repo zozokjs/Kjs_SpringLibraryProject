@@ -22,11 +22,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.kjs.library.config.auth.PrincipalDetails;
 import com.kjs.library.domain.community.BoardFree;
+import com.kjs.library.domain.community.BoardNotice;
 import com.kjs.library.domain.user.RoleType;
 import com.kjs.library.service.CommunityService;
 import com.kjs.library.service.common.CommonService;
 import com.kjs.library.service.common.DateCommonService;
 import com.kjs.library.web.dto.boardFree.BFreeResponseDto;
+import com.kjs.library.web.dto.boardFree.BNoticeRegistrationDto;
+import com.kjs.library.web.dto.boardFree.BNoticeResponseDto;
 import com.kjs.library.web.dto.boardFree.BoardFreeListInterface;
 import com.kjs.library.web.dto.boardFree.BFreeRegistrationDto;
 
@@ -57,17 +60,16 @@ public class CommunityController {
 	public String boardFreeForm(@PageableDefault(size = 5) Pageable pageable, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) throws ParseException {
 
 		//댓글 수, 작성자, 제목, 등록날짜, 조회수 등 표시
-		Page <BoardFreeListInterface> community = communityService.게시글목록(pageable);
-		model.addAttribute("community",community);
+		Page <BoardFreeListInterface> boardFree= communityService.게시글목록(pageable);
+		model.addAttribute("boardFree",boardFree);
 
 		
-		Map<String, Integer> pageMap = commonService.시작끝페이지구하기(community, 10);
+		Map<String, Integer> pageMap = commonService.시작끝페이지구하기(boardFree, 10);
 		model.addAttribute("startPage", pageMap.get("pageStart"));
 		model.addAttribute("endPage", pageMap.get("pageEnd"));
 		
 		return "community/boardFree";
 	}
-	
 	
 	//자유게시판 게시글 등록 화면으로 이동
 	@GetMapping("/community/boardFreeRegistrationForm")
@@ -92,7 +94,7 @@ public class CommunityController {
 	}
 	
 
-	//게시글 1개 조회	
+	//자유게시판 게시글 1개 조회	
 	@GetMapping("/community/{boardFreeId}/infor")
 	public String boardFreeInforForm(@PathVariable int boardFreeId, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ParseException {
 		
@@ -110,7 +112,7 @@ public class CommunityController {
 	}
 	
 	
-	//게시글 수정 페이지로 이동
+	//자유게시판 게시글 수정 페이지로 이동
 	@GetMapping("/community/{id}/boardFreeUpdate")
 	public String boardFreeEditForm(@PathVariable int id, Model model) {
 		
@@ -121,7 +123,7 @@ public class CommunityController {
 	}
 	
 
-	//게시글 수정 완료 처리
+	//자유게시판 게시글 수정 완료 처리
 	@PostMapping("/community/{id}/boardFreeUpdate")
 	public String boardFreeEdit(
 			@PathVariable int id,
@@ -136,5 +138,86 @@ public class CommunityController {
 	}
 	
 	
+	
+	//공지사항 게시판 목록으로 이동
+	@GetMapping("/community/boardNotice")
+	public String boardNoticeForm(@PageableDefault(size = 5) Pageable pageable, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) throws ParseException {
+
+		//댓글 수, 작성자, 제목, 등록날짜, 조회수 등 표시
+		Page <BoardNotice> boardNotice= communityService.공지사항목록(pageable);
+		model.addAttribute("boardNotice",boardNotice);
+
+		
+		Map<String, Integer> pageMap = commonService.시작끝페이지구하기(boardNotice, 10);
+		model.addAttribute("startPage", pageMap.get("pageStart"));
+		model.addAttribute("endPage", pageMap.get("pageEnd"));
+		
+		return "community/boardNotice";
+	}
+
+
+	//공지사항 게시글 등록 화면으로 이동
+	@GetMapping("/community/boardNoticeRegistrationForm")
+	public String boardNoticeRegistrationForm(@AuthenticationPrincipal PrincipalDetails principalDetails) throws ParseException {
+		commonService.로그인검사(principalDetails);
+		return "community/boardNoticeRegistration";
+	}
+	
+	
+	//공지사항 게시글 등록 처리
+	@GetMapping("/community/boardNoticeRegistration")
+	public String boardNoticeRegistration(
+			@Valid BNoticeRegistrationDto bNoticeRegistrationDto,
+			BindingResult bindingResult, 
+			@AuthenticationPrincipal PrincipalDetails principalDetails) throws ParseException {
+		
+		commonService.로그인검사(principalDetails);
+		commonService.권한검사(principalDetails, RoleType.SASEO); //사서 이상이어야 함.
+		
+		communityService.공지사항게시글등록(bNoticeRegistrationDto, principalDetails);
+		
+		return "redirect:/community/boardNotice";
+	}
+	
+	
+	//공지사항 게시글 1개 조회	
+	@GetMapping("/community/{boardNoticeId}/noticeInfor")
+	public String boardNoticeInforForm(@PathVariable int boardNoticeId, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ParseException {
+		
+		BNoticeResponseDto bnResponseDto = communityService.공지사항게시글조회(boardNoticeId) ;
+
+		//게시글 1개의 조회수 증가
+		communityService.게시글조회수증가(boardNoticeId, request, response, session);
+		
+		//model.addAttribute("createDate", createDate);
+		model.addAttribute("boardNotice", bnResponseDto);
+		return "community/boardNoticeInfor";
+	}
+	
+	
+	//자유게시판 게시글 수정 페이지로 이동
+	@GetMapping("/community/{id}/boardNoticeUpdate")
+	public String boardNoticeEditForm(@PathVariable int id, Model model) {
+		
+		BNoticeResponseDto bnResponseDto  = communityService.공지사항게시글조회(id);
+		
+		model.addAttribute("boardNotice", bnResponseDto);
+		return "community/boardNoticeUpdate";
+	}
+	
+
+	//자유게시판 게시글 수정 완료 처리
+	@PostMapping("/community/{id}/boardNoticeUpdate")
+	public String boardNoticeEdit(
+			@PathVariable int id,
+			@Valid BNoticeRegistrationDto boardNoticeRegistrationDto,
+			BindingResult bindingResult, 
+			@AuthenticationPrincipal PrincipalDetails principalDetails) throws ParseException {
+		
+		communityService.공지사항게시글수정(id, boardNoticeRegistrationDto);
+		
+		//model.addAttribute("community", community);
+		return "redirect:/community/"+id+"/noticeInfor";
+	}
 
 }

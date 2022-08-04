@@ -101,4 +101,15 @@ public class CommunityApiController {
 	}
 	
 	
+	/**공지사항 게시글 삭제 처리*/
+	@PostMapping("/api/community/{boardNoticeId}/boardNoticeDelete")
+	public ResponseEntity<?> boardNoticeDelete(@PathVariable int boardNoticeId) {
+
+		//username을 db 조회해서 있는지 봐야함
+		commuService.공지사항게시글삭제(boardNoticeId);
+
+		return new ResponseEntity<>(new CMRespDto<>(1,"삭제 완료 되었습니다.",null),HttpStatus.OK);
+		
+	}
+	
 }

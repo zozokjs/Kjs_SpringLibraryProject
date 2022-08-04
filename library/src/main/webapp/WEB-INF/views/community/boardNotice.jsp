@@ -34,7 +34,7 @@
 							<div class="col-lg-7">
 								<div class="">
 									<h2 class="mt-3 content-title ">
-									자유게시판
+									공지사항
 									</h2>
 								</div>
 							</div>		
@@ -47,8 +47,8 @@
 									<table class="table">
 										<thead>
 											<tr>
-												 <th class="tg-0pky">번호</th>
-												 <th class="tg-0pky">제목[댓글수]</th>
+												 <th class="tg-0pky">순서</th>
+												 <th class="tg-0pky">제목</th>
 												 <th class="tg-0pky">작성자</th>
 												 <th class="tg-0pky">조회수</th>
 												 <th class="tg-0pky">등록날짜</th>
@@ -56,21 +56,21 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var = "free" items ="${boardFree.content}"   varStatus="index">
+											<c:forEach var = "notice" items ="${boardNotice.content}"   varStatus="index">
 												<tr>
-													 <td class="tg-0pky">${free.id}</td>
+													 <td class="tg-0pky">${notice.id}</td>
 													 <td class="tg-0pky">
-													 	<a href="/community/${free.id}/infor">${free.title}</a> [${free.commentCount}]
+													 	<a href="/community/${notice.id}/noticeInfor">${notice.title}</a>
 													 </td>
-													 <td class="tg-0pky">${free.username}</td>
-													 <td class="tg-0pky">${free.readCount}</td>
-													 <td class="tg-0pky">${free.createDate}</td>
+													 <td class="tg-0pky">${notice.user.username}</td>
+													 <td class="tg-0pky">${notice.readCount}</td>
+													 <td class="tg-0pky">${notice.createDate}</td>
 												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
 									<button type="button" 
-	                                   onclick="location.href='/community/boardFreeRegistrationForm'"
+	                                   onclick="location.href='/community/boardNoticeRegistrationForm'"
 	                                   class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">글쓰기</button>									
 								</div>
 	 						</div>
@@ -86,11 +86,11 @@
 					                	
 					                		<!-- 이전 버튼 -->
 							                <c:choose>
-												<c:when test="${boardFree.first }">
+												<c:when test="${community.first }">
 													<%-- <a class="prev page-numbers disabled" href="?page=${book.number-1}">이전</a> --%>
 												</c:when>
 												<c:otherwise>
-													<a class="prev page-numbers" href="?page=${boardFree.number-1}">이전</a>
+													<a class="prev page-numbers" href="?page=${community.number-1}">이전</a>
 												</c:otherwise>
 											</c:choose>
 											
@@ -99,7 +99,7 @@
 												
 							                <c:forEach var="index" begin="${startPage}" end="${endPage}">
 						                      	<c:choose>
-													<c:when test="${boardFree.number+1  eq index}" >
+													<c:when test="${community.number+1  eq index}" >
 													   <span aria-current="page" class="page-numbers current">${index}</span>
 													</c:when>
 													<c:otherwise>
@@ -112,11 +112,11 @@
 											
 											<!-- 다음 버튼 -->
  											<c:choose>
-												<c:when test="${boardFree.last }">
+												<c:when test="${community.last }">
 													<%-- <a class="next page-numbers disabled"  href="?page=${book.number+1}">다음</a> --%>
 												</c:when>
 												<c:otherwise>
-													<a class="next page-numbers disabled"  href="?page=${boardFree.number+1}">다음</a>
+													<a class="next page-numbers disabled"  href="?page=${community.number+1}">다음</a>
 												</c:otherwise>
 											</c:choose>
 										

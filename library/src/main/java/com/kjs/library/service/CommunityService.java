@@ -21,9 +21,13 @@ import com.kjs.library.domain.comment.Comment;
 import com.kjs.library.domain.comment.CommentRepository;
 import com.kjs.library.domain.community.BoardFree;
 import com.kjs.library.domain.community.BoardFreeRepository;
+import com.kjs.library.domain.community.BoardNotice;
+import com.kjs.library.domain.community.BoardNoticeRepository;
 import com.kjs.library.service.common.DateCommonService;
 import com.kjs.library.web.dto.boardFree.BFreeCommentResponseDto;
 import com.kjs.library.web.dto.boardFree.BFreeResponseDto;
+import com.kjs.library.web.dto.boardFree.BNoticeRegistrationDto;
+import com.kjs.library.web.dto.boardFree.BNoticeResponseDto;
 import com.kjs.library.web.dto.boardFree.BoardFreeListInterface;
 import com.kjs.library.web.dto.boardFree.BFreeRegistrationDto;
 import com.kjs.library.web.dto.boardFree.CommentRegistrationDto;
@@ -35,20 +39,22 @@ import lombok.RequiredArgsConstructor;
 public class CommunityService {
 
 	private final BoardFreeRepository boardFreeRepository;
+	private final BoardNoticeRepository boardNoticeRepository;
 	private final DateCommonService dateCommonService;
 	private final CommentRepository commentRepository;
 	
-	//게시글 등록
+	
+	//자유게시판 게시글 등록
 	@Transactional
-	public void 게시글등록(BFreeRegistrationDto boardFreeRegistrationDto, PrincipalDetails principalDetails) {
+	public void 게시글등록(BFreeRegistrationDto bFreeRegistrationDto , PrincipalDetails principalDetails) {
 		
-		BoardFree com = boardFreeRegistrationDto.toEntity();
+		BoardFree com = bFreeRegistrationDto.toEntity();
 		com.setUser(principalDetails.getUser());
 		boardFreeRepository.save(com);
 	}
 	
 	
-	//게시글 리스트
+	//자유게시판 게시글 리스트
 	@Transactional(readOnly = true)
 	public Page<BoardFreeListInterface> 게시글목록(Pageable pageable){
 		
@@ -56,7 +62,7 @@ public class CommunityService {
 	}
 	
 	
-	//게시글 1개 조회
+	//자유게시판 게시글 1개 조회
 	@Transactional(readOnly = true)
 	public BFreeResponseDto 게시글조회(int id) {
 		
@@ -106,7 +112,7 @@ public class CommunityService {
 	}
 	
 
-	//게시글 1개 수정
+	//자유게시판 게시글 1개 수정
 	@Transactional
 	public BoardFree 게시글수정(int id, BFreeRegistrationDto boardFreeRegistrationDto) throws ParseException {
 		
@@ -125,13 +131,13 @@ public class CommunityService {
 	}
 
 
-	//게시글 1개 삭제
+	//자유게시판 게시글 1개 삭제
 	@Transactional
 	public void 게시글삭제(int id) {
 		boardFreeRepository.deleteById(id);
 	}
 	
-	//게시글 1개 조회수 증가
+	//자유게시판 게시글 1개 조회수 증가
 	@Transactional
 	public BoardFree 게시글조회수증가(int boardFreeId, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
@@ -176,18 +182,94 @@ public class CommunityService {
 	}
 	
 	
-	//게시글의 댓글 등록
+	//자유게시판 게시글의 댓글 등록
 	@Transactional
 	public void 댓글등록(CommentRegistrationDto c) {
 		commentRepository.commentSave(Integer.parseInt(c.getUserId()), Integer.parseInt(c.getBoardFreeId()), c.getContent());
 		
 	}
 	
-	//댓글 1개 삭제
+	//자유게시판 댓글 1개 삭제
 	@Transactional
 	public void 댓글삭제(int id) {
 		commentRepository.deleteById(id);
 	}
 	
+	
+	
+	
+	//공지사항 목록
+	public Page<BoardNotice> 공지사항목록(Pageable pageable){
+		
+		return boardNoticeRepository.findByAllDesc(pageable);
+		
+	}
+	
+	
+	//공지사항 게시글 등록
+	@Transactional
+	public void 공지사항게시글등록(BNoticeRegistrationDto bNoticeRegistrationDto , PrincipalDetails principalDetails) {
+		
+		BoardNotice com = bNoticeRegistrationDto.toEntity();
+		com.setUser(principalDetails.getUser());
+		boardNoticeRepository.save(com);
+	}
+	
+	
+	//공지사항 게시글 1개 조회
+	@Transactional(readOnly = true)
+	public BNoticeResponseDto 공지사항게시글조회(int id) {
+		
+		BoardNotice boardNotice = boardNoticeRepository.findById(id).orElseThrow();
+
+		return getBoardNoticeRequest(boardNotice);
+	}
+	
+	
+	/**
+	 * BoardNotice 테이블 조회 결과를 DTO에 담아내기 위한 함수 
+	 * */
+	private BNoticeResponseDto getBoardNoticeRequest(BoardNotice boardNotice) {
+		
+		BNoticeResponseDto bndto = new BNoticeResponseDto(boardNotice);
+		
+		//게시글 작성 날짜 포맷 변경
+		try {
+			bndto.setCreateDateFormatted(DateCommonService.날짜포맷변경시간추가(boardNotice.getCreateDate()));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return bndto;
+	}
+	
+	
+	
+	
+	//공지사항 게시글 1개 수정
+	@Transactional
+	public BoardNotice 공지사항게시글수정(int id, BNoticeRegistrationDto boardNoticeRegistrationDto) throws ParseException {
+		
+		BoardNotice comEntity  = boardNoticeRepository.findById(id).orElseThrow();
+		
+		//내용 변경
+		comEntity.setContent(boardNoticeRegistrationDto.getContent());
+		
+		//수정 날짜 변경
+		LocalDateTime now = LocalDateTime.now(); 
+		String extensionDate = dateCommonService.날짜포맷변경시간추가(now);
+		
+		comEntity.setEditDate(extensionDate);
+		
+		return comEntity;
+	}
+
+
+	//공지사항 게시글 1개 삭제
+	@Transactional
+	public void 공지사항게시글삭제(int id) {
+		boardNoticeRepository.deleteById(id);
+	}
 	
 }

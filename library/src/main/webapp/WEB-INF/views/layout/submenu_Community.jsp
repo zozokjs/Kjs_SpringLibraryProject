@@ -35,7 +35,7 @@
 							<div class="media border-bottom py-3">
 								<div class="media-body">
 									<h6 class="my-2">
-										<a href="/asd">공지사항</a>
+										<a href="/community/boardNotice">공지사항</a>
 									</h6>
 								</div>
 							</div>

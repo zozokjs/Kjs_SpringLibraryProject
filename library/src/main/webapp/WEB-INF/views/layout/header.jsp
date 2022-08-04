@@ -142,7 +142,7 @@
 					<a class="nav-link dropdown-toggle" href="#" id="/community/boardFree" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">열린공간</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
 						<li><a class="dropdown-item" href="/community/boardFree">자유게시판</a></li>
-						<li><a class="dropdown-item" href="/community/notice">공지사항</a></li>
+						<li><a class="dropdown-item" href="/community/boardNotice">공지사항</a></li>
 					</ul>
 				</li>
 				
