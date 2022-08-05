@@ -39,6 +39,22 @@
 									</h6>
 								</div>
 							</div>
+							
+							<div class="media border-bottom py-3">
+								<div class="media-body">
+									<h6 class="my-2">
+										<a href="/community/manyQuestion">자주하는질문</a>
+									</h6>
+								</div>
+							</div>
+							
+							<div class="media border-bottom py-3">
+								<div class="media-body">
+									<h6 class="my-2">
+										<a href="/community/singleQuestion">1대1질문하기</a>
+									</h6>
+								</div>
+							</div>
 
 						</div>
 					</div>

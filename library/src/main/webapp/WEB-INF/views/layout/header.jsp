@@ -143,6 +143,8 @@
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
 						<li><a class="dropdown-item" href="/community/boardFree">자유게시판</a></li>
 						<li><a class="dropdown-item" href="/community/boardNotice">공지사항</a></li>
+						<li><a class="dropdown-item" href="/">자주묻는질문</a></li>
+						<li><a class="dropdown-item" href="/community/singleQuestion">1대1질문하기</a></li>
 					</ul>
 				</li>
 				

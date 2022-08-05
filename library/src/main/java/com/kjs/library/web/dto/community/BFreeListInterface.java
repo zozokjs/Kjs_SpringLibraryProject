@@ -1,10 +1,10 @@
-package com.kjs.library.web.dto.boardFree;
+package com.kjs.library.web.dto.community;
 
 import java.time.LocalDateTime;
 
 import com.kjs.library.domain.user.User;
 
-public interface BoardFreeListInterface {
+public interface BFreeListInterface {
 	 int getId(); // 게시글 id
 	 String getTitle(); //게시글 제목
 	 int getContent(); // 게시글 내용

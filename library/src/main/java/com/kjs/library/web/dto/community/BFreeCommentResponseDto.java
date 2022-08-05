@@ -1,4 +1,4 @@
-package com.kjs.library.web.dto.boardFree;
+package com.kjs.library.web.dto.community;
 
 import java.time.LocalDateTime;
 import java.util.List;

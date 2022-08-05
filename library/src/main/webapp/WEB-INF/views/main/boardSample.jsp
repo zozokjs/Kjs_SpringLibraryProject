@@ -46,12 +46,21 @@
 							<input  type="hidden" name="titleImageUrl"  value="${book.titleImageUrl}"/>
 							
 							<!-- 본문 Start -->
+							
+							
 							<c:choose>
-								<c:when test="${empty userList}">
+								<c:when test="${empty userList}"> <!--  작동됨 -->
 								</c:when>
+								
+								<c:when test=" ${empty userList}"> <!-- 작동 불가 -->
+								</c:when> 
+								
 								<c:otherwise>
 								</c:otherwise>
 							</c:choose>
+							
+						
+							
 							
 							<!-- textarea 태그 쓸 때 이렇게 꺽쇠 사이에 공간이 없어야 됨. 
 				        	공간 있으면 새로고침해도 텍스트 필드 안에 공백이 포함되어 있다. -->

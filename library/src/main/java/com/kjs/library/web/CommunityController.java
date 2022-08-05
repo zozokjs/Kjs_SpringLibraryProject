@@ -3,7 +3,6 @@ package com.kjs.library.web;
 import java.text.ParseException;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,17 +20,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.kjs.library.config.auth.PrincipalDetails;
-import com.kjs.library.domain.community.BoardFree;
 import com.kjs.library.domain.community.BoardNotice;
+import com.kjs.library.domain.community.SingleQuestion;
 import com.kjs.library.domain.user.RoleType;
 import com.kjs.library.service.CommunityService;
 import com.kjs.library.service.common.CommonService;
 import com.kjs.library.service.common.DateCommonService;
-import com.kjs.library.web.dto.boardFree.BFreeResponseDto;
-import com.kjs.library.web.dto.boardFree.BNoticeRegistrationDto;
-import com.kjs.library.web.dto.boardFree.BNoticeResponseDto;
-import com.kjs.library.web.dto.boardFree.BoardFreeListInterface;
-import com.kjs.library.web.dto.boardFree.BFreeRegistrationDto;
+import com.kjs.library.web.dto.community.BFreeRegistrationDto;
+import com.kjs.library.web.dto.community.BFreeResponseDto;
+import com.kjs.library.web.dto.community.BNoticeRegistrationDto;
+import com.kjs.library.web.dto.community.BNoticeResponseDto;
+import com.kjs.library.web.dto.community.BFreeListInterface;
+import com.kjs.library.web.dto.community.SQuestionRegistrationDto;
+import com.kjs.library.web.dto.community.SQuestionResponseDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -50,7 +51,7 @@ public class CommunityController {
 	 * 게시글 수정
 	 * 게시글 삭제
 	 * 댓글 작성
-	 * 댓글 수정
+//	 * 댓글 수정
 	 * 댓글 삭제
 	 * 게시글 목록
 	 * */
@@ -60,7 +61,7 @@ public class CommunityController {
 	public String boardFreeForm(@PageableDefault(size = 5) Pageable pageable, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) throws ParseException {
 
 		//댓글 수, 작성자, 제목, 등록날짜, 조회수 등 표시
-		Page <BoardFreeListInterface> boardFree= communityService.게시글목록(pageable);
+		Page <BFreeListInterface> boardFree= communityService.게시글목록(pageable);
 		model.addAttribute("boardFree",boardFree);
 
 		
@@ -137,7 +138,7 @@ public class CommunityController {
 		return "redirect:/community/"+id+"/infor";
 	}
 	
-	
+    /////////////////////////////////////////////////////////////
 	
 	//공지사항 게시판 목록으로 이동
 	@GetMapping("/community/boardNotice")
@@ -195,7 +196,7 @@ public class CommunityController {
 	}
 	
 	
-	//자유게시판 게시글 수정 페이지로 이동
+	//공지사항 게시글 수정 페이지로 이동
 	@GetMapping("/community/{id}/boardNoticeUpdate")
 	public String boardNoticeEditForm(@PathVariable int id, Model model) {
 		
@@ -206,7 +207,7 @@ public class CommunityController {
 	}
 	
 
-	//자유게시판 게시글 수정 완료 처리
+	//공지사항 게시글 수정 완료 처리
 	@PostMapping("/community/{id}/boardNoticeUpdate")
 	public String boardNoticeEdit(
 			@PathVariable int id,
@@ -220,4 +221,58 @@ public class CommunityController {
 		return "redirect:/community/"+id+"/noticeInfor";
 	}
 
+
+    /////////////////////////////////////////////////////////////
+
+	//1대1질문하기 게시판으로 이동
+	@GetMapping("/community/singleQuestion")
+	public String singleQuestion(@PageableDefault(size = 5) Pageable pageable, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		Page<SingleQuestion> singleQuestionList = communityService.일대일문의게시판목록(pageable);
+		
+		model.addAttribute("singleQuestionList",singleQuestionList);
+		
+		return "/community/singleQuestion";
+	}
+	
+	
+	//1대1질문하기 질문 작성 화면으로 이동
+	@GetMapping("/community/singleQuestionRegistrationForm")
+	public String singleQuestionRegistrationForm(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		return "/community/singleQuestionRegistration";
+	}
+
+	//singleQuestionInfor
+
+	//1대1질문하기 질문 등록
+	@GetMapping("/community/singleQuestionRegistration")
+	public String singleQuestionRegistration(
+			@Valid SQuestionRegistrationDto singleQuestionRegistrationDto,
+			BindingResult bindingResult, 
+			@AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		commonService.로그인검사(principalDetails);
+		commonService.권한검사(principalDetails, RoleType.USER); 
+		
+		communityService.일대일문의게시글등록(singleQuestionRegistrationDto, principalDetails);
+		
+		return "redirect:/community/singleQuestion";
+	}
+
+	//자유게시판 게시글 1개 조회	
+	@GetMapping("/community/{singleQuestionId}/singleQuestionInfor")
+	public String singleQuestionInforForm(@PathVariable int singleQuestionId, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ParseException {
+		
+		//System.out.println("--- "+singleQuestionId);
+		
+		SQuestionResponseDto sqResponseDto = communityService.일대일질문게시글조회(singleQuestionId) ;
+
+		//model.addAttribute("createDate", createDate);
+		model.addAttribute("sqResponseDto", sqResponseDto);
+		return "community/singleQuestionInfor";
+	}
+	
+	
+	
 }

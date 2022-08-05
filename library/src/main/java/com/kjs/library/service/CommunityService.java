@@ -12,37 +12,43 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kjs.library.config.auth.PrincipalDetails;
-import com.kjs.library.domain.comment.Comment;
 import com.kjs.library.domain.comment.CommentRepository;
+import com.kjs.library.domain.comment.CommentSQ;
+import com.kjs.library.domain.comment.CommentSQRepository;
 import com.kjs.library.domain.community.BoardFree;
 import com.kjs.library.domain.community.BoardFreeRepository;
 import com.kjs.library.domain.community.BoardNotice;
 import com.kjs.library.domain.community.BoardNoticeRepository;
+import com.kjs.library.domain.community.SingleQuestion;
+import com.kjs.library.domain.community.SingleQuestionRepository;
 import com.kjs.library.service.common.DateCommonService;
-import com.kjs.library.web.dto.boardFree.BFreeCommentResponseDto;
-import com.kjs.library.web.dto.boardFree.BFreeResponseDto;
-import com.kjs.library.web.dto.boardFree.BNoticeRegistrationDto;
-import com.kjs.library.web.dto.boardFree.BNoticeResponseDto;
-import com.kjs.library.web.dto.boardFree.BoardFreeListInterface;
-import com.kjs.library.web.dto.boardFree.BFreeRegistrationDto;
-import com.kjs.library.web.dto.boardFree.CommentRegistrationDto;
+import com.kjs.library.web.dto.community.BFreeCommentResponseDto;
+import com.kjs.library.web.dto.community.BFreeListInterface;
+import com.kjs.library.web.dto.community.BFreeRegistrationDto;
+import com.kjs.library.web.dto.community.BFreeResponseDto;
+import com.kjs.library.web.dto.community.BNoticeRegistrationDto;
+import com.kjs.library.web.dto.community.BNoticeResponseDto;
+import com.kjs.library.web.dto.community.CommentRegistrationDto;
+import com.kjs.library.web.dto.community.SQuestionCommentRegistrationDto;
+import com.kjs.library.web.dto.community.SQuestionRegistrationDto;
+import com.kjs.library.web.dto.community.SQuestionResponseDto;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class CommunityService {
+public class CommunityService/*CommunityService*/ {
 
 	private final BoardFreeRepository boardFreeRepository;
 	private final BoardNoticeRepository boardNoticeRepository;
+	private final SingleQuestionRepository singleQuestionRepository;
 	private final DateCommonService dateCommonService;
 	private final CommentRepository commentRepository;
-	
+	private final CommentSQRepository commentSQRepository;
 	
 	//자유게시판 게시글 등록
 	@Transactional
@@ -56,7 +62,7 @@ public class CommunityService {
 	
 	//자유게시판 게시글 리스트
 	@Transactional(readOnly = true)
-	public Page<BoardFreeListInterface> 게시글목록(Pageable pageable){
+	public Page<BFreeListInterface> 게시글목록(Pageable pageable){
 		
 		return boardFreeRepository.findByAllDesc(pageable);
 	}
@@ -266,10 +272,111 @@ public class CommunityService {
 	}
 
 
+	
 	//공지사항 게시글 1개 삭제
 	@Transactional
 	public void 공지사항게시글삭제(int id) {
 		boardNoticeRepository.deleteById(id);
 	}
 	
+	
+	//1대1 문의 게시판 목록 보기
+	@Transactional
+	public  Page<SingleQuestion>  일대일문의게시판목록(Pageable pageable) {
+		return singleQuestionRepository.findByAllDesc(pageable);
+	}
+
+	
+	//1대1 문의 질문글 등록
+	public void 일대일문의게시글등록(
+			SQuestionRegistrationDto singleQuestionRegistrationDto,
+			PrincipalDetails principalDetails) {
+		
+		SingleQuestion sq = singleQuestionRegistrationDto.toEntity();
+		sq.setAnswerOk(false);
+		sq.setUser(principalDetails.getUser());
+		singleQuestionRepository.save(sq);
+		
+		
+	}
+
+
+	
+	//1대1 문의 게시글 1개 조회
+	@Transactional(readOnly = true)
+	public SQuestionResponseDto 일대일질문게시글조회(int singleQuestionId) {
+		
+		SingleQuestion sq = singleQuestionRepository.findById(singleQuestionId).orElseThrow();
+
+		return getSingleQuestionAndCommentRequest(sq);
+	}
+	
+	/**
+	 * boardFree 테이블 조회 결과를 DTO에 담아내기 위한 함수 
+	 * */
+	private SQuestionResponseDto getSingleQuestionAndCommentRequest(SingleQuestion sq) {
+		
+		SQuestionResponseDto sqResponseDto = new SQuestionResponseDto(sq);
+		
+		//답변 세팅
+		CommentSQ commentSQ = new CommentSQ();
+		
+		if(!(sq.getCommentSQ() == null)) {
+			commentSQ.setId(sq.getCommentSQ() .getId());
+			commentSQ.setContent(sq.getCommentSQ().getContent());
+			commentSQ.setUser(sq.getCommentSQ().getUser());
+			commentSQ.setCreateDate(sq.getCommentSQ().getCreateDate());
+		}
+		
+	
+		
+		//세팅한 답변을 게시글에 세팅
+		sqResponseDto.setCommentSQ(commentSQ);
+		
+		/*
+		SQuestionCommentResponseDto commentList = new SQuestionCommentResponseDto();
+		commentList.setId(sq.getId()); //답변 번호
+		commentList.setContent(sq.getContent()); //답변 내용
+		commentList.setUser(sq.getUser()); //답변 작성자*/
+			
+		
+		//게시글 작성 날짜 포맷 변경
+		try {
+			sqResponseDto.setCreateDateFormatted(DateCommonService.날짜포맷변경시간추가(sq.getCreateDate()));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return sqResponseDto;
+	}
+		
+	
+	//1대1 문의 게시판 게시글 1개 삭제
+	@Transactional
+	public void 일대일질문게시글삭제(int id) {
+		singleQuestionRepository.deleteById(id);
+	}
+	
+	
+	//1대1 문의 게시판 답변 등록
+	@Transactional
+	public SingleQuestion 일대일질문게시글답변등록(SQuestionCommentRegistrationDto s) {
+		
+		//답변여부 True로 수정
+		SingleQuestion sq = singleQuestionRepository.findById(s.getSingleQuestionId()).orElseThrow();
+		sq.setAnswerOk(true);
+		
+		/*SingleQuestion 테이블에는 CommentSQ ID가 들어가야 됨
+		 * commentSQ id는 commentSQ가 저장 될 때 들어간다.
+		 * 저장하고나서?
+		 * 찾는 게 불가능함...
+		*/
+		sq.setCommentSQ(null);
+		
+		//commentSQRepository.commentSQSave(Integer.parseInt(s.getUserId()), s.getContent());
+		
+		return sq;
+		
+	}
 }
