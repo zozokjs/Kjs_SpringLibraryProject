@@ -31,7 +31,7 @@
 									<div class="col-md-12">
 										<div class="form-group">
 											내용<label style="color:red";>(필수)</label>
-											<textarea  id="content"  name="content" placeholder="a" class="form-control mb-3"  cols="30" rows="5"  required=""></textarea>
+											<textarea  id="content"  name="content" placeholder="등록된 질문글은 수정할 수 없습니다" class="form-control mb-3"  cols="30" rows="5"  required=""></textarea>
 										</div>
 									</div>
 								</div>

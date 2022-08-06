@@ -319,27 +319,15 @@ public class CommunityService/*CommunityService*/ {
 		SQuestionResponseDto sqResponseDto = new SQuestionResponseDto(sq);
 		
 		//답변 세팅
-		CommentSQ commentSQ = new CommentSQ();
+		//질문 게시글에 달린 답변을 찾아야 함
+		int singleQuestionId = sq.getId();
+		CommentSQ commentSQ = commentSQRepository.findbySingleQuestionId(singleQuestionId);
 		
-		if(!(sq.getCommentSQ() == null)) {
-			commentSQ.setId(sq.getCommentSQ() .getId());
-			commentSQ.setContent(sq.getCommentSQ().getContent());
-			commentSQ.setUser(sq.getCommentSQ().getUser());
-			commentSQ.setCreateDate(sq.getCommentSQ().getCreateDate());
+		if(!(commentSQ == null)) {
+			//세팅한 답변을 게시글에 세팅
+			sqResponseDto.setCommentSQ(commentSQ);
 		}
-		
 	
-		
-		//세팅한 답변을 게시글에 세팅
-		sqResponseDto.setCommentSQ(commentSQ);
-		
-		/*
-		SQuestionCommentResponseDto commentList = new SQuestionCommentResponseDto();
-		commentList.setId(sq.getId()); //답변 번호
-		commentList.setContent(sq.getContent()); //답변 내용
-		commentList.setUser(sq.getUser()); //답변 작성자*/
-			
-		
 		//게시글 작성 날짜 포맷 변경
 		try {
 			sqResponseDto.setCreateDateFormatted(DateCommonService.날짜포맷변경시간추가(sq.getCreateDate()));
@@ -367,14 +355,8 @@ public class CommunityService/*CommunityService*/ {
 		SingleQuestion sq = singleQuestionRepository.findById(s.getSingleQuestionId()).orElseThrow();
 		sq.setAnswerOk(true);
 		
-		/*SingleQuestion 테이블에는 CommentSQ ID가 들어가야 됨
-		 * commentSQ id는 commentSQ가 저장 될 때 들어간다.
-		 * 저장하고나서?
-		 * 찾는 게 불가능함...
-		*/
-		sq.setCommentSQ(null);
-		
-		//commentSQRepository.commentSQSave(Integer.parseInt(s.getUserId()), s.getContent());
+		int singleQuestionId = sq.getId();
+		commentSQRepository.commentSQSave(Integer.parseInt(s.getUserId()), singleQuestionId, s.getContent());
 		
 		return sq;
 		

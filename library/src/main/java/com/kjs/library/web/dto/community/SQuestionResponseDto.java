@@ -39,6 +39,5 @@ public class SQuestionResponseDto {
 		this.content = singleQuestion.getContent();
 		this.createDate = singleQuestion.getCreateDate();
 		this.user = singleQuestion.getUser();
-		this.commentSQ = singleQuestion.getCommentSQ();
 	}
 }

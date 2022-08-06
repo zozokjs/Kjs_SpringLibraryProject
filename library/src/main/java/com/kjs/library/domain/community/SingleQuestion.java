@@ -46,10 +46,11 @@ public class SingleQuestion {
 	//1대1질문게시판의 질문 글에 대한 답변
 	//@OneToMany(mappedBy = "singleQuestion", fetch = FetchType.LAZY)
 	
+	/*
 	@JoinColumn(name="commentSqId")
 	@OneToOne
 	private CommentSQ commentSQ;
-	
+	*/
 	
 	//게시글 제목
 	@Column(nullable = false, length = 100)

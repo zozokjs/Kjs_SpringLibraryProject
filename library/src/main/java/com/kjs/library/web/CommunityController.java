@@ -264,10 +264,8 @@ public class CommunityController {
 	@GetMapping("/community/{singleQuestionId}/singleQuestionInfor")
 	public String singleQuestionInforForm(@PathVariable int singleQuestionId, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ParseException {
 		
-		//System.out.println("--- "+singleQuestionId);
-		
 		SQuestionResponseDto sqResponseDto = communityService.일대일질문게시글조회(singleQuestionId) ;
-
+		
 		//model.addAttribute("createDate", createDate);
 		model.addAttribute("sqResponseDto", sqResponseDto);
 		return "community/singleQuestionInfor";

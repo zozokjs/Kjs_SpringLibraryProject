@@ -37,9 +37,15 @@ public class CommentSQ {
 	@OneToOne
 	private User user;
 	
+	@JoinColumn(name="singleQuestionId")
+	@OneToOne
+	private SingleQuestion singleQuestion;
+	
+	
 	@Lob //대용량 데이터 저장
 	@Column(nullable = false)
 	private String content;
+	
 	
 	//등록 날짜
 	private LocalDateTime createDate;

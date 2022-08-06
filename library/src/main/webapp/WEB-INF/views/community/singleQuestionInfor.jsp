@@ -36,13 +36,13 @@
 								</div>
 								
 								<!-- 둘째줄 -->
-								<div class="col-md-4">
+								<div class="col-md-6">
 									<div class="form-group">
 										작성자
 										<input type="text"  	id="title"  name="title" value = "${sqResponseDto.user.username}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
 									</div>
 								</div>
-								<div class="col-md-4">
+								<div class="col-md-6">
 									<div class="form-group">
 										등록일
 										<input type="text"  	id="title"  name="title" value = "${sqResponseDto.createDateFormatted}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
@@ -73,34 +73,34 @@
 								<br>
 								<br>
 								
-								<!-- 답변 작성 공간 시작 -->
 								<div class="col-md-12">
-									<div class="row">
-										<div class="col-md-10">
-											<div class="form-group">
-											<c:choose>
-												<c:when test="${empty sqResponseDto.commentSQ.content}">
-													<textarea id="commentContent"  class="form-control mb-3" cols="30" rows="5"  placeholder = ""  onfocus= "this.blur();" readonly="true">답변을 준비하고 있습니다.</textarea>
-													
-													<!-- 로그인한 사람이 사서나 관리자일 때 표시 -->
-													<c:if test="${principal.user.roleType eq 'SASEO' || principal.user.roleType eq 'ADMIN'}">
-														<textarea id="commentContent"  class="form-control mb-3" cols="30" rows="5"  placeholder = "답변 작성 시 수정 불가" required=""></textarea>
-														<div class="col-md-2">
-															<button onclick="singleQuestionCommentRegistrationConfirm(${sqResponseDto.id}, ${principal.user.id})" >등록</button>
-														</div>
-													</c:if>	
-												</c:when>
+								답변내용
+								</div>
+								
+								<!-- 답변 작성 공간 시작-->
+								<div class="col-md-12">
+									<div class="form-group">
+										<c:choose>
+											<c:when test="${empty sqResponseDto.commentSQ.content}">
+												<textarea class="form-control mb-3" cols="30" rows="5"  placeholder = ""  onfocus= "this.blur();" readonly="true">답변을 준비하고 있습니다.</textarea>
 												
-												<c:otherwise>
-													<textarea id="commentContent"  class="form-control mb-3" cols="30" rows="5"   placeholder = ""  readonly="true">${sqResponseDto.commentSQ.content}</textarea>
-												</c:otherwise>
-												
-											</c:choose>
-											</div>
-										</div>
+											
+												<c:if test="${principal.user.roleType eq 'SASEO' || principal.user.roleType eq 'ADMIN'}">
+													<textarea id="commentContent"  class="form-control mb-3" cols="30" rows="5"  placeholder = "답변 작성 시 수정 불가" required=""></textarea>
+													<div class="col-md-2">
+														<button onclick="singleQuestionCommentRegistrationConfirm(${sqResponseDto.id}, ${principal.user.id})" >등록</button>
+													</div>
+												</c:if>	
+											</c:when>
+											
+											<c:otherwise>
+												<textarea id="commentContentEdit"   class="form-control mb-3" cols="30" rows="5"   placeholder = ""  readonly="true">${sqResponseDto.commentSQ.content}</textarea>
+											</c:otherwise>
+											
+										</c:choose>
 									</div>
 								</div>
-								<!-- 답변 작성 공간 끝 -->
+								 <!--답변 작성 공간 끝 -->
 								
 							</div>
 							

@@ -64,8 +64,15 @@
 													 </td>
 													 <td class="tg-0pky">${SingleQ.user.username}</td>
 													 <td class="tg-0pky">${SingleQ.createDate}</td>
-													 <td class="tg-0pky">${SingleQ.answerOk}</td>
 													 
+													 <c:choose>
+													 	<c:when test="${SingleQ.answerOk eq true}">
+													 		<td class="tg-0pky">답변 완료</td>
+													 	</c:when>
+													 	<c:otherwise>
+														 	<td class="tg-0pky"> 답변 대기</td>
+													 	</c:otherwise>
+													 </c:choose>
 												</tr>
 											</c:forEach>
 										</tbody>
