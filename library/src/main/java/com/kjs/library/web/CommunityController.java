@@ -230,6 +230,8 @@ public class CommunityController {
 		
 		Page<SingleQuestion> singleQuestionList = communityService.일대일문의게시판목록(pageable);
 		
+		//System.out.println("---ivsi "+singleQuestionList.getContent().get(0).getTitle());
+		
 		model.addAttribute("singleQuestionList",singleQuestionList);
 		
 		return "/community/singleQuestion";
@@ -272,5 +274,10 @@ public class CommunityController {
 	}
 	
 	
-	
+	@GetMapping("/community/manyQuestion")
+	public String manyQuestion() {
+		
+		return "/community/manyQuestion";
+	}
+
 }

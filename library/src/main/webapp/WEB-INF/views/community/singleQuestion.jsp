@@ -95,15 +95,11 @@
 					                		<!-- 이전 버튼 -->
 							                <c:choose>
 												<c:when test="${singleQuestionList.first }">
-													<%-- <a class="prev page-numbers disabled" href="?page=${book.number-1}">이전</a> --%>
 												</c:when>
 												<c:otherwise>
 													<a class="prev page-numbers" href="?page=${singleQuestionList.number-1}">이전</a>
 												</c:otherwise>
 											</c:choose>
-											
-							                <%-- <c:forEach var="index" begin="0" end="${book.totalPages / 10}"> --%> <!--  58 -->
-												
 												
 							                <c:forEach var="index" begin="${startPage}" end="${endPage}">
 						                      	<c:choose>
@@ -121,7 +117,6 @@
 											<!-- 다음 버튼 -->
  											<c:choose>
 												<c:when test="${singleQuestionList.last }">
-													<%-- <a class="next page-numbers disabled"  href="?page=${book.number+1}">다음</a> --%>
 												</c:when>
 												<c:otherwise>
 													<a class="next page-numbers disabled"  href="?page=${singleQuestionList.number+1}">다음</a>

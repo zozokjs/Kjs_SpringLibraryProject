@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.kjs.library.domain.book.Book;
 import com.kjs.library.domain.book.BookRepository;
 import com.kjs.library.domain.book.SamebookRepository;
 import com.kjs.library.domain.lend.Lend;
@@ -133,6 +134,15 @@ public class BookSelectService {
 		return lendHistory;
 	}
 
+	
+	//SELECT
+	/**도서 검색 결과*/
+	@Transactional(readOnly = true)
+ 	public Page<Book> 도서검색(String bookSearchKeyword, Pageable pageable){
+		
+		return bookRepository.findBookDataBySearch(bookSearchKeyword, pageable);
+	}
+	
 	
 	
 }

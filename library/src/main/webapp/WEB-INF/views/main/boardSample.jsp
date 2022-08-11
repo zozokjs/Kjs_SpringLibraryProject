@@ -65,6 +65,7 @@
 							<!-- textarea 태그 쓸 때 이렇게 꺽쇠 사이에 공간이 없어야 됨. 
 				        	공간 있으면 새로고침해도 텍스트 필드 안에 공백이 포함되어 있다. -->
 				        	<textarea></textarea>
+							<textarea  id="contents"  name="contents" class="form-control mb-3"  style="resize: none;" cols="30" rows="5" placeholder="줄거리"  onfocus= "this.blur();"  readonly="readonly">${book.contents}</textarea>
 							
 							<!-- 내용 Start-->
 						</div>

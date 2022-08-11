@@ -18,5 +18,25 @@ public interface BookRepository extends JpaRepository<Book, Integer>{
 	
 	@Query(value = "SELECT * FROM Book ORDER BY createDate DESC LIMIT 3" , nativeQuery = true)
 	List<Book> findBookLimit3();
-
+	
+	/* 가능한 언어 
+	 * 책제목 / 작가이름 / 출판사 / 출판년도 / 출판국가 / 언어  
+	 * 
+	 * */
+	@Query(value=
+				"SELECT * FROM Book"
+				+ " WHERE writer LIKE %:bookSearchKeyWord% "
+				+ " OR"
+				+ " publish LIKE %:bookSearchKeyWord% "
+				+ " OR"
+				+ " title LIKE %:bookSearchKeyWord% ",
+			countQuery =
+					"SELECT count(*) FROM Book"
+					+ " WHERE writer LIKE %:bookSearchKeyWord% "
+					+ " OR"
+					+ " publish LIKE %:bookSearchKeyWord% "
+					+ " OR"
+					+ " title LIKE %:bookSearchKeyWord% ",
+			nativeQuery = true)
+	Page<Book> findBookDataBySearch(String bookSearchKeyWord, Pageable pageable);
 }

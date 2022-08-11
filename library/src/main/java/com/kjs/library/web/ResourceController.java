@@ -5,15 +5,21 @@ import java.util.Map;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.kjs.library.domain.book.Book;
+import com.kjs.library.service.BookSelectService;
 import com.kjs.library.service.SaseoSelectService;
 import com.kjs.library.service.SaseoService;
 import com.kjs.library.service.common.CommonService;
+import com.kjs.library.web.dto.CMRespDto;
+import com.kjs.library.web.dto.resource.BookDataBySearchDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,10 +30,12 @@ public class ResourceController {
 	private final SaseoService saseoService;
 	private final CommonService commonService;
 	private final SaseoSelectService saseoSelectService;
+	private final BookSelectService bookSelectService;
+	
 	
 	//신착 도서 목록 화면으로 이동
 	@GetMapping("/resource/newBook")
-	public String newBookForm(Model model, @PageableDefault(size=3) Pageable pageable) {
+	public String newBookForm(Model model, @PageableDefault(size=2) Pageable pageable) {
 
 		//신규 등록된 도서가 표시되어야 함
 		Page<Book> book = saseoSelectService.bookSelectAllToPage(pageable);
@@ -63,4 +71,16 @@ public class ResourceController {
 		return "resource/bookInfor";
 	}
 	
+	
+	//통합 검색 화면으로 이동
+	@GetMapping("/resource/bookSearch")
+	public String bookSearchForm() {
+	
+		return "resource/bookSearch";
+	}
+		
+
+	
+
+
 }

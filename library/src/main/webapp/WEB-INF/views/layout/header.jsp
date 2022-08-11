@@ -120,7 +120,7 @@
 					<a class="nav-link dropdown-toggle" href="/resource/newBook"" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">자료검색</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
 						<!-- 1 depth resource -->
-						<li><a class="dropdown-item" href="/공사중">통합검색</a></li>
+						<li><a class="dropdown-item" href="/resource/bookSearch">통합검색</a></li>
 						<li><a class="dropdown-item" href="/resource/newBook">신착도서</a></li>
 						<li><a class="dropdown-item" href="/공사중">인기도서</a></li>
 					</ul>
@@ -143,7 +143,7 @@
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
 						<li><a class="dropdown-item" href="/community/boardFree">자유게시판</a></li>
 						<li><a class="dropdown-item" href="/community/boardNotice">공지사항</a></li>
-						<li><a class="dropdown-item" href="/">자주묻는질문</a></li>
+						<li><a class="dropdown-item" href="/community/manyQuestion">자주묻는질문</a></li>
 						<li><a class="dropdown-item" href="/community/singleQuestion">1대1질문하기</a></li>
 					</ul>
 				</li>

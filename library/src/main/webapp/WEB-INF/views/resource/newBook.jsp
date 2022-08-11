@@ -21,61 +21,59 @@
 							    <div class="container">
 							        <div class="row">
 							            <div class="col-lg-12">
-<!-- 							                <div class="row"> -->
+
 								               	<!--  본문 시작  -->
 								                <c:forEach var ="books" items="${book.content}">
 												    <!-- 반복부 Start -->
 												    <div class="col-lg-12 col-md-8 mb-1"  style="display:flex;">
-												        <!-- <div class="blog-item" style="width:700px; height:600px; display:flex; flex-direction:row; flex-wrap:nowrap; justify-content:space-around;">
--->												            <div style="display:flex; flex-shrink:30;">
-												                <img src="/upload/${books.titleImageUrl}" alt="" class="img-fluid w-100">
-												            </div>
-												            <div class="blog-item-content bg-white p-4" style="display:flex; flex-shrink:1; flex-direction: column;">
-												                <h3 class="mt-3 mb-3"><a href="/resource/${books.id}/bookInfor">${books.title}</a></h3>							
-												                <!-- 표 Start --->
-												                <table class="tg">
-												                    <thead>
-												                        <tr>
-												                            <th class="tg-0pky">저자</th>
-												                            <th class="tg-0pky">${books.writer}</th>
-												                            <th class="tg-0lax">발행처</th>
-												                            <th class="tg-0lax">${books.publish}</th>
-												                        </tr>
-												                    </thead>
-												                    <tbody>
-												                        <tr>
-												                            <td class="tg-0pky">ISBN</td>
-												                            <td class="tg-0pky">${books.isbn}</td>
-												                            <td class="tg-0lax">ISBNSET</td>
-												                            <td class="tg-0lax">${books.isbnSet}</td>
-												                        </tr>
-												                        <tr>
-												                            <td class="tg-0pky">매체구분</td>
-												                            <td class="tg-0pky">${books.bindType}</td>
-												                            <td class="tg-0lax">페이지</td>
-												                            <td class="tg-0lax">${books.page}</td>
-												                        </tr>
-												                        <tr>
-												                            <td class="tg-0pky" >발행일</td>
-												                            <td class="tg-0pky">${books. publishDate}</td>
-												                        </tr>
-												                        <tr>
-												                            <td class="tg-0pky" >대여가능수</td>
-												                            <td class="tg-0pky">${books.remainAmount} / ${books.totalAmount}</td>
-												                        </tr>
-												                    </tbody>
-												                </table>
-												                <!-- 표 End -->
-												            </div>
-<!-- 												        </div>
- -->												    </div>
+											            <div style="display:flex; flex-shrink:30;">
+											                <img src="/upload/${books.titleImageUrl}" alt="" class="img-fluid w-100">
+											            </div>
+											            <div class="blog-item-content bg-white p-4" style="display:flex; flex-shrink:1; flex-direction: column;">
+											                <h3 class="mt-3 mb-3"><a href="/resource/${books.id}/bookInfor">${books.title}</a></h3>							
+											                <!-- 표 Start --->
+											                <table class="tg">
+											                    <thead>
+											                        <tr>
+											                            <th class="tg-0pky">저자</th>
+											                            <th class="tg-0pky">${books.writer}</th>
+											                            <th class="tg-0lax">발행처</th>
+											                            <th class="tg-0lax">${books.publish}</th>
+											                        </tr>
+											                    </thead>
+											                    <tbody>
+											                        <tr>
+											                            <td class="tg-0pky">ISBN</td>
+											                            <td class="tg-0pky">${books.isbn}</td>
+											                            <td class="tg-0lax">ISBNSET</td>
+											                            <td class="tg-0lax">${books.isbnSet}</td>
+											                        </tr>
+											                        <tr>
+											                            <td class="tg-0pky">매체구분</td>
+											                            <td class="tg-0pky">${books.bindType}</td>
+											                            <td class="tg-0lax">페이지</td>
+											                            <td class="tg-0lax">${books.page}</td>
+											                        </tr>
+											                        <tr>
+											                            <td class="tg-0pky" >발행일</td>
+											                            <td class="tg-0pky">${books. publishDate}</td>
+											                        </tr>
+											                        <tr>
+											                            <td class="tg-0pky" >대여가능수</td>
+											                            <td class="tg-0pky">${books.remainAmount} / ${books.totalAmount}</td>
+											                        </tr>
+											                    </tbody>
+											                </table>
+											                <!-- 표 End -->
+											            </div>
+											    	</div>
 												  <!-- 반복부 End -->
 												
 												</c:forEach>
 												
 							             		<!--  본문 끝 -->
 							                
-		<!-- 									</div> -->
+		
 										</div>
 									</div>
 									

@@ -181,9 +181,7 @@
 									<div class="col-md-12">
 										<div class="form-group">
 											줄거리
-											<textarea id="contents" name="contents" class="form-control mb-3" cols="30" rows="5" placeholder="줄거리">
-											${book.contents}
-											</textarea>
+											<textarea id="contents" name="contents" class="form-control mb-3"  style="resize: none;" cols="30" rows="5" placeholder="줄거리">${book.contents}</textarea>
 										</div>
 									</div>
 								</div>

@@ -244,9 +244,7 @@
 													</c:when>
 													<c:otherwise>
 														<div>
-															<textarea  id="contents"  name="contents" class="form-control mb-3"  cols="30" rows="5" placeholder="줄거리"  onfocus= "this.blur();"  readonly="readonly">
-															${book.contents}
-															</textarea>
+															<textarea  id="contents"  name="contents" class="form-control mb-3"  cols="30" rows="5"  style="resize: none;" placeholder="줄거리"  onfocus= "this.blur();"  readonly="readonly">${book.contents}</textarea>
 														</div>
 													</c:otherwise>
 												</c:choose>

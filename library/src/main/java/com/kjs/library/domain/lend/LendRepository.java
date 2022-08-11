@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.kjs.library.domain.book.Book;
 import com.kjs.library.web.dto.lend.UserLendListInterface;
 
 public interface LendRepository  extends JpaRepository<Lend, Integer>{
@@ -48,5 +49,7 @@ public interface LendRepository  extends JpaRepository<Lend, Integer>{
 			countQuery = "SELECT count(*) FROM Lend WHERE userId =  :userId AND returnDate IS NOT NULL", 
 			nativeQuery = true)
 	Page<UserLendListInterface> findUserLendHistoryByUserId(int userId, Pageable pageable);
+
+	
 }
 
