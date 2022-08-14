@@ -85,7 +85,7 @@ public class ResourceApiController {
 	@RequestMapping("/api/resource/{bookSearchKeyword}/bookSearch")
 	public ResponseEntity<?> bookSearch(@PathVariable String bookSearchKeyword, @PageableDefault(size=2) Pageable pageable) {
 
-		//System.out.println("검색어 ㅣ "+bookSearchKeyword );
+		System.out.println("검색어 ㅣ "+bookSearchKeyword );
 		
 		Page<Book> bookSearchData = bookSelectService.도서검색(bookSearchKeyword, pageable);
 		
@@ -97,13 +97,12 @@ public class ResourceApiController {
 		bookDataBySearchDto.setEndPage(pageMap.get("pageEnd"));
 		
 		if(bookSearchData.getTotalElements() != 0) {
+			//결과 1건 이상
 			return new ResponseEntity<>(new CMRespDto<>(0, "검색 성공(결과 1건 이상)", bookDataBySearchDto), HttpStatus.OK);
 		}else {
+			//결과 0건
 			return new ResponseEntity<>(new CMRespDto<>(1, "검색 성공(결과 0건)", bookDataBySearchDto), HttpStatus.OK);
 		}
-
-		
-		
 		
 	}
 	

@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kjs.library.domain.book.Book;
 import com.kjs.library.service.BookSelectService;
@@ -79,7 +80,44 @@ public class ResourceController {
 		return "resource/bookSearch";
 	}
 		
+	
+	//첫 화면에서 검색 처리
+	@GetMapping("/resource/{bookSearchKeyword}/bookSearch")
+	public String bookSearch(@PathVariable String bookSearchKeyword, @PageableDefault(size=2) Pageable pageable, Model model) {
 
+		System.out.println("검색어 ㅣ "+bookSearchKeyword );
+		
+		Page<Book> bookSearchData = bookSelectService.도서검색(bookSearchKeyword, pageable);
+		
+		Map<String, Integer> pageMap = commonService.시작끝페이지구하기(bookSearchData, 10);
+
+		//BookDataBySearchDto bookDataBySearchDto = new BookDataBySearchDto();
+		//bookDataBySearchDto.setBookDataBySearch(bookSearchData);
+		//bookDataBySearchDto.setStartPage(pageMap.get("pageStart"));
+		//bookDataBySearchDto.setEndPage(pageMap.get("pageEnd"));
+		
+		//검색 결과
+		model.addAttribute("bookSearchData",bookSearchData);
+		//페이징 시작 번호, 끝 번호
+		model.addAttribute("startPage",pageMap.get("pageStart"));
+		model.addAttribute("endPage",pageMap.get("pageEnd"));
+		
+		//검색어
+		model.addAttribute("searchKey",bookSearchKeyword);
+		//인덱스 페이지에서 검색 한 건지에 대한 여부
+		model.addAttribute("byIndexPageSearch",true);
+		
+		if(bookSearchData.getTotalElements() != 0) {
+			//결과 1건 이상
+			model.addAttribute("searchResultZero",false);
+		}else {
+			//결과 0건
+			model.addAttribute("searchResultZero",true);
+		}
+		
+		return "resource/bookSearch";
+		
+	}
 	
 
 

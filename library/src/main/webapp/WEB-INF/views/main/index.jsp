@@ -11,9 +11,8 @@
 				<div class="block">
 					<span class="d-block mb-3 text-white text-capitalize">Prepare for new future</span>
 					<h1 class="animated fadeInUp mb-5">책과 함께하는 즐거움<br>토르두스 국립도서관 </h1>
-					<form action="#" class="sub-form">
-						<input type="text" class="form-control mb-3" placeholder="검색어를 입력하세요"><a href="#" class="btn btn-main btn-small">subscribe</a>
-					</form>
+					<input type="text"  id="searchKeyword" class="form-control mb-3" placeholder="검색어를 입력하세요">
+					<a class="btn btn-main btn-small"  href="javascript:void(0);"  onclick="bookSearch()">검색</a>
 				</div>
 			</div>
 		</div>
@@ -158,4 +157,5 @@
 </section>
 
 </div>
+<script src="/js_custom/main/index.js"></script>
 <%@ include file="../layout/footer.jsp"%>

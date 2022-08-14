@@ -27,7 +27,7 @@ function bookSearch() {
 		}
 		//검색 성공(결과 0건)
 		else{
-			makeSearchResultFalse(bookSearchKeyword);
+			makeSearchResultFalse();
 		}
 	}).fail(error =>{
 		
@@ -52,7 +52,7 @@ function bookSearch() {
  검색 결과가 0건일 때 HTML 표시
  
   */
-function makeSearchResultFalse(searchKeyword){
+function makeSearchResultFalse(){
 	const dat = `<h3> "${searchKey}"에 대한 검색 결과가 없습니다.</h3>`;
 	$("#bookDataSearchResult").html(dat);
 }//end of makeSearchResultFalse()
@@ -69,6 +69,7 @@ function makeSearchResultTrue(bookDataBySearch){
 	변수 선언*/
 	let searchResultHTML = 
 			`<h3>"${searchKey}"에 대한 검색 결과</h3>
+			<input  type="hidden"  id="searchKeyword"  value="${searchKey}"/>
 			<hr>
 			<!--  검색 결과 start  -->`;
 	
@@ -134,7 +135,8 @@ function makeSearchResultTrue(bookDataBySearch){
 	/** 
 	HTML 붙여 넣기*/
 	$("#bookDataSearchResult").html(searchResultHTML);
-	
+	//index 화면에서 검색한 결과를 삭제함
+	$("#bookDataSearchResult_fromIndex").html("");
 }//end of makeSearchResultTrue()
 
 
@@ -190,7 +192,7 @@ function makeSearchResultTrue_Paging(bookDataBySearch){
 	if(bookDataBySearch.last != true){
 		//searchResultHTML_Paging += `	<a class="next page-numbers disabled"  href="?page=${bookDataBySearch.number+1}">다음</a> `;
 		//searchResultHTML_Paging += `	<a id = "nextP" class="next page-numbers disabled"   href="javascript:void(0);"  onclick = "bookSearchPagingProcess(${bookDataBySearch.number+1})">다음</a> `;
-		searchResultHTML_Paging += `	<a id = "nextP" class="next page-numbers disabled"   href="javascript:void(0);"  onclick="bookSearchPagingProcess(${bookDataBySearch.number+1})" >다음</a> `;
+		searchResultHTML_Paging += `	<a class="next page-numbers disabled"   href="javascript:void(0);"  onclick="bookSearchPagingProcess(${bookDataBySearch.number+1})" >다음</a> `;
 
 	}
 	
@@ -209,7 +211,7 @@ function makeSearchResultTrue_Paging(bookDataBySearch){
 	/** 
 	HTML 붙여 넣기*/
 	$("#bookDataSearchResult_Paging").html(searchResultHTML_Paging);
-	
+	$("#bookDataSearchResultPaging_fromIndex").html("");//index 화면에서 검색한 결과를 삭제함
 }// end of makeSearchResultTrue_Paging()
 
 
@@ -220,11 +222,17 @@ function makeSearchResultTrue_Paging(bookDataBySearch){
 function bookSearchPagingProcess(pageIndex) {
 	
 	//alert(pageIndex);
-	/*
-	const bookSearchKeyword = $("#bookSearchKeyword").val(); //검색어
-	console.log("검색어 > "+bookSearchKeyword);
+	if($("#searchKeyword").val() != undefined){
+		searchKey = $("#searchKeyword").val();
+		//
+	}else{
+		searchKey =  $("#bookSearchKeyword").val();
+	}
+	
+	//alert(searchKey);
+	console.log("검색어 > "+searchKey);
 	//console.log(typeof(bookIdNumber));
-	*/
+	
 	
 	$.ajax({
 		type : "get",
@@ -240,6 +248,9 @@ function bookSearchPagingProcess(pageIndex) {
 		if(res.code == 0){
 			makeSearchResultTrue(res.data.bookDataBySearch);
 			makeSearchResultTrue_Paging(res.data.bookDataBySearch);
+			
+			$("#bookDataSearchResult_fromIndex").remove();
+			$("#bookDataSearchResultPaging_fromIndex").remove();
 		}
 	}).fail(error =>{
 		
@@ -256,7 +267,7 @@ function bookSearchPagingProcess(pageIndex) {
 		
 		};
 	})
-}//end of bookSearch()
+}//end of bookSearchPagingProcess()
 
 
 
