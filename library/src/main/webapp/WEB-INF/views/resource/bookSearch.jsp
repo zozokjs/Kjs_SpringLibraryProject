@@ -42,7 +42,6 @@
 											byIndexPageSearch = 인덱스 페이지에서 전달된 결과인지 확인함
 											searchResultZero = 검색 결과가 0이면 true
 											 -->
-											<h1>${searchKey}</h1>
 											<div id ="bookDataSearchResult_fromIndex">
 											<c:choose>
 												

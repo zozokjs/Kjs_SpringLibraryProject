@@ -117,7 +117,7 @@
 
 				<!-- 자료 검색 -->
 			  	<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="/resource/newBook"" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">자료검색</a>
+					<a class="nav-link dropdown-toggle" href="/resource/bookSearch"" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">자료검색</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
 						<!-- 1 depth resource -->
 						<li><a class="dropdown-item" href="/resource/bookSearch">통합검색</a></li>
