@@ -25,6 +25,7 @@ static > css > style.css > .slider
 <!-- css 경로 : static > plugins > bootstrap > css > bootstrap.min.css -->
 
 
+
 *홈페이지 저작권 목록(템플릿 및 이미지)  
 메인 템플릿 - https://themewagon.com/themes/free-bootstrap-4-html-5-business-website-template-megakit/  
 로그인 및 회원가입 페이지 템플릿 - https://technext.github.io/mega_able/  
