@@ -4,27 +4,28 @@
 <%@ include file="../layout/submenu_Guide.jsp"%>
 
 	            
-	            <!-- 우측 메인 -->
-	            <div class="col-lg-8">
-	               <div class="row">
-						<div class="col-lg-12 mb-5">
-						
-							<div class="col-lg-7">
-								<div class="">
-									<h2 class="mt-3 content-title ">
-									회원가입 안내
-									</h2>
-								</div>
-							</div>		
-							<hr>	
+					<div class="two-colls-right"><!-- 우측 메인 시작 -->
+					<div class="two-colls-right-b">
+						<div class="padding">
+							<div class="right-Submenu-2depth">
+								<!-- 1depth Menu -->
+								시설 이용 안내 
+							</div>
 							
-						</div>
-					</div>
-				</div>
-				<!-- 우측 메인 End-->
+							<!-- 우측 본문 시작 -->
+							
+							<!-- 우측 본문 끝 -->
+					
 				
-	    	</div>
-	    </div>
-	</section>
-</div>
+						</div><!-- end of class padding -->
+						<div class="clear" ></div>
+					</div>
+				</div><!-- 우측 메인 끝 -->
+				<div class="clear"></div>
+				
+			</div><!-- end of class two-colls(submenu_guide) -->
+			<div class="clear"></div><!-- 필수 -->
+		</div>
+	</div>
+</div><!-- /main-cont -->
 <%@ include file="../layout/footer.jsp"%>

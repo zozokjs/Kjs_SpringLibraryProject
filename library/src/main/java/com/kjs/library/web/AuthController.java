@@ -60,21 +60,21 @@ public class AuthController {
 		
 		User user = signupDto.toEntity();
 		authService.회원가입(user);
-		return "auth/signin";
+		
+		//가입 환영 페이지로 이동
+		return "auth/signupSuccess";
 	}
 	
-	// return "redirect:/" + "settings/profile";
-	//인증 처리?
+	
 	/*
-	@GetMapping("/auth/isEnableTrue")
-	public String isAuth(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+	//회원가입 성공 페이지
+	@GetMapping("/auth/signupSuccess")
+	public String signupSuccess() {
 		
-		log.info("--------------------------");
-		
-		authService.isAuthSystem(principalDetails);
-		
-		return "main/index";
-	}*/
+		return "auth/signupSuccess";
+	}
+	
+	*/
 	
 	
 

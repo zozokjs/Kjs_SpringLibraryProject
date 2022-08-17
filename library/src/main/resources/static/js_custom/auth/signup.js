@@ -6,10 +6,10 @@ signup.js
 var idDuplicateStatus = false;
 
 //회원가입 시 아이디 중복검사 실시간
-function findByUsernameR() {
+function findByUsernameRealtime() {
 	const username = $('#username').val();
 
-	//console.log("길이 "+username.length)
+	console.log("길이 "+username.length)
 	//username의 길이가 0이 아니면서 3보다 클 때 중복 검사함
 	if (!(username.length === 0) && (username.length > 3)) {
 		
@@ -19,16 +19,16 @@ function findByUsernameR() {
 			dataType: "json"
 
 		}).done(res => {
-			//console.log("응답 성공 " + res.data);
-			//console.log("응답 성공 " + res.code);
+			console.log("응답 성공 " + res.data);
+			console.log("응답 성공 " + res.code);
 
 			if (res.code == 1) {
 				//아이디 중복 안 됨 > 사용 가능
-				$('#div_username').prepend('<span class="form-bar">사용 가능한 아이디입니다.</span>');
+				$('#div_usernameResult').html('<span style="margin-left:20px; color:blue; font-weight:bold;">사용 가능한 아이디입니다.</span>');
 				idDuplicateStatus = true;
 			} else if (res.code == 2) {
 				//아이디 중복 됨 > 사용 불가
-				$('#div_username').prepend('<span class="form-bar">사용 불가능한 아이디입니다.</span>');
+				$('#div_usernameResult').html('<span style="margin-left:20px; color:red; font-weight:bold;">사용 불가능한 아이디입니다.</span>');
 				idDuplicateStatus = false;
 				
 			}
@@ -39,8 +39,40 @@ function findByUsernameR() {
 			
 		}) //end of ajax
 
+	}else if(username.length < 4){
+		$('#div_usernameResult').html('<span style="margin-left:20px; color:red; font-weight:bold;">아이디는 4자 이상 입력해주세요</span>');
 	}//end of if
 
+}
+
+
+//비번 길이 체크
+function checkPasswordLength(){
+	const password = $('#password').val();
+	if (password.length < 4) {
+		console.log("조건 통과");
+		$('#div_passwordLengthResult').html('<span style="margin-left:20px; color:red; font-weight:bold;">비번은 4자 이상 입력해주세요</span>');
+	}else{
+		$('#div_passwordLengthResult').html('');
+	}
+}
+	
+	
+//비번과 비번확인 일치여부 실시간
+function checkPasswordMatch(){
+	
+	const password = $('#password').val();
+	const confirm_password = $('#confirm-password').val();
+	
+	if (!(confirm_password.length === 0) && (confirm_password.length > 3)) {
+		
+		if( !(password === confirm_password) ) {
+			$('#div_passwordMatchResult').html('<span style="margin-left:20px; color:red; font-weight:bold;">비밀번호 값과 확인 값이 일치하지 않습니다.</span>');
+		}else{
+			$('#div_passwordMatchResult').html('');
+		}
+	}
+	
 }
 
 /** */

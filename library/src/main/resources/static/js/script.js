@@ -28,7 +28,7 @@ $(document).ready(function(){
 		header_logo.css('margin-top','10px')
 		header_right.css('margin-top','21px');
 		//header_logo.find('img').attr('src','img/logo-a.png');
-		header_logo.find('img').attr('src','img_custom/로고_완성2(509x74).png');
+		header_logo.find('img').attr('src','/img_custom/로고_완성2(509x74).png');
 
 	}
 	var $headerUp = function() {
@@ -37,7 +37,7 @@ $(document).ready(function(){
 		header_b.css('height','89px');
 		header_logo.css('margin-top','26px');
 		header_right.css('margin-top','37px');
-		header_logo.find('img').attr('src','img_custom/로고_완성2(509x74).png');
+		header_logo.find('img').attr('src','/img_custom/로고_완성2(509x74).png');
 	}
 
 	$(window).scroll(function(){

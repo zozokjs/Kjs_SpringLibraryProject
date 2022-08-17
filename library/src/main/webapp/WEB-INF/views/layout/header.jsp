@@ -20,13 +20,14 @@
 	<title>토르두스 국립도서관</title>
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
-	<meta charset="utf-8" /><link rel="icon" href="favicon.png" />
+	<meta charset="utf-8" /><link rel="icon" href="/img_custom/favicon-16x16.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
 	
 	<link rel="stylesheet" href="/css/jquery-ui.css">
 	<link rel="stylesheet" href="/css/idangerous.swiper.css">
 	<link rel="stylesheet" href="/css/owl.carousel.css">
 	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css_custom/style_custom.css" />
 	
 	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Lora:400,400italic' rel='stylesheet' type='text/css'>
@@ -38,9 +39,23 @@
 </head>
 
 <style>
-	.subMenuText ul li ul li a {
-		font-size:16px;
-	}
+.subMenuText ul li ul li a {
+	font-size: 16px;
+}
+
+.autorize-tab-content input[type='password'] {
+	border: 1px solid #ebebeb;
+	background: #fff;
+	width: 381px;
+	border-radius: 3px;
+	font-size: 11px;
+	padding: 10px 8px 10px 8px;
+	text-transform: uppercase;
+	font-family: 'Raleway';
+	font-weight: 600;
+	color: #8a8a8a;
+	margin-bottom: 15px;
+}
 </style>
 
 <body>
@@ -51,22 +66,29 @@
 	<div class="autorize-popup">
 		<div class="autorize-tabs">
 			<a href="#" class="autorize-tab-a current">로그인</a>
-			<a href="#" class="autorize-tab-b">회원가입</a>
+			<!-- <a href="" class="autorize-tab-b"></a> -->
 			<a href="#" class="autorize-close"></a>
 			<div class="clear"></div>
 		</div>
+		
+		
 		<section class="autorize-tab-content">
-			<div class="autorize-padding">
-				<h6 class="autorize-lbl">Welocome! Login in to Your Accont</h6>
-				<input type="text" value="" placeholder="Name">
-				<input type="text" value="" placeholder="Password">
-				<footer class="autorize-bottom">
-					<button class="authorize-btn">Login</button>
-					<a href="#" class="authorize-forget-pass">Forgot your password?</a>
-					<div class="clear"></div>
-				</footer>
-			</div>
+			<form action ="/auth/signin" method="POST" >
+				<div class="autorize-padding">
+					<h6 class="autorize-lbl">로그인을 하시면 더 많은 서비스를 이용하실 수 있어요!</h6>
+					<input type="text"  name="username"   value="" class="form-control"  placeholder="아이디" required="">
+					<input type="password"  name="password"   value=""  class="form-control" placeholder="비밀번호" required="">
+					<footer class="autorize-bottom">
+						<button class="authorize-btn" >로그인</button>
+						<a href="/" class="authorize-forget-pass">비밀번호찾기</a> 
+						<a href="/auth/signup" class="authorize-forget-pass">회원가입</a>
+						<div class="clear"></div>
+					</footer>
+				</div>
+			</form>
 		</section>
+		
+
 		<section class="autorize-tab-content">
 			<div class="autorize-padding">
 				<h6 class="autorize-lbl">Register for Your Account</h6>
@@ -88,23 +110,23 @@
 	<!-- 최상단 메뉴 시작--------------------------------------------------->
 	<div class="header-a">
 		<div class="wrapper-padding">			
-<!-- 			<div class="header-phone">
-			<span>토르두스 국립도서관</span>
-			</div> -->
 			<div class="header-account">
 				
 				<a href="/" ><span>홈으로</span></a>		
 				<!-- 로그인 한 상태라면 사용자 이름 표시되어야 함 -->		
 				<c:choose>
 					<c:when test ="${principal.user eq null}">
-						<a href="/auth/signin" ><span>로그인</span></a>	
+						<a href="/auth/signin" ><span>로그인</span></a>
+						<a href="/auth/signup" ><span>회원가입</span></a>		
 					</c:when>
 					<c:otherwise>
 						<a href="" ><span>	${principal.user.username}님</span></a>	
-						<a href="/logout" ><span>로그아웃</span></a>		
+						<a href="/logout" ><span>로그아웃</span></a>	
+						<a href="/user/myLibrary" ><span>내서재</span></a>		
 					</c:otherwise>
 				</c:choose>
-				<a href="/user/myLibrary" ><span>내서재</span></a>	
+				
+				
 			</div>
 			
 			<div class="clear"></div>
@@ -130,7 +152,7 @@
 								<li><a href="/guide/organizationChart">조직도 및 담당 업무</a></li>
 							</ul>
 						</li>		
-						<li><a class="has-child"  href="#">공사중</a>
+						<li><a class="has-child"  href="/auth/signupSuccess">공사중</a>
 						</li>
 						<li><a class="has-child"  href="/resource/bookSearch">자료검색</a>
 							<ul>	
@@ -173,7 +195,7 @@
 		<div class="wrapper-padding">
 			<div class="header-logo">
 				<a href="/">
-					<img alt=""  style="height:47px; width:250px;" src="img_custom/로고_완성2(509x74).png" />
+					<img alt=""  style="height:47px; width:250px;" src="/img_custom/로고_완성2(509x74).png" />
 					<!-- 로고 관련 static > js > script.js에서 $headerUp과 $headerDown 찾기 -->
 				</a>
 			</div>
@@ -194,7 +216,7 @@
 								<li><a href="/guide/organizationChart">조직도 및 담당 업무</a></li>
 							</ul>
 						</li>		
-						<li><a href="#">공사중</a>
+						<li><a href="/auth/signupSuccess">공사중</a>
 						</li>
 						<li><a href="/resource/bookSearch">자료검색</a>
 							<ul>	
