@@ -60,9 +60,9 @@ public class SaseoApiController {
 		//System.out.println("로그인한 유저 아이디 -> "+loginedId);
 		
 		
-		//수정할 청구기호 id중 하나라도 대출 중이라면 삭제 불가 
-		
+		//수정할 청구기호 id중 하나라도 대출 중이라면 수정 불가
 		boolean 수정가능 = saseoSelectService.청구기호수정가능하다(bookId, bookUpdate_kdcDto);
+		System.out.println("청구기호 수정 가능 여부> "+수정가능);
 		
 		if(수정가능 == false) {
 			//수정 안 됨

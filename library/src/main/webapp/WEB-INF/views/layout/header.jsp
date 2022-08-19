@@ -36,6 +36,8 @@
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 	
+	<!-- 부트스크랩 아이콘을 가져오기 위한 CDN -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 </head>
 
 <style>
@@ -61,12 +63,11 @@
 <body>
 <!-- // authorize // -->
 
-	<!-- 팝업 메뉴 시작------------------------------------------------- -->
+	<!-- 팝업 시작------------------------------------------------- -->
 	<div class="overlay"></div>
-	<div class="autorize-popup">
+	<div class="autorize-popup"><!--popup-content  -->
 		<div class="autorize-tabs">
 			<a href="#" class="autorize-tab-a current">로그인</a>
-			<!-- <a href="" class="autorize-tab-b"></a> -->
 			<a href="#" class="autorize-close"></a>
 			<div class="clear"></div>
 		</div>
@@ -76,8 +77,8 @@
 			<form action ="/auth/signin" method="POST" >
 				<div class="autorize-padding">
 					<h6 class="autorize-lbl">로그인을 하시면 더 많은 서비스를 이용하실 수 있어요!</h6>
-					<input type="text"  name="username"   value="" class="form-control"  placeholder="아이디" required="">
-					<input type="password"  name="password"   value=""  class="form-control" placeholder="비밀번호" required="">
+					<input type="text"  name="username"   value="zozo" class="form-control"  placeholder="아이디" required="">
+					<input type="password"  name="password"   value="1234"  class="form-control" placeholder="비밀번호" required="">
 					<footer class="autorize-bottom">
 						<button class="authorize-btn" >로그인</button>
 						<a href="/" class="authorize-forget-pass">비밀번호찾기</a> 
@@ -89,19 +90,9 @@
 		</section>
 		
 
-		<section class="autorize-tab-content">
-			<div class="autorize-padding">
-				<h6 class="autorize-lbl">Register for Your Account</h6>
-				<input type="text" value="" placeholder="Name">
-				<input type="text" value="" placeholder="Password">
-				<footer class="autorize-bottom">
-					<button class="authorize-btn">Registration</button>
-					<div class="clear"></div>
-				</footer>
-			</div>
-		</section>
+
 	</div>
-	<!-- 팝업 메뉴 끝------------------------------------------------- -->
+	<!-- 팝업 끝------------------------------------------------- -->
 <!-- \\ authorize \\-->
 
 
@@ -116,11 +107,12 @@
 				<!-- 로그인 한 상태라면 사용자 이름 표시되어야 함 -->		
 				<c:choose>
 					<c:when test ="${principal.user eq null}">
-						<a href="/auth/signin" ><span>로그인</span></a>
+						<!-- 로그인 버튼에 팝업 이벤트 달려 있음(header-account-Login-button로 검색)-->
+						<a class="header-account-Login-button"  href="/auth/signin" ><span>로그인</span></a>
 						<a href="/auth/signup" ><span>회원가입</span></a>		
 					</c:when>
 					<c:otherwise>
-						<a href="" ><span>	${principal.user.username}님</span></a>	
+						<a href="/" > <span>${principal.user.username}님</span></a>	
 						<a href="/logout" ><span>로그아웃</span></a>	
 						<a href="/user/myLibrary" ><span>내서재</span></a>		
 					</c:otherwise>
@@ -216,7 +208,7 @@
 								<li><a href="/guide/organizationChart">조직도 및 담당 업무</a></li>
 							</ul>
 						</li>		
-						<li><a href="/auth/signupSuccess">공사중</a>
+						<li><a href="/saseo/4/bookInfor">공사중</a>
 						</li>
 						<li><a href="/resource/bookSearch">자료검색</a>
 							<ul>	

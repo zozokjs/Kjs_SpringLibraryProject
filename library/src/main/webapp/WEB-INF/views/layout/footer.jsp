@@ -98,7 +98,7 @@
 <script src="/js/slideInit.js"></script>
 <!-- 	<script type="text/javascript" src="/js/twitterfeed.js"></script> -->
 
-
+<script src="/js_custom/script_custom.js"></script>
 
 
 <!-- \\ scripts \\ -->

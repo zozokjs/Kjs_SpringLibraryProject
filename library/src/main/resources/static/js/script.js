@@ -160,7 +160,7 @@ $(document).ready(function(){
 		return false;
 	});
 
-	$('.header-account a').on('click',function(){
+	$('.header-account .header-account-Login-button').on('click',function(){
 		$('.overlay').fadeIn(function(){
 			$('.autorize-popup').animate({top: '50%'}, 300).find('input:text').eq('0').focus();
 		});

@@ -40,11 +40,28 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
 			.anyRequest().permitAll() //그 외의 요청은 허용
 			.and()
 			.formLogin()
-				.loginPage("/auth/signin") // //antMatcher()에 적힌 주소로 접근한다면 이 주소로 향해라  GET요청임
+				.loginPage("/auth/signinOtherPage") // //antMatcher()에 적힌 주소로 접근한다면 이 주소로 향해라  GET요청임
 				.loginProcessingUrl("/auth/signin") //이 주소로 POST 방식 요청하면 시큐리티가 로그인을 낚아채서 진행해줌.
 				.defaultSuccessUrl("/")  //loginPage()에 적힌 주소에서 인증 되었다면 그 다음 이 주소로 향해라.
 			.successHandler(successHandler())
-			.failureHandler(failureHandler());
+			.failureHandler(failureHandler())
+			.and()
+			.logout()
+			.logoutSuccessUrl("/");
+			
+		
+		/*
+		 * @Override
+			protected void configure(HttpSecurity http) throws Exception {
+    		protected void configure(HttpSecurity http) throws Exception {
+    			http.logout() // 로그아웃 처리
+		        .logoutUrl("/logout") // 로그아웃 처리 URL
+		        .logoutSuccessUrl("/login") // 로그아웃 성공 후 이동 URL
+		        .deleteCookies(" JESSIONID", " remember-me ") // 로그아웃 후 쿠키 삭제
+		        .addLogoutHandler(logoutHandler()) // 로그아웃 후 핸들러
+		        .logoutSuccessHandler(logoutSuccessHandler()); // 로그아웃 성공 후 핸들러
+}*/	
+		
 	}
 	
 	@Bean

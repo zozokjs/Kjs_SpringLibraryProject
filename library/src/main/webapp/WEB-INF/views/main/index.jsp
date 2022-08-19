@@ -65,18 +65,21 @@
 			</div>
 			<div class="background_img_div_test_border" style="max-width: 1100px; flex-grow: 3;"><!-- items2 -->
 				<div class="page-search-content" style="max-width: 1100px; background-color: rgba(255, 255, 255, 0.5);">
+					
 					<div class="page-search-p" style="display: flex; flex-direction: row; justify-content: center;"><!-- container -->
 						<div class="search-large-i" style="flex-grow: 9;"><!-- items -->
 							<div class="srch-tab-line no-margin-bottom">
 								<div class="input-a">
-									<input type="text" style="font-size: 30px;" value="" placeholder="자료검색">
+									<input type="text"  id="searchKeyword" style="font-size: 30px;" value="" placeholder="자료검색">
 								</div>
 							</div>
 						</div>
 						<div style="flex-grow: 0.3;"><!-- items -->
-							<a href="#" class="srch-btn" style="height: 45px; font-size: 30px;">검색</a>
+							<a href="javascript:void(0);"  onclick="bookSearch()" class="srch-btn" style="height: 45px; font-size: 30px;">검색</a>
+							
 						</div>
 					</div>
+					
 				</div>
 			</div>
 			<!-- items2 -->
@@ -104,19 +107,6 @@
 				<c:otherwise>
 					<!--사진 반복 시작 -->
 					<c:forEach var="booked" items="${book}">
-
-<%-- 						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="team-item-wrap mb-5 mb-lg-0">
-								<div class="team-item position-relative">
-									<img src="/upload/${booked.titleImageUrl}" alt="" class="img-fluid w-100">
-								</div>
-								<div class="team-item-content">
-									<h3 class="mt-3 mb-5 lh-36">
-										<a href="/" class="text-white">${booked.title}</a>
-									</h3>
-								</div>
-							</div>
-						</div> --%>
 
 						<div class="fly-in offer-slider-i">
 							<a class="offer-slider-img" href="#"> 

@@ -33,6 +33,13 @@ public class AuthController {
 		return "auth/signin";
 	}
 	
+	//로그인 별도 페이지로 이동
+	@GetMapping("/auth/signinOtherPage")
+	public String signinOtherPage() {
+		
+		return "auth/signinOtherPage";
+	}
+	
 	//회원가입 화면으로 이동
 	@GetMapping("/auth/signup")
 	public String signupPage() {
@@ -66,7 +73,7 @@ public class AuthController {
 	}
 	
 	
-	/*
+	
 	//회원가입 성공 페이지
 	@GetMapping("/auth/signupSuccess")
 	public String signupSuccess() {
@@ -74,7 +81,8 @@ public class AuthController {
 		return "auth/signupSuccess";
 	}
 	
-	*/
+	
+
 	
 	
 

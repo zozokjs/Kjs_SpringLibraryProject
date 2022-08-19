@@ -9,6 +9,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,14 +38,16 @@ public class ResourceApiController {
 	@PostMapping("/api/resource/{bookId}/bookLending")
 	public ResponseEntity<?> bookLending(@PathVariable int bookId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		
+		int loginId = 0;
 		
 		boolean lendAbleByBookId = false;   //대출여부
 		boolean lendAbleBySamebookVolume = false;  //대여 가능한 책(samebook) 존재여부
 		
-		int loginId = principalDetails.getUser().getId();
-		lendAbleByBookId = bookSelectService.대출했다(bookId, loginId);
-		lendAbleBySamebookVolume = bookSelectService.잔여책존재한다(bookId);
-		
+		if(principalDetails != null) {
+			loginId = principalDetails.getUser().getId();
+			lendAbleByBookId = bookSelectService.대출했다(bookId, loginId);
+			lendAbleBySamebookVolume = bookSelectService.잔여책존재한다(bookId);
+		}
 		//System.out.println("로그인한 유저 이름:  "+principalDetails.getUser().getUsername());
 		//System.out.println("책 아이디:  "+bookId);
 		//System.out.println("대출했다 : "+lendAbleByBookId);
@@ -56,7 +59,6 @@ public class ResourceApiController {
 		 * 2. 그 아이디로 책을 빌리진 않았니?
 		 * 3. 빌릴 책이 남아 있니? 
 		 **/
-		
 		//로그인 검사
 		if(loginId == 0) {			
 			//	System.out.println("-로그인 안 됨-");
@@ -79,13 +81,16 @@ public class ResourceApiController {
 		}
 	}
 	
-	//@RequestMapping
+	/**
+	 * bookSearch.js에서 
+	 * POST[ bookSearch() ], GET[ bookSearchPagingProcess() ] 요청됨
+	 * 
+	 * */
 	//도서 검색 처리
-	//@PostMapping("/api/resource/{bookSearchKeyword}/bookSearch")
 	@RequestMapping("/api/resource/{bookSearchKeyword}/bookSearch")
 	public ResponseEntity<?> bookSearch(@PathVariable String bookSearchKeyword, @PageableDefault(size=2) Pageable pageable) {
 
-		System.out.println("검색어 ㅣ "+bookSearchKeyword );
+		//System.out.println("검색어 ㅣ "+bookSearchKeyword );
 		
 		Page<Book> bookSearchData = bookSelectService.도서검색(bookSearchKeyword, pageable);
 		
@@ -95,6 +100,10 @@ public class ResourceApiController {
 		bookDataBySearchDto.setBookDataBySearch(bookSearchData);
 		bookDataBySearchDto.setStartPage(pageMap.get("pageStart"));
 		bookDataBySearchDto.setEndPage(pageMap.get("pageEnd"));
+		
+		//System.out.println("pageStart = "+pageMap.get("pageStart"));
+		//System.out.println("pageEnd = "+pageMap.get("pageEnd"));
+		//System.out.println("api  Controller를 읽었습니다--------------------------------------------");
 		
 		if(bookSearchData.getTotalElements() != 0) {
 			//결과 1건 이상

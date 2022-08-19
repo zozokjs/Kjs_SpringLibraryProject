@@ -8,53 +8,8 @@
 		text-align: center;
 		width: 200px;
 	}
-	.select-custom {
-	  width: 50%;
-	  padding: .5em .5em;
-	  font-family: inherit;
-	  background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
-	  -webkit-appearance: none;
-	  -moz-appearance: none;
-	  appearance: none;
-	  border: 1px solid #999;
-	  border-radius: 0px;
-	  font-size:15px;
-	}
 	
-	.inputBox-custom{
-		margin-bottom:0px;
-	}
 	
-	.inputBox-custom div{
-		border: 1px solid black;
-	}
-	
-	.inputBox-custom  .input{
-		padding: 0px;
-	}
-	
-	.inputBox-custom  .input input[type=text] {
-		border : 1px solid black;
-		font-size:20px;
-	}
-	
-	.inputBox-custom  .input input[type=password] {
-		border : 1px solid black;
-		font-size:20px;
-		width:100%;
-	}
-	
-	.inputBox-custom-require-label{
-		color:red; 
-		font-size:25px;
-	}
-	
-	.inputBox-custom-important-label{
-		color:red;  
-		font-size:15px; 
-		font-weight: bold; 
-		margin-left:84%
-	}
 
 </style>
 				
@@ -142,7 +97,7 @@
 											<th>국가</th>
 											<td colspan="3">
 												<div class="card-expiration"  style="width:100%;">
-													<select name="country" class="select-custom" >
+													<select name="country" class="selectBox-custom" >
 														<option value="1">토르두스</option>
 														<option value="2">파이시아</option>
 														<option value="3">가넴</option>
@@ -157,7 +112,7 @@
 											<th>종족</th>
 											<td colspan="3">
 												<div class="card-expiration"  style="width:100%;">
-													<select name="species" class="select-custom">
+													<select name="species" class="selectBox-custom">
 														<option value="1">Human</option>
 														<option value="2">Elf</option>
 														<option value="3">Dwarf</option>
@@ -173,7 +128,7 @@
 											<th>직업</th>
 											<td colspan="3">
 												<div class="card-expiration"  style="width:100%;">
-													<select name="job" class="select-custom">
+													<select name="job" class="selectBox-custom">
 														<option value="1">학생</option>
 														<option value="2">공무원</option>
 														<option value="3">회사원</option>

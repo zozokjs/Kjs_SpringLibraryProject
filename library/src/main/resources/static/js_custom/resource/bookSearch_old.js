@@ -1,18 +1,3 @@
-/** 검색 로직
-
-
-(1)index 페이지에서 검색 시
-ResourceController.java ->  bookSearch.jsp
-
-(2)bookSearch.jsp에서 검색 시 
-bookSearch.js의 bookSearch() POST요청 -> ResourceAPIController.java
-
-(3)bookSearch.jsp에서 페이징 할 때
- bookSearch.js의 bookSearchPagingProcess() GET요청-> ResourceAPIController.java
- 
- */
-
-
 //검색어
 let searchKey;
 
@@ -83,9 +68,7 @@ function makeSearchResultTrue(bookDataBySearch){
 	/** 
 	변수 선언*/
 	let searchResultHTML = 
-			`
-			<!-- 현재 페이지에서 검색한 검색 결과가 표시됩니다.-->
-			<h1>"${searchKey}"에 대한 검색 결과</h1>
+			`<h3>"${searchKey}"에 대한 검색 결과</h3>
 			<input  type="hidden"  id="searchKeyword"  value="${searchKey}"/>
 			<hr>
 			<!--  검색 결과 start  -->`;
@@ -94,78 +77,53 @@ function makeSearchResultTrue(bookDataBySearch){
 	
 	/** 
 	검색 결과 반복 표시*/
-	bookDataBySearch.content.forEach(function(books){
-		
+	bookDataBySearch.content.forEach(function(book){
+	
 		searchResultHTML += 
-		`
-					<div class="cat-list-item fly-in"><!-- 반복부 시작 -->
-						<div class="cat-list-item-l">
-							<a href="#">
-								<img alt="" src="/upload/${books.titleImageUrl}"  ><!-- 타이틀 이미지 -->
-							</a>
-						</div>
-						<div class="cat-list-item-r"><!-- 여기부터 콘텐츠 영역 -->
-							<div class="cat-list-item-rb">
-								<div class="cat-list-item-p">
-									<div class="cat-list-content">
-										<div class="cat-list-content-a">
-											<div class="cat-list-content-l"  style="margin-right:0px; ">
-												<div class="cat-list-content-lb">
-													<div class="cat-list-content-lpadding"><!--  내용 시작 -->
-														<div class="tables" >
-														
-															<table class="table-a light">
-																<tr>
-																	<td>제목</td>
-																	<td colspan="3">
-																		<a href="/resource/${books.id}/bookInfor" >${books.title}</a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>저자</td>
-																	<td colspan="3">${books.writer}</td>
-																</tr>
-																<tr>
-																	<td>발행처</td>
-																	<td>${books.publish}</td>
-																	<td>발행일</td>
-																	<td>${books.publishDate}</td>
-																</tr>
-																<tr>
-																	<td>매체구분</td>
-																	<td>${books.bindType}</td>
-																	<td>페이지</td>
-																	<td>${books.page}</td>
-																</tr>
-																<tr>
-																	<td>ISBN</td>
-																	<td>${books.isbn}</td>
-																	<td>ISBN SET</td>
-																	<td>${books.isbnSet}</td>
-																</tr>
-																<tr>
-																	<td>대여가능수</td>
-																	<td colspan="3">${books.remainAmount} / ${books.totalAmount}</td>
-																</tr>
-															</table>
-															
-														</div>	
-													</div><!-- 내용 끝 -->
-													
-												</div>
-												<br class="clear" />
-											</div>
-										</div>
-										
-										<div class="clear"></div>
-									</div>
-								</div>
-							</div>
-							<br class="clear" />
-						</div>
-						<div class="clear"></div>
-					</div><!-- 반복부 끝 -->
-		`
+		`	
+				    <div class="col-lg-12 col-md-8 mb-1"  style="display:flex;">
+			            <div style="display:flex; flex-shrink:30;">
+			                <img src="/upload/${book.titleImageUrl}" alt="" class="img-fluid w-100">
+			            </div>
+			            <div class="blog-item-content bg-white p-4" style="display:flex; flex-shrink:1; flex-direction: column;">
+			                <h3 class="mt-3 mb-3"><a href="/resource/${book.id}/bookInfor">${book.title}</a></h3>							
+			                <!-- 표 Start --->
+			                <table class="tg">
+			                    <thead>
+			                        <tr>
+			                            <th class="tg-0pky">저자</th>
+			                            <th class="tg-0pky">${book.writer}</th>
+			                            <th class="tg-0lax">발행처</th>
+			                            <th class="tg-0lax">${book.publish}</th>
+			                        </tr>
+			                    </thead>
+			                    <tbody>
+			                        <tr>
+			                            <td class="tg-0pky">ISBN</td>
+			                            <td class="tg-0pky">${book.isbn}</td>
+			                            <td class="tg-0lax">ISBNSET</td>
+			                            <td class="tg-0lax">${book.isbnSet}</td>
+			                        </tr>
+			                        <tr>
+			                            <td class="tg-0pky">매체구분</td>
+			                            <td class="tg-0pky">${book.bindType}</td>
+			                            <td class="tg-0lax">페이지</td>
+			                            <td class="tg-0lax">${book.page}</td>
+			                        </tr>
+			                        <tr>
+			                            <td class="tg-0pky" >발행일</td>
+			                            <td class="tg-0pky">${book. publishDate}</td>
+			                        </tr>
+			                        <tr>
+			                            <td class="tg-0pky" >대여가능수</td>
+			                            <td class="tg-0pky">${book.remainAmount} / ${book.totalAmount}</td>
+			                        </tr>
+			                    </tbody>
+			                </table>
+			                <!-- 표 End -->
+			            </div>
+			    	</div>
+				  			`
 	});
 	
 	
@@ -200,14 +158,17 @@ function makeSearchResultTrue_Paging(bookDataBySearch){
 	페이지 버튼 시작*/		
 	let searchResultHTML_Paging = 
 	`
-								<!-- 현재 페이지에서 검색한 검색 결과가 표시됩니다.-->
-				                <div class="pagination pagination-custom"  style="display:flex; justify-content:center;"><!-- 페이지 버튼 시작 -->`;
-						            	
+								<!-- 페이지 버튼 시작 -->
+					                <div class="row justify-content-center mt-5">
+						            	<div class="col-lg-12 text-center">
+							            	<nav class="navigation pagination d-inline-block">
+								                <div class="nav-links">`;
 								                
 	/** 
 	이전 버튼 표시*/		                
 	if(bookDataBySearch.first != true){
-		searchResultHTML_Paging += `	<a href="javascript:void(0);"  onclick="bookSearchPagingProcess(${bookDataBySearch.number-1})" >이전</a> `;
+		//searchResultHTML_Paging += `	<a class="prev page-numbers" href="?page=${bookDataBySearch.number-1}">이전</a> `;
+		searchResultHTML_Paging += `	<a class="prev page-numbers"  href="javascript:void(0);"  onclick="bookSearchPagingProcess(${bookDataBySearch.number-1})" >이전</a> `;
 	}
 
 													
@@ -217,9 +178,10 @@ function makeSearchResultTrue_Paging(bookDataBySearch){
 		
 			//현재 페이지일 때
 			if(bookDataBySearch.number+1  ==  index){
-				searchResultHTML_Paging += `<a class="active" >${index}</a>`;
+				searchResultHTML_Paging += `<span aria-current="page" class="page-numbers current">${index}</span>`;
 			}else{
-				searchResultHTML_Paging += `	<a  href="javascript:void(0);" onclick="bookSearchPagingProcess(${index-1})"   >${index}</a> `;
+				//searchResultHTML_Paging += `	<a class="page-numbers current" href="?page=${index-1}">${index}</a> `;
+				searchResultHTML_Paging += `	<a class="page-numbers current" href="javascript:void(0);" onclick="bookSearchPagingProcess(${index-1})"   >${index}</a> `;
 				
 			}
 	}
@@ -228,7 +190,9 @@ function makeSearchResultTrue_Paging(bookDataBySearch){
 	/** 
 	다음 버튼 표시*/		
 	if(bookDataBySearch.last != true){
-		searchResultHTML_Paging += `	<a  href="javascript:void(0);"  onclick="bookSearchPagingProcess(${bookDataBySearch.number+1})" >다음</a> `;
+		//searchResultHTML_Paging += `	<a class="next page-numbers disabled"  href="?page=${bookDataBySearch.number+1}">다음</a> `;
+		//searchResultHTML_Paging += `	<a id = "nextP" class="next page-numbers disabled"   href="javascript:void(0);"  onclick = "bookSearchPagingProcess(${bookDataBySearch.number+1})">다음</a> `;
+		searchResultHTML_Paging += `	<a class="next page-numbers disabled"   href="javascript:void(0);"  onclick="bookSearchPagingProcess(${bookDataBySearch.number+1})" >다음</a> `;
 
 	}
 	
@@ -237,9 +201,11 @@ function makeSearchResultTrue_Paging(bookDataBySearch){
 	페이지 버튼 끝*/			
 	searchResultHTML_Paging +=
 	`																			
-								                
-					                </div><!-- 페이지 버튼 끝 -->`;
-	      							
+								                </div>
+							                </nav>
+			                			</div>
+					                </div>
+	      							<!-- 페이지 버튼 끝 -->`;
 	      							
 	      							
 	/** 
@@ -252,7 +218,7 @@ function makeSearchResultTrue_Paging(bookDataBySearch){
 
 
  /*
- 도서 검색  -> 페이징 처리 */
+ 도서 검색 처리 페이지하는 경우 */
 function bookSearchPagingProcess(pageIndex) {
 	
 	//alert(pageIndex);
@@ -264,10 +230,9 @@ function bookSearchPagingProcess(pageIndex) {
 	}
 	
 	//alert(searchKey);
-	console.log("bookSearchPagingProcess  READ");
 	console.log("검색어 > "+searchKey);
 	//console.log(typeof(bookIdNumber));
-	console.log("페이지 > "+pageIndex);
+	
 	
 	$.ajax({
 		type : "get",

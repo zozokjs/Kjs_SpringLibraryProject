@@ -3,116 +3,103 @@
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_Saseo.jsp"%>
 
-	        
-	            <!-- 우측 메인 -->
-	            <div class="col-lg-8">
-	               <div class="row">
-						<div class="col-lg-12 mb-5">
-							<div class="col-lg-7">
-								<div class="">
-									<h2 class="mt-3 content-title ">
-									도서관리
-									</h2>
-								</div>
-							</div>		
-							<hr>	
+<style>
+	
+	.offer-slider-link a{
+		font-size:20px;
+	}
+	
+	.offer-slider-location {
+		font-size:14px;
+	}
+
+</style>
+	        	<div class="two-colls-right"><!-- 우측 메인 시작 -->
+					<div class="two-colls-right-b">
+						<div class="padding">
+							<div class="right-Submenu-2depth">
+								도서관리
+							</div>
 							
-							<button type="button" 
-	                                    onclick="location.href='/saseo/bookRegistration'"
-	                                    class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">새책등록</button>
-							               	
-							<!-- 본문 Start -->
-							<div class="row justify-content-center">
-				               	
-								<c:forEach var = "booked" items ="${book.content}">
-									<div class="col-lg-4 col-md-6 col-sm-6">
-										<div class="team-item-wrap mb-5 mb-lg-0">
-											<div class="portflio-item position-relative">
-											
-												<!-- 상세 페이지로 이동 -->
-												<a href ="/saseo/${booked.id}/bookInfor" class="popup-gallery">
-												
-													<!--  책 이미지 -->
-													<img src="/upload/${booked.titleImageUrl}" alt="" class="img-fluid w-100">
-													<i class="ti-plus overlay-item"></i>
-													<div class="portfolio-item-content">
-														<h3 class="mb-0 text-white">상세정보</h3>
-													</div>
-												</a>
+							<div class="catalog-row">          
+							 
+								<c:forEach var = "booked" items ="${book.content}"><!-- 반복부 시작 --> 
+						            <div class="offer-slider-i catalog-i fly-in ">
+						            	<div class="imgTagContainer">
+											<a href="/saseo/${booked.id}/bookInfor" class="offer-slider-img">
+												<img alt=""  src="/upload/${booked.titleImageUrl}"><!-- 626 x 464 -->
+												<span class="offer-slider-overlay">
+													<span class="offer-slider-btn">view details</span>
+													<span></span>
+												</span>
+											</a>
+										</div>
+										<div class="offer-slider-txt">
+											<div class="offer-slider-link">
+												<a href="#">${booked.title}</a><!-- Title -->
 											</div>
-											<div class="team-item-content">
-												<h4 class="mt-3 mb-5 lh-36" style="text-align: center;">
-													<!-- 책 제목 -->
-													<a href="#" class="text-black">${booked.title}</a>
-												</h4>
+											<div class="offer-slider-l">
+												<div class="offer-slider-location">${booked.writer} </div><!-- 저자 -->
 											</div>
+											<div class="clear"></div>
 										</div>
 									</div>
-								</c:forEach>
+								</c:forEach><!-- 반복부 끝 -->
 								
 							</div>
-							<!-- 본분 End -->
+							
+							<div class="clear"></div>
+							<div style="text-align: -webkit-center;  margin-bottom:30px;">
+								<button onclick="location.href='/saseo/bookRegistration'" class="white-btn-custom"  style="height:77px;">새책 등록</button>
+							</div>
 							
 							
-			                <!-- 페이지 버튼 Start -->
-			                <div class="row justify-content-center mt-5">
-				            	<div class="col-lg-12 text-center">
-					            	<nav class="navigation pagination d-inline-block">
-						                <div class="nav-links">
-					                	
-					                		<!-- 이전 버튼 -->
-							                <c:choose>
-												<c:when test="${book.first }">
-													<%-- <a class="prev page-numbers disabled" href="?page=${book.number-1}">이전</a> --%>
-												</c:when>
-												<c:otherwise>
-													<a class="prev page-numbers" href="?page=${book.number-1}">이전</a>
-												</c:otherwise>
-											</c:choose>
-											
-							                <%-- <c:forEach var="index" begin="0" end="${book.totalPages / 10}"> --%> <!--  58 -->
-												
-												
-							                <c:forEach var="index" begin="${startPage}" end="${endPage}">
-						                      	<c:choose>
-													<c:when test="${book.number+1  eq index}" >
-													   <span aria-current="page" class="page-numbers current">${index}</span>
-													</c:when>
-													<c:otherwise>
-														<a class="page-numbers current" href="?page=${index-1}">${index}</a>
-													</c:otherwise>
-												</c:choose>
-							                </c:forEach>
-								          
-								                
-											
-											<!-- 다음 버튼 -->
- 											<c:choose>
-												<c:when test="${book.last }">
-													<%-- <a class="next page-numbers disabled"  href="?page=${book.number+1}">다음</a> --%>
-												</c:when>
-												<c:otherwise>
-													<a class="next page-numbers disabled"  href="?page=${book.number+1}">다음</a>
-												</c:otherwise>
-											</c:choose>
-										
-						                </div>
-					                </nav>
-	                			</div>
-			                </div>
-   							<!-- 페이지 버튼 End -->									
-						</div>
-					</div>
-				</div>
-				<!-- 우측 메인 End-->
+							<div class="pagination pagination-custom"  style="display:flex; justify-content:center;">	<!-- 페이지 버튼 시작 -->
+								<!-- 이전 버튼 -->
+				                <c:choose>
+									<c:when test="${book.first }">
+									</c:when>
+									<c:otherwise>
+										<a class="" href="?page=${book.number-1}">이전</a>
+									</c:otherwise>
+								</c:choose>
+								
+								<!-- 현재 페이지일 때 Active  -->
+				                <c:forEach var="index" begin="${startPage}" end="${endPage}">
+			                      	<c:choose>
+										<c:when test="${book.number+1  eq index}" >
+										   <a class="active" href="#">${index}</a>
+										</c:when>
+										<c:otherwise>
+											<a class="" href="?page=${index-1}">${index}</a>
+										</c:otherwise>
+									</c:choose>
+				                </c:forEach>
+								
+								<!-- 다음 버튼 -->
+								<c:choose>
+									<c:when test="${book.last }">
+									</c:when>
+									<c:otherwise>
+										<a class=""  href="?page=${book.number+1}">다음</a>
+									</c:otherwise>
+								</c:choose>
+									
+								<div class="clear"></div>
+							</div><!-- 페이지 버튼 끝 -->	
+							<!-- 우측 본문 끝 -->
+					
 				
-						
+							</div><!-- end of class [ padding] -->
+						<div class="clear" ></div>
+					</div><!-- end of class [ two-colls-right-b ] -->
+				</div><!-- 우측 메인 끝 --><!-- end of class [ two-colls-right ] -->
+				<div class="clear"></div>
 				
-				
-				
-				
-	    	</div>
-	    </div>
-	</section>
-</div>
+			</div><!-- end of class [ two-colls(submenu_guide) ] -->
+			<div class="clear"></div><!-- 필수 -->
+		</div><!-- end of class [ wrapper-padding ] -->
+	</div><!-- end of class [ body-wrapper ] -->
+</div><!-- /main-cont -->
+
 <%@ include file="../layout/footer.jsp"%>

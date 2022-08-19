@@ -1,140 +1,139 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_Resource.jsp"%>
-	        
-	            <!-- 우측 메인 -->
-	            <div class="col-lg-8">
-	               <div class="row">
-						<div class="col-lg-12 mb-5">
-							<div class="col-lg-7">
-								<div class="">
-									<h2 class="mt-3 content-title ">
-									신착 도서
-									</h2>
-								</div>
-							</div>		
-							<hr>	
-							<!-- 내용 Start-->
-							<!-- 신착 도서 리스트 표시 -->
-							<section class="blog-wrap bg-gray">
-							    <div class="container">
-							        <div class="row">
-							            <div class="col-lg-12">
 
-								               	<!--  본문 시작  -->
-								                <c:forEach var ="books" items="${book.content}">
-												    <!-- 반복부 Start -->
-												    <div class="col-lg-12 col-md-8 mb-1"  style="display:flex;">
-											            <div style="display:flex; flex-shrink:30;">
-											                <img src="/upload/${books.titleImageUrl}" alt="" class="img-fluid w-100">
-											            </div>
-											            <div class="blog-item-content bg-white p-4" style="display:flex; flex-shrink:1; flex-direction: column;">
-											                <h3 class="mt-3 mb-3"><a href="/resource/${books.id}/bookInfor">${books.title}</a></h3>							
-											                <!-- 표 Start --->
-											                <table class="tg">
-											                    <thead>
-											                        <tr>
-											                            <th class="tg-0pky">저자</th>
-											                            <th class="tg-0pky">${books.writer}</th>
-											                            <th class="tg-0lax">발행처</th>
-											                            <th class="tg-0lax">${books.publish}</th>
-											                        </tr>
-											                    </thead>
-											                    <tbody>
-											                        <tr>
-											                            <td class="tg-0pky">ISBN</td>
-											                            <td class="tg-0pky">${books.isbn}</td>
-											                            <td class="tg-0lax">ISBNSET</td>
-											                            <td class="tg-0lax">${books.isbnSet}</td>
-											                        </tr>
-											                        <tr>
-											                            <td class="tg-0pky">매체구분</td>
-											                            <td class="tg-0pky">${books.bindType}</td>
-											                            <td class="tg-0lax">페이지</td>
-											                            <td class="tg-0lax">${books.page}</td>
-											                        </tr>
-											                        <tr>
-											                            <td class="tg-0pky" >발행일</td>
-											                            <td class="tg-0pky">${books. publishDate}</td>
-											                        </tr>
-											                        <tr>
-											                            <td class="tg-0pky" >대여가능수</td>
-											                            <td class="tg-0pky">${books.remainAmount} / ${books.totalAmount}</td>
-											                        </tr>
-											                    </tbody>
-											                </table>
-											                <!-- 표 End -->
-											            </div>
-											    	</div>
-												  <!-- 반복부 End -->
-												
-												</c:forEach>
-												
-							             		<!--  본문 끝 -->
-							                
-		
-										</div>
-									</div>
-									
-									
-									
-					                <!-- 페이지 버튼 시작 -->
-					                <div class="row justify-content-center mt-5">
-						            	<div class="col-lg-12 text-center">
-							            	<nav class="navigation pagination d-inline-block">
-								                <div class="nav-links">
-							                	
-							                		<!-- 이전 버튼 -->
-									                <c:choose>
-														<c:when test="${book.first }">
-															<%-- <a class="prev page-numbers disabled" href="?page=${book.number-1}">이전</a> --%>
-														</c:when>
-														<c:otherwise>
-															<a class="prev page-numbers" href="?page=${book.number-1}">이전</a>
-														</c:otherwise>
-													</c:choose>
-													
-									                <!-- 현재 페이지일 때는  -->
-									                <c:forEach var="index" begin="${startPage}" end="${endPage}">
-								                      	<c:choose>
-															<c:when test="${book.number+1  eq index}" >
-															   <span aria-current="page" class="page-numbers current">${index}</span>
-															</c:when>
-															<c:otherwise>
-																<a class="page-numbers current" href="?page=${index-1}">${index}</a>
-															</c:otherwise>
-														</c:choose>
-									                </c:forEach>
-													
-													<!-- 다음 버튼 -->
-		 											<c:choose>
-														<c:when test="${book.last }">
-															<%-- <a class="next page-numbers disabled"  href="?page=${book.number+1}">다음</a> --%>
-														</c:when>
-														<c:otherwise>
-															<a class="next page-numbers disabled"  href="?page=${book.number+1}">다음</a>
-														</c:otherwise>
-													</c:choose>
-												
-								                </div>
-							                </nav>
-			                			</div>
-					                </div>
-	      							<!-- 페이지 버튼 끝 -->		
-
-								</div><!-- container -->
-							</section>
-							
-							
-							
-						</div>
-					</div>
-				</div>
-				<!-- 우측 메인 End-->
 				
-	    	</div>
-	    </div>
-	</section>
-</div>
+				<div class="two-colls-right"><!-- 우측 메인 시작 -->
+					<div class="two-colls-right-b">
+						<div class="padding">
+							<div class="right-Submenu-2depth">
+								신착 도서
+							</div>
+							
+							<div class="catalog-row list-rows"><!-- 우측 본문 시작 -->
+							
+								<c:forEach var ="books" items="${book.content}">
+								
+									<div class="cat-list-item fly-in"><!-- 반복부 시작 -->
+										<div class="cat-list-item-l">
+											<a href="#">
+												<img alt="" src="/upload/${books.titleImageUrl}"  ><!-- 타이틀 이미지 -->
+											</a>
+										</div>
+										<div class="cat-list-item-r"><!-- 여기부터 콘텐츠 영역 -->
+											<div class="cat-list-item-rb">
+												<div class="cat-list-item-p">
+													<div class="cat-list-content">
+														<div class="cat-list-content-a">
+															<div class="cat-list-content-l"  style="margin-right:0px; ">
+																<div class="cat-list-content-lb">
+																
+																	<div class="cat-list-content-lpadding"><!--  내용 시작 -->
+																		<div class="tables" >
+																		
+																			<table class="table-a light">
+																				<tr>
+																					<td>제목</td>
+																					<td colspan="3">
+																						<a href="/resource/${books.id}/bookInfor" >${books.title}</a>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td>저자</td>
+																					<td colspan="3">${books.writer}</td>
+																				</tr>
+																				<tr>
+																					<td>발행처</td>
+																					<td>${books.publish}</td>
+																					<td>발행일</td>
+																					<td>${books.publishDate}</td>
+																				</tr>
+																				<tr>
+																					<td>매체구분</td>
+																					<td>${books.bindType}</td>
+																					<td>페이지</td>
+																					<td>${books.page}</td>
+																				</tr>
+																				<tr>
+																					<td>ISBN</td>
+																					<td>${books.isbn}</td>
+																					<td>ISBN SET</td>
+																					<td>${books.isbnSet}</td>
+																				</tr>
+																				<tr>
+																					<td>대여가능수</td>
+																					<td colspan="3">${books.remainAmount} / ${books.totalAmount}</td>
+																				</tr>
+																			</table>
+																			
+																		</div>	
+																	</div><!-- 내용 끝 -->
+																	
+																</div>
+																<br class="clear" />
+															</div>
+														</div>
+														
+														<div class="clear"></div>
+													</div>
+												</div>
+											</div>
+											<br class="clear" />
+										</div>
+										<div class="clear"></div>
+									</div><!-- 반복부 끝 -->
+								</c:forEach>
+
+							</div><!-- 우측 본문 끝 -->
+							
+							
+							<div class="pagination pagination-custom"  style="display:flex; justify-content:center;">	<!-- 페이지 버튼 시작 -->
+								<!-- 이전 버튼 -->
+				                <c:choose>
+									<c:when test="${book.first }">
+									</c:when>
+									<c:otherwise>
+										<a class="" href="?page=${book.number-1}">이전</a>
+									</c:otherwise>
+								</c:choose>
+								
+								<!-- 현재 페이지일 때 Active  -->
+				                <c:forEach var="index" begin="${startPage}" end="${endPage}">
+			                      	<c:choose>
+										<c:when test="${book.number+1  eq index}" >
+										   <a class="active" href="#">${index}</a>
+										</c:when>
+										<c:otherwise>
+											<a class="" href="?page=${index-1}">${index}</a>
+										</c:otherwise>
+									</c:choose>
+				                </c:forEach>
+								
+								<!-- 다음 버튼 -->
+								<c:choose>
+									<c:when test="${book.last }">
+									</c:when>
+									<c:otherwise>
+										<a class=""  href="?page=${book.number+1}">다음</a>
+									</c:otherwise>
+								</c:choose>
+									
+								<div class="clear"></div>
+							</div><!-- 페이지 버튼 끝 -->	
+						</div><!-- end of class padding -->
+						<div class="clear" ></div>
+					
+					
+					
+					</div>
+				</div><!-- 우측 메인 끝 -->
+				<div class="clear"></div>
+				
+				
+			</div><!-- end of class two-colls(submenu_guide) -->
+			<div class="clear"></div><!-- 필수 -->
+		</div>
+	</div>
+</div><!-- /main-cont -->
+
 <%@ include file="../layout/footer.jsp"%>

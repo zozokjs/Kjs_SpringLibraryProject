@@ -16,4 +16,5 @@ public class BookDataBySearchDto {
 	int startPage;
 	int endPage;
 	Page<Book> bookDataBySearch;
+	
 }

@@ -3,7 +3,7 @@
 }
 
 
-
+/* 좌측 메뉴 스타일(예-찾아오시는길) */
 .left-SubMenu-1depth{
 	font-size: 30px; 
 	font-weight: bold; 
@@ -16,10 +16,135 @@
 	padding: 20px 20px 10px 20px;
 }
 
+/* 우측 메뉴 스타일(예-찾아오시는길) */
 .right-Submenu-2depth{
 		font-size: 38px;
 	    font-weight: bold;
 	    margin-bottom: 30px;
 	    border-bottom: 1px solid black;
 	    padding-bottom: 20px;
+}
+
+/* 페이지 버튼 */
+.pagination-custom a{
+	font-size:17px;
+	padding : 8px;
+}
+	
+
+/*하얀색 버튼 */
+	.white-btn-custom{
+		display: block;
+	    width: 220px;
+	    height: 40px;
+	    background: white;
+	    color: black;
+	    text-transform: uppercase;
+	    border: 0px;
+	    cursor: pointer;
+	    border-radius: 2px;
+	    font-size: 15px;
+	    font-family: 'Raleway';
+	    font-weight: bold;
+	    border: 1px solid black;
+	    margin:0;
 	}
+	
+	.white-btn-custom:hover{
+		background:#F49551;
+	}
+	
+
+
+/*이미지 크기 고정 CSS 시작----------------------------------------------------*/
+/*
+offer-slider-i catalog-i 클래스 안에 넣고
+imgTagContainer img에서 width, top, left 별도 조정해야 함
+*/
+.imgTagContainer{
+		height : 400px;
+		overflow : hidden;
+}
+	
+.imgTagContainer img{
+	  position: absolute;
+	  width: 100%;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+}
+/*이미지 크기 고정 CSS 끝----------------------------------------------------*/
+
+		
+		
+	
+/* SelectBox / InputBox  CSS   시작 -----------------------------------------------------------------------------------------*/	
+/* 회원가입이나 새책등록 시 Form에 사용*/	
+
+	.table-a tr td .input input[type=text]{
+	height:30px;
+	}
+
+
+
+	.booking-form-i{
+		width:100%;
+	}
+	.selectBox-custom {
+	  width: 50%;
+	  padding: .5em .5em;
+	  font-family: inherit;
+	  background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
+	  -webkit-appearance: none;
+	  -moz-appearance: none;
+	  appearance: none;
+	  border: 1px solid #999;
+	  border-radius: 0px;
+	  font-size:15px;
+	}
+	
+	.inputBox-custom{
+		margin-bottom:0px;
+	}
+	
+	.inputBox-custom div{
+		border: 1px solid black;
+	}
+	
+	.inputBox-custom  .input{
+		padding: 0px;
+	}
+	
+	.inputBox-custom  .input input[type=text] {
+		border : 1px solid black;
+		font-size:14px;
+	}
+	
+	.inputBox-custom  .input input[type=password] {
+		border : 1px solid black;
+		font-size:20px;
+		width:100%;
+	}
+	
+	.inputBox-custom-require-label{
+		color:red; 
+		font-size:25px;
+	}
+	
+	.inputBox-custom-important-label{
+		color:red;  
+		font-size:15px; 
+		font-weight: bold; 
+		margin-left:84%
+	}	
+	
+/* SelectBox 및 InputBox CSS  끝 -----------------------------------------------------------------------------------------*/	
+	
+	
+	
+	
+	
+	
+	
+	
+	

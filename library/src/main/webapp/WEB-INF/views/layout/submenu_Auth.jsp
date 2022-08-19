@@ -17,9 +17,9 @@
 					<div class="blog-widget recent-widget left-SubMenu-2depth">
 						<nav>
 							<ul>
-								<li><a href="/guide/wayToHome">로그인</a></li>
-								<li><a href="/guide/guideSignup">회원가입</a></li>
-								<li><a href="/guide/closeTime">아아디/비밀번호찾기</a></li>
+								<li><a href="/auth/signinOtherPage">로그인</a></li>
+								<li><a href="/auth/signup">회원가입</a></li>
+								<li><a href="/">아아디/비밀번호찾기</a></li>
 							</ul>
 						</nav>
 					</div>
