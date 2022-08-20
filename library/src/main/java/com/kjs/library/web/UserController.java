@@ -37,6 +37,7 @@ public class UserController {
 		//대출된 목록 표시
 		List<UserLendListInterface> userLendList = bookSelectService.대출목록(principalDetails.getUser().getId());
 
+		
 		/*
 		for (int i = 0; i < userLendList.size(); i++) {
 			System.out.println("체크");

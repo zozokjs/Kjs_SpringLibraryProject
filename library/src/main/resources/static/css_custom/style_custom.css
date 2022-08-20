@@ -32,7 +32,7 @@
 }
 	
 
-/*하얀색 버튼 */
+/*하얀색 버튼 -보통크기*/
 	.white-btn-custom{
 		display: block;
 	    width: 220px;
@@ -51,6 +51,28 @@
 	}
 	
 	.white-btn-custom:hover{
+		background:#F49551;
+	}
+	
+/*하얀색 버튼 -작은크기*/	
+	.white-btn-small-custom{
+		display: block;
+	    width: 60px;
+	    height: 25px;
+	    background: white;
+	    color: black;
+	    text-transform: uppercase;
+	    border: 0px;
+	    cursor: pointer;
+	    border-radius: 2px;
+	    font-size: 15px;
+	    font-family: 'Raleway';
+	    font-weight: bold;
+	    border: 1px solid black;
+	    margin:0;
+	}
+	
+	.white-btn-small-custom:hover{
 		background:#F49551;
 	}
 	
@@ -80,11 +102,14 @@ imgTagContainer img에서 width, top, left 별도 조정해야 함
 	
 /* SelectBox / InputBox  CSS   시작 -----------------------------------------------------------------------------------------*/	
 /* 회원가입이나 새책등록 시 Form에 사용*/	
-
 	.table-a tr td .input input[type=text]{
-	height:30px;
+		height:30px;
+		width:100%;
 	}
-
+	
+	.table-a tr td {
+		text-align:center;
+	}
 
 
 	.booking-form-i{
@@ -140,7 +165,22 @@ imgTagContainer img에서 width, top, left 별도 조정해야 함
 	
 /* SelectBox 및 InputBox CSS  끝 -----------------------------------------------------------------------------------------*/	
 	
-	
+.textarea-comment {
+    height: 60px;
+    border: 1px solid #e3e3e3;
+    -webkit-box-shadow: 0px 1px 2px 0px rgb(50 50 50 / 4%);
+    -moz-box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.04);
+    box-shadow: 0px 1px 2px 0px rgb(50 50 50 / 4%);
+    border-radius: 2px;
+}
+
+.textarea-comment textarea{
+    resize: none;
+    width: 100%;
+    margin-bottom: -5px;
+    height:100%;
+	font-family: 'Raleway';
+}
 	
 	
 	

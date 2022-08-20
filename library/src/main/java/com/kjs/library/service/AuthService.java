@@ -76,12 +76,15 @@ public class AuthService {
 	}
 	
 	
-	/**Enabled 컬럼을 True로 변경함*/
+	/**Enabled 컬럼을 True로 변경함
+	 * 권한을 NOT로 변경함
+	 * */
 	@Transactional
 	public User 계정잠금(String username) {
 		
 		User userEntity = userRepository.findByUsername(username);
 		userEntity.setEnabled(true);
+		userEntity.setRoleType(RoleType.NOT);
 		return userEntity;
 	}
 	

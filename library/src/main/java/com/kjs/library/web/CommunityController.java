@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.kjs.library.config.auth.PrincipalDetails;
+import com.kjs.library.domain.community.BoardFree;
 import com.kjs.library.domain.community.BoardNotice;
 import com.kjs.library.domain.community.SingleQuestion;
 import com.kjs.library.domain.user.RoleType;
@@ -63,7 +65,6 @@ public class CommunityController {
 		//댓글 수, 작성자, 제목, 등록날짜, 조회수 등 표시
 		Page <BFreeListInterface> boardFree= communityService.게시글목록(pageable);
 		model.addAttribute("boardFree",boardFree);
-
 		
 		Map<String, Integer> pageMap = commonService.시작끝페이지구하기(boardFree, 10);
 		model.addAttribute("startPage", pageMap.get("pageStart"));
@@ -117,9 +118,9 @@ public class CommunityController {
 	@GetMapping("/community/{id}/boardFreeUpdate")
 	public String boardFreeEditForm(@PathVariable int id, Model model) {
 		
-		//BoardFree community = communityService.게시글조회(id);
+		BFreeResponseDto community = communityService.게시글조회(id);
 		
-	//	model.addAttribute("community", community);
+		model.addAttribute("community", community);
 		return "community/boardFreeUpdate";
 	}
 	

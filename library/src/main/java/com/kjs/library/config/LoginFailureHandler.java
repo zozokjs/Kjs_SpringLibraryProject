@@ -73,9 +73,11 @@ public class LoginFailureHandler implements AuthenticationFailureHandler{
 
 			int failCount = authService.로그인실패횟수조회(request.getParameter("username"));
 			
+			
 			if(failCount < 5) {
+				failCount+=1;
 				authService.로그인실패횟수증가(request.getParameter("username"));
-				errorMessage += "로그인 실패 횟수가 "+failCount+"입니다. 5회 이상 실패 시 계정이 잠깁니다.";
+				errorMessage += "로그인 실패 횟수가 "+failCount+"회 입니다. 5회 이상 실패 시 계정이 잠깁니다.";
 				
 			}else {				
 				authService.계정잠금(request.getParameter("username"));
