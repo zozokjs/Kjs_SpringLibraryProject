@@ -3,65 +3,67 @@
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_Community.jsp"%>
 	        
-	            <!-- 우측 메인 -->
-	            <div class="col-lg-9">
-	               <div class="row">
-						<div class="col-lg-12 mb-5">
-						
-							<!-- 2depth 타이틀 영역 -->
-							<div class="col-lg-7">
-								<div class="">
-									<h2 class="mt-3 content-title ">
-									게시글 수정하기
-									</h2>
-								</div>
-							</div>		
-							<hr>	
+	       	
+				<div class="two-colls-right"><!-- 우측 메인 시작 -->
+					<div class="two-colls-right-b">
+						<div class="padding">
+							<div class="right-Submenu-2depth">
+								공지사항 - 수정
+							</div>
 							
-							<form action="/community/${boardNotice.id}/boardNoticeUpdate"  method = "post" enctype="multipart/form-data" >
-
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group">
-											제목
-											<input type="text"  	id="title"  name="title" value = "${boardNotice.title}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											작성자
-											<input type="text"  	id="title"  name="title" value = "${boardNotice.user.username}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											등록일
-											<input type="text"  	id="title"  name="title" value = "${boardNotice.createDate}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
-										</div>
-									</div>
+							<form action="/community/${boardNotice.id}/boardNoticeUpdate"   method = "post" enctype="multipart/form-data" >
+							
+								<!-- 우측 본문 시작 -->
+								<div class="tables" style="margin-top: 70px;">
+									<table class="table-a">
+										<tr>
+											<td>제목</td>
+											<td colspan="3">
+												<div class="input">
+														<input type="text"  	id="title"  name="title"  value = "${boardNotice.title}"    class="form-control"   placeholder="제목" required="" readonly="readonly">
+													</div>
+											</td>
+										</tr>
+										
+										<tr>
+											<td>작성자</td>
+											<td>${boardNotice.user.username}</td>
+											<td>등록일</td>
+											<td>${boardNotice.createDate}</td>
+										</tr>
 									
-									<div class="col-md-12">
-										<div class="form-group">
-											내용
-											<div>
-												<textarea  id="content"  name="content" class="form-control mb-3"  cols="30" rows="5"  required="">
-													${boardNotice.content}
-												</textarea>
-											</div>										
-										</div>
-									</div>
+										<tr>
+											<td>내용</td>
+											<td colspan="3">
+												<div class="booking-form-i  inputBox-custom"  >
+													<div class="input">
+														<div>
+															<textarea  id="content"  name="content" cols="30" rows="5"  style="resize: none; width:99.3%; margin-bottom:-5px;" >${boardNotice.content}</textarea>
+														</div>
+													</div>
+												</div>
+											</td>
+										</tr>
+									</table>
 								</div>
-								<button>수정 완료</button>
+								
+								<!-- 흰색 버튼 -->
+								<div style="text-align: -webkit-center;">
+									<button class=" booking-complete-btn white-btn-custom"  '>수정 완료</button>
+								</div>
 							</form>
 							
-						</div>
-					</div>
-				</div>
-				<!-- 우측 메인 End-->
 				
-	    	</div>
-	    </div>
-	</section>
-</div>
+							</div><!-- end of class [ padding] -->
+						<div class="clear" ></div>
+					</div><!-- end of class [ two-colls-right-b ] -->
+				</div><!-- 우측 메인 끝 --><!-- end of class [ two-colls-right ] -->
+				<div class="clear"></div>
+				
+			</div><!-- end of class [ two-colls(submenu_guide) ] -->
+			<div class="clear"></div><!-- 필수 -->
+		</div><!-- end of class [ wrapper-padding ] -->
+	</div><!-- end of class [ body-wrapper ] -->
+</div><!-- /main-cont -->
 
 <%@ include file="../layout/footer.jsp"%>
