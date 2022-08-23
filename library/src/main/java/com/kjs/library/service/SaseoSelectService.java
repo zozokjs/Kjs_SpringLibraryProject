@@ -54,7 +54,7 @@ public class SaseoSelectService {
 		public Book bookSelectOne(int id) {
 		
 			Book bookEntity = bookRepository.findById(id).orElseThrow(()->{
-				throw new CustomApiException("해당하는 책이 존재하지 않습니다! 관리자에게 문의하셈");
+				throw new CustomApiException("해당하는 책이 존재하지 않습니다. 관리자에게 문의하셈");
 			});
 			
 			return bookEntity;
@@ -96,6 +96,8 @@ public class SaseoSelectService {
 			
 			//samebookIdList가 null 아닐 때
 			if( !(CollectionUtils.isEmpty(samebookIdList)) ) {
+				
+				//samebookIdList의 대여상태(lendState)를 리턴함
 				result = sameBookRepository.editAbleKdcCallSign(samebookIdList); ;
 				
 				//System.out.println("청구기호 수정 가능 여부를 확인합니다.  samebookIdList 길이 > "+samebookIdList.size());
@@ -105,14 +107,35 @@ public class SaseoSelectService {
 				result.add(0, false);
 			}
 			
-			//result에 true가 있으면 true 리턴함.
+			//result에 true가 있으면 수정하려는 청구기호 중 일부가 '대출 상태'이므로 청구기호 수정 불가능.
 			boolean resultB = result.contains(true);
+			
 			if(resultB == true) {
 				return false; //청구기호 수정 불가
 			}else {
 				return true; //청구기호 수정 가능
 			}
-}
+		}
+		
+		
+		
+		// SELECT
+		/** 청구기호 수정 가능 여부 return
+		수정 가능하면 True */
+		@Transactional(readOnly = true)
+		public boolean 청구기호수정가능하다2(int bookId) {
+			
+			//samebook 테이블에서 bookId 기준으로 lendState가 True인 것을 반환함.
+			List<Samebook> samebookList = sameBookRepository.findLendStateBybookid(bookId);
+			
+			
+			if(samebookList.isEmpty()) {
+				return true; //대여 중인 책이 없으면 수정 가능함
+			}else {
+				return false; //수정 불가능함.
+			}
+
+		}
 	
 
 }

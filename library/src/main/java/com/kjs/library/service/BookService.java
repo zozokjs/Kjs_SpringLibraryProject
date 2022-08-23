@@ -67,19 +67,20 @@ public class BookService {
 		samebookEntity.setLendState(true); 
 		
 		
-		//5. 반납예정일 세팅
+		//5. 오늘 날짜를 기준으로 반납 예정 날짜 구함
 		String returnPlanDate = null;
 		try {
-			//오늘 날짜를 가져와서 반납예정날자를 구함(그 날짜가 주말이면 1일 더함.. 그 이후 계산 안 됨. 미완성)
 			returnPlanDate = dateCommonService.반납예정날짜();
 		} catch (Exception e) {
-			System.out.println("에러 "+e);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+		//6. 반납 예정 날짜 세팅
 		lend.setReturnPlanDate(returnPlanDate);
 		
-		
-		//System.out.println("세팅된 책번호  " +bookId);
-		//System.out.println("세팅된 청구기호 아이디 " +samebookId);
+		//7. 반납 날짜 연장 가능 횟수 세팅(Lend 모델에 기본값1로 뒀는데 작동하지 않아서 별도 세팅함)
+		lend.setExtensionAbleCount(1);
 		
 		lend.setSamebook(samebook);
 		
@@ -159,42 +160,29 @@ public class BookService {
 	
 	
 	//UPDATE
-	/**책 대출 기한 연장 처리*/
+	/**책 대출 기한 연장 처리
+	 *  반납 예정 날짜(returnPlanDate)를 기준으로 7일 더해서 
+	 *  연장된 날짜(extensionDate)에 update
+	 * */
 	@Transactional
 	public Lend 책연장(int lendId) throws Exception {
+		
 		Lend lend = lendRepository.findById(lendId).orElseThrow();
 		
-		/**
-		 * 책 대출 연장 처리 순서
-		 * 1. 연장 횟수 확인
-		 * 2. 오늘 날짜 가져옴
-		 * 3. 연장 날자 세팅
-		 * 4. 반납 날짜를 연장 날짜에서 14일 더하고 세팅
-		 * 5. 연장 횟수 세팅
-		 * **/
-	
-		//1. 연장 날짜 세팅
-		LocalDateTime now = LocalDateTime.now(); 
-		String extensionDate = dateCommonService.날짜포맷변경(now);
-		lend.setExtensionDate(extensionDate);
+		//1. 기존 반납 예정 날짜를 가져옴
+		String currentReturnPlanDate = lend.getReturnPlanDate();
 		
+		//2. 연장된 반납 예정 날짜를 구함
+		String extensionReturnPlanDate =dateCommonService.반납예정날짜_연장됨(currentReturnPlanDate);
 		
-		//2. 반납예정일 세팅(업데이트)
-		String returnPlanDate = null;
-		try {
-			//오늘 날짜를 가져와서 반납예정날자를 구함(그 날짜가 주말이면 1일 더함.. 그 이후 계산 안 됨. 미완성)
-			returnPlanDate = dateCommonService.반납예정날짜();
-		} catch (Exception e) {
-			System.out.println("에러 "+e);
-		}
-		lend.setReturnPlanDate(returnPlanDate);
+		//3. 연장된 반납 예정 날짜를 세팅함
+		lend.setExtensionDate(extensionReturnPlanDate);
 		
-		//3. 연장 횟수 세팅
+		//4. 연장 가능 횟수를 0으로 세팅
 		lend.setExtensionAbleCount(0);
 		
 		//System.out.println("연장 날짜 "+extensionDate);
 		//System.out.println("반납 날짜 "+returnPlanDate);
-		//
 		return lend;
 	}
 	

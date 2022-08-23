@@ -45,9 +45,18 @@ public class Samebook{
 	@ManyToOne(targetEntity = Book.class, fetch = FetchType.LAZY)
 	private Book book;
 	
-	/**대출 = true, 반납 = false
+	/**대출 상태를 나타냄
+	 * 대출 = true, 반납 = false
 	 * **/
 	private boolean lendState;
+	
+	
+	/**
+	 * 사용 여부를 나타냄
+	 * 사용함 = true(기본값), 제거함 = false
+	 * ex) 사서에 의해 청구기호가 제거된다면 이 값이 false로 변경됨
+	 * */
+	private boolean useState;
 	
 	//청구 기호
 	private String kdcCallSign;

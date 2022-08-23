@@ -16,7 +16,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- <title>Sparrow | Travel Agency</title> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
 	<title>토르두스 국립도서관</title>
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -61,6 +62,8 @@
 </style>
 
 <body>
+
+
 <!-- // authorize // -->
 
 	<!-- 팝업 시작------------------------------------------------- -->
@@ -125,7 +128,7 @@
 		</div>
 	</div>
 	<!-- 최상단 메뉴 끝--------------------------------------------------->
-	
+
 	<!-- 상단 메뉴 시작--------------------------------------------------->
 	<div class="header-b">
 	
@@ -153,14 +156,23 @@
 								<li><a href="/공사중">인기도서</a></li>
 							</ul>
 						</li>
-						<li><a class="has-child"  href="/saseo/bookManage">사서공간</a>
-							<ul>
-								<li><a href="/saseo/bookManage">도서관리(등록/수정/삭제/권수수정/십진분류)</a></li>
-								<li><a href="/saseo/bookRequestManage">희망도서관리(신청처리)</a></li>
-								<li><a href="/saseo/signinRequest">회원관리(가입허가/정지/경고)</a></li>
-								<li><a href="/saseo/infraManage">시설이용관리(신청처리)</a></li>
-							</ul>
-						</li>
+
+						<!-- 사서 권한만 볼 수 있음 -->
+						<c:choose>
+							<c:when test ="${principal.user.roleType eq 'ADMIN'}">	
+
+							<li><a class="has-child"  href="/saseo/bookManage">사서공간</a>
+								<ul>
+									<li><a href="/saseo/bookManage">도서관리(등록/수정/삭제/권수수정/십진분류)</a></li>
+									<li><a href="/saseo/bookRequestManage">희망도서관리(신청처리)</a></li>
+									<li><a href="/saseo/signinRequest">회원관리(가입허가/정지/경고)</a></li>
+									<li><a href="/saseo/infraManage">시설이용관리(신청처리)</a></li>
+								</ul>
+							</li>
+
+							</c:when>
+						</c:choose>
+
 						<li><a class="has-child"  href="/community/boardFree">열린공간</a>
 							<ul>
 								<li><a href="/community/boardFree">자유게시판</a></li>
@@ -208,7 +220,7 @@
 								<li><a href="/guide/organizationChart">조직도 및 담당 업무</a></li>
 							</ul>
 						</li>		
-						<li><a href="/saseo/4/bookInfor">공사중</a>
+						<li><a href="/user/userUpdateBefore">공사중</a>
 						</li>
 						<li><a href="/resource/bookSearch">자료검색</a>
 							<ul>	
@@ -217,14 +229,21 @@
 								<li><a href="/공사중">인기도서</a></li>
 							</ul>
 						</li>
-						<li><a href="/saseo/bookManage">사서공간</a>
-							<ul>
-								<li><a href="/saseo/bookManage">도서관리(등록/수정/삭제/권수수정/십진분류)</a></li>
-								<li><a href="/saseo/bookRequestManage">희망도서관리(신청처리)</a></li>
-								<li><a href="/saseo/signinRequest">회원관리(가입허가/정지/경고)</a></li>
-								<li><a href="/saseo/infraManage">시설이용관리(신청처리)</a></li>
-							</ul>
-						</li>
+
+						<!-- 사서 권한만 볼 수 있음 -->
+						<c:choose>
+							<c:when test ="${principal.user.roleType eq 'ADMIN' }">	
+								<li><a href="/saseo/bookManage">사서공간</a>
+									<ul>
+										<li><a href="/saseo/bookManage">도서관리(등록/수정/삭제/권수수정/십진분류)</a></li>
+										<li><a href="/saseo/bookRequestManage">희망도서관리(신청처리)</a></li>
+										<li><a href="/saseo/signinRequest">회원관리(가입허가/정지/경고)</a></li>
+										<li><a href="/saseo/infraManage">시설이용관리(신청처리)</a></li>
+									</ul>
+								</li>
+							</c:when>
+						</c:choose>
+
 						<li><a href="/community/boardFree">열린공간</a>
 							<ul>
 								<li><a href="/community/boardFree">자유게시판</a></li>

@@ -12,7 +12,7 @@ function kdcAdd(event){
 	const kdcCallSignAddHtml = 
 	`
 	<tr id =   "tableId`+kdcCallSignTableCount+`">
-		<td style="text-align:center;">
+		<td colspan="2" style="text-align:center;">
 		
 			<div class="booking-form-i  inputBox-custom"  >
 				<div class="input">
@@ -20,7 +20,7 @@ function kdcAdd(event){
 				</div>
 			</div>
 		</td>
-		<td>
+		<td colspan="2" >
 			<button type = "button" onclick="kdcRemove(tableId`+kdcCallSignTableCount+`)" class=" booking-complete-btn white-btn-custom" >
 				제거
 			</button>

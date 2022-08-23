@@ -152,7 +152,9 @@ width:100%;
 									
 									<tr>
 										<th>권 수 </th>
-										<td colspan="3">${book.totalAmount}</td>
+										<td colspan="">${book.totalAmount}</td>
+										<th>대출 현황</th>
+										<td colspan="">${book.remainAmount} / ${book.totalAmount}</td>
 									</tr>
 									
 									<tr>
@@ -197,9 +199,11 @@ width:100%;
 										</td>
 									</tr>
 								</table>
-								<div style="text-align: -webkit-center;">
+								<div style="display:flex; justify-content:space-around;">
 									<button class=" booking-complete-btn white-btn-custom"  onclick="location.href='/saseo/${book.id}/bookUpdate'" >수정하기</button>
+									<button class=" booking-complete-btn white-btn-custom"  onclick="bookDeleteConfirm(${book.id})" >삭제하기</button> 
 								</div>
+								
 							</div><!-- 도서 정보 Table 끝 -->
 							
 							
@@ -224,7 +228,6 @@ width:100%;
 										</tr>
 									</thead>
 									<tbody id="kdcCallSignList">
-									<!-- 청구 기호 없을 때 뭐라해야 함 -->
 										<c:choose>
 											<c:when test="${empty sameBook}">
 												<!-- 청구 기호 없을 때 -->
@@ -255,7 +258,10 @@ width:100%;
 										</c:when>
 										<c:otherwise>
 											<!-- 청구 기호 있을 때    수정 화면으로 이동-->
-											<button class=" booking-complete-btn white-btn-custom"  onclick="location.href='/saseo/${book.id}/bookUpdate_kdc' "  >청구기호 수정하기</button>
+						<%-- 					<button class=" booking-complete-btn white-btn-custom"  onclick="location.href='/saseo/${book.id}/bookUpdate_kdc' "  >청구기호 수정하기</button>
+ --%>										
+ 												<button class=" booking-complete-btn white-btn-custom"  onclick= "kdcEditAbleChecker(${book.id})"   >청구기호 수정하기</button>
+						
 										</c:otherwise>
 									</c:choose>
 								</div>
@@ -281,5 +287,5 @@ width:100%;
 	</div><!-- end of class [ body-wrapper ] -->
 </div><!-- /main-cont -->
 
-<%@ include file="../layout/footer.jsp"%>
+<script src="/js_custom/saseo/bookInfor.js"></script>
 <%@ include file="../layout/footer.jsp"%>

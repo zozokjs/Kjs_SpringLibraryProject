@@ -37,7 +37,6 @@ public class UserController {
 		//대출된 목록 표시
 		List<UserLendListInterface> userLendList = bookSelectService.대출목록(principalDetails.getUser().getId());
 
-		
 		/*
 		for (int i = 0; i < userLendList.size(); i++) {
 			System.out.println("체크");
@@ -71,11 +70,16 @@ public class UserController {
 	}
 	
 	
-	//회원 수정 페이지로 이동
-	@PostMapping("/user/{id}/userUpdate")
-	public String userUpdateForm(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+	//회원 수정 페이지로 이동 전 비밀번호 확인
+	@PostMapping("/user/userUpdateBefore")
+	public String userUpdateBeforeForm() {
 		
-		//권한 검사... 사서나 관리자는 여기서 수정 불가.?
+		return "user/userUpdateBefore";
+	}
+	
+	//비밀번호 확인 후 회원 수정 페이지로 이동
+	@PostMapping("/user/userUpdate")
+	public String userUpdateForm() {
 		
 		return "user/userUpdate";
 	}
@@ -88,7 +92,8 @@ public class UserController {
 		//대출된 목록 표시
 		Page<UserLendListInterface> userLendHistoryList = bookSelectService.반납완료내역(principalDetails.getUser().getId(), pageable);
 		model.addAttribute("userLendHistoryList",userLendHistoryList);
-		
+		//System.out.println("  "+userLendHistoryList.getContent().get(0).getTitle());
+		//;
 		/*
 		int pageCurrent = userLendHistoryList.getPageable().getPageNumber();//현재 페이지
 		int pageTotal = userLendHistoryList.getTotalPages(); //전체 페이지 수

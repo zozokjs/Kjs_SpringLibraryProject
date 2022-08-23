@@ -16,30 +16,8 @@
 		height:34px;
 		width:100%;
 	}
-	.popup_content{
-		z-index: 9999;
-	    width: 444px;
-	    height: 255px;
-	    background: #fff;
-	    position: fixed;
-	    left: 50%;
-	    top: -300px;
-	    margin-top: -128px;
-	    margin-left: -222px;
-	}
 	
-	
-	.overlay2{
-	    display: none;
-    width: 100%;
-    height: 100%;
-    background: rgba(20,29,30,0.19);
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    z-index: 9999;
-	
-	}
+
 	
 </style>
 
@@ -54,6 +32,8 @@
 						<div class="autorize-padding">
 							<div>
 								<p class="autorize-lbl" style="font-family:'' ">
+								
+								
 								제국력 = 서력 + 17341년 42일<br>
 								예) 서력 기준 오늘 날짜가 2022년 7월 4일인 경우<br>
 								제국력 19341년 8월 14일임

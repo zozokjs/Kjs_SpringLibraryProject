@@ -121,8 +121,10 @@ public class SaseoController {
 
 		// 업로드 잘 됐다고 스크립트로 알려줘야함
 
-		return "main/index";
-		
+		//return "main/index";
+		//return "redirect:main/index";  //http://localhost:8080/saseo/3/main/index
+		//return "redirect:main/index" //404
+		return "redirect:/saseo/bookManage";
 	}
 
 	// 도서 상세 화면으로 이동
@@ -137,7 +139,7 @@ public class SaseoController {
 
 		// 책 1개의 청구기호 정보
 		List<Samebook> sameBookEntity = saseoSelectService.sameBookSelectOne(id);
-
+		
 		model.addAttribute("sameBook", sameBookEntity);
 
 		return "saseo/bookInfor";

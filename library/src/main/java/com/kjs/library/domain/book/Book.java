@@ -130,6 +130,10 @@ public class Book {
 	@Column(nullable = false)
 	private String registrationUserId;
 		
+	//책을 생성하면 true, 책을 삭제하면 false 처리
+	@Column(nullable = false)
+	private boolean useState;
+	
 	//등록 날짜
 	private LocalDateTime createDate;
 

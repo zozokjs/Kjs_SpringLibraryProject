@@ -30,7 +30,32 @@
 	font-size:17px;
 	padding : 8px;
 }
+/* 팝    업**/
+	.popup_content{
+		z-index: 9999;
+	    width: 444px;
+	    height: 255px;
+	    background: #fff;
+	    position: fixed;
+	    left: 50%;
+	    top: -300px;
+	    margin-top: -128px;
+	    margin-left: -222px;
+	}
 	
+	
+	.overlay2{
+	    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(20,29,30,0.19);
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 9999;
+	
+	}
+
 
 /*하얀색 버튼 -보통크기*/
 	.white-btn-custom{
@@ -110,11 +135,19 @@ imgTagContainer img에서 width, top, left 별도 조정해야 함
 	.table-a tr td {
 		text-align:center;
 	}
-
+	
+	.table-a tr th {
+		text-align:center;
+	}
 
 	.booking-form-i{
 		width:100%;
 	}
+	
+	.booking-form-i-short{
+		width:80%;
+	}
+	
 	.selectBox-custom {
 	  width: 50%;
 	  padding: .5em .5em;
@@ -133,7 +166,7 @@ imgTagContainer img에서 width, top, left 별도 조정해야 함
 	}
 	
 	.inputBox-custom div{
-		border: 1px solid black;
+		/* border: 1px solid black; */
 	}
 	
 	.inputBox-custom  .input{
@@ -148,7 +181,7 @@ imgTagContainer img에서 width, top, left 별도 조정해야 함
 	.inputBox-custom  .input input[type=password] {
 		border : 1px solid black;
 		font-size:20px;
-		width:100%;
+		width:99%;
 	}
 	
 	.inputBox-custom-require-label{

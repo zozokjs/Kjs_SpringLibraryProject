@@ -30,11 +30,10 @@
 							</div>
 							
 							<!-- 우측 본문 시작 -->
-							
 							<form  id = "bookUpdate_kdc" onsubmit="bookUpdate_kdc(${book.id},event)" >
 								<!-- hidden Tag -->
 								<input type="hidden"  id="book_id"  name = "bookId" value="${book.id}" />
-								<input type="hidden"  id="book_totalAmount"  value="${book.totalAmount}" />
+								<input type="hidden"  id="book_totalAmount"   name = "book_totalAmount"  value="${book.totalAmount}"/>
 								<input type="hidden"  id="book_kdcCallSignFamily" value="${book.kdcCallSignFamily}" />
 								<input type="hidden"  id="sameBook" value="${sameBook}" />
 								<!-- hidden Tag -->
@@ -57,18 +56,22 @@
 									<table class="table-a">
 										<thead style="border:1px solid black;">
 											<tr>
-											    <td class="" >제목</td>
-											    <td class=""></td>
+												<th>책 제목 </th>
+												<td>${book.title}</td>
+												<th>저자 </th>
+												<td>${book.writer}</td>
 											</tr>
 											<tr>
-											    <td class="">ISBN</td>
-											    <td class=""></td>
-										  	</tr>
+												<td>ISBN</td>
+												<td>${book.isbn}</td>
+												<td>KDC 대분류</td>
+												<td>${book.kdcTable}</td>
+											</tr>
 										 	 <tr>
-											    <td class="" colspan="2">기존 총 ${book.totalAmount}권</td>
+											    <td class="" colspan="4">기존 총 ${book.totalAmount}권</td>
 										  	</tr>
 										  	 <tr>
-											    <td class="" colspan="2">현재 대출 중인 청구기호는 삭제 할 수 없습니다.</td>
+											    <th class="" colspan="4">현재 대출 중인 책은 청구기호를 수정 및 삭제 할 수 없습니다. 모든 책이 반납된 뒤 수정 가능합니다.</th>
 										  	</tr>
 									  	</thead>
 										<tbody id="kdcCallSignList">
@@ -99,6 +102,5 @@
 	</div><!-- end of class [ body-wrapper ] -->
 </div><!-- /main-cont -->
 
-<%@ include file="../layout/footer.jsp"%>
 <script src="/js_custom/saseo/bookUpdate_kdc.js"></script>
 <%@ include file="../layout/footer.jsp"%>

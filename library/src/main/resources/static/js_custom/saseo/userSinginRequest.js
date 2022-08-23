@@ -4,8 +4,6 @@
 /**사용자 가입 승인 처리 */
 function userPermit(userId, event) {
 	
-	alert("a");
-	
 	$.ajax({
 		
 		type : "put",

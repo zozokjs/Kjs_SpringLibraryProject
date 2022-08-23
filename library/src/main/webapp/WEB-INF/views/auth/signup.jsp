@@ -44,7 +44,7 @@
 										<tr>
 											<th><label class="inputBox-custom-require-label">*</label>비밀번호</th>
 											<td colspan="3">
-												<div class="booking-form-i inputBox-custom"  >
+												<div class="booking-form-i-short   inputBox-custom"  >
 													<div class="input">
 														<input type="password"  id ="password"  name="password"  onkeyup ='checkPasswordLength()'  required=""  >
 													</div>
@@ -55,7 +55,7 @@
 										<tr>
 											<th><label class="inputBox-custom-require-label">*</label>비밀번호 확인</th>
 											<td colspan="3">
-												<div class="booking-form-i inputBox-custom"  >
+												<div class="booking-form-i-short    inputBox-custom"  >
 													<div class="input">
 														<input type="password"  id ="confirm-password"  name="confirm-password"   onkeyup ='checkPasswordMatch()' required=""  >
 													</div>

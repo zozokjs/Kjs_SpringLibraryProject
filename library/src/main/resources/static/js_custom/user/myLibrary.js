@@ -22,7 +22,7 @@ function bookExtension(lendId) {
 		console.log("성공", res);
 		
 		alert("연장 되었습니다");
-		location.href = `/`;
+		location.href = `/user/myLibrary`;
 		
 	}).fail(error =>{
 		
@@ -69,7 +69,7 @@ function bookReturn(lendId) {
 		console.log("성공", res);
 		
 		alert("반납 되었습니다");
-		location.href = `/`;
+		location.href = `/user/myLibrary`;
 		
 	}).fail(error =>{
 			
