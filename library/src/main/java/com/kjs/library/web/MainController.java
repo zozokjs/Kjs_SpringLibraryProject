@@ -40,11 +40,27 @@ public class MainController {
 		return "main/index";
 	}
 	
+	
+	//공사중 화면으로이동
+	@GetMapping("/scriptAlertPage")
+	public String scriptAlertPageForm(Model model) {
+		
+		return "main/scriptAlertPage";
+	}
+
+	
 	//공사중 화면으로이동
 	@GetMapping("/공사중")
 	public String constructionForm(Model model) {
 		
 		return "main/공사중";
+	}
+
+	//공사중 화면으로이동
+	@GetMapping("/mailSample")
+	public String mailSample(Model model) {
+		
+		return "main/mailSample";
 	}
 
 	

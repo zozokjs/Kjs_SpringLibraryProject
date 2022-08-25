@@ -15,8 +15,8 @@
 							<div class="tables" style="margin-top: 70px;">
 								<table class="table-a">
 								<div class="input">
-														<input type="text"  	id="title"  name="title" class="form-control"   placeholder="제목" required="">
-													</div>
+									<input type="text"  	id="title"  name="title" class="form-control"   placeholder="제목" required="">
+								</div>
 								</table>
 							</div>
 							

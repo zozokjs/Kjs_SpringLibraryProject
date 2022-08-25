@@ -84,7 +84,7 @@
 					<input type="password"  name="password"   value="1234"  class="form-control" placeholder="비밀번호" required="">
 					<footer class="autorize-bottom">
 						<button class="authorize-btn" >로그인</button>
-						<a href="/" class="authorize-forget-pass">비밀번호찾기</a> 
+						<a href="/auth/findToIdPassword" class="authorize-forget-pass">아이디 | 비밀번호찾기</a> 
 						<a href="/auth/signup" class="authorize-forget-pass">회원가입</a>
 						<div class="clear"></div>
 					</footer>
@@ -147,7 +147,7 @@
 								<li><a href="/guide/organizationChart">조직도 및 담당 업무</a></li>
 							</ul>
 						</li>		
-						<li><a class="has-child"  href="/auth/signupSuccess">공사중</a>
+						<li><a class="has-child"  href="/reserPassword">공사중</a>
 						</li>
 						<li><a class="has-child"  href="/resource/bookSearch">자료검색</a>
 							<ul>	
@@ -199,7 +199,7 @@
 		<div class="wrapper-padding">
 			<div class="header-logo">
 				<a href="/">
-					<img alt=""  style="height:47px; width:250px;" src="/img_custom/로고_완성2(509x74).png" />
+					<img alt=""  style="height:47px; width:250px;" src="/img_custom/로고_완성3.png" />
 					<!-- 로고 관련 static > js > script.js에서 $headerUp과 $headerDown 찾기 -->
 				</a>
 			</div>
@@ -220,7 +220,7 @@
 								<li><a href="/guide/organizationChart">조직도 및 담당 업무</a></li>
 							</ul>
 						</li>		
-						<li><a href="/user/userUpdateBefore">공사중</a>
+						<li><a href="/scriptAlertPage">공사중</a>
 						</li>
 						<li><a href="/resource/bookSearch">자료검색</a>
 							<ul>	

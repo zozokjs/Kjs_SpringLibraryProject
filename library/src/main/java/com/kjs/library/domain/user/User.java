@@ -100,6 +100,14 @@ public class User{
 	//회원 가입 날짜
 	private LocalDateTime createDate;
 	
+	/**
+	 * 유저가 비밀번호 찾을 때
+	 * 유저가 입력한 이메일로 비밀번호 초기화 링크를 보내는데 그때 사용되는 난수임
+	 * */
+	private String passwordAuthCode;
+	private String passwordAuthTime;
+	
+	
 	@PrePersist // db에 insert 되기 직전에 실행 됨. 직전에 현재 시간을 가져와 넣어줌.
 	public void createDate() {
 		this.createDate = LocalDateTime.now();

@@ -66,13 +66,19 @@
 										<tr>
 											<th><label class="inputBox-custom-require-label">*</label>이메일</th>
 											<td colspan="3">
-												<div class="booking-form-i inputBox-custom"  >
+												<div class="booking-form-i inputBox-custom"  style="width:60%;">
 													<div class="input">
-														<input type="text"  name="email"  required=""  >
+														<input type="text"  id = "email"  name="email"  value="zozokjs@naver.com" required=""  >
 													</div>
+												</div>
+												<div id="div_emailAuthSendButton"  style="text-align: -webkit-center;">
+											    	<!--추가 버튼-->
+													<button id="emailAuthSendButton"  onclick ="emailAuthenticationSending_Before(event)" class=" booking-complete-btn white-btn-custom" >인증번호전송</button>
 												</div>
 											</td>
 										</tr>
+										
+										<tr id="div_emailAuthentication"></tr>
 										<tr>
 											<th>이름</th>
 											<td colspan="3">

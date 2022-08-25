@@ -8,23 +8,36 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kjs.library.config.auth.PrincipalDetails;
 import com.kjs.library.domain.user.RoleType;
+import com.kjs.library.domain.user.UserRepository;
 import com.kjs.library.handler.aop.ex.CustomValidationException;
+import com.kjs.library.service.AuthDataService;
 import com.kjs.library.web.dto.book.ImageDto;
 
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 //어딘든지 공통으로 사용되는 서비스 모음
+@RequiredArgsConstructor
 @Service
 public class CommonService {
 
+	
+	private final JavaMailSender mailSender;
 	
 	//책 타이틀 이미지만 모아두는 곳
 	@Value("${file.path.upload_imageTitle}")
@@ -223,24 +236,28 @@ public class CommonService {
 	}
 	
 	
-	//List 받아서 공백 체크하고 새로운 List 리턴
-	/*
-	public List<?> List공백제거( List<?> originalList) {
-		
-		List<?> List공백제거됨 = null;
-		
-		for (int index = 0; index < originalList.size(); index ++) {
-
-			if(originalList.get(index) == "") {
-				
-			}else {
-				List공백제거됨.add(originalList.get(index)); //여기서 오류 남
-			}
-		}
-		return null;
-	}
-	*/
 	
+	public void mailSendering(String toEmailAddress, String mailTitle, String mailContent) throws MessagingException{
+		
+		String mailFrom = "zozokjsinfinite@naver.com";
+
+		MimeMessage mMessage = mailSender.createMimeMessage();
+		MimeMessageHelper mMessageHelpder = new MimeMessageHelper(mMessage, true, "UTF-8");
+		
+		try {
+			mMessageHelpder.setFrom(mailFrom); //메일 전송자 주소
+			mMessageHelpder.setTo(toEmailAddress); //메일 목적지 주소
+			mMessageHelpder.setSubject(mailTitle); //메일 제목
+			mMessageHelpder.setText(mailContent, true); //메일 내용
+			mMessageHelpder.addInline("logoImage", new ClassPathResource("static/img_custom/로고수직_완성1.png"));
+			
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mailSender.send(mMessage);
+		System.out.println("이메일이 전송되었습니다.");
+	}
 	
 	
 }

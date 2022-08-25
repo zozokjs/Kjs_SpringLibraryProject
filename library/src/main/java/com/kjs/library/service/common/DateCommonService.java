@@ -23,6 +23,63 @@ import com.ibm.icu.util.ChineseCalendar;
 @Service
 public class DateCommonService {
 
+	
+	
+	/**
+	 * 주어진 시간과 현재 시간을 비교
+	 * @param timeAfter : 기준 시간(yyyy-MM-dd HH:mm:ss 형식), String
+	 * @return 현재 시간보다 timeAfter가 늦으면 True 리턴
+	 * @throws ParseException 
+	 * 
+	 * */
+	public static boolean 현재시간과비교(String timeAfter) throws ParseException {
+		
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+		
+		//1. 넘어온 값을 Date 형식으로 변경
+		Date dateAfter = simpleDateFormat.parse(timeAfter);
+		
+		//2. 현재 시간을 구함
+		Date dateNow = new Date();
+		
+		//3. 비교함
+		/** 202109.after( 202110 )  -> FALSE
+		 *   202110.after( 202109 )  -> TRUE
+		 *   dateNow는 dateAfter보다 이후일 때 True
+		 * */
+		if(dateNow.after(dateAfter)) {
+			return false;
+		}else {
+			//dateNow보다 dateAfter가 빠르면 False
+			return true;
+		}
+	}
+	
+	
+	/**
+	 * 주어진 시간에서 특정 시간만큼 더함 값을 구함
+	 * @param standardTime : 기준 시간(yyyy-MM-dd HH:mm:ss 형식), String
+	 * @param hour : 더할 시간, int
+	 * @return yyyy-MM-dd HH:mm:ss 형식의 String 
+	 * @throws ParseException 
+	 * */
+	public static String 시간더하기(String standardTime, int hour) throws ParseException {
+		
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		Date date = new Date();
+		date = simpleDateFormat.parse(standardTime); //String > Date
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.HOUR, hour); //hour만큼 더함
+		
+		String afterHour_String = simpleDateFormat.format(calendar.getTime()); //포맷에 맞춤
+		
+		return afterHour_String;
+	}
+	
+	
 	/**
 	 *  2022-06-23 17:21:59.959571 등의 LocalDateTime 형식으로 오는 것을
 	 *  2022년 6월 23일 String 형식으로 바꿈

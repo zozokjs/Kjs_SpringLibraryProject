@@ -103,6 +103,7 @@
 	
 
 
+
 /*이미지 크기 고정 CSS 시작----------------------------------------------------*/
 /*
 offer-slider-i catalog-i 클래스 안에 넣고
@@ -128,6 +129,11 @@ imgTagContainer img에서 width, top, left 별도 조정해야 함
 /* SelectBox / InputBox  CSS   시작 -----------------------------------------------------------------------------------------*/	
 /* 회원가입이나 새책등록 시 Form에 사용*/	
 	.table-a tr td .input input[type=text]{
+		height:30px;
+		width:100%;
+	}
+	
+	.table-a tr td .input input[type=password]{
 		height:30px;
 		width:100%;
 	}
@@ -218,7 +224,15 @@ imgTagContainer img에서 width, top, left 별도 조정해야 함
 	
 	
 	
-	
-	
-	
+/*화면을 좌우로 나눔**/
+.shortcodes-left{
+    width: 43%;
+   	float: left;
+}
+
+.shortcodes-right{
+    width: 43%;
+    float: right;
+}
+
 	

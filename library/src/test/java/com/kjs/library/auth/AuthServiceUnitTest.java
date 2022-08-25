@@ -1,17 +1,25 @@
-package com.kjs.library.Resource;
+package com.kjs.library.auth;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.text.ParseException;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kjs.library.domain.book.Book;
 import com.kjs.library.domain.book.Samebook;
 import com.kjs.library.domain.lend.Lend;
 import com.kjs.library.domain.lend.LendRepository;
 import com.kjs.library.domain.user.User;
+import com.kjs.library.domain.user.UserRepository;
 import com.kjs.library.service.AuthService;
 import com.kjs.library.service.BookService;
 import com.kjs.library.service.common.DateCommonService;
@@ -20,57 +28,35 @@ import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.NamingStrategy.SuffixingRandom.BaseNameResolver.ForGivenType;
 
 //단위 테스트
-@Slf4j
-@ExtendWith(MockitoExtension.class)
-public class BookServiceUnitTest {
+@Transactional
+@AutoConfigureMockMvc
+public class AuthServiceUnitTest {
 
 	//@InjectMocks//@Mock이라고 붙은 'Mock객체'를 @InjectMocks가 붙은 객체에 주입한다.
 	//서비스를 테스트하려면 repository가 가진 db 함수가 필요하므로 주입 필요함
-	private BookService bookService;
+	private AuthService authService;
 	
+	@Autowired
+	private MockMvc mockMvc;
 	
 	@InjectMocks
 	private DateCommonService dateCommonService;
 	
-	@Mock
-	private LendRepository lendRepository;
+	@Autowired
+	private UserRepository userRepository;
+	
 	
 	@Test
-	public void 날짜() throws Exception {
+	public void db에서_가져온_값에_시간더하기() throws ParseException {
 		
-		System.out.println("] "+(int)(Math.random()*1000000));
-		System.out.println("] "+(int)(Math.random()*10));
+		String code = "$2a$10$Styy3vtHcl4H16FktvFuDedoCO3PaJgYA3gDG3JS9MV6NxupdTI1W";
 		
-	}
-	
-	
-	//@Test
-	public void 대출Test() {
+		//User user = userRepository.findByPasswordAuthCodeToUser(code);
 		
-		//Book, Samebook, User, Lend
-		//given
-		User user = createUserRequest();
-		Book book = createBookRequest();
-		Samebook samebook = createSamebookRequest();
-		Lend lend = createCreateLendRequest(user, book, samebook);
-
+		User user = userRepository.findByUsername("zozo2");
 		
 		
-		//when
-		lendRepository.save(lend); 
-		//bookService.책대출(book.getId(), user.getId());
-		
-		//test excute
-	
-		
-		//then
-		//assertEquals(bookEntity, book);
-		 lendRepository.findById(7);
-		log.info("save 테스트 시작-------------------------------" );
-		//log.info(lendEn.get);
-		
-		
-		assertEquals(lend.getSamebook().getKdcCallSign(), samebook.getKdcCallSign());
+		System.out.println("이름 갖 >"+user.getUsername());
 		
 	}
 	
