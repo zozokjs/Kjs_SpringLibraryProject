@@ -146,15 +146,15 @@
 								<li><a href="/guide/donation">자료 기증</a></li>
 								<li><a href="/guide/organizationChart">조직도 및 담당 업무</a></li>
 							</ul>
-						</li>		
+<!-- 						</li>		
 						<li><a class="has-child"  href="/reserPassword">공사중</a>
 						</li>
-						<li><a class="has-child"  href="/resource/bookSearch">자료검색</a>
+ -->						<li><a class="has-child"  href="/resource/bookSearch">자료검색</a>
 							<ul>	
 								<li><a href="/resource/bookSearch">통합검색</a></li>
 								<li><a href="/resource/newBook">신착도서</a></li>
-								<li><a href="/공사중">인기도서</a></li>
-							</ul>
+<!-- 								<li><a href="/공사중">인기도서</a></li>
+ -->							</ul>
 						</li>
 
 						<!-- 사서 권한만 볼 수 있음 -->
@@ -166,7 +166,7 @@
 									<li><a href="/saseo/bookManage">도서관리(등록/수정/삭제/권수수정/십진분류)</a></li>
 									<li><a href="/saseo/bookRequestManage">희망도서관리(신청처리)</a></li>
 									<li><a href="/saseo/signinRequest">회원관리(가입허가/정지/경고)</a></li>
-									<li><a href="/saseo/infraManage">시설이용관리(신청처리)</a></li>
+<!-- 									<li><a href="/saseo/infraManage">시설이용관리(신청처리)</a></li> -->
 								</ul>
 							</li>
 
@@ -186,8 +186,8 @@
 								<li><a href="/user/userInfor/${principal.user.id}">회원정보</a></li>
 								<li><a href="/user/myLibrary">대출관리(연장/반납)</a></li>
 								<li><a href="/user/myLendHistory">반납완료내역</a></li>
-								<li><a href="/공사중">희망도서신청관리</a></li>
-								<li><a href="/공사중">작성글목록</a></li>
+<!-- 								<li><a href="/공사중">희망도서신청관리</a></li>
+								<li><a href="/공사중">작성글목록</a></li> -->
 							</ul>
 						</li>
 						
@@ -220,13 +220,13 @@
 								<li><a href="/guide/organizationChart">조직도 및 담당 업무</a></li>
 							</ul>
 						</li>		
-						<li><a href="/auth/signupSuccess">공사중</a>
+<!-- 						<li><a href="/auth/signupSuccess">공사중</a> -->
 						</li>
 						<li><a href="/resource/bookSearch">자료검색</a>
 							<ul>	
 								<li><a href="/resource/bookSearch">통합검색</a></li>
 								<li><a href="/resource/newBook">신착도서</a></li>
-								<li><a href="/공사중">인기도서</a></li>
+<!-- 								<li><a href="/공사중">인기도서</a></li> -->
 							</ul>
 						</li>
 
@@ -257,8 +257,8 @@
 								<li><a href="/user/userInfor/${principal.user.id}">회원정보</a></li>
 								<li><a href="/user/myLibrary">대출관리(연장/반납)</a></li>
 								<li><a href="/user/myLendHistory">반납완료내역</a></li>
-								<li><a href="/공사중">희망도서신청관리</a></li>
-								<li><a href="/공사중">작성글목록</a></li>
+	<!-- 							<li><a href="/공사중">희망도서신청관리</a></li> -->
+	<!-- 							<li><a href="/공사중">작성글목록</a></li> -->
 							</ul>
 						</li>
 					</ul>
