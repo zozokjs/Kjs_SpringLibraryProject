@@ -14,7 +14,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -42,7 +41,7 @@ import lombok.extern.slf4j.Slf4j;
 
 //단위 테스트용
 @Transactional //실제 DB를 사용해줌. 테스트 내용은 롤백됨
-@Slf4j
+//@Slf4j
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK) 
 @AutoConfigureMockMvc
 public class UserControllerUnitTest {
@@ -82,7 +81,7 @@ public class UserControllerUnitTest {
 	
 	
 	
-	@Test
+	//@Test
 	public void CommonServiceTest() throws ParseException {
 		//log.info("테스트 시작");
 		
@@ -117,7 +116,7 @@ public class UserControllerUnitTest {
 	//Given
 	//When
 	//Then
-	@Test
+	//@Test
 	public void 대출목록() throws Exception {
 		//log.info("테스트 시작");
 		

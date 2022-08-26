@@ -5,7 +5,6 @@ import static org.mockito.Mockito.when;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -16,8 +15,8 @@ import com.kjs.library.service.common.CommonService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
-@ExtendWith(MockitoExtension.class)
+//@Slf4j
+//@ExtendWith(MockitoExtension.class)
 public class BookServiceUnitTest {
 
 	//@Mock이라고 붙은 것을 주입함.

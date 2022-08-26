@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -14,7 +14,7 @@ import com.kjs.library.domain.user.User;
 import com.kjs.library.domain.user.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+//@Slf4j
 @Transactional	
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) //mysql db 사용
 @DataJpaTest //Repository 들을 모두 IOC에 등록해준다.

@@ -2,8 +2,6 @@ package com.kjs.library.testSample.service;
 
 import static org.mockito.Mockito.when;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -38,7 +36,7 @@ import lombok.extern.slf4j.Slf4j;
  *
  * */
 @Slf4j
-@ExtendWith(MockitoExtension.class)
+//@ExtendWith(MockitoExtension.class)
 public class TestSampleServiceUnitTest {
 
 	@InjectMocks //BookService 객체가 생성될 때 BookServiceUnitTest 파일에서 @Mock으로 등록된 모든 애들을 주입시킨다.

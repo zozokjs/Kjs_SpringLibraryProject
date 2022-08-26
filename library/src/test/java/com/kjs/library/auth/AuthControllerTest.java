@@ -44,7 +44,7 @@ import lombok.extern.slf4j.Slf4j;
  * @Transactional = 각각 테스트 함수가 종료될 때마다 트랜잭션을 롤백해준다. (db에 넣어준 걸 뺴준다)
  * 
  */
-@Slf4j
+//@Slf4j
 @Transactional
 @SpringBootTest(webEnvironment = WebEnvironment.NONE) 
 public class AuthControllerTest {

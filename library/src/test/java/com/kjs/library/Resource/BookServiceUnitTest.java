@@ -1,8 +1,5 @@
 package com.kjs.library.Resource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -20,10 +17,10 @@ import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.NamingStrategy.SuffixingRandom.BaseNameResolver.ForGivenType;
 
 //단위 테스트
-@Slf4j
-@ExtendWith(MockitoExtension.class)
+//@Slf4j
+//@ExtendWith(MockitoExtension.class)
 public class BookServiceUnitTest {
-
+/*
 	//@InjectMocks//@Mock이라고 붙은 'Mock객체'를 @InjectMocks가 붙은 객체에 주입한다.
 	//서비스를 테스트하려면 repository가 가진 db 함수가 필요하므로 주입 필요함
 	private BookService bookService;
@@ -35,7 +32,7 @@ public class BookServiceUnitTest {
 	@Mock
 	private LendRepository lendRepository;
 	
-	@Test
+	//@Test
 	public void 날짜() throws Exception {
 		
 		System.out.println("] "+(int)(Math.random()*1000000));
@@ -104,6 +101,6 @@ public class BookServiceUnitTest {
 		return samebook;
 	}
 	
-
+*/
 	
 }

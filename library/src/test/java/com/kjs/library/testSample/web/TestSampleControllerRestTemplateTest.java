@@ -2,8 +2,6 @@ package com.kjs.library.testSample.web;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -28,7 +26,7 @@ import com.kjs.library.testSample.TestSample;
 // TestRestTemplate는 MSA할 때....
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT) // 실제 내장 톰켓이 랜덤 포트로 올라온다.
 public class TestSampleControllerRestTemplateTest {
-	
+	/*
 	@Autowired
 	private TestRestTemplate restTemplate;
 
@@ -61,7 +59,7 @@ public class TestSampleControllerRestTemplateTest {
 	 * Book[].class); System.out.println(response.getBody()[0]); 참고 2 new
 	 * ObjectMapper().writeValueAsString(자바오브젝트); // json으로 변경 new
 	 * ObjectMapper().readValue(제이슨데이터, 자바오브젝트.class); // java object로 변경
-	 */
+	 
 	//@Test
 	public void findAll_테스트() {
 		// given
@@ -75,5 +73,5 @@ public class TestSampleControllerRestTemplateTest {
 		String author = dc.read("$.[0].author");
 		assertEquals(200, response.getStatusCodeValue());
 		assertEquals("코스", author);
-	}
+	}*/
 }
