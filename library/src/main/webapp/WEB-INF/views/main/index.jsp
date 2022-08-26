@@ -112,7 +112,6 @@ display:flex;
 			<b>신착 도서 </b>
 		</header>
 		
-		
 		<div class="mp-popular-row popular-flat">
 			<c:choose>
 				<c:when test="${empty book}">
