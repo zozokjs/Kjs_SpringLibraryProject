@@ -4,81 +4,37 @@
 
 <footer class="footer-a">
 	<div class="wrapper-padding">
-		<div class="section">
-			<div class="footer-lbl">Get In Touch</div>
-			<div class="footer-adress">
-				Address: 58911 Lepzig Hore,<br />85000 Vienna, Austria
-			</div>
-			<div class="footer-phones">Telephones: +1 777 55-32-21</div>
-			<div class="footer-email">E-mail: contacts@miracle.com</div>
-			<div class="footer-skype">Skype: angelotours</div>
-		</div>
-		<div class="section">
-			<div class="footer-lbl">Featured deals</div>
-			<div class="footer-tours">
-				<!-- // -->
-				<div class="footer-tour">
-					<div class="footer-tour-l">
-						<a href="#"><!-- <img alt="" src="img/f-tour-01.jpg" /> --></a>
-					</div>
-					<div class="footer-tour-r">
-						<div class="footer-tour-a">amsterdam tour</div>
-						<div class="footer-tour-b">location: netherlands</div>
-						<div class="footer-tour-c">800$</div>
-					</div>
-					<div class="clear"></div>
+	<hr>
+		<div class="" style="display:flex; flex-direction: column; align-items: center;">
+			
+		
+			<div class="typography" style="padding-bottom:1px; display:flex; justify-content:center;">
+			
+				<div class="" style="margin-top:20px;">
+					<a href="/">
+						<img alt=""  style="height:47px; width:250px;" src="/img_custom/로고_완성3_dark2.png" />
+						<!-- 로고 관련 static > js > script.js에서 $headerUp과 $headerDown 찾기 -->
+					</a>
 				</div>
-				<!-- \\ -->
-				<!-- // -->
-				<div class="footer-tour">
-					<div class="footer-tour-l">
-						<a href="#"><!-- <img alt="" src="img/f-tour-02.jpg" /> --></a>
+				<div class="content-wrapper" style="margin-left: 15px;">
+					<div class="block-qoutes">
+						<p>
+							대한민국 부산광역시 강서구 신호동 진우도 진우로1번길1 <br>
+							토르두스 이듀스골타 마티마 민넬르헤이민 4번 
+						</p>
 					</div>
-					<div class="footer-tour-r">
-						<div class="footer-tour-a">Kiev tour</div>
-						<div class="footer-tour-b">location: ukraine</div>
-						<div class="footer-tour-c">550$</div>
-					</div>
-					<div class="clear"></div>
-				</div>
-				<!-- \\ -->
-				<!-- // -->
-				<div class="footer-tour">
-					<div class="footer-tour-l">
-						<a href="#"><!-- <img alt="" src="img/f-tour-03.jpg" /> --></a>
-					</div>
-					<div class="footer-tour-r">
-						<div class="footer-tour-a">vienna tour</div>
-						<div class="footer-tour-b">location: austria</div>
-						<div class="footer-tour-c">940$</div>
-					</div>
-					<div class="clear"></div>
-				</div>
-				<!-- \\ -->
-			</div>
-		</div>
-
-		<div class="section">
-			<div class="footer-lbl">newsletter sign up</div>
-			<div class="footer-subscribe">
-				<div class="footer-subscribe-a">
-					<input type="text" placeholder="you email" value="" />
 				</div>
 			</div>
-			<button class="footer-subscribe-btn">Sign up</button>
+			<div>
+				<p>고객센터 | 사이트 관리자 연락처 : zozokjs@naver.com</p>
+			</div>
+			
+			
+			
 		</div>
+	<hr>
 	</div>
 	<div class="clear"></div>
-</footer>
-
-<footer class="footer-b">
-	<div class="wrapper-padding">
-		<div class="footer-left">© Copyright 2015 by Weblionmedia. All rights reserved.</div>
-		<div class="footer-social">
-			<a href="#" class="footer-twitter"></a> <a href="#" class="footer-facebook"></a> <a href="#" class="footer-vimeo"></a> <a href="#" class="footer-pinterest"></a> <a href="#" class="footer-instagram"></a>
-		</div>
-		<div class="clear"></div>
-	</div>
 </footer>
 
 <!-- // scripts // -->

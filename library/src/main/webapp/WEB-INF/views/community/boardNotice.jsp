@@ -46,6 +46,9 @@
 									</thead>
 									<tbody>
 										<c:forEach var = "notice" items ="${boardNotice.content}"   varStatus="index">
+										
+											
+										
 											<tr>
 												 <td class="">${notice.id}</td>
 												 <td class="">
@@ -53,7 +56,10 @@
 												 </td>
 												 <td class="">${notice.user.username}</td>
 												 <td class="">${notice.readCount}</td>
-												 <td class="">${notice.createDate}</td>
+												 <td class="">
+													 <fmt:parseDate value="${notice.createDate}"   pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"  />
+													 <fmt:formatDate value="${parsedDateTime}"   pattern="yyyy-MM-dd  | HH:mm"/>
+												 </td>
 											</tr>
 										</c:forEach>
 									</tbody>

@@ -42,6 +42,23 @@
 	flex-direction: column;
 	justify-content: center;
 }
+
+
+.main-Notice-Table-A-Tag{
+    font-size: 20px;
+    text-decoration: auto;
+}
+
+.main-Notice-Table-Div{
+    font-size: 17px;
+}
+
+.referenceSite{
+width:145px;
+height:65px;
+display:flex;
+}
+
 </style>
 
 <!-- main-cont 시작 -->
@@ -97,9 +114,6 @@
 		
 		
 		<div class="mp-popular-row popular-flat">
-
-
-
 			<c:choose>
 				<c:when test="${empty book}">
 					<h3>등록된 책이 없습니다</h3>
@@ -129,8 +143,6 @@
 							</div>
 						</div>
 
-
-
 					</c:forEach>
 					<!--사진 반복 끝 -->
 				</c:otherwise>
@@ -151,86 +163,107 @@
 	
 	<!-- 신착도서 리스트 시작 -->
 	<div class="row justify-content-center">
-	
-		
-		
 	</div>
 	<!-- 신착도서 리스트 끝 -->
+	
+	
+	<!-- 공지사항 -->
+	<div class="">
 
 
+		<div class="content-wrapper" style="margin-top: 50px;">
 
-	<div class="mp-b">
-		<div class="wrapper-padding">
-			<div class="fly-in mp-b-left">
-				<div class="mp-b-lbl">choose hotel by region</div>
-				<!-- // regions // -->
-				<div class="regions">
-					<div class="regions-holder">
-						<map id="imgmap201410281607" name="imgmap201410281607">
-							<!--img alt="" usemap="#imgmap201410281607" width="347" height="177" src="img/world.png" id="imgmap201410281607">
-										<area id="africa" shape="poly" alt="africa" title="" coords="183,153,173,129,176,115,170,107,163,97,145,98,138,85,141,75,149,63,161,58,169,57,173,56,172,61,182,65,185,62,199,65,204,77,211,89,212,92,222,92,221,96,210,110,207,117,221,125,217,141,203,138,192,152" href="" />
-										<area id="asia" shape="poly" alt="asia" title="" coords="256,96,259,93,260,83,269,76,277,86,281,96,278,102,289,116,304,111,309,99,295,87,306,70,312,58,311,47,316,39,308,33,306,27,319,29,329,40,331,28,340,20,336,15,311,14,289,11,282,10,280,12,258,10,250,4,236,8,227,12,218,11,223,16,225,23,220,37,222,43,217,45,221,49,221,56,201,58,199,63,202,70,208,79,214,89,225,86,233,77,236,72,247,79" href="" />
-										<area id="europe" shape="poly" alt="europe" title="" coords="191,56,177,55,170,46,157,56,149,54,157,38,171,31,168,20,183,11,197,14,220,16,220,32,218,42,213,47,219,55" href="" />
-										<area id="austalia" shape="poly" alt="australia" title="" coords="302,155,315,150,322,153,327,162,335,161,342,154,342,108,328,103,321,110,326,119,313,128,297,138,296,151" href="" />
-										<area id="north-america" shape="poly" alt="north_america" title="" coords="58,94,55,84,52,79,52,75,42,68,56,67,61,75,66,72,65,61,82,49,90,46,100,42,102,36,102,29,99,21,111,15,115,28,131,18,140,17,156,2,154,0,96,1,90,3,88,9,74,11,66,8,53,8,50,12,35,13,28,10,5,15,0,18,1,32,13,28,22,31,21,42,14,53,18,68,25,76,31,84,40,89" href="" />
-										<area id="south-america" shape="poly" alt="south_america" title="" coords="62,102,68,89,81,92,99,101,99,106,105,109,118,113,117,122,113,126,110,140,103,143,97,156,88,165,75,169,71,137,70,131,56,121,54,113,56,106" href="" /-->
-						</map>
-						<div class="asia"></div>
-						<div class="africa"></div>
-						<div class="austalia"></div>
-						<div class="europe"></div>
-						<div class="north-america"></div>
-						<div class="south-america"></div>
+			<div class="typography" style="padding-bottom:30px;">
+				<div class="content-wrapper">
+					<div class="block-qoutes">
+						<div class="typography-heading" style="font-size:20px;">공지사항</div>
+						
+						<table class="table-a light main-Notice-Table">
+							<tbody>
+									<tr>
+										<td>
+											<div>
+												<a href="/community/${boardNotice[0].id}/noticeInfor" class="main-Notice-Table-A-Tag"     >${boardNotice[0].title}</a>
+											</div>
+											<div class="main-Notice-Table-Div">
+												<fmt:parseDate value="${boardNotice[0].createDate}"   pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"  />
+												 <fmt:formatDate value="${parsedDateTime}"   pattern="yyyy-MM-dd "/>
+											</div>
+										</td>
+										<td>
+											<div>
+												<a href="/community/${boardNotice[1].id}/noticeInfor"   class="main-Notice-Table-A-Tag" >${boardNotice[1].title}</a>
+											</div>
+											<div class="main-Notice-Table-Div">
+												<fmt:parseDate value="${boardNotice[1].createDate}"   pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"  />
+												 <fmt:formatDate value="${parsedDateTime}"   pattern="yyyy-MM-dd "/>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/community/${boardNotice[2].id}/noticeInfor">${boardNotice[2].title}</a>
+										</td>
+										<td>
+											<a href="/community/${boardNotice[3].id}/noticeInfor">${boardNotice[3].title}</a>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/community/${boardNotice[4].id}/noticeInfor">${boardNotice[4].title}</a>
+										</td>
+										<td>
+											<a href="/community/${boardNotice[5].id}/noticeInfor">${boardNotice[5].title}</a>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/community/${boardNotice[6].id}/noticeInfor">${boardNotice[6].title}</a>
+										</td>
+										<td>
+											<a href="/community/${boardNotice[7].id}/noticeInfor">${boardNotice[7].title}</a>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/community/${boardNotice[8].id}/noticeInfor">${boardNotice[8].title}</a>
+										</td>
+										<td>
+											<a href="/community/${boardNotice[9].id}/noticeInfor">${boardNotice[9].title}</a>
+										</td>
+									</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
-				<!-- // regions // -->
-				<nav class="regions-nav">
-					<ul>
-						<li><a class="europe" href="#">Europe</a></li>
-						<li><a class="asia" href="#">Asia</a></li>
-						<li><a class="north-america" href="#">North america</a></li>
-						<li><a class="south-america" href="#">south america</a></li>
-						<li><a class="africa" href="#">africa</a></li>
-						<li><a class="austalia" href="#">australia</a></li>
-					</ul>
-				</nav>
 			</div>
-			<div class="fly-in mp-b-right">
-				<div class="mp-b-lbl">reasons to book with us</div>
-				<div class="reasons-item-a">
-					<div class="reasons-lbl">Awesome design</div>
-					<div class="reasons-txt">Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui.</div>
-				</div>
-				<div class="reasons-item-b">
-					<div class="reasons-lbl">carefully handcrafted</div>
-					<div class="reasons-txt">Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui.</div>
-				</div>
-				<div class="clear"></div>
-				<div class="reasons-item-c">
-					<div class="reasons-lbl">fully responsive</div>
-					<div class="reasons-txt">Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui.</div>
-				</div>
-				<div class="reasons-item-d">
-					<div class="reasons-lbl">fully responsive</div>
-					<div class="reasons-txt">Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui.</div>
-				</div>
-				<div class="clear"></div>
+			
+			<div style="text-align: center;">
+				<button onclick="location.href='/community/boardNotice'" class="booking-complete-btn" style=" display: inline-block; margin-bottom:50px;">전체보기</button>
 			</div>
+
 			<div class="clear"></div>
+
+
+
 		</div>
 	</div>
+
+
+	<div class="partners-wrapper">
+		<header class="fly-in page-lbl appeared">
+			<b>관련사이트</b>
+			<div class="partners fly-in">
+		    	<a href="https://www.nl.go.kr/seoji/"><img alt="" src="/img_custom/제국외도서관로고/국립중앙도서관ISBN납본시스템.jpg"></a>
+		    	<a href="https://www.listopia.net/"><img alt="" src="/img_custom/제국외도서관로고/리스토피아.png"></a>
+		    	<a href="https://library.busan.go.kr/portal/index.do"><img alt="" src="/img_custom/제국외도서관로고/부산광역시도서관포털.png"></a>
+		    	<a href="https://home.pen.go.kr/siminlib/main.do"><img alt="" src="/img_custom/제국외도서관로고/부산시립시민도서관.png"></a>
+		    	<a href="https://library.busan.go.kr/elib/index.do"><img alt="" src="/img_custom/제국외도서관로고/부산전자도서관.png"></a>
+		    	<a href="https://library.cheongju.go.kr/lib/front/"><img alt="" src="/img_custom/제국외도서관로고/청주시립도서관.jpg"></a>
+		  	  </div>
+		</header>  
+	   </div>
 	
-	<!-- 2400 x 500 -->
-	<!-- <div style="background: url(img/in2_popular.jpg) center top no-repeat;" class="last-order fly-in appeared"> -->
-	<div style="background: url( images/bg/books_2400x500.jpg ) center top no-repeat;" class="last-order fly-in appeared">
-		<div class="last-order-content">
-			<div class="last-order-a fly-in appeared">Ropular Deal</div>
-			<div class="last-order-b fly-in appeared">Grand hotel - london, england</div>
-			<div class="last-order-c fly-in appeared">Fri 14 Now - Sun 16 Now</div>
-			<div class="last-order-d fly-in appeared">300$</div>
-			<a href="#" class="last-order-btn fly-in appeared">Book now</a>
-		</div>
-	</div>
 
 </div>
 <!-- main-cont 끝 -->

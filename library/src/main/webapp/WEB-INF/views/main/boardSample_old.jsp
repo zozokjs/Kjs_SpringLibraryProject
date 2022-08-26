@@ -47,6 +47,9 @@
 							
 							<!-- 본문 Start -->
 							
+							<!-- number.index 값을 2로 나눴을 때 나머지가 0과 같다면 -->
+							<c:when test="${numbering.index%2 eq 0}">
+							</c:when>
 							
 							<c:choose>
 								<c:when test="${empty userList}"> <!--  작동됨 -->

@@ -54,7 +54,10 @@
 												 </td>
 												 <td class="">${free.username}</td>
 												 <td class="">${free.readCount}</td>
-												 <td class="">${free.createDate}</td>
+												 <td class="">
+												 	<fmt:parseDate value="${free.createDate}"   pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"  />
+													 <fmt:formatDate value="${parsedDateTime}"   pattern="yyyy-MM-dd  | HH:mm"/>
+												 </td>
 											</tr>
 										</c:forEach>
 									</tbody>

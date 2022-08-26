@@ -148,7 +148,7 @@ public class CommunityController {
 		//댓글 수, 작성자, 제목, 등록날짜, 조회수 등 표시
 		Page <BoardNotice> boardNotice= communityService.공지사항목록(pageable);
 		model.addAttribute("boardNotice",boardNotice);
-
+			
 		
 		Map<String, Integer> pageMap = commonService.시작끝페이지구하기(boardNotice, 10);
 		model.addAttribute("startPage", pageMap.get("pageStart"));
@@ -189,7 +189,7 @@ public class CommunityController {
 		BNoticeResponseDto bnResponseDto = communityService.공지사항게시글조회(boardNoticeId) ;
 
 		//게시글 1개의 조회수 증가
-		communityService.게시글조회수증가(boardNoticeId, request, response, session);
+		communityService.공지사항게시글조회수증가(boardNoticeId, request, response, session);
 		
 		//model.addAttribute("createDate", createDate);
 		model.addAttribute("boardNotice", bnResponseDto);

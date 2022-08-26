@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal" var ="principal"/>
 	<!-- 
@@ -220,7 +220,7 @@
 								<li><a href="/guide/organizationChart">조직도 및 담당 업무</a></li>
 							</ul>
 						</li>		
-						<li><a href="/scriptAlertPage">공사중</a>
+						<li><a href="/auth/signupSuccess">공사중</a>
 						</li>
 						<li><a href="/resource/bookSearch">자료검색</a>
 							<ul>	

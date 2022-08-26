@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.kjs.library.web.dto.community.BFreeListInterface;
+import com.kjs.library.web.dto.community.BNoticeResponseDto;
 
 
 public interface BoardNoticeRepository extends JpaRepository<BoardNotice, Integer>{
@@ -17,5 +18,7 @@ public interface BoardNoticeRepository extends JpaRepository<BoardNotice, Intege
     nativeQuery = true)
 	Page<BoardNotice> findByAllDesc(Pageable pageable);
 
-	
+	@Query(value = "SELECT * FROM Boardnotice ORDER BY id DESC limit 10", 
+    nativeQuery = true)
+	List<BoardNotice> findByAllDescTop10();
 }
