@@ -31,7 +31,7 @@ import net.bytebuddy.NamingStrategy.SuffixingRandom.BaseNameResolver.ForGivenTyp
 @Transactional
 @AutoConfigureMockMvc
 public class AuthServiceUnitTest {
-
+/*
 	//@InjectMocks//@Mock이라고 붙은 'Mock객체'를 @InjectMocks가 붙은 객체에 주입한다.
 	//서비스를 테스트하려면 repository가 가진 db 함수가 필요하므로 주입 필요함
 	private AuthService authService;
@@ -90,6 +90,6 @@ public class AuthServiceUnitTest {
 		return samebook;
 	}
 	
-
+*/
 	
 }

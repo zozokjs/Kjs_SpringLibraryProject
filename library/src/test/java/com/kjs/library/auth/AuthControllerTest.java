@@ -48,7 +48,7 @@ import lombok.extern.slf4j.Slf4j;
 @Transactional
 @SpringBootTest(webEnvironment = WebEnvironment.NONE) 
 public class AuthControllerTest {
-
+/*
 	@Autowired
 	private MockMvc mockMvc;
 	
@@ -82,7 +82,7 @@ public class AuthControllerTest {
 	
 		
 	}
-	
+	*/
 	
 	
 }
