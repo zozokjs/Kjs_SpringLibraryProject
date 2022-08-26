@@ -9,12 +9,24 @@ function kdcAdd(event){
 	kdcCallSignTableCount = kdcCallSignTableCount + 1;
 		//``
 	//1줄씩 추가.
-	const kdcCallSignAddHtml = `<tr id =   "tableId`+kdcCallSignTableCount+`">
-														<td colspan="2" style="text-align:center;">
-																<input type="text" name="kdcCallSign" placeholder="청구기호">
-																<button type = "button" onclick="kdcRemove(tableId`+kdcCallSignTableCount+`)">제거</button>
-														</td>
-													</tr>`;
+	const kdcCallSignAddHtml = 
+	`
+	<tr id =   "tableId`+kdcCallSignTableCount+`">
+		<td colspan="2" style="text-align:center;">
+		
+			<div class="booking-form-i  inputBox-custom"  >
+				<div class="input">
+					<input type="text" name="kdcCallSign" placeholder="청구기호">
+				</div>
+			</div>
+		</td>
+		<td colspan="2" >
+			<button type = "button" onclick="kdcRemove(tableId`+kdcCallSignTableCount+`)" class=" booking-complete-btn white-btn-custom" >
+				제거
+			</button>
+		</td>
+	</tr>
+	`;
 											
 	$("#kdcCallSignList").append(kdcCallSignAddHtml);
 }

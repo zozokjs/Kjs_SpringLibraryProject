@@ -1,5 +1,6 @@
 package com.kjs.library.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import com.kjs.library.domain.lend.LendRepository;
 import com.kjs.library.handler.aop.ex.CustomApiException;
 import com.kjs.library.service.common.CommonService;
 import com.kjs.library.web.dto.book.BookUpdate_kdcDto;
+import com.nimbusds.oauth2.sdk.util.CollectionUtils;
 
 import lombok.RequiredArgsConstructor;
 
@@ -52,7 +54,7 @@ public class SaseoSelectService {
 		public Book bookSelectOne(int id) {
 		
 			Book bookEntity = bookRepository.findById(id).orElseThrow(()->{
-				throw new CustomApiException("해당하는 책이 존재하지 않습니다! 관리자에게 문의하셈");
+				throw new CustomApiException("해당하는 책이 존재하지 않습니다. 관리자에게 문의하셈");
 			});
 			
 			return bookEntity;
@@ -69,10 +71,10 @@ public class SaseoSelectService {
 			List<Samebook> sameBookEntity = sameBookRepository.findBybookid(bookId);
 			
 			if(sameBookEntity.isEmpty()) {
-				System.out.println("등록된 청구기호가 없음");
+				//System.out.println("등록된 청구기호가 없음");
 				
 			}else {
-				System.out.println("등록된 청구기호가 잇음");
+				//System.out.println("등록된 청구기호가 잇음");
 				
 			}
 			return sameBookEntity;
@@ -85,27 +87,55 @@ public class SaseoSelectService {
 		public boolean 청구기호수정가능하다(int bookId, BookUpdate_kdcDto bookUpdate_kdcDto ) {
 	
 			//bookId로 등록된 samebook 데이터 들고옴
-			List<Samebook> samebookEntity = sameBookRepository.findBybookid(bookId); 
+			//List<Samebook> samebookEntity = sameBookRepository.findBybookid(bookId); 
 			
 			//수정하려는 청구기호를 나눔
 			List<Integer> samebookIdList = bookUpdate_kdcDto.getSamebookId();
 			
-			List<Boolean> result = sameBookRepository.editAbleKdcCallSign(samebookIdList);
+			List<Boolean> result = new ArrayList<>();
 			
-			/* 값 체크
-			for (int i = 0; i < result.size(); i++) {
-				System.out.println("결과 "+result.get(i));
-			}
-			*/
-	
-			//result에 true 포함여부 확인
-			boolean resultB = result.contains(true);
-			if(resultB == true) {
-				return false;
+			//samebookIdList가 null 아닐 때
+			if( !(CollectionUtils.isEmpty(samebookIdList)) ) {
+				
+				//samebookIdList의 대여상태(lendState)를 리턴함
+				result = sameBookRepository.editAbleKdcCallSign(samebookIdList); ;
+				
+				//System.out.println("청구기호 수정 가능 여부를 확인합니다.  samebookIdList 길이 > "+samebookIdList.size());
+				//System.out.println("청구기호 수정 가능 여부를 확인합니다.  result 길이 > "+result.size());
+				
 			}else {
-				return true;
+				result.add(0, false);
 			}
-}
+			
+			//result에 true가 있으면 수정하려는 청구기호 중 일부가 '대출 상태'이므로 청구기호 수정 불가능.
+			boolean resultB = result.contains(true);
+			
+			if(resultB == true) {
+				return false; //청구기호 수정 불가
+			}else {
+				return true; //청구기호 수정 가능
+			}
+		}
+		
+		
+		
+		// SELECT
+		/** 청구기호 수정 가능 여부 return
+		수정 가능하면 True */
+		@Transactional(readOnly = true)
+		public boolean 청구기호수정가능하다2(int bookId) {
+			
+			//samebook 테이블에서 bookId 기준으로 lendState가 True인 것을 반환함.
+			List<Samebook> samebookList = sameBookRepository.findLendStateBybookid(bookId);
+			
+			
+			if(samebookList.isEmpty()) {
+				return true; //대여 중인 책이 없으면 수정 가능함
+			}else {
+				return false; //수정 불가능함.
+			}
+
+		}
 	
 
 }

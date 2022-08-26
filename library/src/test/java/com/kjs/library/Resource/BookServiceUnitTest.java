@@ -12,7 +12,9 @@ import com.kjs.library.domain.book.Samebook;
 import com.kjs.library.domain.lend.Lend;
 import com.kjs.library.domain.lend.LendRepository;
 import com.kjs.library.domain.user.User;
+import com.kjs.library.service.AuthService;
 import com.kjs.library.service.BookService;
+import com.kjs.library.service.common.DateCommonService;
 
 import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.NamingStrategy.SuffixingRandom.BaseNameResolver.ForGivenType;
@@ -22,14 +24,27 @@ import net.bytebuddy.NamingStrategy.SuffixingRandom.BaseNameResolver.ForGivenTyp
 @ExtendWith(MockitoExtension.class)
 public class BookServiceUnitTest {
 
-	@InjectMocks//@Mock이라고 붙은 'Mock객체'를 @InjectMocks가 붙은 객체에 주입한다.
+	//@InjectMocks//@Mock이라고 붙은 'Mock객체'를 @InjectMocks가 붙은 객체에 주입한다.
 	//서비스를 테스트하려면 repository가 가진 db 함수가 필요하므로 주입 필요함
 	private BookService bookService;
+	
+	
+	@InjectMocks
+	private DateCommonService dateCommonService;
 	
 	@Mock
 	private LendRepository lendRepository;
 	
 	@Test
+	public void 날짜() throws Exception {
+		
+		System.out.println("] "+(int)(Math.random()*1000000));
+		System.out.println("] "+(int)(Math.random()*10));
+		
+	}
+	
+	
+	//@Test
 	public void 대출Test() {
 		
 		//Book, Samebook, User, Lend

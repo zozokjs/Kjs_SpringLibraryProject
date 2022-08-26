@@ -3,7 +3,9 @@ package com.kjs.library.web.api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -60,9 +62,9 @@ public class SaseoApiController {
 		//System.out.println("로그인한 유저 아이디 -> "+loginedId);
 		
 		
-		//수정할 청구기호 id중 하나라도 대출 중이라면 삭제 불가 
-		
+		//수정할 청구기호 id중 하나라도 대출 중이라면 수정 불가
 		boolean 수정가능 = saseoSelectService.청구기호수정가능하다(bookId, bookUpdate_kdcDto);
+		System.out.println("청구기호 수정 가능 여부> "+수정가능);
 		
 		if(수정가능 == false) {
 			//수정 안 됨
@@ -75,6 +77,25 @@ public class SaseoApiController {
 		}
 		
 	}
+	
+	/**
+	 * 청구기호 수정 가능여부 체크
+	 * bookId에 해당하는 책의
+	 * 청구기호 중 단 1개라도 대출중(samebook의 lendState가 true)이면 수정 불가
+	 * */
+	@GetMapping("/saseo/api/{bookId}/kdcEditAbleCheck")
+	public ResponseEntity<?> bookUpdate_kdc(@PathVariable int bookId){
+		
+		boolean 수정가능2 = saseoSelectService.청구기호수정가능하다2(bookId);
+		System.out.println("청구기호 수정 가능 여부> "+수정가능2);
+		
+		if(수정가능2 == true) {
+			return new ResponseEntity<>(new CMRespDto<>(1,"청구기호 수정 가능합니다.",null),HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(new CMRespDto<>(0,"대출중인 책이 있어 수정할 수 없습니다..",null),HttpStatus.OK);
+		}
+	}
+	
 
 	
 	//정지된 회원의 활성화 처리
@@ -99,4 +120,22 @@ public class SaseoApiController {
 
 		return new ResponseEntity<>(new CMRespDto<>(1,"가입 승인 되었습니다.",null),HttpStatus.OK);
 	}
+	
+	
+	//도서 삭제 처리
+	@PostMapping("/saseo/api/{bookId}/bookDelete")
+	public ResponseEntity<?> bookDelete(@PathVariable int bookId) {
+		
+		boolean deleteAble = false;
+		deleteAble = saseoSelectService.청구기호수정가능하다2(bookId);
+		
+		if(deleteAble == true) {
+			saseoService.책삭제(bookId);
+			return new ResponseEntity<>(new CMRespDto<>(1,"책 삭제 되었습니다.",null),HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(new CMRespDto<>(0,"대출 중인 책이 있어 삭제할 수 없습니다.",null),HttpStatus.OK);
+		}
+		
+	}
+	
 }

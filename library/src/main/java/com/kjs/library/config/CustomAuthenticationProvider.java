@@ -51,7 +51,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 		//authentication으로부터 Front에서 사용자가 직접 입력한 아이디와 비번을 가져옴
 		String loginId = authentication.getName();
 		String password = (String) authentication.getCredentials();
-
+		
+		//System.out.println("chekcer > "+password);
+		
 
 		//Front에서 사용자가 직접 입력한 id를 갖고 DB에 전달하여 user 정보를 받아온다.
 		PrincipalDetails principalDetails = (PrincipalDetails) principalDetailsService.loadUserByUsername(loginId);

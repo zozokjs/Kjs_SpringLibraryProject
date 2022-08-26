@@ -31,9 +31,9 @@ function bookUpdate_kdc(bookId, event) {
 		alert("공백은 저장할 수 없습니다. 저장을 원치 않으시면 제거를 눌러주세요.");		
 		return;
 	}
-	
+
 	for(i=0; i<removeArray.length; i++){
-		console.log( removeArray[i] );
+		console.log( "제거 목록 >"+removeArray[i] );
 		
 	}
 	
@@ -51,7 +51,7 @@ function bookUpdate_kdc(bookId, event) {
 		console.log("성공", res);
 		
 		alert("청구기호 정보가 수정되었습니다.");
-		location.href = `/`;
+		location.href = `/saseo/bookManage`;
 		
 	}).fail(error =>{
 		
@@ -75,8 +75,8 @@ function bookUpdate_kdc(bookId, event) {
 //권 수에 따라 청구기호 ''입력'' 테이블 생성 함.
 function kdcCallSignLoad(){
 	
-	const totalAmount = 	$("#book_totalAmount").val(); //권 수
-
+	const totalAmount = $('#book_totalAmount').val();
+	
 	var kdcCallSignListHtml ="";
 	
 	const totalAmount_Integer = Number(totalAmount);//String을 Number로 변환.
@@ -84,8 +84,6 @@ function kdcCallSignLoad(){
 	//기존 권수가 3권이라면 초기값인 0에서 3으로 변경됨
 	kdcTrCount = totalAmount_Integer;
 
-	console.log("asd "+kdcTrCount);
-	
 	//값 체크
 	/** 
 	console.log("book의 totalAmount 값 : "+Number(totalAmount));
@@ -97,33 +95,36 @@ function kdcCallSignLoad(){
 	//값 체크 끝
 	
 	kdcCallSignListHtml += `<tr>
-											    <td class="tg-0pky">기존</td>
-											    <td class="tg-0pky">수정<button onclick ="kdcAdd(event)">추가</button></td>
+											    <td colspan="2" >청구기호 기존 값</td>
+											    <td colspan="2" >
+											    	<div  class="booking-form-i"> 청구기호 수정 값</div>
+												    <div style="text-align: -webkit-center;">
+												    	<!--추가 버튼-->
+														<button onclick ="kdcAdd(event)" class=" booking-complete-btn white-btn-custom" >추가</button>
+													</div>
+											    </td>
 										  	</tr>`
 										  	
 	//totalAmount 기준으로 반복함								  	
 	for(var i = 0; i < totalAmount_Integer; i++){
 		const trIdNumber = i + 1;
-		// 여기부터 ★1열 정의함★
 		
-		//청구기호가 정해지지 않았을 때
-		/**
-		kdcCallSignListHtml += ` <td class="tg-0pky">
-											  		<input type="text"  name="" value="아직 정해지지 않았습니다" readonly="readonly">
-											    </td>  `
-		 */	
-			
+		// 여기부터 ★1열 정의함★
 		kdcCallSignListHtml += `<tr id = "trId`+trIdNumber+`">
-		 										<td class="tg-0pky">
-											  		<input type="text"  name="" value="  `+samebookArray[i].kdcCallSign+`  " readonly="readonly">
-											    </td>  `
+		 										<td colspan="2"> `+samebookArray[i].kdcCallSign+`</td>  `;
 				
 		
 		// 여기부터 ★2열 정의함★
-	    kdcCallSignListHtml +=`      <td class="tg-0pky">
+	    kdcCallSignListHtml +=`      <td colspan="2" >
 												    	<!-- 새로 입력하는 곳 -->
-												    	<input type="text"  name="kdcCallSign" class="kdcCallSignClass" placeholder="청구기호를 입력하세요">	
-												    	<button type="button" onclick ="kdcRemove(trId`+trIdNumber+`,` +samebookArray[i].samebookId+` )">제거</button>
+												    	<div class="booking-form-i  inputBox-custom"  >
+															<div class="input">
+																<input type="text"  name="kdcCallSign" value= `+samebookArray[i].kdcCallSign+` class="kdcCallSignClass" placeholder="청구기호를 입력하세요">
+															</div>
+														</div>
+														<div style="text-align: -webkit-center;">
+															<button onclick ="kdcRemove(trId`+trIdNumber+`,` +samebookArray[i].samebookId+` )"  class=" booking-complete-btn white-btn-custom" >제거</button>
+														</div>
 												    	<input type="hidden"  name = "samebookId" value="`+samebookArray[i].samebookId+`" />
 												    </td>
 										  		</tr>` 		
@@ -143,13 +144,18 @@ function kdcAdd(event){
 	kdcTrCount = kdcTrCount + 1;
 	
 	const kdcTrAddHtml = `<tr id="trId`+kdcTrCount+`">
-										  		<td class="tg-0pky">
-											  		<input type="text"  name="" value="아직 정해지지 않았습니다" readonly="readonly">
-											    </td>  
-												<td class="tg-0pky">
+												<!--kdcAdd()-->
+										  		<td colspan="2" >아직 정해지지 않았습니다</td>  
+												<td colspan="2" >
 											    	<!-- 새로 입력하는 곳 -->
-											    	<input type="text"  name="kdcCallSign"  placeholder="청구기호를 입력하세요" >	
-											    	<button onclick ="kdcRemove(trId`+kdcTrCount+` )">제거</button>
+											    	<div class="booking-form-i  inputBox-custom"  >
+														<div class="input">
+															<input type="text"  name="kdcCallSign"  placeholder="청구기호를 입력하세요" >	
+														</div>
+													</div>
+											    	<div style="text-align: -webkit-center;">
+														<button onclick ="kdcRemove(trId`+kdcTrCount+` )"  class=" booking-complete-btn white-btn-custom" >제거</button>
+													</div>
 											    </td>
 											</tr>`
 				

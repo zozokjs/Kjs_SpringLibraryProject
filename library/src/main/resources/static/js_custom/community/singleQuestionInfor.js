@@ -6,6 +6,7 @@ function singleQuestionCommentRegistrationConfirm(singleQuestionId, userId){
 	
 	
 	if(loginId == "" || loginId == null || loginId == undefined){
+	
 		alert("로그인 해주세요");
 	}else if(commentContent.replace(/\s | /gi, "").length == 0){
 		alert("답변 내용을 넣어주세요");

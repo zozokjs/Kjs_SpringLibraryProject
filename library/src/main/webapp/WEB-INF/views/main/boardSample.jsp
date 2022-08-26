@@ -1,84 +1,91 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
-<%-- <%@ include file="../layout/submenu_BookDatajsp"%> --%>
-        <!--         
-		*메인 화면 이미지 위치 결정 파일  
-		static > css > style.css > .slider   
-		css 경로 : static > plugins > bootstrap > css > bootstrap.min.css 
-		-->
-		
-		   <style>
-	        	table{
-	        		border : 2px solid;
-	        	}
-	        	th, td{
-	        		border : 2px solid; 
-	        		border-collapse : collpase; 
-	        		padding : 10px 5px;
-	        		text-align :center;
-	        	}
-	        
-	        </style>
-	        
-	        	
-		
-	            <!-- 우측 메인 -->
-	            <div class="col-lg-8">
-	               <div class="row">
-						<div class="col-lg-12 mb-5">
-						
-							<!-- 2depth 타이틀 영역 -->
-							<div class="col-lg-7">
-								<div class="">
-									<h2 class="mt-3 content-title ">
-									2 depth 메뉴
-									</h2>
-								</div>
-							</div>		
-							<hr>	
-							
-							<button onclick="bookLending(${book.id},event)">대출</button> 
-							<button type="button" 
-	                                    onclick="location.href='/auth/signup'"
-	                                    class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">회원가입</button>
-							
-							<input  type="hidden" name="titleImageUrl"  value="${book.titleImageUrl}"/>
-							
-							<!-- 본문 Start -->
-							
-							
-							<c:choose>
-								<c:when test="${empty userList}"> <!--  작동됨 -->
-								</c:when>
-								
-								<c:when test=" ${empty userList}"> <!-- 작동 불가 -->
-								</c:when> 
-								
-								<c:otherwise>
-								</c:otherwise>
-							</c:choose>
-							
-						
-							
-							
-							<!-- textarea 태그 쓸 때 이렇게 꺽쇠 사이에 공간이 없어야 됨. 
-				        	공간 있으면 새로고침해도 텍스트 필드 안에 공백이 포함되어 있다. -->
-				        	<textarea></textarea>
-							<textarea  id="contents"  name="contents" class="form-control mb-3"  style="resize: none;" cols="30" rows="5" placeholder="줄거리"  onfocus= "this.blur();"  readonly="readonly">${book.contents}</textarea>
-							
-							<!-- 내용 Start-->
-						</div>
-					</div>
-				</div>
-				<!-- 우측 메인 End-->
+<%@ include file="../layout/submenu_Guide.jsp"%>
+
+
 				
-	    	</div>
-	    </div>
-	</section>
-</div>
-<!-- 
-				<script src="/js_custom/saseo_bookUpdate.js"></script>
- -->
-<script src="/js_custom/saseo_bookUpdate_kdc.js"></script>
+				<div class="two-colls-right"><!-- 우측 메인 시작 -->
+					<div class="two-colls-right-b">
+						<div class="padding">
+							<div class="right-Submenu-2depth">
+								<!-- 1depth Menu -->
+							</div>
+							
+							<!-- 우측 본문 시작 -->
+							<div class="tables" style="margin-top: 70px;">
+								<table class="table-a">
+								<div class="input">
+									<input type="text"  	id="title"  name="title" class="form-control"   placeholder="제목" required="">
+								</div>
+								</table>
+							</div>
+							
+							<!-- 흰색 버튼 -->
+							<div style="text-align: -webkit-center;">
+								<button class=" booking-complete-btn white-btn-custom"  onclick="location.href='/saseo/${book.id}/bookUpdate"'>하기</button>
+							</div>
+							<!-- 우측 본문 끝 -->
+							<div class="typography" style="padding-bottom:30px;">
+								<div class="content-wrapper">
+									<div class="block-qoutes">
+										<div class="typography-heading" style="font-size:20px;">도서관 가입을 환영합니다!</div>
+										
+										<div class="blockqoute-tp-a">
+											<span>본 도서관은 개인이 운영하는 사이트로써, 사이트 관리자에 의한 가입 승인 이후에 대출이 가능합니다.</span> <b></b>
+										</div>
+										<p>
+											단, 열람이 가능한 책은 (아직까지는) 없으므로 이점 참고하시기 바랍니다. 가입 감사합니다!
+										</p>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Page -->
+							<div class="pagination pagination-custom"  style="display:flex; justify-content:center;">	<!-- 페이지 버튼 시작 -->
+								<!-- 이전 버튼 -->
+				                <c:choose>
+									<c:when test="${book.first }">
+									</c:when>
+									<c:otherwise>
+										<a class="" href="?page=${book.number-1}">이전</a>
+									</c:otherwise>
+								</c:choose>
+								
+								<!-- 현재 페이지일 때 Active  -->
+				                <c:forEach var="index" begin="${startPage}" end="${endPage}">
+			                      	<c:choose>
+										<c:when test="${book.number+1  eq index}" >
+										   <a class="active" href="#">${index}</a>
+										</c:when>
+										<c:otherwise>
+											<a class="" href="?page=${index-1}">${index}</a>
+										</c:otherwise>
+									</c:choose>
+				                </c:forEach>
+								
+								<!-- 다음 버튼 -->
+								<c:choose>
+									<c:when test="${book.last }">
+									</c:when>
+									<c:otherwise>
+										<a class=""  href="?page=${book.number+1}">다음</a>
+									</c:otherwise>
+								</c:choose>
+									
+								<div class="clear"></div>
+							</div><!-- 페이지 버튼 끝 -->	
+							
+				
+							</div><!-- end of class [ padding] -->
+						<div class="clear" ></div>
+					</div><!-- end of class [ two-colls-right-b ] -->
+				</div><!-- 우측 메인 끝 --><!-- end of class [ two-colls-right ] -->
+				<div class="clear"></div>
+				
+			</div><!-- end of class [ two-colls(submenu_guide) ] -->
+			<div class="clear"></div><!-- 필수 -->
+		</div><!-- end of class [ wrapper-padding ] -->
+	</div><!-- end of class [ body-wrapper ] -->
+</div><!-- /main-cont -->
+
 <%@ include file="../layout/footer.jsp"%>

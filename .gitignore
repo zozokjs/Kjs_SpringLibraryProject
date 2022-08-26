@@ -1,3 +1,7 @@
 /.metadata/
 /upload_imageTitle/
 /upload_imageProfile/
+*.jpg
+*.png
+*.DS_Store
+*.gif

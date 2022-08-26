@@ -1,6 +1,7 @@
 package com.kjs.library.service;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.hibernate.internal.build.AllowSysOut;
@@ -21,6 +22,7 @@ import com.kjs.library.web.dto.book.BookRegistration_kdcDto;
 import com.kjs.library.web.dto.book.BookUpdateDto;
 import com.kjs.library.web.dto.book.BookUpdate_kdcDto;
 import com.kjs.library.web.dto.book.ImageDto;
+import com.nimbusds.oauth2.sdk.util.CollectionUtils;
 
 import lombok.RequiredArgsConstructor;
 
@@ -61,6 +63,9 @@ public class SaseoService {
 			//책 정보 수정한 사람
 			book.setEditedUserId("");
 			
+			//책 사용 상태 True
+			book.setUseState(true);
+			
 			bookRepository.save(book);
 		}
 		
@@ -74,22 +79,23 @@ public class SaseoService {
 			//System.out.println(bookRegistration_kdcDto); //BookRegistration_kdcDto(bookId=1, kdcCallSign=7,8,9)
 			//System.out.println(bookRegistration_kdcDto.getKdcCallSign());
 			
+			//1. Front에서 넘어온 청구기호 묶음
 			String kdcCallSignList = bookRegistration_kdcDto.getKdcCallSign(); // 2,3,4
+			
+			//2. Front에서 넘어온 청구기호 묶음을 ,로 나눠서 배열에 세팅
 			String[] array = kdcCallSignList.split(",");
 			
-			//출력				
+			//3. bookId
 			Samebook sameBook = new Samebook();
-			
 			Book book = new Book();
 			book.setId(bookId);
 			
 			bookRegistration_kdcDto.setBook(book); //bookId 세팅
 			
-			sameBook.setLendState(false); //대여 상태를 false로 세팅
-			
 			for(int i=0;i<array.length;i++) {
-					//sameBook.setUpdateDate(now.toString()); //수정 시간
 					sameBook = bookRegistration_kdcDto.toEntity(bookRegistration_kdcDto.getBook(), array[i]);
+					sameBook.setLendState(false); //대여 상태를 false로 세팅
+					sameBook.setUseState(true); //청구기호 사용 상태를 true로 세팅(추후 사서에 의해 제거될 시, false로 세팅됨)
 					sameBookRepository.save(sameBook);
 			}
 		}
@@ -178,7 +184,7 @@ public class SaseoService {
 			
 			/** 1. 유효성 체크*/
 			Book bookEntity = bookRepository.findById(bookId).orElseThrow(()->{
-				return new CustomValidationApiException("찾을 수 없는 책 입니다. 책을 찾을 수 없으므로 청구기호 수정 불가");
+				return new CustomValidationApiException("찾을 수 없는 책 입니다. 책을 찾을 수 없으므로 청구기호 수정이 불가능합니다.");
 			});
 			
 			/** 2. bookId 기준으로 samebook가져와서 영속화 */
@@ -190,84 +196,146 @@ public class SaseoService {
 			/** 4. Front에서 DTO에 담겨 넘어온 청구기호 꺼냄 */
 			List <String> kdcCallSignList = bookUpdate_kdcDto.getKdcCallSign();
 			
+			
+			
+			
 			/** 5. List에 공백이 포함된 경우 공백제거 */
 			List<String> kdcCallSignList_공백제거 = new ArrayList<>();
-			for (int i = 0; i < kdcCallSignList.size(); i++) {
-				//i번째 항목이 공백이 아닐 때만 add
-				if(!kdcCallSignList.get(i).equals("")) {
-					kdcCallSignList_공백제거.add(kdcCallSignList.get(i));
-					//System.out.println("공백이 없습니다." + i);
+			if(  !(CollectionUtils.isEmpty(kdcCallSignList)) ) {
+				
+				System.out.println("kdcCallSignList 길ㅇ "+kdcCallSignList.size());
+				for (int i = 0; i < kdcCallSignList.size(); i++) {
+					
+					//i번째 항목이 공백이 아닐 때만 add
+					if(!kdcCallSignList.get(i).equals("")) {
+						kdcCallSignList_공백제거.add(kdcCallSignList.get(i));
+						//System.out.println("공백이 없습니다." + i);
+					}
 				}
+			}else {
+				System.out.println("kdcCallSignList(Front에서 넘어온 samebook 값)이 null이라서 공백 제거하지 않습니다.");
 			}
 			
 			/**6. DTO에 담겨 온 청구기호 갯수 세팅*/
-			int 변경된kdc크기 = kdcCallSignList_공백제거.size(); 
+			int 변경후kdc크기 = kdcCallSignList_공백제거.size(); 
 			
 			/** 7. bookId 세팅*/
 			bookEntity.setId(bookId);
 			
 			
 			System.err.println("기존kdc 크기 "+기존kdc크기);
-			System.err.println("변경된kdc크기 "+변경된kdc크기);
+			System.err.println("변경후kdc크기 "+변경후kdc크기);
 			
 			
 			/**9. 값 변경 시작 */
-			for(int index = 0; index < 변경된kdc크기; index++) {
+			for(int index = 0; index < 변경후kdc크기; index++) {
 				
 				//System.out.println( index+"번째 청구기호 : "+kdcCallSignList_공백제거.get(index));
 
 				//영속화된 객체에 새 것이 추가되는 경우
 				/**기존 samebook에 새 것이 추가될 때*/
-				if(변경된kdc크기 > 기존kdc크기) {
+				if(변경후kdc크기 > 기존kdc크기) {
 					
 					/**기존 samebook부터 업데이트*/
 					if( index < 기존kdc크기) {
 						//기존 청구기호를 업데이트합니다.
 						samebookEntity.get(index).setBook(bookEntity);
 						samebookEntity.get(index).setKdcCallSign(kdcCallSignList_공백제거.get(index));
+						samebookEntity.get(index).setUseState(true);
 					}else {
 						/** 추가된 것 SAVE*/
 						//새 청구기호를 추가합니다.
 						Samebook sameBook = new Samebook(bookEntity, kdcCallSignList_공백제거.get(index));
+						sameBook.setUseState(true);
 						sameBookRepository.save(sameBook);
 						
 					} //end of if
 					
 				}
 				/**기존과 새 것의 크기가 동일할 때*/
-				else if(변경된kdc크기 == 기존kdc크기) {
+				else if(변경후kdc크기 == 기존kdc크기) {
 					//기존 청구기호를 업데이트합니다.
 					samebookEntity.get(index).setBook(bookEntity);
 					samebookEntity.get(index).setKdcCallSign(kdcCallSignList_공백제거.get(index));
-					
-				}
-				/**기존 것보다 더 적게 변경 될 때*/
-				else if(변경된kdc크기 < 기존kdc크기){
+				}	
+				/** 변경후kdc크기가 0이 아니면서(단 1개라도 변경할 청구기호가 있을 때)
+				 * 기존kdc 크기보다 변경후kdc 크기가 작을 때
+				 * 
+				 * 예) 기존kdc크기(기존에 등록된 청구기호 갯수)가 3개이고
+				 * 기존에 등록된 청구기호를 모두 삭제하려는 경우에는
+				 * 업데이트에서 제외됨.
+				 */
+				else if( (변경후kdc크기 != 0) && (변경후kdc크기 < 기존kdc크기) ){
 					
 					/**기존 것부터 업데이트*/
-					if( index < 변경된kdc크기) {
+					if( index < 변경후kdc크기) {
 						//System.out.println("수정된 id "+samebookEntity.get(index).getId());
 						//기존 청구기호를 업데이트합니다.
 						samebookEntity.get(index).setBook(bookEntity);
 						samebookEntity.get(index).setKdcCallSign(kdcCallSignList_공백제거.get(index));
+						samebookEntity.get(index).setUseState(true);
 					}
 				}//end of else if
 			} //end of for
 			
-			/**Front에서 넘어온 삭제할 SamebookId를 가져와서 삭제 처리*/
+			/** 10. Front에서 넘어온 삭제할 SamebookId를 가져와서 삭제 처리*/
 			List<String> deletSamebookIdList = bookUpdate_kdcDto.getDeleteSamebookId();
-			if(deletSamebookIdList != null) {
-				for (int i = 0; i < deletSamebookIdList.size(); i++) {
-					//System.err.println("삭제할 SamebookId "+deletSamebookIdList.get(i));
-					sameBookRepository.deleteById(Integer.parseInt(deletSamebookIdList.get(i)));
+			
+			//System.out.println("제거할 청구기호 길이 : "+deletSamebookIdList.size());
+			
+			/** 11. deletSamebookIdList에 공백이 포함된 경우 공백제거 */
+			List<String> deletSamebookIdList_공백제거 = new ArrayList<>();
+			if(  !(CollectionUtils.isEmpty(deletSamebookIdList)) ) {
+				
+				System.out.println(" deletSamebookIdList은 null 아님");
+				
+				//if(deletSamebookIdList_공백제거.size() != 0) {
+					for (int i = 0; i < deletSamebookIdList.size(); i++) {
+						
+						System.out.println(i+"번째 값 "+deletSamebookIdList.get(i));
+						
+						//i번째 항목이 공백이 아닐 때만 add
+						if(!deletSamebookIdList.get(i).equals("")) {
+							deletSamebookIdList_공백제거.add(deletSamebookIdList.get(i));
+							//System.out.println("공백이 없습니다." + i);
+						}
+					}
+				//}
+			}else {
+				System.out.println("deletSamebookIdList가 null이라서 공백 제거하지 않습니다.");
+			}
+			
+			System.out.println(" 제거할 청구기호 길이 : "+deletSamebookIdList_공백제거.size());
+			
+			
+			
+			
+			if(deletSamebookIdList_공백제거 != null) {
+				for (int i = 0; i < deletSamebookIdList_공백제거.size(); i++) {
+					System.err.println("제거할 SamebookId(useState변경) "+deletSamebookIdList_공백제거.get(i));
+					
+					samebookUseState변경(  Integer.parseInt(deletSamebookIdList_공백제거.get(i))    );
 				}
 			}
+			
 			
 			return samebookEntity;
 		}
 		
 		
-	
+		//Update 
+		/**
+		 * Samebook 테이블의 useState(사용상태)를 false로 변경
+		 * */
+		@Transactional
+		public Samebook samebookUseState변경(int samebookId) {
+			
+			Samebook samebookEntity = sameBookRepository.findById(samebookId).orElseThrow();
+			samebookEntity.setUseState(false);
+			return samebookEntity;
+			
+		}
+		
 		
 		//UPDATE 책 1개의 remainAmount 수정
 		@Transactional
@@ -303,20 +371,29 @@ public class SaseoService {
 		@Transactional
 		public Book totalAmountUpdate(int bookId, BookUpdate_kdcDto bookUpdate_kdcDto) {
 			
+			//최종 변경된 samebook 갯수가 저장될 공간
+			int samebookSize = 0;
+			
 			//변경된 samebook 갯수
 			List <String> kdcCallSignList = bookUpdate_kdcDto.getKdcCallSign();
 			
 			/**List에 공백이 포함된 경우 공백제거 */
 			List<String> kdcCallSignList_공백제거 = new ArrayList<>();
-			for (int i = 0; i < kdcCallSignList.size(); i++) {
-				//i번째 항목이 공백이 아닐 때만 add
-				if(!kdcCallSignList.get(i).equals("")) {
-					kdcCallSignList_공백제거.add(kdcCallSignList.get(i));
-					//System.out.println("공백이 없습니다." + i);
-				}
-			}
 			
-			int samebookSize = kdcCallSignList_공백제거.size();
+			//kdcCallSignList가 null 아닐 때
+			if( !(CollectionUtils.isEmpty(kdcCallSignList)) ) {
+				
+				if(kdcCallSignList.size() != 0 ) {
+					for (int i = 0; i < kdcCallSignList.size(); i++) {
+						//i번째 항목이 공백이 아닐 때만 add
+						if(!kdcCallSignList.get(i).equals("")) {
+							kdcCallSignList_공백제거.add(kdcCallSignList.get(i));
+							//System.out.println("공백이 없습니다." + i);
+						}
+					}
+				}
+				samebookSize = kdcCallSignList_공백제거.size();
+			}
 			
 			/** 1. 현재 book 테이블의 remainAmount를 가져 옴*/
 			Book bookEntity = saseoSelectService.bookSelectOne(bookId);
@@ -326,10 +403,18 @@ public class SaseoService {
 			
 			return bookEntity;
 		}
+
 		
-		
-		
+		// UPDATE 
+		//책 삭제시 Book 테이블의 useState를 false로 변경
+		@Transactional
+		public Book 책삭제(int bookId) {
+				
+			Book bookEntity = bookRepository.findById(bookId).orElseThrow();
+			bookEntity.setUseState(false);
 			
+			return bookEntity;
+		}
 			
 			
 		

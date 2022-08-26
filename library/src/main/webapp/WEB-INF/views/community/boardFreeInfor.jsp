@@ -2,105 +2,88 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_Community.jsp"%>
-<style>
-	textarea {
-		resize:none;
-	}
-</style>
-	        
-	            <!-- 우측 메인 -->
-	            <div class="col-lg-9">
-	               <div class="row">
-						<div class="col-lg-12 mb-5">
-						
-							<!-- 2depth 타이틀 영역 -->
-							<div class="col-lg-7">
-								<div class="">
-									<h2 class="mt-3 content-title ">
-									게시판 상세 읽기
-									</h2>
-								</div>
-							</div>		
-							<hr>	
+
+
+				<div class="two-colls-right"><!-- 우측 메인 시작 -->
+					<div class="two-colls-right-b">
+						<div class="padding">
+							<div class="right-Submenu-2depth">
+								<!-- 1depth Menu -->
+								자유게시판-상세 읽기
+							</div>
 							
 							<input type ="hidden" id="loginUserId" value="${principal.user.id}">
 							<input type ="hidden" id="boardFreeId" value="${boardFree.id}">
 							
-							
-							<div class="row">
-								<!-- 첫째줄 -->
-								<div class="col-md-12">
-									<div class="form-group">
-										제목
-										<input type="text"  	id="title"  name="title" value = "${boardFree.title}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
+							<!-- 우측 본문 시작 -->
+							<div class="tables" style="margin-top: 70px;">
+								<table class="table-a">
+									<tr>
+										<td>제목</td>
+										<td colspan="5">${boardFree.title}</td>
+									</tr>
+									<tr>
+										<c:choose>
+											<c:when test="${empty boardFree.editDate}">
+												<td>작성자</td>
+												<td>${boardFree.user.username}</td>
+												<td >등록일</td>
+												<td colspan="3">${boardFree.createDateFormatted}</td>
+											</c:when>
+											<c:otherwise>
+												<td>작성자</td>
+												<td>${boardFree.user.username}</td>
+												<td>등록일</td>
+												<td>${boardFree.createDateFormatted}</td>
+												<td>수정일</td>
+												<td>${boardFree.editDate}</td>
+											</c:otherwise>
+										</c:choose>
+										
+									</tr>
+									<tr>
+										<td>내용</td>
+										<td colspan="5" style="text-align:left;">
+											<div class="typography" style="padding-bottom:30px;">
+												<div class="content-wrapper">
+													<div class="block-qoutes">
+														<p>
+															${boardFree.content}
+														</p>
+													</div>
+												</div>
+											</div>
+									
+										</td>
+									</tr>
+								</table>
+							</div>
+							<!-- 작성자 id와 로그인한 사람의 id가 같을 때 -->
+							<c:choose>
+								<c:when test="${principal.user.id eq boardFree.user.id}">
+									<div style="display:flex; justify-content:space-around;">
+										<button onclick="location.href='/community/${boardFree.id}/boardFreeUpdate'"  class=" booking-complete-btn white-btn-custom" >수정</button>
+										<button onclick="boardFreeDeleteConfirm(${boardFree.id})" class=" booking-complete-btn white-btn-custom" >삭제</button> 
 									</div>
-								</div>
-								
-								<!-- 둘째줄 -->
-								<c:choose>
-									<c:when test="${empty boardFree.editDate}">
-										<div class="col-md-6">
-											<div class="form-group">
-												작성자
-												 <input type="text"  	id="title"  name="title" value = "${boardFree.user.username}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
-										</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												등록일
-												<input type="text"  	id="title"  name="title"  value = "${boardFree.createDateFormatted}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
-											</div>
-										</div>
-									</c:when>
-									<c:otherwise>
-										<div class="col-md-4">
-											<div class="form-group">
-												작성자
-												<input type="text"  	id="title"  name="title" value = "${boardFree.user.username}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
-											</div>
-										</div>
-										<div class="col-md-4">
-											<div class="form-group">
-												등록일
-												<input type="text"  	id="title"  name="title" value = "${boardFree.createDateFormatted}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
-											</div>
-										</div>
-										<div class="col-md-4">
-											<div class="form-group">
-												수정일
-												<input type="text"  	id="title"  name="title" value = "${boardFree.editDate}"   class="form-control"  onfocus= "this.blur();" readonly="readonly">
-											</div>
-										</div>
-									</c:otherwise>
-								</c:choose>
+								</c:when>
+							</c:choose> 
 							
-								<!-- 셋째줄 -->
-								<div class="col-md-12">
-									<div class="form-group">
-										내용
-										<div>
-											<textarea  id="contents"  name="contents" class="form-control mb-3"  cols="30" rows="5" onfocus= "this.blur();"  readonly="readonly">
-												${boardFree.content}
-											</textarea>
-										</div>										
-									</div>
-								</div>
-								<!-- 작성자 id와 로그인한 사람의 id가 같을 때 -->
-								<div class="col-md-12">
+							<hr>
+							
+							
+							<!-- 댓글 시작 -->
+							<!-- 이름 / 내용 / 작성 시간 / 삭제버튼 -->
+							<div class="tables" style="margin-top: 70px;">
+								<table class="table-a">
+									<tbody>
+									<!-- 댓글이 없을 경우 없다고 표시 -->
 									<c:choose>
-										<c:when test="${principal.user.id eq boardFree.user.id}">
-											<button onclick="location.href='/community/${boardFree.id}/boardFreeUpdate'">수정</button>
-											<button onclick="boardFreeDeleteConfirm(${boardFree.id})">삭제</button> 
+										<c:when test="${empty boardFree.comments}">
+											<tr>
+												<td colspan="4">등록된 덧글이 없습니다.</td>
+											</tr>
 										</c:when>
-									</c:choose> 
-								</div>
-								<br>
-								<br>
-								<!-- 댓글 시작 -->
-								<!-- 이름 / 내용 / 작성 시간 / 삭제버튼 -->
-								<div class="col-md-12">
-									<table class="table">
-										<tbody>
+										<c:otherwise>
 											<c:forEach var="comments" items="${boardFree.comments}">
 												<tr>
 													<td>${comments.user.username}</td>
@@ -110,46 +93,63 @@
 													<c:choose>
 														<c:when test="${not empty principal.user.id}">
 															<td>
-																<button onclick="boardFreeCommentDeleteConfirm(${comments.id})" >삭제</button>
+																<div style="text-align: -webkit-center;">
+																	<button onclick="boardFreeCommentDeleteConfirm(${comments.id})"  class=" booking-complete-btn white-btn-small-custom"  >삭제</button>
+																</div>
 															</td>
 														</c:when>
 													</c:choose>
 												</tr>
 											</c:forEach>
-										</tbody>
-									</table>
-								</div>
-								<!--  -->
-								<hr>
-								<!-- 댓글 작성 공간 -->
-								
-								<!-- 로그인 안 되어 있으면 표시 안 됨 -->
-								<div class="col-md-12">
-									<div class="row">
-										<div class="col-md-10">
-											<div class="form-group">
-												<textarea id="commentContent"  class="form-control mb-3" cols="30" rows="5"  placeholder = "댓글 작성시 타인에 대한 배려를 담아주세요" required=""></textarea>
+										</c:otherwise>
+									</c:choose>
+								</tbody>
+							</table>
+						</div>
+							<!-- 댓글 끝 -->
+							
+							<hr>
+
+							<!-- 댓글 작성 공간 시작-->								
+							<!-- 로그인 안 되어 있으면 표시 안 됨 -->
+							<div class="tables" style="margin-top: 40px;">
+								<table class="table-a">
+									<tr>
+										<td colspan="5" style="width:100%;">
+											<div class="booking-form-i  inputBox-custom textarea-comment"  >
+													<textarea id="commentContent"  cols="30" rows="5"  style="resize: none; width:99.3%; margin-bottom:-5px;"  placeholder = "댓글 작성시 타인에 대한 배려를 담아주세요" required=""></textarea>
 											</div>
-										</div>
-										<div class="col-md-2">
-											<button onclick="boardFreeCommentRegistrationConfirm(${boardFree.id}, ${principal.user.id})" >등록</button>
-										</div>
-									</div>
-								</div>
-								
-								<!-- 댓글 끝 -->
-								
+										</td>
+										<td>
+											<div style="text-align: -webkit-center;">
+												<button onclick="boardFreeCommentRegistrationConfirm(${boardFree.id}, ${principal.user.id})"    class=" booking-complete-btn white-btn-custom" >등록</button>
+											</div>
+										</td>
+									</tr>
+								</table>
 							</div>
 							
-						</div>
-					</div>
-				</div>
-				<!-- 우측 메인 End-->
+							<!-- 댓글 작성 공간 끝-->								
+							
+							
+							
+							<!-- 우측 본문 끝 -->
+							
+							
+							
+							
 				
-	    	</div>
-	    </div>
-	</section>
-</div>
+							</div><!-- end of class [ padding] -->
+						<div class="clear" ></div>
+					</div><!-- end of class [ two-colls-right-b ] -->
+				</div><!-- 우측 메인 끝 --><!-- end of class [ two-colls-right ] -->
+				<div class="clear"></div>
+				
+			</div><!-- end of class [ two-colls(submenu_guide) ] -->
+			<div class="clear"></div><!-- 필수 -->
+		</div><!-- end of class [ wrapper-padding ] -->
+	</div><!-- end of class [ body-wrapper ] -->
+</div><!-- /main-cont -->
 
 <script src="/js_custom/community/boardFreeInfor.js"></script>
 <%@ include file="../layout/footer.jsp"%>

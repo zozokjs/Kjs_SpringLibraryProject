@@ -81,11 +81,11 @@ public class ResourceController {
 	}
 		
 	
-	//첫 화면에서 검색 처리
+	//index 화면에서 검색 처리
 	@GetMapping("/resource/{bookSearchKeyword}/bookSearch")
 	public String bookSearch(@PathVariable String bookSearchKeyword, @PageableDefault(size=2) Pageable pageable, Model model) {
 
-		System.out.println("검색어 ㅣ "+bookSearchKeyword );
+		//System.out.println("검색어 ㅣ "+bookSearchKeyword );
 		
 		Page<Book> bookSearchData = bookSelectService.도서검색(bookSearchKeyword, pageable);
 		
@@ -106,6 +106,8 @@ public class ResourceController {
 		model.addAttribute("searchKey",bookSearchKeyword);
 		//인덱스 페이지에서 검색 한 건지에 대한 여부
 		model.addAttribute("byIndexPageSearch",true);
+		
+		//System.out.println("일반  Controller를 읽었습니다--------------------------------------------");
 		
 		if(bookSearchData.getTotalElements() != 0) {
 			//결과 1건 이상

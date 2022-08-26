@@ -4,7 +4,7 @@
  도서 대출 완료 처리 */
 function bookLending(bookId, event) {
 	event.preventDefault(); //form 태그 액션 방지
-
+	
 	//const bookIdNumber = Number(bookId);//String을 Number로 변환.
 	//console.log(typeof(bookId));
 	//console.log(typeof(bookIdNumber));
@@ -26,6 +26,8 @@ function bookLending(bookId, event) {
 		location.href = `/user/myLibrary/`; 
 		
 	}).fail(error =>{
+		console.log(error);
+		console.log(error.responseJSON);
 		
 		if(error.data == null){
 			alert(error.responseJSON.message);

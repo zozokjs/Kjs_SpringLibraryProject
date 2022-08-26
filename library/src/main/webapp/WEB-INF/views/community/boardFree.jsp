@@ -22,126 +22,102 @@
 	        		padding : 10px 5px;
 	        		text-align :center;
 	        	}*/
-	        
 	        </style>
-	        
-	            <!-- 우측 메인 -->
-	            <div class="col-lg-9">
-	               <div class="row">
-						<div class="col-lg-12 mb-5">
-						
-							<!-- 2depth 타이틀 영역 -->
-							<div class="col-lg-7">
-								<div class="">
-									<h2 class="mt-3 content-title ">
-									자유게시판
-									</h2>
-								</div>
-							</div>		
-							<hr>	
-							
-							<!-- 본문 Start -->
-							<div class="col-lg-12 col-md-8 mb-1" >
-								<div class="blog-item-content bg-white"  style="padding: 0.1rem !important;">
-								
-									<table class="table">
-										<thead>
-											<tr>
-												 <th class="tg-0pky">번호</th>
-												 <th class="tg-0pky">제목[댓글수]</th>
-												 <th class="tg-0pky">작성자</th>
-												 <th class="tg-0pky">조회수</th>
-												 <th class="tg-0pky">등록날짜</th>
-												 
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var = "free" items ="${boardFree.content}"   varStatus="index">
-												<tr>
-													 <td class="tg-0pky">${free.id}</td>
-													 <td class="tg-0pky">
-													 	<a href="/community/${free.id}/infor">${free.title}</a> [${free.commentCount}]
-													 </td>
-													 <td class="tg-0pky">${free.username}</td>
-													 <td class="tg-0pky">${free.readCount}</td>
-													 <td class="tg-0pky">${free.createDate}</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-									<button type="button" 
-	                                   onclick="location.href='/community/boardFreeRegistrationForm'"
-	                                   class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">글쓰기</button>									
-								</div>
-	 						</div>
-	 				
-							<!-- 본분 End -->
-							
-							
-			                <!-- 페이지 버튼 Start -->
-			                <div class="row justify-content-center mt-5">
-				            	<div class="col-lg-12 text-center">
-					            	<nav class="navigation pagination d-inline-block">
-						                <div class="nav-links">
-					                	
-					                		<!-- 이전 버튼 -->
-							                <c:choose>
-												<c:when test="${boardFree.first }">
-													<%-- <a class="prev page-numbers disabled" href="?page=${book.number-1}">이전</a> --%>
-												</c:when>
-												<c:otherwise>
-													<a class="prev page-numbers" href="?page=${boardFree.number-1}">이전</a>
-												</c:otherwise>
-											</c:choose>
-											
-							                <%-- <c:forEach var="index" begin="0" end="${book.totalPages / 10}"> --%> <!--  58 -->
-												
-												
-							                <c:forEach var="index" begin="${startPage}" end="${endPage}">
-						                      	<c:choose>
-													<c:when test="${boardFree.number+1  eq index}" >
-													   <span aria-current="page" class="page-numbers current">${index}</span>
-													</c:when>
-													<c:otherwise>
-														<a class="page-numbers current" href="?page=${index-1}">${index}</a>
-													</c:otherwise>
-												</c:choose>
-							                </c:forEach>
-								          
-								                
-											
-											<!-- 다음 버튼 -->
- 											<c:choose>
-												<c:when test="${boardFree.last }">
-													<%-- <a class="next page-numbers disabled"  href="?page=${book.number+1}">다음</a> --%>
-												</c:when>
-												<c:otherwise>
-													<a class="next page-numbers disabled"  href="?page=${boardFree.number+1}">다음</a>
-												</c:otherwise>
-											</c:choose>
-										
-						                </div>
-					                </nav>
-	                			</div>
-			                </div>
-   							<!-- 페이지 버튼 End -->
-							
-						</div>
-					</div>
-				</div>
-				<!-- 우측 메인 End-->
+	      
 				
-	    	</div>
-	    </div>
-	</section>
-</div>
+				<div class="two-colls-right"><!-- 우측 메인 시작 -->
+					<div class="two-colls-right-b">
+						<div class="padding">
+							<div class="right-Submenu-2depth">
+								자유게시판
+							</div>
+							
+							<!-- 우측 본문 시작 -->
+							<div class="tables" style="margin-top: 70px;">
+								<table class="table-a">
+									<thead>
+										<tr>
+											 <th class="">번호</th>
+											 <th class="">제목[댓글수]</th>
+											 <th class="">작성자</th>
+											 <th class="">조회수</th>
+											 <th class="">등록날짜</th>
+											 
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var = "free" items ="${boardFree.content}"   varStatus="index">
+											<tr>
+												 <td class="">${free.id}</td>
+												 <td class="">
+												 	<a href="/community/${free.id}/infor">${free.title}</a> [${free.commentCount}]
+												 </td>
+												 <td class="">${free.username}</td>
+												 <td class="">${free.readCount}</td>
+												 <td class="">
+												 	<fmt:parseDate value="${free.createDate}"   pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"  />
+													 <fmt:formatDate value="${parsedDateTime}"   pattern="yyyy-MM-dd  | HH:mm"/>
+												 </td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+								<!-- 흰색 버튼 -->
+								<div style="text-align: -webkit-center;">
+									<button class=" booking-complete-btn white-btn-custom"  onclick="location.href='/community/boardFreeRegistrationForm'">글쓰기</button>
+								</div>
+							<!-- 우측 본문 끝 -->
+							
+							</div>
+							
+							
+							
+							<!-- Page -->
+							<div class="pagination pagination-custom"  style="display:flex; justify-content:center;">	<!-- 페이지 버튼 시작 -->
+								<!-- 이전 버튼 -->
+				                <c:choose>
+									<c:when test="${boardFree.first }">
+									</c:when>
+									<c:otherwise>
+										<a class="" href="?page=${boardFree.number-1}">이전</a>
+									</c:otherwise>
+								</c:choose>
+								
+								<!-- 현재 페이지일 때 Active  -->
+				                <c:forEach var="index" begin="${startPage}" end="${endPage}">
+			                      	<c:choose>
+										<c:when test="${boardFree.number+1  eq index}" >
+										   <a class="active" href="#">${index}</a>
+										</c:when>
+										<c:otherwise>
+											<a class="" href="?page=${index-1}">${index}</a>
+										</c:otherwise>
+									</c:choose>
+				                </c:forEach>
+								
+								<!-- 다음 버튼 -->
+								<c:choose>
+									<c:when test="${boardFree.last }">
+									</c:when>
+									<c:otherwise>
+										<a class=""  href="?page=${boardFree.number+1}">다음</a>
+									</c:otherwise>
+								</c:choose>
+									
+								<div class="clear"></div>
+							</div><!-- 페이지 버튼 끝 -->	
+							
+				
+							</div><!-- end of class [ padding] -->
+						<div class="clear" ></div>
+					</div><!-- end of class [ two-colls-right-b ] -->
+				</div><!-- 우측 메인 끝 --><!-- end of class [ two-colls-right ] -->
+				<div class="clear"></div>
+				
+			</div><!-- end of class [ two-colls(submenu_guide) ] -->
+			<div class="clear"></div><!-- 필수 -->
+		</div><!-- end of class [ wrapper-padding ] -->
+	</div><!-- end of class [ body-wrapper ] -->
+</div><!-- /main-cont -->
 
-<script>
-/* $(document).ready(function() {
-  $('#summernote').summernote({
-    tabsize: 2,
-    height: 300
-  });
-});
- */</script>
 <%@ include file="../layout/footer.jsp"%>

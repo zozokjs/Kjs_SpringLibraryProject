@@ -17,16 +17,18 @@ spring:
     username: cos
     password: cos1234
   mail:
-    host: smtp.gmail.com
-    port: 587
+    host: smtp.naver.com
+    port: 465
     username: zozokjsinfinite
-    password: gksmfrkxdl1@
+    password: todrkrgo1@
     properties:
       mail:
+        debug: false #이 값이 True일 때, 메일 전송 시 로그가 콘솔에 표시됨(원인 파악에 좋음)
         smtp:
           starttls:
             enable: true
-            required: true
+          ssl: 
+            enable: true
           auth: true
           connectiontimeout: 5000
           timeout: 5000

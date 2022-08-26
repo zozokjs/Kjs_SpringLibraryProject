@@ -81,6 +81,8 @@ public class UserService {
 		
 		User userEntity = userRepository.findById(userId).orElseThrow();
 		userEntity.setEnabled(true);
+		userEntity.setLoginFailCount(0);
+		userEntity.setRoleType(RoleType.USER);
 		return userEntity;
 	}
 	

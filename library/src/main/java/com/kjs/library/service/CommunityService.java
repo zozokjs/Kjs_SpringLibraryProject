@@ -208,6 +208,13 @@ public class CommunityService/*CommunityService*/ {
 	public Page<BoardNotice> 공지사항목록(Pageable pageable){
 		
 		return boardNoticeRepository.findByAllDesc(pageable);
+	}
+	
+	
+	//공지사항 목록 10개만
+	public List<BoardNotice> 공지사항목록10개(){
+		
+		return boardNoticeRepository.findByAllDescTop10();
 		
 	}
 	
@@ -230,6 +237,54 @@ public class CommunityService/*CommunityService*/ {
 
 		return getBoardNoticeRequest(boardNotice);
 	}
+	
+	
+	//자유게시판 게시글 1개 조회수 증가
+	@Transactional
+	public BoardNotice 공지사항게시글조회수증가(int boardNoticeId, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		
+		//요청으로부터 받은 쿠키
+		Cookie[] cookies = request.getCookies();
+		
+		/**
+		 https://developersoo.tistory.com/14
+		 * */
+		BoardNotice comEntity  = boardNoticeRepository.findById(boardNoticeId).orElseThrow();
+		
+		Cookie 기존쿠키 = null;
+		
+		//저장된 쿠키가 있거나 길이가 0보다 클 때
+		if(cookies != null && cookies.length > 0) {
+			
+			//쿠키 길이만큼 반복
+			for (int i = 0; i < cookies.length; i++) {
+				if(cookies[i].getName().equals("NoticeBoardReadCookie"+boardNoticeId)) {
+					System.out.println("쿠키 있음. 조회수 증가 안 함");
+					기존쿠키 = cookies[i];
+				}
+			}
+		}
+		
+		
+		//저장된 쿠키가 없을 때
+		if(기존쿠키 == null) {
+			System.out.println("쿠키 없음. 조회수 증가.");
+			
+			//name = customCookie글번호, value = 글번호
+			Cookie 새쿠키 = new Cookie("NoticeBoardReadCookie"+boardNoticeId,"["+boardNoticeId+"]");
+			
+			response.addCookie(새쿠키);
+			comEntity.addReadCount(boardNoticeId);
+		}
+		//저장된 쿠키가 있을 때
+		else {
+			//조회수 증가하지 않음
+		}
+		return comEntity;
+	}
+
+	
+	
 	
 	
 	/**
@@ -278,6 +333,10 @@ public class CommunityService/*CommunityService*/ {
 	public void 공지사항게시글삭제(int id) {
 		boardNoticeRepository.deleteById(id);
 	}
+	
+	
+	
+	
 	
 	
 	//1대1 문의 게시판 목록 보기

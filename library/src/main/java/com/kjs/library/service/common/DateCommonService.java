@@ -11,8 +11,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.stereotype.Service;
 
 import com.ibm.icu.util.ChineseCalendar;
@@ -21,6 +23,63 @@ import com.ibm.icu.util.ChineseCalendar;
 @Service
 public class DateCommonService {
 
+	
+	
+	/**
+	 * 주어진 시간과 현재 시간을 비교
+	 * @param timeAfter : 기준 시간(yyyy-MM-dd HH:mm:ss 형식), String
+	 * @return 현재 시간보다 timeAfter가 늦으면 True 리턴
+	 * @throws ParseException 
+	 * 
+	 * */
+	public static boolean 현재시간과비교(String timeAfter) throws ParseException {
+		
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+		
+		//1. 넘어온 값을 Date 형식으로 변경
+		Date dateAfter = simpleDateFormat.parse(timeAfter);
+		
+		//2. 현재 시간을 구함
+		Date dateNow = new Date();
+		
+		//3. 비교함
+		/** 202109.after( 202110 )  -> FALSE
+		 *   202110.after( 202109 )  -> TRUE
+		 *   dateNow는 dateAfter보다 이후일 때 True
+		 * */
+		if(dateNow.after(dateAfter)) {
+			return false;
+		}else {
+			//dateNow보다 dateAfter가 빠르면 False
+			return true;
+		}
+	}
+	
+	
+	/**
+	 * 주어진 시간에서 특정 시간만큼 더함 값을 구함
+	 * @param standardTime : 기준 시간(yyyy-MM-dd HH:mm:ss 형식), String
+	 * @param hour : 더할 시간, int
+	 * @return yyyy-MM-dd HH:mm:ss 형식의 String 
+	 * @throws ParseException 
+	 * */
+	public static String 시간더하기(String standardTime, int hour) throws ParseException {
+		
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		Date date = new Date();
+		date = simpleDateFormat.parse(standardTime); //String > Date
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.HOUR, hour); //hour만큼 더함
+		
+		String afterHour_String = simpleDateFormat.format(calendar.getTime()); //포맷에 맞춤
+		
+		return afterHour_String;
+	}
+	
+	
 	/**
 	 *  2022-06-23 17:21:59.959571 등의 LocalDateTime 형식으로 오는 것을
 	 *  2022년 6월 23일 String 형식으로 바꿈
@@ -71,45 +130,72 @@ public class DateCommonService {
 	}
 	
 	
-	//미완성
-	public String 반납예정날짜() throws Exception {
+	/**
+	 * 연장된 반납 예정 날자를 구함
+	 * given : String yyyyMMdd(기준 반납예정날짜)
+	 * */
+	public String 반납예정날짜_연장됨(String strDate) throws Exception {
 		
-		//오늘 날짜 가져옴
-		LocalDate now = LocalDate.now(); 
-		//날짜 포맷 바꿈 20010101
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-		//포맷 적용
-		String lendDate = now.format(formatter); 
-		//String lendDate = "20220801";
-		//14일 더함
-		String returnPlanDate = 날짜더하기(lendDate, 14);
+		//1. 7일 더함
+		String returnPlanDate = 날짜더하기(strDate, 7);
 		
-		System.out.println("최초 반납 예정일 > "+returnPlanDate);
+		//2. 7일 더한 값이 휴일일 때 가장 가까운 미래의 평일을 구함
+		String extensionReturnPlanDate = 날짜구하기_평일(returnPlanDate);
 		
-		boolean isSunday = 일요일이다(returnPlanDate);
-		boolean isHoliday = 공휴일이다(returnPlanDate);
-		
-		/**
-		 * 1. 대출일에서 14일 더함
-		 * 2. 그 날짜가 주말이거나 공휴일인 경우 그 다음 날이 반납 예정일..
-		 * 그런데 그 다음 날도 주말이거나 공휴일일 때는?
-		 * 빙글빙글 돌면서 확인해서 true나 false를 리턴해야 함... 
-		 * 
-		 * **/
-			
-		if(일요일이다(returnPlanDate) || 공휴일이다(returnPlanDate)) {
-			System.err.println("주말이거나 공휴일이라서 날짜를 1일 더 합니다.");
-			returnPlanDate = 날짜더하기(returnPlanDate,1);
-		}
-			
-
-		System.out.println("수정된 반납 예정일 > "+returnPlanDate);
-		return returnPlanDate;
+		//System.out.println("연장된 반납 예정일 > "+extensionReturnPlanDate);
+		return extensionReturnPlanDate;
 	}
 	
 	
-	//날짜 더하기
-	//strDate를 가져와서 포맷하고 특정 일 수를 더함
+	/**
+	 * 오늘부터 계산하여 반납 예정 날자를 구함
+	 * */
+	public String 반납예정날짜() throws Exception {
+		
+		//1. 오늘 날짜 가져옴
+		LocalDate now = LocalDate.now(); 
+		
+		//2. 날짜 포맷 세팅(yyyyMMdd)
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+		
+		//3. 날짜 포맷 적용(yyyyMMdd)
+		String lendDate = now.format(formatter); 
+		
+		//4. 14일 더함
+		String returnPlanDate = 날짜더하기(lendDate, 14);
+		
+		//System.out.println("최초 반납 예정일 > "+returnPlanDate);
+		
+		//5. 14일 더한 값이 휴일일 때 가장 가까운 미래의 평일을 구함
+		String fixReturnPlanDate = 날짜구하기_평일(returnPlanDate);
+		
+		System.out.println("수정된 반납 예정일 > "+fixReturnPlanDate);
+		return fixReturnPlanDate;
+	}
+	
+	
+	/**
+	 * strDate(String yyyyMMdd)가 휴일인 경우 
+	 * 해당 일자에서 가장 가까운 평일을 리턴
+	 * */
+	public String 날짜구하기_평일(String strDate) throws Exception {
+		
+		boolean 공휴일 = true;
+		while(공휴일) {
+			//System.out.println("기준 날짜 : "+strDate);
+			if(일요일이다(strDate)  || 공휴일이다( strDate)  ) {
+				strDate = 날짜더하기(strDate, 1);
+				//System.out.println("변경된 날자 : "+strDate);
+			}else {
+				공휴일 = false;				
+			}
+		}
+		return strDate;
+	}
+	
+	/**
+	 *strDate(String yyyymmdd)에 day(Integer)를 더한 값을 리턴
+	 * */
 	public String 날짜더하기(String strDate, int day) throws Exception{
 		
 		//날짜 포맷 정하기
@@ -130,6 +216,8 @@ public class DateCommonService {
 	}
 	
 	
+	
+	
 	/**
 	 * author : https://rangerang.tistory.com/71
 	 * method : Lunar2Solar(), holidayArray(), SolarDays()
@@ -141,8 +229,9 @@ public class DateCommonService {
     public static final int LD_MONDAY = 1;
 
 	
-	//특정 날짜가 휴일인지를 확인함
-	//음력을 양력으로 변경
+	/**
+	 *yyyymmdd를 양력으로 변경함 
+	 * */
 	public String Lunar2Solar(String yyyymmdd) {
 		
 		ChineseCalendar cc = new ChineseCalendar();
@@ -185,7 +274,10 @@ public class DateCommonService {
 		return ret.toString();
 	}
 	
-	//특정 년도의 공휴일 배열을 리턴함(주말 제외)
+
+	/**
+	 *특정 년도(yyyy)의 공휴일이면 배열을 리턴(주말 제외)
+	 * */
 	public Set<String> holidayArray(String yyyy){
 	        holidaysSet.clear();
 	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
@@ -254,21 +346,27 @@ public class DateCommonService {
 	    return Lunar2Solar(yyyy+date).substring(4);
 	}
 	
-	//givenDate가 주어지면 그날이 일요일인지 리턴함
+	/**
+	 *givenDate가 일요일이면 True 
+	 *givenDate = 20201011형식
+	 * */
 	public boolean 일요일이다(String givenDate) throws Exception {         
-
-		//1. LocalDate 생성        
-		LocalDate localDate = LocalDate.of(2022, 06, 26);    
 		
-		// 2. DayOfWeek 객체 구하기        
+		//1. givenDate 자르기
+		String year = givenDate.substring(0,4);
+		String month = givenDate.substring(4,6);
+		String day = givenDate.substring(6,8);
+		
+		//2. LocalDate 생성        
+		LocalDate localDate = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));  
+		
+		//3. DayOfWeek 객체 구하기        
 		DayOfWeek dayOfWeek = localDate.getDayOfWeek();        
 		
-		// 3. 숫자 요일 구하기        
+		//4. 숫자 요일 구하기        
 		int dayOfWeekNumber = dayOfWeek.getValue();       
 		
-		// 4. 숫자 요일 출력        
-		//System.out.println(dayOfWeekNumber);  // 6 - 토요일, 7- 일요일
-		
+		//5. 검증
 		if(dayOfWeekNumber == 7) {
 			return true;
 		}else {
@@ -277,7 +375,10 @@ public class DateCommonService {
 	}
 
 	
-	//반드시 20201010 형식으로 들어와야 함
+	/**
+	 *givenDate가 공휴일이면 True 
+	 *givenDate = 20201011형식
+	 * */
 	public boolean 공휴일이다(String givenDate) {
 		
 		//20201010을 2020으로 자르기
@@ -285,16 +386,21 @@ public class DateCommonService {
 		
 		//주어진 년도의 공휴일 세팅(주말 제외) 
 		Set<String> holidaySet= holidayArray(yearFromGivenDate);
-		
-		
+			
+		/*		Iterator<String> iter = holidaySet.iterator();
+				while(iter.hasNext()) {
+					System.out.println(";;----------------------");
+					System.out.println(iter.next());
+				}
+		*/			
 		
 		boolean isHoliday= holidaySet.contains(givenDate);
-		/*
+		
 		if(isHoliday == true) {
 			System.out.println("해당 날짜는 공휴일에 포함됩니다.");
 		}else{
 			System.out.println("해당 날짜는 공휴일 아님.");
-		}*/
+		}
 		return isHoliday;
 	}
 

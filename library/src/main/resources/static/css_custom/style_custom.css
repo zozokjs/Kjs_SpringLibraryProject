@@ -1,0 +1,238 @@
+.recent-widget nav li a {
+	font-size: 17px;
+}
+
+
+/* 좌측 메뉴 스타일(예-찾아오시는길) */
+.left-SubMenu-1depth{
+	font-size: 30px; 
+	font-weight: bold; 
+	margin-bottom: 30px;
+	margin-left: 10px;
+}
+
+.left-SubMenu-2depth {
+	background-color: white;
+	padding: 20px 20px 10px 20px;
+}
+
+/* 우측 메뉴 스타일(예-찾아오시는길) */
+.right-Submenu-2depth{
+		font-size: 38px;
+	    font-weight: bold;
+	    margin-bottom: 30px;
+	    border-bottom: 1px solid black;
+	    padding-bottom: 20px;
+}
+
+/* 페이지 버튼 */
+.pagination-custom a{
+	font-size:17px;
+	padding : 8px;
+}
+/* 팝    업**/
+	.popup_content{
+		z-index: 9999;
+	    width: 444px;
+	    height: 255px;
+	    background: #fff;
+	    position: fixed;
+	    left: 50%;
+	    top: -300px;
+	    margin-top: -128px;
+	    margin-left: -222px;
+	}
+	
+	
+	.overlay2{
+	    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(20,29,30,0.19);
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 9999;
+	
+	}
+
+
+/*하얀색 버튼 -보통크기*/
+	.white-btn-custom{
+		display: block;
+	    width: 220px;
+	    height: 40px;
+	    background: white;
+	    color: black;
+	    text-transform: uppercase;
+	    border: 0px;
+	    cursor: pointer;
+	    border-radius: 2px;
+	    font-size: 15px;
+	    font-family: 'Raleway';
+	    font-weight: bold;
+	    border: 1px solid black;
+	    margin:0;
+	}
+	
+	.white-btn-custom:hover{
+		background:#F49551;
+	}
+	
+/*하얀색 버튼 -작은크기*/	
+	.white-btn-small-custom{
+		display: block;
+	    width: 60px;
+	    height: 25px;
+	    background: white;
+	    color: black;
+	    text-transform: uppercase;
+	    border: 0px;
+	    cursor: pointer;
+	    border-radius: 2px;
+	    font-size: 15px;
+	    font-family: 'Raleway';
+	    font-weight: bold;
+	    border: 1px solid black;
+	    margin:0;
+	}
+	
+	.white-btn-small-custom:hover{
+		background:#F49551;
+	}
+	
+
+
+
+/*이미지 크기 고정 CSS 시작----------------------------------------------------*/
+/*
+offer-slider-i catalog-i 클래스 안에 넣고
+imgTagContainer img에서 width, top, left 별도 조정해야 함
+*/
+.imgTagContainer{
+		height : 400px;
+		overflow : hidden;
+}
+	
+.imgTagContainer img{
+	  position: absolute;
+	  width: 100%;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+}
+/*이미지 크기 고정 CSS 끝----------------------------------------------------*/
+
+		
+		
+	
+/* SelectBox / InputBox  CSS   시작 -----------------------------------------------------------------------------------------*/	
+/* 회원가입이나 새책등록 시 Form에 사용*/	
+	.table-a tr td .input input[type=text]{
+		height:30px;
+		width:100%;
+	}
+	
+	.table-a tr td .input input[type=password]{
+		height:30px;
+		width:100%;
+	}
+	
+	.table-a tr td {
+		text-align:center;
+	}
+	
+	.table-a tr th {
+		text-align:center;
+	}
+
+	.booking-form-i{
+		width:100%;
+	}
+	
+	.booking-form-i-short{
+		width:80%;
+	}
+	
+	.selectBox-custom {
+	  width: 50%;
+	  padding: .5em .5em;
+	  font-family: inherit;
+	  background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
+	  -webkit-appearance: none;
+	  -moz-appearance: none;
+	  appearance: none;
+	  border: 1px solid #999;
+	  border-radius: 0px;
+	  font-size:15px;
+	}
+	
+	.inputBox-custom{
+		margin-bottom:0px;
+	}
+	
+	.inputBox-custom div{
+		/* border: 1px solid black; */
+	}
+	
+	.inputBox-custom  .input{
+		padding: 0px;
+	}
+	
+	.inputBox-custom  .input input[type=text] {
+		border : 1px solid black;
+		font-size:14px;
+	}
+	
+	.inputBox-custom  .input input[type=password] {
+		border : 1px solid black;
+		font-size:20px;
+		width:99%;
+	}
+	
+	.inputBox-custom-require-label{
+		color:red; 
+		font-size:25px;
+	}
+	
+	.inputBox-custom-important-label{
+		color:red;  
+		font-size:15px; 
+		font-weight: bold; 
+		/*margin-left:84%;*/
+		float:right;
+	}	
+	
+/* SelectBox 및 InputBox CSS  끝 -----------------------------------------------------------------------------------------*/	
+	
+.textarea-comment {
+    height: 60px;
+    border: 1px solid #e3e3e3;
+    -webkit-box-shadow: 0px 1px 2px 0px rgb(50 50 50 / 4%);
+    -moz-box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.04);
+    box-shadow: 0px 1px 2px 0px rgb(50 50 50 / 4%);
+    border-radius: 2px;
+}
+
+.textarea-comment textarea{
+    resize: none;
+    width: 100%;
+    margin-bottom: -5px;
+    height:100%;
+	font-family: 'Raleway';
+}
+	
+	
+	
+/*화면을 좌우로 나눔**/
+.shortcodes-left{
+    width: 43%;
+   	float: left;
+}
+
+.shortcodes-right{
+    width: 43%;
+    float: right;
+}
+
+	

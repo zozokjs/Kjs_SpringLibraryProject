@@ -1,5 +1,6 @@
 package com.kjs.library.service;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -9,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kjs.library.domain.book.Book;
 import com.kjs.library.domain.book.BookRepository;
-import com.kjs.library.domain.book.SamebookRepository;
 import com.kjs.library.domain.lend.Lend;
 import com.kjs.library.domain.lend.LendRepository;
 import com.kjs.library.service.common.DateCommonService;
@@ -25,7 +25,6 @@ import lombok.RequiredArgsConstructor;
 public class BookSelectService {
 	
 	private final BookRepository bookRepository;
-	private final SamebookRepository samebookRepository;
 	private final LendRepository lendRepository;
 	
 	//SELECT
@@ -34,12 +33,12 @@ public class BookSelectService {
 	public List<UserLendListInterface> 대출목록(int loginId){
 		
 		List<UserLendListInterface> lend = lendRepository.findUserLendListByUserId(loginId);
-
-		/* 값 체크
+		
+		// 값 체크
 		for (int i = 0; i < lend.size(); i++) {
-			System.out.println(lend.get(i).getCreateDate() + "    /  " +lend.get(i).getBindType());
+			System.out.println(lend.get(i).getCreateDate() + "    /  " +lend.get(i).getExtensionDate());
 		}
-		*/
+		
 		return lend;
 	}
 		

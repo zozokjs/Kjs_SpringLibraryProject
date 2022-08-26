@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 @AutoConfigureMockMvc
 public class UserRepositoryUnitTest {
 
-	
+	/*
 	//@DataJpaTest 안에 있는 @ExtendWith(SpringExtension.class) 때문에 이미 빈이 등록되어 있기 때문에
 	//별도의 어노테이션을 붙일 필요 없음
 	//실제 db를 써서 응답 받을 것임.
@@ -69,5 +69,5 @@ public class UserRepositoryUnitTest {
 		assertNotEquals("ad",1);
 		assertEquals("as",0);
 	}
-	
+	*/
 }

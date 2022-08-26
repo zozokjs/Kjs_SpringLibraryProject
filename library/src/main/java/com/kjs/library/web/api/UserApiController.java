@@ -4,18 +4,26 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kjs.library.config.auth.PrincipalDetails;
+import com.kjs.library.config.auth.PrincipalDetailsService;
 import com.kjs.library.domain.user.User;
 import com.kjs.library.service.BookSelectService;
 import com.kjs.library.service.BookService;
 import com.kjs.library.service.UserService;
 import com.kjs.library.web.dto.CMRespDto;
+import com.kjs.library.web.dto.user.PasswordCheckerDto;
 import com.kjs.library.web.dto.user.UserUpdateDto;
 
 import lombok.RequiredArgsConstructor;
@@ -23,12 +31,32 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RestController
 public class UserApiController {
-
 	
 	private final UserService userService;
 	private final BookService bookService;
 	private final BookSelectService bookSelectService;
-			
+	private final PasswordEncoder passwordEncoder;
+	
+	//회원 수정 전 기존 비밀번호 확인
+	@PostMapping("/user/api/{password}/updateBeforeChecker")
+	public CMRespDto<?> userUpdateBeforeChecker(
+		@PathVariable String password,
+		@AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		if(비번일치함(password, principalDetails.getPassword() ) == true) {
+			return new CMRespDto<>(1,"비밀번호가 일치합니다.",null);
+		}else {
+			return new CMRespDto<>(0,"비밀번호가 일치하지 않습니다.",null);
+		}
+	
+	}
+	
+	//암호화 안 된 것, 암호화 된 비번의 일치여부를 비교함. 일치하면 true 리턴(암호화 안 된 비번, 저장소에 저장된 암호화된 비번)
+	private boolean 비번일치함(String password, String encodePassword) {
+        return passwordEncoder.matches(password, encodePassword);
+    }
+	
+	
 	//회원 수정 완료 처리
 	@PutMapping("/user/api/{userId}/updater")
 	public CMRespDto<?> userUpdate(
@@ -54,6 +82,8 @@ public class UserApiController {
 		
 	}
 		
+	
+
 	
 	//책 반납 처리
 	@PutMapping("/user/api/{lendId}/bookReturn")

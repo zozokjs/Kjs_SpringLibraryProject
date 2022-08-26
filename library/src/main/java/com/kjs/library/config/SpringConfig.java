@@ -2,7 +2,6 @@ package com.kjs.library.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -10,10 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import com.kjs.library.domain.user.UserRepository;
-import com.kjs.library.service.AuthService;
-
-import lombok.RequiredArgsConstructor;
 
 @EnableWebSecurity
 @Configuration // ioc에 등록
@@ -40,11 +35,28 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
 			.anyRequest().permitAll() //그 외의 요청은 허용
 			.and()
 			.formLogin()
-				.loginPage("/auth/signin") // //antMatcher()에 적힌 주소로 접근한다면 이 주소로 향해라  GET요청임
-				.loginProcessingUrl("/auth/signin") //이 주소로 POST 방식 요청하면 시큐리티가 로그인을 낚아채서 진행해줌.
+				.loginPage("/auth/signinOtherPage") // //antMatcher()에 적힌 주소로 접근한다면 이 주소로 향해라  GET요청임
+				.loginProcessingUrl("/auth/signin") //이 주소로 POST 방식 요청하면 시큐리티가 로그인을 진행한다.
 				.defaultSuccessUrl("/")  //loginPage()에 적힌 주소에서 인증 되었다면 그 다음 이 주소로 향해라.
 			.successHandler(successHandler())
-			.failureHandler(failureHandler());
+			.failureHandler(failureHandler())
+			.and()
+			.logout()
+			.logoutSuccessUrl("/");
+			
+		
+		/*
+		 * @Override
+			protected void configure(HttpSecurity http) throws Exception {
+    		protected void configure(HttpSecurity http) throws Exception {
+    			http.logout() // 로그아웃 처리
+		        .logoutUrl("/logout") // 로그아웃 처리 URL
+		        .logoutSuccessUrl("/login") // 로그아웃 성공 후 이동 URL
+		        .deleteCookies(" JESSIONID", " remember-me ") // 로그아웃 후 쿠키 삭제
+		        .addLogoutHandler(logoutHandler()) // 로그아웃 후 핸들러
+		        .logoutSuccessHandler(logoutSuccessHandler()); // 로그아웃 성공 후 핸들러
+}*/	
+		
 	}
 	
 	@Bean
