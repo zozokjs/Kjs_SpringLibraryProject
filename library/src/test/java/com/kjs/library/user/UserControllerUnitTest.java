@@ -84,7 +84,7 @@ public class UserControllerUnitTest {
 	
 	@Test
 	public void CommonServiceTest() throws ParseException {
-		log.info("테스트 시작");
+		//log.info("테스트 시작");
 		
 		/*
 		Map<String, Integer> pageMap = commonService.시작끝페이지구하기(12, 1200, 10);
@@ -119,7 +119,7 @@ public class UserControllerUnitTest {
 	//Then
 	@Test
 	public void 대출목록() throws Exception {
-		log.info("테스트 시작");
+		//log.info("테스트 시작");
 		
 		//Given
 	/*	SignupDto signupDto = new SignupDto();
