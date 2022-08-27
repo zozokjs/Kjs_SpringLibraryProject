@@ -78,7 +78,7 @@ public class TestSampleControllerUnitTest {
 	
 	//@Test
 	public void saveTest() throws Exception {
-		log.info("save 테스트 시작-------------------------------" );
+		//log.info("save 테스트 시작-------------------------------" );
 
 		//writeValueAsString는 JSON으로 만들어준다.
 		//String content = new ObjectMapper().writeValueAsString(new Lend(1, null,null,null, "title","title",null));

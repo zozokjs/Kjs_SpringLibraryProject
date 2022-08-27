@@ -36,7 +36,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		
-		log.info("로그인 성공 했습니다.");
+		//log.info("로그인 성공 했습니다.");
 		
 		authService.로그인실패횟수초기화(request.getParameter("username"));
 	

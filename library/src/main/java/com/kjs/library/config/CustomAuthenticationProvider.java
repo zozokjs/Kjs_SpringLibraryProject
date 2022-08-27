@@ -70,24 +70,24 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 		//로그인이 불가능한 경우 > 계정 없음, 비번 틀림, 비번 5번 틀림, 가입 미승인, 계정 정지
 		
 		if(principalDetails == null) {
-			log.info("username이 없습니다.");
+			//log.info("username이 없습니다.");
 			throw new UsernameNotFoundException(loginId);
 		}
 		else if(principalDetails.getUser().getRoleType()  == RoleType.NOT) {
-			log.info("계정이 잠겼습니다. RoleType이 NOT");
+			//log.info("계정이 잠겼습니다. RoleType이 NOT");
 			throw new DisabledException(loginId);
 		}
 		else if( (principalDetails.getUser().getLoginFailCount() > 5) == true   ) {
-			log.info("비번이 5번 이상 틀렸습니다.");
+			//log.info("비번이 5번 이상 틀렸습니다.");
 			throw new Custom_UserLoginFailCountOverException("ABC", 0);
 		}
 		else if(비번일치함(password, principalDetails.getPassword() )== false) {
-			log.info("비번이 틀렸습니다.");
+			//log.info("비번이 틀렸습니다.");
 			throw new BadCredentialsException(loginId);
 		}
 		//else if(principalDetails.getUser().getRoleType().equals("YET")) {
 		else if(principalDetails.getUser().getRoleType() == RoleType.YET) {
-			log.info("가입 미승인 상태입니다. Role_Type이 YET");
+			//log.info("가입 미승인 상태입니다. Role_Type이 YET");
 			throw new Custom_UserNotApprovalException("ABC", 0);
 		}
 		//아무런 문제 없을 때
