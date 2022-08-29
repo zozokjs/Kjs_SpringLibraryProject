@@ -1,16 +1,12 @@
 HELP.md
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-!src/main/resources/static/img_custom
-
-*.jpg
-*.png
-*.DS_Store
-*.gif
 
 mvnw
+
+*.png
+*.jpg
+*.gif
+*.DS_Store
 
 ### STS ###
 .apt_generated
@@ -20,3 +16,15 @@ mvnw
 .settings
 .springBeans
 .sts4-cache
+
+src/main/resources/application.yml
+
+
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+!src/main/resources/static/img_custom/*
+!src/main/resources/static/img_custom/제국외도서관로고/*
+
+
+
