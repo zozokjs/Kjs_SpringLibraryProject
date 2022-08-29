@@ -1,7 +1,13 @@
+## 샵 2개 쓰고 띄어쓰기 한 번하면 주석처리 됨
 /.metadata/
 /upload_imageTitle/
 /upload_imageProfile/
+/library/mvnw
+
 *.jpg
 *.png
 *.DS_Store
 *.gif
+
+## 아래 경로의 파일은 허용함(ignore에서 제외됨)
+!/library/src/main/resources/static/img_custom
