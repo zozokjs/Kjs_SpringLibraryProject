@@ -3,7 +3,13 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-!/src/main/resources/static/img_custom
+!src/main/resources/static/img_custom
+
+*.jpg
+*.png
+*.DS_Store
+*.gif
+
 mvnw
 
 ### STS ###
@@ -14,22 +20,3 @@ mvnw
 .settings
 .springBeans
 .sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-.vscode/
