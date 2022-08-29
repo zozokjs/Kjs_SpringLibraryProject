@@ -85,7 +85,7 @@
 						</p>
 							<div class="booking-form-i  inputBox-custom"  >
 								<div class="input">
-									<input type="text"   value="123456"  style="font-size:30px; color: royalblue; text-align:center;     padding: 1px 2px;">
+									<input type="text"   style="font-size:30px; color: royalblue; text-align:center;     padding: 1px 2px;">
 								</div>
 							</div>
 							<hr>

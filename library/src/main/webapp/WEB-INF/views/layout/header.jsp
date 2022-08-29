@@ -80,8 +80,8 @@
 			<form action ="/auth/signin" method="POST" >
 				<div class="autorize-padding">
 					<h6 class="autorize-lbl">로그인을 하시면 더 많은 서비스를 이용하실 수 있어요!</h6>
-					<input type="text"  name="username"   value="zozo" class="form-control"  placeholder="아이디" required="">
-					<input type="password"  name="password"   value="1234"  class="form-control" placeholder="비밀번호" required="">
+					<input type="text"  name="username"     class="form-control"  placeholder="아이디" required="">
+					<input type="password"  name="password"    class="form-control" placeholder="비밀번호" required="">
 					<footer class="autorize-bottom">
 						<button class="authorize-btn" >로그인</button>
 						<a href="/auth/findToIdPassword" class="authorize-forget-pass">아이디 | 비밀번호찾기</a> 

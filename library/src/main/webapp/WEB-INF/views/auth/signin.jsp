@@ -63,14 +63,14 @@
 	                            
 		                            <!-- 아이디 -->
 		                            <div class="form-group form-primary">
-		                                <input type="text" name="username"   value="zozo" class="form-control" required="">
+		                                <input type="text" name="username"   class="form-control" required="">
 		                                <span class="form-bar"></span>
 		                                <label class="float-label">아이디</label>
 		                            </div>
 		                            
 		                            <!-- 비번 -->
 		                            <div class="form-group form-primary">
-		                                <input type="password" name="password"   value="1234"  class="form-control" required="">
+		                                <input type="password" name="password"   class="form-control" required="">
 		                                <span class="form-bar"></span>
 		                                <label class="float-label">비밀번호</label>
 		                            </div>

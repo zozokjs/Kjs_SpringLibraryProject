@@ -62,10 +62,14 @@
 										</c:forEach>
 									</tbody>
 								</table>
-								<!-- 흰색 버튼 -->
-								<div style="text-align: -webkit-center;">
-									<button class=" booking-complete-btn white-btn-custom"  onclick="location.href='/community/boardFreeRegistrationForm'">글쓰기</button>
-								</div>
+								
+								<c:if test="${principal.user.roleType eq 'USER' || principal.user.roleType eq 'SASEO' || principal.user.roleType eq 'ADMIN'}">
+									<!-- 흰색 버튼 -->
+									<div style="text-align: -webkit-center;">
+										<button class=" booking-complete-btn white-btn-custom"  onclick="location.href='/community/boardFreeRegistrationForm'">글쓰기</button>
+									</div>
+								</c:if>
+
 							<!-- 우측 본문 끝 -->
 							
 							</div>

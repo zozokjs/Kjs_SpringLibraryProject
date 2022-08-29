@@ -64,7 +64,7 @@
 													 <td style="font-size:15px; padding-top:20px;">아이디</td>
 													 <td>
 														<div class="input">
-															<input type="text"  value="zozo2"	id="passwordUsername"  name="passwordUsername"  class="input-custom"   placeholder="아이디" required="">
+															<input type="text"  id="passwordUsername"  name="passwordUsername"  class="input-custom"   placeholder="아이디" required="">
 														</div>
 													</td>
 												</tr>
@@ -73,7 +73,7 @@
 													 <td style="font-size:15px; padding-top:20px;">이메일 주소</td>
 													 <td>
 														<div class="input">
-															<input type="text"  value="zozokjs2@daum.net" 	id="passwordEmail"  name="passwordEmail" class="input-custom"   placeholder="이메일" required="">
+															<input type="text"   id="passwordEmail"  name="passwordEmail" class="input-custom"   placeholder="이메일" required="">
 														</div>
 													</td>
 												</tr>

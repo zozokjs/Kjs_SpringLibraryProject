@@ -25,7 +25,7 @@
 																		<tr>
 																			<th>아이디</th>
 																			<td>
-																				<input type="text"  name="username"   value="zozo" class="form-control"  placeholder="아이디" required="">
+																				<input type="text"  name="username"   class="form-control"  placeholder="아이디" required="">
 																			</td>
 																			<td rowspan="2">
 																				<button class="authorize-btn"  style="height:77px;">로그인</button>
@@ -34,7 +34,7 @@
 																		<tr>
 																			<th>비밀번호</th>
 																			<td>
-																				<input type="password"  name="password"   value="1234"  class="form-control" placeholder="비밀번호" required="">
+																				<input type="password"  name="password"   class="form-control" placeholder="비밀번호" required="">
 																			</td>
 																		</tr>
 																		<tr>

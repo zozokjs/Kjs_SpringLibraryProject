@@ -13,12 +13,12 @@ import com.kjs.library.web.dto.community.BNoticeResponseDto;
 
 public interface BoardNoticeRepository extends JpaRepository<BoardNotice, Integer>{
 
-	@Query(value = "SELECT * FROM Boardnotice ORDER BY id DESC", 
-	countQuery = "SELECT count(*) FROM Boardnotice ",
+	@Query(value = "SELECT * FROM BoardNotice ORDER BY id DESC", 
+	countQuery = "SELECT count(*) FROM BoardNotice ",
     nativeQuery = true)
 	Page<BoardNotice> findByAllDesc(Pageable pageable);
 
-	@Query(value = "SELECT * FROM Boardnotice ORDER BY id DESC limit 10", 
+	@Query(value = "SELECT * FROM BoardNotice ORDER BY id DESC limit 10", 
     nativeQuery = true)
 	List<BoardNotice> findByAllDescTop10();
 }

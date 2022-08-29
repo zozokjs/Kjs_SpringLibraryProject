@@ -25,7 +25,7 @@ public interface BoardFreeRepository extends JpaRepository<BoardFree, Integer>{
 		+ " GROUP BY c.boardFreeId "
 		+ " ORDER BY b.createDate desc "*/
 	@Query(value = "SELECT b.id, b.title, b.content, b.readCount, b.createDate, b.editDate, u.username,  COUNT(c.id) AS commentCount"
-			+ " FROM Boardfree b "
+			+ " FROM BoardFree b "
 			+ " Left outer JOIN Comment c"
 			+ " ON b.id = c.boardFreeId"
 			+ " INNER JOIN User u"

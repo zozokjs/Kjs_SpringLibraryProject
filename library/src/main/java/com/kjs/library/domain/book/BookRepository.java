@@ -11,7 +11,7 @@ public interface BookRepository extends JpaRepository<Book, Integer>{
 	
 	
 	@Query(value = "SELECT * FROM Book WHERE useState = TRUE ORDER BY id", 
-			       countQuery = "SELECT count(*) FROM book WHERE useState = TRUE ",           
+			       countQuery = "SELECT count(*) FROM Book WHERE useState = TRUE ",           
                    nativeQuery = true)
 	Page<Book> findByAll(Pageable pageable);
 	

@@ -68,7 +68,7 @@
 											<td colspan="3">
 												<div class="booking-form-i inputBox-custom"  style="width:60%;">
 													<div class="input">
-														<input type="text"  id = "email"  name="email"  value="zozokjs@naver.com" required=""  >
+														<input type="text"  id = "email"  name="email"   required=""  >
 													</div>
 												</div>
 												<div id="div_emailAuthSendButton"  style="text-align: -webkit-center;">
