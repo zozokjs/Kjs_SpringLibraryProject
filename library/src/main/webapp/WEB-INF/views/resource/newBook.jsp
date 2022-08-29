@@ -16,8 +16,8 @@
 								
 									<div class="cat-list-item fly-in"><!-- 반복부 시작 -->
 										<div class="cat-list-item-l">
-											<a href="#">
-												<img alt="" src="/upload/${books.titleImageUrl}"  ><!-- 타이틀 이미지 -->
+											<a href="/resource/${books.id}/bookInfor" >
+												<img src="/upload/${books.titleImageUrl}"  ><!-- 타이틀 이미지 -->
 											</a>
 										</div>
 										<div class="cat-list-item-r"><!-- 여기부터 콘텐츠 영역 -->

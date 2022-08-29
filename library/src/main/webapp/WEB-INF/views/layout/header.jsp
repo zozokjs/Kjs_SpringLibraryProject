@@ -158,7 +158,7 @@
 
 						<!-- 사서 권한만 볼 수 있음 -->
 						<c:choose>
-							<c:when test ="${principal.user.roleType eq 'ADMIN'}">	
+							<c:when test ="${principal.user.roleType eq 'ADMIN' || principal.user.roleType eq 'SASEO' }">	
 
 							<li><a class="has-child"  href="/saseo/bookManage">사서공간</a>
 								<ul>
@@ -231,7 +231,7 @@
 
 						<!-- 사서 권한만 볼 수 있음 -->
 						<c:choose>
-							<c:when test ="${principal.user.roleType eq 'ADMIN' }">	
+							<c:when test ="${principal.user.roleType eq 'ADMIN' || principal.user.roleType eq 'SASEO' }">	
 								<li><a href="/saseo/bookManage">사서공간</a>
 									<ul>
 										<li><a href="/saseo/bookManage">도서관리(등록/수정/삭제/권수수정/십진분류)</a></li>

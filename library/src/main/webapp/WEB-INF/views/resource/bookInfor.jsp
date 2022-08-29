@@ -25,11 +25,22 @@
 							</div>
 							<div class="catalog-row list-rows">
 								<div class="cat-list-item fly-in"   style="padding-top:15px;">
+								
 									<div class="cat-list-item-l">
-										<a href="#">
-											<img class="mr-4" src="/upload/noTitleImage_150px.jpg" alt="">  <!-- 타이틀 이미지 -->
-										</a>
+										<c:choose>
+											<c:when test="${empty book.titleImageUrl}">
+												<a href="">
+													<img class="mr-4" src="/img_custom/noTitleImage_150px.jpg" alt="">
+												</a>
+											</c:when>
+											<c:otherwise>
+											<a href="">
+												<img class="mr-4" src="/upload/${book.titleImageUrl}" alt="">  
+												</a>
+											</c:otherwise>
+										</c:choose>
 									</div>
+									
 									<div class="cat-list-item-r"><!-- 여기부터 콘텐츠 영역 -->
 										<div class="cat-list-item-rb"  style="margin: 20px 0;">
 											<div class="cat-list-item-p">

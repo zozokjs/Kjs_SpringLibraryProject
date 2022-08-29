@@ -120,15 +120,53 @@ display:flex;
 				<c:otherwise>
 					<!--사진 반복 시작 -->
 					<c:forEach var="booked" items="${book}">
-
+						<div class="offer-slider-i catalog-i fly-in ">
+							<div class="imgTagContainer">
+							
+								<c:choose>
+									<c:when test="${empty booked.titleImageUrl}">
+										<a href="/resource/${booked.id}/bookInfor" class="offer-slider-img">
+											<img src="/img_custom/noTitleImage_150px.jpg" alt="">
+										</a>
+									</c:when>
+									<c:otherwise>
+										<a href="/resource/${booked.id}/bookInfor" class="offer-slider-img">
+											<img alt="" src="/upload/${booked.titleImageUrl}">
+										</a>
+									</c:otherwise>
+								</c:choose>
+								
+								
+							</div>
+							<div class="offer-slider-txt">
+								<div class="offer-slider-link">
+									<a href="#">${booked.title}</a>
+									<!-- Title -->
+								</div>
+								<div class="offer-slider-l">
+									<div class="offer-slider-location">${booked.writer}</div>
+									<!-- 저자 -->
+								</div>
+								<div class="clear"></div>
+							</div>
+						</div>
+						<%--
 						<div class="fly-in offer-slider-i">
-							<a class="offer-slider-img" href="#"> 
-								<!-- 이미지 크기  626 x 424 --> 
-								<img alt="" src="/upload/${booked.titleImageUrl}"/> 
-								<span class="offer-slider-overlay"> 
-									<span class="offer-slider-btn">view details</span>
-								</span>
-							</a>
+							<div class="cat-list-item fly-in"   style="padding-top:15px;">
+								<div class="cat-list-item-l">
+										<!-- 이미지 크기  626 x 424 --> 
+										<a href="/resource/${booked.id}/bookInfor"  class="offer-slider-img" >
+											<c:choose>
+												<c:when test="${empty booked.titleImageUrl}">
+													<img class="mr-4" src="/img_custom//noTitleImage_150px.jpg" alt="">
+												</c:when>
+												<c:otherwise>
+													<img class="mr-4" src="/upload/${booked.titleImageUrl}" alt="">  
+												</c:otherwise>
+											</c:choose>
+										</a>
+								</div>
+							</div>
 							<div class="offer-slider-txt">
 								<div class="offer-slider-link">
 									<!-- 책 제목 -->
@@ -140,7 +178,7 @@ display:flex;
 								</div>
 								<div class="clear"></div>
 							</div>
-						</div>
+						</div> --%>
 
 					</c:forEach>
 					<!--사진 반복 끝 -->

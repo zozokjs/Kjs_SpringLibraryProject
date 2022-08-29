@@ -4,10 +4,9 @@
 <%@ include file="../layout/submenu_Saseo.jsp"%>
 
 <style>
-	.imgTagContainer img{
-	  width: 15%;
-	  top: 23%;
-	  left: 60%;
+.imgDiv{
+	display:flex; 
+	justify-content : center;
 }
 
 .booking-form-i{
@@ -28,15 +27,22 @@ width:100%;
 							<input type="hidden"  id="book_totalAmount"  value="${book.totalAmount}" />
 							<!-- hidden Tag -->
 							
-							<!-- 책 이미지-->
-							<div class="offer-slider-i catalog-i fly-in ">
-								<div class="imgTagContainer">
-									<div class="portfolio-full-img" style="text-align: center;">
-										<img src="/upload/${book.titleImageUrl}" alt="" >
-									</div>
+							<div class="imgDiv">
+								<div class="cat-list-item-l">
+									<c:choose>
+										<c:when test="${empty book.titleImageUrl}">
+											<a href="">
+												<img class="mr-4" src="/img_custom/noTitleImage_150px.jpg" alt="">
+											</a>
+										</c:when>
+										<c:otherwise>
+										<a href="">
+											<img class="mr-4" src="/upload/${book.titleImageUrl}" alt="">  
+											</a>
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
-							
 							<div class="tables" style="margin-top: 70px;">
 								<table class="table-a">
 								
