@@ -37,7 +37,7 @@ public class AuthController {
 	//로그인 화면으로 이동
 	@GetMapping("/auth/signin")
 	public String signinPage() {
-		return "auth/signin";
+		return "auth/signinOtherPage";
 	}
 	
 	//로그인 별도 페이지로 이동
@@ -59,7 +59,7 @@ public class AuthController {
 	public String signinForm() {
 		System.out.println("exception 걸렸으므로 리턴 됩니다. ");
 		 //return "redirect:/auth/signin";
-		 return "auth/signin";
+		 return "auth/signinOtherPage";
 
 	}
 		

@@ -46,7 +46,9 @@ public class LoginFailureHandler implements AuthenticationFailureHandler{
 	 * HttpServletResponse -> 출력을 정의함
 	 * AuthenticationException -> 로그인 실패 정보를 갖고 있음
 	 * */
-	
+	/*
+	 * signinOtherPage.jsp 상단 참조. request에 errorMessage를 담았으니 JSP에서 받아서 스크립트로 출력해야 함
+	 * */
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
@@ -60,7 +62,7 @@ public class LoginFailureHandler implements AuthenticationFailureHandler{
 			errorMessage = "계정이 잠겼습니다. 관리자에게 문의하세요. ";
 		}
 		else if(exception instanceof UsernameNotFoundException) {
-
+			
 			errorMessage = "아이디가 존재하지 않습니다.";
 		}
 		else if(exception instanceof Custom_UserLoginFailCountOverException) {

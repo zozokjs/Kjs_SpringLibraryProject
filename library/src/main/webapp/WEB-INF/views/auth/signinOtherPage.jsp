@@ -2,6 +2,17 @@
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_Auth.jsp"%>
 
+<!-- LoginFailureHandler.java 참조. 여기서 msg를 던짐. -->
+<!-- errorMsg가 비어 있지 않을 때 -> 값이 있을 때 -->
+<c:choose>
+	<c:when test ="${not empty errorMsg}">
+		<script>
+			const a = `${errorMsg}`;
+			alert( a );
+		</script>
+	</c:when>
+</c:choose>
+
 				<div class="two-colls-right"><!-- 우측 메인 시작 -->
 					<div class="two-colls-right-b">
 						<div class="padding">

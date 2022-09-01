@@ -36,9 +36,17 @@ public class MainController {
 		//공지사항 최근 10건을 표시함
 		List<BoardNotice> boardNotice = communityService.공지사항목록10개();
 		
+		
 		if(book.size() == 0) {
 			System.out.println("등록된 책이 없습니다.");
 		}else {
+			
+			/**
+			 * 아래에서 model에 add하는 book과 boardnotice 중
+			 * 하나라도 값이 없다면 JSP에 출력되지 않음
+			 * (둘 다 값이 있어야 출력된다.)			 
+			 * * 
+			 * */
 			model.addAttribute("book",book);
 			model.addAttribute("boardNotice",boardNotice);
 		}
