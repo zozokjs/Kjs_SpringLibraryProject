@@ -42,7 +42,12 @@ for(i=0;i<size;i++){
 }
 
 
-
+//인증번호 전송 버튼 비활성화 처리
+/**$('#emailAuthSendButton').attr('disabled');
+$('#emailAuthSendButton').removeClass('booking-complete-btn');
+$('#emailAuthSendButton').css('color','gray');
+$('#emailAuthSendButton').css('border','1px solid gray'); */
+				
 //AJAX API 처리
 function userUpdate(userId, event) {
 	

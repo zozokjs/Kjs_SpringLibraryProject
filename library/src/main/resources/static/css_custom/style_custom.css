@@ -79,7 +79,7 @@
 		background:#F49551;
 	}
 	
-/*하얀색 버튼 -작은크기*/	
+	/*하얀색 버튼 -작은크기*/	
 	.white-btn-small-custom{
 		display: block;
 	    width: 60px;
@@ -101,8 +101,28 @@
 		background:#F49551;
 	}
 	
+	/*하얀색 버튼 -짧음*/	
+	.white-btn-short-custom{
+		display: block;
+	    width: 104px;
+	    height: 40px;
+	    background: white;
+	    color: black;
+	    text-transform: uppercase;
+	    border: 0px;
+	    cursor: pointer;
+	    border-radius: 2px;
+	    font-size: 15px;
+	    font-family: 'Raleway';
+	    font-weight: bold;
+	    border: 1px solid black;
+	    margin:0;
+	}
 
 
+	.white-btn-short-custom:hover{
+		background:#F49551;
+	}
 
 /*이미지 크기 고정 CSS 시작----------------------------------------------------*/
 /*

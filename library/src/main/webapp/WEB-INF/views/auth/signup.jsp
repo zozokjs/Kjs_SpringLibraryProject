@@ -9,6 +9,11 @@
 		width: 200px;
 	}
 	
+	.warningBlock {
+		margin-left:20px; 
+		color:red; 
+		font-weight:bold;
+	}
 	
 
 </style>
@@ -25,14 +30,24 @@
                    			
                    			
 							<div class="tables" style="margin-top: 70px;">
-								<div class="">
 								<div>
-									<label class="inputBox-custom-important-label">*은 필수입력항목입니다</label>
+									
 								</div>
 									<table class="table-a">
+									<tbody>
+									
+										<!--  0  -->
+										<!-- 이 항목이 반드시 있어야 모바일 화면에서 테이블 형태가 유지됨-->
+										<tr>
+											<th colspan="3"  style="border-right:none; border-left:none;; border-top:none">
+												<label class="inputBox-custom-important-label">*은 필수입력항목입니다</label>
+											</th>
+										</tr>
+										
+										<!--  1  -->
 										<tr>
 											<th><label class="inputBox-custom-require-label">*</label>아이디</th>
-											<td colspan="3">
+											<td colspan="2">
 												<div class="booking-form-i  inputBox-custom"  >
 													<div class="input">
 														<input type="text"  id ="username" name="username" onkeyup ='findByUsernameRealtime()' required=""  >
@@ -41,47 +56,59 @@
 												<div  id="div_usernameResult" ></div>
 											</td>
 										</tr>
+										
+										<!--  2  -->
 										<tr>
 											<th><label class="inputBox-custom-require-label">*</label>비밀번호</th>
-											<td colspan="3">
+											<td colspan="2">
 												<div class="booking-form-i-short   inputBox-custom"  >
 													<div class="input">
-														<input type="password"  id ="password"  name="password"  onkeyup ='checkPasswordLength()'  required=""  >
+														<input type="password"  id ="password"  name="password"  onkeyup ='checkPasswordFormat()'  required=""  >
 													</div>
 												</div>
-												<div  id="div_passwordLengthResult" ></div>
+												<div  id="div_passwordFormatResult" ></div>
 											</td>
 										</tr>
+										
+										<!--  3  -->
 										<tr>
 											<th><label class="inputBox-custom-require-label">*</label>비밀번호 확인</th>
-											<td colspan="3">
+											<td colspan="2">
 												<div class="booking-form-i-short    inputBox-custom"  >
 													<div class="input">
-														<input type="password"  id ="confirm-password"  name="confirm-password"   onkeyup ='checkPasswordMatch()' required=""  >
+														<input type="password"  id ="confirm-password"  name="confirm-password"   onkeyup ='checkPasswordMatch()'  required="" >
 													</div>
 												</div>
 												<div  id="div_passwordMatchResult" ></div>
 											</td>
 										</tr>
+										
+										<!--  4  -->
 										<tr>
 											<th><label class="inputBox-custom-require-label">*</label>이메일</th>
-											<td colspan="3">
-												<div class="booking-form-i inputBox-custom"  style="width:60%;">
+											<td colspan=""  style="width:50%;">
+												<div class="booking-form-i inputBox-custom"  style="width:100%;">
 													<div class="input">
-														<input type="text"  id = "email"  name="email"   required=""  >
+														<input type="text"  id = "email"  name="email"   onkeyup ='checkEmailFormat()' required=""  >
 													</div>
 												</div>
-												<div id="div_emailAuthSendButton"  style="text-align: -webkit-center;">
-											    	<!--추가 버튼-->
-													<button id="emailAuthSendButton"  onclick ="emailAuthenticationSending_Before(event)" class=" booking-complete-btn white-btn-custom" >인증번호전송</button>
-												</div>
-											</td>
+												<div  id="div_emailFormatResult" ></div>
+												</td>
+												<td>
+													<div id="div_emailAuthSendButton"  style="text-align: -webkit-center;">
+												    	<!--추가 버튼-->
+														<button id="emailAuthSendButton"  onclick ="emailAuthenticationSending_Before(event)" class=" booking-complete-btn white-btn-short-custom" >인증번호전송</button>
+													</div>
+												</td>
 										</tr>
 										
+										<!--  4.5  -->
 										<tr id="div_emailAuthentication"></tr>
+										
+										<!--  5 -->
 										<tr>
 											<th>이름</th>
-											<td colspan="3">
+											<td colspan="2">
 												<div class="booking-form-i inputBox-custom"  >
 													<div class="input">
 														<input type="text" name="name" >
@@ -89,9 +116,11 @@
 												</div>
 											</td>
 										</tr>
+										
+										<!--  6  -->
 										<tr>
 											<th>생년월일</th>
-											<td colspan="3">
+											<td colspan="2">
 												<div class="booking-form-i inputBox-custom"  >
 													<div class="input">
 														<input type="text" name="birth" >
@@ -99,9 +128,11 @@
 												</div>
 											</td>
 										</tr>
+										
+										<!--  7  -->
 										<tr>
 											<th>국가</th>
-											<td colspan="3">
+											<td colspan="2">
 												<div class="card-expiration"  style="width:100%;">
 													<select name="country" class="selectBox-custom" >
 														<option value="1">토르두스</option>
@@ -114,9 +145,11 @@
 												</div>
 											</td>
 										</tr>
+										
+										<!--  8  -->
 										<tr>
 											<th>종족</th>
-											<td colspan="3">
+											<td colspan="2">
 												<div class="card-expiration"  style="width:100%;">
 													<select name="species" class="selectBox-custom">
 														<option value="1">Human</option>
@@ -130,9 +163,11 @@
 												</div>
 											</td>
 										</tr>
+										
+										<!--  9  -->
 										<tr>
 											<th>직업</th>
-											<td colspan="3">
+											<td colspan="2">
 												<div class="card-expiration"  style="width:100%;">
 													<select name="job" class="selectBox-custom">
 														<option value="1">학생</option>
@@ -145,19 +180,24 @@
 												</div>
 											</td>
 										</tr>
+										
+										<!--  10  -->
 										<tr>
 											<th><label class="inputBox-custom-require-label">*</label>연락처</th>
-											<td colspan="3">
+											<td colspan="2">
 												<div class="booking-form-i inputBox-custom"  >
 													<div class="input">
-														<input type="text" name="phoneNumber"  required=""  >
+														<input type="text"  id= "phoneNumber"  name="phoneNumber"  required=""  onkeyup ='checkPhoneNumberFormat()'>
 													</div>
 												</div>
+												<div  id="div_phoneNumberFormatResult" ></div>
 											</td>
 										</tr>
+										
+										<!--  11  -->
 										<tr>
 											<th>주소</th>
-											<td colspan="3">
+											<td colspan="2">
 												<div class="booking-form-i inputBox-custom"  >
 													<div class="input">
 														<input type="text"  name="address" >
@@ -165,15 +205,15 @@
 												</div>
 											</td>
 										</tr>
+										</tbody>
 									</table>
 									<button class="booking-complete-btn">가입</button>
-								</div>
 								<div class="clear"></div>
 							</div>
 							</form>
 							<!-- 우측 본문 끝 -->
-					
-				
+			
+							
 						</div><!-- end of class padding -->
 						<div class="clear" ></div>
 					</div>
@@ -188,4 +228,5 @@
 
 
 <script src="/js_custom/auth/signup.js"></script>
+<script src="/js_custom/auth/signupFormatChecker.js"></script>
 <%@ include file="../layout/footer.jsp"%>
