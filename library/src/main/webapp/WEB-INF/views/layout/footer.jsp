@@ -1,16 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-
+<style>
+	.footerLogo_outSide{
+		display:flex; 
+		flex-direction: column; 
+		align-items: center;
+	}
+	
+	.footerLogo {
+		padding-bottom:1px; 
+		display:flex; 
+		justify-content:center;
+	}
+	
+	.footerLogo_underDiv{
+		margin: auto;
+	}
+	
+	/*최대 width가 1024이하일 때 아래로 변경함*/
+	@media (max-width:1024px) {
+			.footerLogo{
+				padding-bottom:1px; 
+				display:flex; 
+				flex-direction : column
+			}
+			
+			.footerLogo_underDiv{
+			margin-top:20px;
+		}
+	}
+	
+</style>
 
 <footer class="footer-a">
 	<div class="wrapper-padding">
 	<hr>
-		<div class="" style="display:flex; flex-direction: column; align-items: center;">
+		<div class="footerLogo_outSide"  >
 			
 		
-			<div class="typography" style="padding-bottom:1px; display:flex; justify-content:center;">
+			<div class="typography footerLogo" >
 			
-				<div class="" style="margin-top:20px;">
+				<div class="footerLogo_underDiv" >
 					<a href="/">
 						<img alt=""  style="height:47px; width:250px;" src="/img_custom/로고_완성3_dark2.png" />
 						<!-- 로고 관련 static > js > script.js에서 $headerUp과 $headerDown 찾기 -->
@@ -28,8 +58,6 @@
 			<div>
 				<p>고객센터 | 사이트 관리자 연락처 : zozokjs@naver.com</p>
 			</div>
-			
-			
 			
 		</div>
 	<hr>
