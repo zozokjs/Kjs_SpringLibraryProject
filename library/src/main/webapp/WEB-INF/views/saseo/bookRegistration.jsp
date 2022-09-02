@@ -9,44 +9,14 @@
 			width: 200px;
 	}
 	
-	
-	
 	.selectBox-custom{
 		font-size:14px;
 		height:34px;
 		width:100%;
 	}
 	
-
-	
 </style>
-
-				<div class="overlay2"></div>
-				<div class="popup_content"  style="height:150px;">
-					<div class="autorize-tabs">
-						<a href="#" class="autorize-tab-a current" style="width:140px;">제국력 환산식</a>
-						<a href="#" class="autorize-close"></a>
-						<div class="clear"></div>
-					</div>
-					<section class="autorize-tab-content" style="display:block;">
-						<div class="autorize-padding">
-							<div>
-								<p class="autorize-lbl" style="font-family:'' ">
-								
-								
-								제국력 = 서력 + 17341년 42일<br>
-								예) 서력 기준 오늘 날짜가 2022년 7월 4일인 경우<br>
-								제국력 19341년 8월 14일임
-								</p>
-							</div>
-						</div>
-					</section>
-					
-					
-					
-				</div>
-
-
+				
 				<div class="two-colls-right"><!-- 우측 메인 시작 -->
 					<div class="two-colls-right-b">
 						<div class="padding">
@@ -55,9 +25,6 @@
 							</div>
 							
 							<!-- 우측 본문 시작 -->
-							
-
-							
 							<form action="/saseo/bookRegistration"  method = "post" enctype="multipart/form-data" class="contact-form bg-white rounded p-5"  id="comment-form">
 								<div class="tables" style="margin-top: 70px;">
 									<div>
@@ -66,7 +33,10 @@
 									
 									<table class="table-a">
 										<tr>
-											<th><label class="inputBox-custom-require-label">*</label>제목</th>
+											<th>
+												<label class="inputBox-custom-require-label">*</label>
+												제목
+											</th>
 											<td colspan="3">
 												<div class="booking-form-i  inputBox-custom"  >
 													<div class="input">
@@ -107,8 +77,8 @@
 											<!-- 작은 팝업 창 띄워서 제국력 기준으로 타 국가의 연력 변환 공식을 공지해야 함  -->
 											<th>
 												발행일(제국력 기준) 
-												<a class="popup_custom" >
-													<i class="bi bi-question-circle   "></i>
+												<a id ="modal_yearConversionFomular">
+													<i class="bi bi-question-circle"></i>
 												</a>
 											</th>
 											<td>
@@ -142,7 +112,7 @@
 										</tr>
 										
 										<tr>
-											<th>가격<br>(원화 기준. 환산 불가시 0으로 기입)</th>
+											<th>가격<br>(원화 기준. 환산 불가 및 무료인 경우 0으로 기입)</th>
 											<td>
 												<div class="booking-form-i  inputBox-custom"  >
 													<div class="input">
@@ -150,7 +120,11 @@
 													</div>
 												</div>
 											</td>
-											<th>언어(제국어, 니으텡어, 리가(elf), 아아시(fairy),<br> 퀘탙(dwarf), 림어, 그 외 언어는 자유롭게 기입) </th>
+											<th>언어
+												<a id ="modal_languageTable">
+													<i class="bi bi-question-circle"></i>
+												</a>
+											</th>
 											<td>
 												<div class="booking-form-i  inputBox-custom"  >
 													<div class="input">
