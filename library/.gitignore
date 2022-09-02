@@ -23,6 +23,6 @@ src/main/resources/application.yml
 !**/src/test/**/target/
 !src/main/resources/static/img_custom/*
 !src/main/resources/static/img_custom/제국외도서관로고/*
-
+!src/main/resources/static/img_custom/bg/*
 
 
