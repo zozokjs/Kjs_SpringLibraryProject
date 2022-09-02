@@ -15,7 +15,7 @@
 	align-items: center;
 	width: 95%;
 	height: 600px;
-	background: url(images/bg/books-2596809.jpg);
+	background: url(/img_custom/bg/books-1.jpg);
 }
 
 .background_text_div {
@@ -26,11 +26,25 @@
 	text-align: center;
 	font-size: 57px;
 	text-transform: uppercase;
-	font-family: 'Montserrat';
+	font-family: 'Nanum Myeongjo', serif;
 	width: 100%;
 	height: 500px;
 	color: antiquewhite;
 	font-weight: bold
+}
+
+.mp-slider-lbl-custom{
+	padding: 170px 0px 0px 0px;
+    text-align: center;
+    width: 100%;
+    font-size: 50px;
+    text-transform: uppercase;
+   font-family: 'Nanum Myeongjo', serif;
+    color: antiquewhite;
+    position: relative;
+    font-weight: bold;
+    text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
+
 }
 
 .background_search_div {
@@ -57,56 +71,99 @@
 	height: 65px;
 	display: flex;
 }
+
+.searchBox{
+	height: 150px;
+}
+
+
+@media (max-width:800px){
+	.searchBox{
+		padding-top: 125px;
+	}
+}
 </style>
 
 <!-- main-cont 시작 -->
 <div class="main-cont">
 
-
-	<!-- 홈페이지 소개 및 검색창 표시 영역 -->
-	<!-- 배경그림 설정 2535px-->
-	<div class="background_img_div">
-		<!-- 글자 영역 -->
-		<div class="background_text_div">
-			<div>
-				<!-- <div style="background-color: rgba(255, 255, 255, 0.5);  "> -->
-				<div>책과 함께하는 즐거움!</div>
-				<div>토르두스 국립도서관</div>
+	<!-- 메인화면 슬라이딩 영역 시작  -->
+	<div class="mp-slider">
+		<!-- // slider // -->
+		<div class="mp-slider-row">
+			<div class="swiper-container" style="height: 600px;">
+			    <div class="swiper-preloader-bg"></div>
+			    <div id="preloader">
+			    	<div id="spinner"></div>
+			    </div>
+				<a href="#" class="arrow-left"></a>
+				<a href="#" class="arrow-right"></a>
+				<div class="swiper-pagination"></div><!-- 이미지 슬라이드 좌우 화살표 -->
+				
+  				<div class="swiper-wrapper"><!-- 이미지  목록 시작-->	  				
+      				<div class="swiper-slide">
+						<div class="slide-section" style="background:url(/img_custom/bg/books-1.jpg) center top no-repeat;">
+							<div class="mp-slider-lbl-custom ">위대한 상상은 한 권의 작은 책으로부터 시작됩니다</div>
+							<div class="mp-slider-lbl-a">A great imagination begins with a small book</div><!-- 영문 번역 -->
+						</div>
+      				</div>
+      				<div class="swiper-slide"> 
+						<div class="slide-section slide-b" style="background:url(/img_custom/bg/books-2.jpg) center top no-repeat;">
+							<div class="mp-slider-lbl-custom">세상의 모든 책이 이곳에 있습니다</div>
+							<div class="mp-slider-lbl-a">All the books in the world are here</div>
+						</div>
+      				</div>
+      				<div class="swiper-slide"> 
+						<div class="slide-section slide-b" style="background:url(/img_custom/bg/books-3.jpg) center top no-repeat;">
+							<div class="mp-slider-lbl-custom">책 속에는 지혜와 시간과 행복이 있습니다</div>
+							<div class="mp-slider-lbl-a">There is wisdom, time and happiness in books</div>
+						</div>
+      				</div>            
+  				</div><!-- 이미지  목록 끝-->		
+					
 			</div>
 		</div>
-		<!-- 검색 영역 -->
-		<div class="background_search_div">
-			<!-- container2 -->
-			<div class="background_img_div_test_border" style="flex-grow: 3;">
-				<!-- items2 -->
-			</div>
-			<div class="background_img_div_test_border" style="max-width: 1100px; flex-grow: 3;">
-				<!-- items2 -->
+	</div>	
+	<!-- 메인화면 슬라이딩 영역 끝  -->
+	
+	<!-- 검색 영역 시작   -->
+	<div class="wrapper-a-holder full-width-search">
+		<div class="wrapper-a">
+	
+			<div class="searchBox" >
+			  <div class="search-type-padding">	
 				<div class="page-search-content" style="max-width: 1100px; background-color: rgba(255, 255, 255, 0.5);">
-
-					<div class="page-search-p" style="display: flex; flex-direction: row; justify-content: center;">
-						<!-- container -->
-						<div class="search-large-i" style="flex-grow: 9;">
-							<!-- items -->
-							<div class="srch-tab-line no-margin-bottom">
-								<div class="input-a">
-									<input type="text" id="searchKeyword" style="font-size: 30px;" value="" placeholder="자료검색">
+						<div class="page-search-p"  style="height:73px; display:flex;">
+						
+							<!-- 검색 상자 -->
+							<div class="search-large-i" style="flex-grow: 9;">
+								<div class="srch-tab-line no-margin-bottom">
+									<div class="input-a">
+										<input type="text" id="searchKeyword" style="font-size: 30px;" value="" placeholder="자료검색">
+									</div>
 								</div>
 							</div>
+							
+							<!-- 검색 버튼 -->
+							<div style="flex-grow: 0.3;">
+								<a href="javascript:void(0);" onclick="bookSearch()" class="srch-btn" style="height: 45px; font-size: 30px;">검색</a>
+							</div>
+							<!-- // -->							
 						</div>
-						<div style="flex-grow: 0.3;">
-							<!-- items -->
-							<a href="javascript:void(0);" onclick="bookSearch()" class="srch-btn" style="height: 45px; font-size: 30px;">검색</a>
-
-						</div>
+						<div class="clear"></div>
+	
 					</div>
-
+					<!-- // tab content hotels // -->
+							
 				</div>
 			</div>
-			<!-- items2 -->
-			<div class="background_img_div_test_border" style="flex-grow: 3;"></div>
 		</div>
-	</div>
+		<!-- \\ search \\ -->
+
+		<div class="clear"></div>	
+	 </div>
+ 	<!-- 검색 영역 끝   -->
+
 
 
 	<!-- 신착도서 목록 -->
@@ -307,7 +364,7 @@
 		</div>
 	</div>
 
-
+	<!-- 관련 사이트 -->
 	<div class="partners-wrapper">
 		<header class="fly-in page-lbl appeared">
 			<b>관련사이트</b>
@@ -320,25 +377,6 @@
 
 </div>
 <!-- main-cont 끝 -->
-
-
-
-
-
-<!-- <div class="block">
-	<span class="d-block mb-3 text-white text-capitalize">Prepare for new future</span>
-	<h1 class="animated fadeInUp mb-5">책과 함께하는 즐거움<br>토르두스 국립도서관 </h1>
-	<input type="text"  id="searchKeyword" class="form-control mb-3" placeholder="검색어를 입력하세요">
-	<a class="btn btn-main btn-small"  href="javascript:void(0);"  onclick="bookSearch()">검색</a>
-</div> -->
-
-
-
-
-
-
-
-
 
 
 
