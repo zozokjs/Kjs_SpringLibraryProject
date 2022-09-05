@@ -13,7 +13,14 @@
 							</div>
 							
 							<!-- 우측 본문 시작 -->
-							
+							<div class="typography-block">
+								<div class="blockqoute-tp-a">
+								<span>
+									생성 중입니다...
+								</span>
+								</div>
+							</div>
+									
 							<!-- 우측 본문 끝 -->
 					
 				

@@ -1,6 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <style>
+	
+	.footerAlarmDiv{
+		display : none;
+		position : fixed;
+		bottom : 100px;
+		right : 40px; 
+	}
+	
+	.footerAlarm {
+		font-size:60px;
+		color : white;
+		padding : 20px;
+		border-radius: 50%;
+		background: blue;
+	}
+
+   
 	.footerLogo_outSide{
 		display:flex; 
 		flex-direction: column; 
@@ -31,7 +48,9 @@
 	}
 	
 </style>
-
+<div class = "footerAlarmDiv"  >
+	<i class="bi bi-bell-fill footerAlarm"></i>
+</div>
 <footer class="footer-a">
 	<div class="wrapper-padding">
 	<hr>
@@ -75,9 +94,12 @@
 <script src="/js/bootstrap-4-Modal-Wrapper/dist/bootstrap-modal-wrapper-factory.min.js"></script>
 <!-- 모달 구현 끝-->
 
+
+
+
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery-ui.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> -->
 <!-- 		<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> -->
 <script src="/js/jqeury.appear.js"></script>
 <script src="/js/script.js"></script>

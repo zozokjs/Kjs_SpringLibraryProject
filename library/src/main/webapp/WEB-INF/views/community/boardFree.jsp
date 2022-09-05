@@ -77,7 +77,7 @@
 							
 							
 							<!-- Page -->
-							<div class="pagination pagination-custom"  style="display:flex; justify-content:center;">	<!-- 페이지 버튼 시작 -->
+							<div class="pagination pagination-custom"  style="display:flex; justify-content:center; padding-bottom: 10px;">	<!-- 페이지 버튼 시작 -->
 								<!-- 이전 버튼 -->
 				                <c:choose>
 									<c:when test="${boardFree.first }">

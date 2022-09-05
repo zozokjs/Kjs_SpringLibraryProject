@@ -31,11 +31,8 @@
 						<nav>
 							<ul>
 								<li><a href="/guide/wayToHome">오시는 길</a></li>
-								<li><a href="/guide/guideSignup">회원가입안내</a></li>
-								<li><a href="/guide/closeTime">이용시간과휴관일</a></li>
+								<li><a href="/guide/informationUse">도서관 이용안내</a></li>
 								<li><a href="/guide/infraUse">시설이용안내</a></li>
-								<li><a href="/guide/loanReturnReserveExtension">대출/반납/예약/연장</a></li>
-								<li><a href="/guide/donation">자료기증</a></li>
 								<li><a href="/guide/organizationChart">조직도및담당업무</a></li>
 							</ul>
 						</nav>

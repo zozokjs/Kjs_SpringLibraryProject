@@ -1,7 +1,7 @@
  
 $("#modal_yearConversionFomular").on("click", function(event) {
 	
-	const longContent = "<p>제국력 = 서력 + 3510년 15일<br>예) 서력 기준 오늘 날짜가 2022년 7월 4일인 경우<br>제국력 5532년 7월 19일.</p>";
+	const longContent = "<p>제국력 = 서력 + 3512년 15일<br>예) 서력 기준 오늘 날짜가 2022년 7월 4일인 경우<br>제국력 5532년 7월 19일.</p>";
 										
 	var dialog = BootstrapModalWrapperFactory.createModal({
 		title: "환산식",
@@ -68,7 +68,7 @@ const modal_languageTableHTML =`
 					<td>퀘르탈(퀠탈)</td>
 				</tr>
 				<tr>
-					<td  colspan="2">그 외는 자유롭게 기입하되, <br>제국 연합에 미등록된 언어 기입 시 공백으로 수정됨을 주의바랍니다. </td>	
+					<td  colspan="2">그 외는 자유롭게 기입하되, <br>제국에 미등록된 언어 기입 시 공백으로 수정됨을 주의바랍니다. </td>	
 				</tr>
 			</tbody>
 			<p style="font-size:13px; text-align:right;">순서는 공식 집계된 인구수 순입니다(제국력 5530년 12월)</p>

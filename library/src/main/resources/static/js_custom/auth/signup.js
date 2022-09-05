@@ -6,11 +6,11 @@ signup.js
 //아이디 중복 여부
 let idDuplicateStatus = false;
 
-//이메일 양식 준수 여부
-let  emailFormatCheckResult = false;
+//이메일 양식 준수 여부(테스트할 때만 true)
+let  emailFormatCheckResult = true;
 
-//연락처 양식 준수 여부
-let  phoneNumberFormatCheckResult = false;
+//연락처 양식 준수 여부(테스트할 때만 true)
+let  phoneNumberFormatCheckResult = true;
 
 //전역 변수
 //이메일 전송 시간 저장
@@ -22,8 +22,8 @@ let  terminateTime = null;
 //이메일 인증 번호
 let  authCode = null;
 
-//이메일 인증 성공 여부
-let  emailAuthenticationSuccess = false;
+//이메일 인증 성공 여부(테스트할 때만 true)
+let  emailAuthenticationSuccess = true;
 
 
 /**경고표시 붙여넣기 */
@@ -304,21 +304,21 @@ function validationAll(){
 		alert("사용 불가능한 아이디 입니다.");
 		return false;
 	}
-	
+	//비밀번호와(테스트할 때만 true)
 	if(  ($('#password').val() === $('#confirm-password').val()) == false  ) {
 		alert("비밀번호와 비밀번호 확인 값이 일치하지 않습니다.");
-		return false;
+		return true;
 	}
 	
 	if(emailAuthenticationSuccess != true){
 		alert("이메일이 인증되지 않았습니다.");
 		return false;
-	
 	}
 	
+	//연락처(테스트할 때만 true)
 	if(phoneNumberFormatCheckResult != true){
 		alert("연락처 양식이 잘못되었습니다.");
-		return false;
+		return true;
 	}
 	//alert("프론트 통과");
 	return true;

@@ -18,6 +18,9 @@
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
+	<!-- 날짜 라이브러리 -->
+	<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+	
 	<title>토르두스 국립도서관</title>
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -64,6 +67,49 @@
 	color: #8a8a8a;
 	margin-bottom: 15px;
 }
+
+.header_information_left {
+   	color: #fff;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    border-left: 1px solid #333333;
+    border-right: 1px solid #333333;
+    padding: 14px 22px 0px 22px;
+ /*   text-decoration: none;
+    display: inline-block;
+   
+    height: 26px; */
+}
+
+
+.header_information_right{
+   	color: #fff;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    border-left: 1px solid #333333;
+    border-right: 1px solid #333333;
+   /*  padding: 14px 22px 0px 22px;
+   text-decoration: none;
+    display: inline-block;
+   
+    height: 26px; */
+}
+
+.header-account a{
+font-size:13px !important;
+}
+
+/*최대 width가 800이하일 때 아래로 변경함*/
+@media (max-width:800px) {
+	.header_information_left{
+		display:none;
+	}
+}
+
 </style>
 
 <body>
@@ -107,25 +153,28 @@
 <header id="top">
 	<!-- 최상단 메뉴 시작--------------------------------------------------->
 	<div class="header-a">
-		<div class="wrapper-padding">			
-			<div class="header-account">
-				
-				<a href="/" ><span>홈으로</span></a>		
+		<div class="wrapper-padding">	
+		
+			<div class="header-account header_information_left" style="float:left;">
+				<span >제국력  <span id="ID"></span> | </span>
+				<span>서력 </span>	<span id="AD"></span>
+			</div>		
+			
+			<div class="header-account  header_information_right">
+				<a href="/"  class=""><span>홈으로</span></a>		
 				<!-- 로그인 한 상태라면 사용자 이름 표시되어야 함 -->		
 				<c:choose>
 					<c:when test ="${principal.user eq null}">
 						<!-- 로그인 버튼에 팝업 이벤트 달려 있음(header-account-Login-button로 검색)-->
-						<a class="header-account-Login-button"  href="/auth/signin" ><span>로그인</span></a>
-						<a href="/auth/signup" ><span>회원가입</span></a>		
+						<a href="/auth/signin"  class="header-account-Login-button "   ><span>로그인</span></a>
+						<a href="/auth/signup"  class=""><span>회원가입</span></a>		
 					</c:when>
 					<c:otherwise>
-						<a href="/" > <span>${principal.user.username}님</span></a>	
-						<a href="/logout" ><span>로그아웃</span></a>	
-						<a href="/user/myLibrary" ><span>내서재</span></a>		
+						<a href="/"  class=""> <span>${principal.user.username}님</span></a>	
+						<a href="/logout"  class=""><span>로그아웃</span></a>	
+						<a href="/user/myLibrary"  class=""> <span>내서재</span></a>		
 					</c:otherwise>
 				</c:choose>
-				
-				
 			</div>
 			
 			<div class="clear"></div>
@@ -143,11 +192,8 @@
 						<li><a class="has-child"  href="/guide/wayToHome">도서관이용안내</a>
 							<ul>
 								<li><a href="/guide/wayToHome">찾아오시는 길</a></li>
-								<li><a href="/guide/guideSignup">회원가입 안내</a></li>
-								<li><a href="/guide/closeTime">이용시간과 휴관일</a></li>
+								<li><a href="/guide/informationUse">도서관 이용안내</a></li>
 								<li><a href="/guide/infraUse">시설이용안내</a></li>
-								<li><a href="/guide/loanReturnReserveExtension">대출/반납/예약/연장</a></li>
-								<li><a href="/guide/donation">자료 기증</a></li>
 								<li><a href="/guide/organizationChart">조직도 및 담당 업무</a></li>
 							</ul>
 <!-- 						</li>		
@@ -216,11 +262,8 @@
 						<li><a href="/guide/wayToHome">도서관이용안내</a>
 							<ul>
 								<li><a href="/guide/wayToHome">찾아오시는 길</a></li>
-								<li><a href="/guide/guideSignup">회원가입 안내</a></li>
-								<li><a href="/guide/closeTime">이용시간과 휴관일</a></li>
+								<li><a href="/guide/informationUse">도서관 이용안내</a></li>
 								<li><a href="/guide/infraUse">시설이용안내</a></li>
-								<li><a href="/guide/loanReturnReserveExtension">대출/반납/예약/연장</a></li>
-								<li><a href="/guide/donation">자료 기증</a></li>
 								<li><a href="/guide/organizationChart">조직도 및 담당 업무</a></li>
 							</ul>
 						</li>		
@@ -273,5 +316,5 @@
 	</div>	
 	<!-- 상단 메뉴 끝------------------------------------------------- -->
 </header>
-
+<script src="/js_custom/layout/header.js"></script>
 <!-- Header Close --> 

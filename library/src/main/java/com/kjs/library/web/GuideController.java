@@ -21,13 +21,13 @@ public class GuideController {
 		return "guide/wayToHome";
 	}
 	
-	//회원가입 안내
-	@GetMapping("/guide/guideSignup")
+	//도서관 이용안내
+	@GetMapping("/guide/informationUse")
 	public String guideSignup() {
-		return "guide/guideSignup";
+		return "guide/informationUse";
 	}
 	
-	//이용시간과 휴관일
+	//이용시간과 휴관일(미사용)
 	@GetMapping("/guide/closeTime")
 	public String closeTime() {
 		return "guide/closeTime";
@@ -39,13 +39,13 @@ public class GuideController {
 		return "guide/infraUse";
 	}
 
-	// 대출/반납/예약/연장
+	// 대출/반납/예약/연장(미사용)
 	@GetMapping("/guide/loanReturnReserveExtension")
 	public String loanReturnReserveExtension() {
 		return "guide/loanReturnReserveExtension";
 	}
 
-	// 자료 기증 ..안내 후 버튼을 통해 기증 메뉴로 이동되어야 함
+	// 자료 기증(미사용)
 	@GetMapping("/guide/donation")
 	public String donation() {
 		return "guide/donation";
