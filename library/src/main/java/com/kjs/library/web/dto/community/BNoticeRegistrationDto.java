@@ -19,10 +19,13 @@ public class BNoticeRegistrationDto {
 	@NotBlank
 	private String content;
 	
+	private boolean useState;
+	
 	public BoardNotice toEntity() {
 		return BoardNotice.builder()
 		.title(title)
 		.content(content)
+		.useState(true)
 		.build();
 	}
 	

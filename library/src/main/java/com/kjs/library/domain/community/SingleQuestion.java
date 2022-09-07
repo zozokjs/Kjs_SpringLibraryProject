@@ -73,5 +73,9 @@ public class SingleQuestion {
 	public void createDate() {
 		this.createDate = LocalDateTime.now();
 	}
+	
+	//1대1 질문글을 등록하면 true, 1대1 질문글을 삭제하면 false 처리
+	@Column(columnDefinition = "boolean default true")
+	private boolean useState;
 		
 }

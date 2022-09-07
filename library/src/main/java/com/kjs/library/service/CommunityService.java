@@ -36,6 +36,7 @@ import com.kjs.library.web.dto.community.CommentRegistrationDto;
 import com.kjs.library.web.dto.community.SQuestionCommentRegistrationDto;
 import com.kjs.library.web.dto.community.SQuestionRegistrationDto;
 import com.kjs.library.web.dto.community.SQuestionResponseDto;
+import com.kjs.library.web.dto.community.UserBoardHistoryInterface;
 
 import lombok.RequiredArgsConstructor;
 
@@ -137,10 +138,14 @@ public class CommunityService/*CommunityService*/ {
 	}
 
 
-	//자유게시판 게시글 1개 삭제
+	//자유게시판 게시글 1개 삭제 시 useState를 false로 변경
 	@Transactional
-	public void 게시글삭제(int id) {
-		boardFreeRepository.deleteById(id);
+	public BoardFree 게시글삭제(int id) {
+		
+		BoardFree bfEntity = boardFreeRepository.findById(id).orElseThrow();
+		bfEntity.setUseState(false);
+		
+		return bfEntity;
 	}
 	
 	//자유게시판 게시글 1개 조회수 증가
@@ -330,8 +335,12 @@ public class CommunityService/*CommunityService*/ {
 	
 	//공지사항 게시글 1개 삭제
 	@Transactional
-	public void 공지사항게시글삭제(int id) {
-		boardNoticeRepository.deleteById(id);
+	public BoardNotice 공지사항게시글삭제(int id) {
+		
+		BoardNotice bnEntity = boardNoticeRepository.findById(id).orElseThrow();
+		bnEntity.setUseState(false);
+		
+		return bnEntity;
 	}
 	
 	
@@ -354,6 +363,7 @@ public class CommunityService/*CommunityService*/ {
 		SingleQuestion sq = singleQuestionRegistrationDto.toEntity();
 		sq.setAnswerOk(false);
 		sq.setUser(principalDetails.getUser());
+		sq.setUseState(true); // insert 기본 값 세팅
 		singleQuestionRepository.save(sq);
 		
 		
@@ -401,8 +411,12 @@ public class CommunityService/*CommunityService*/ {
 	
 	//1대1 문의 게시판 게시글 1개 삭제
 	@Transactional
-	public void 일대일질문게시글삭제(int id) {
-		singleQuestionRepository.deleteById(id);
+	public SingleQuestion 일대일질문게시글삭제(int id) {
+		
+		SingleQuestion sqEntity = singleQuestionRepository.findById(id).orElseThrow();
+		sqEntity.setUseState(false);
+		
+		return sqEntity;
 	}
 	
 	
@@ -420,4 +434,17 @@ public class CommunityService/*CommunityService*/ {
 		return sq;
 		
 	}
+
+	
+	//userId의 작성글 목록
+	@Transactional
+	public Page<UserBoardHistoryInterface> 작성글목록(int userId, Pageable pageable){
+		
+		Page<UserBoardHistoryInterface> userBoardHistory = boardFreeRepository.findBoardHistoryByUserId(userId, pageable);
+		
+		return userBoardHistory;
+	}
+
+
+
 }

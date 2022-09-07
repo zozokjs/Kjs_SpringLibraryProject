@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.kjs.library.config.auth.PrincipalDetails;
 import com.kjs.library.service.BookSelectService;
 import com.kjs.library.service.BookService;
+import com.kjs.library.service.CommunityService;
 import com.kjs.library.service.common.CommonService;
+import com.kjs.library.web.dto.community.UserBoardHistoryInterface;
 import com.kjs.library.web.dto.lend.UserLendListInterface;
 
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,7 @@ public class UserController {
 	private final BookService bookService;
 	private final CommonService commonService;
 	private final BookSelectService bookSelectService;
+	private final CommunityService communityService;
 	
 	//내 서재 페이지로 이동
 	@GetMapping("/user/myLibrary")
@@ -103,7 +106,6 @@ public class UserController {
 		*/
 		
 		Map<String, Integer> pageMap = commonService.시작끝페이지구하기(userLendHistoryList, 10);
-		
 		model.addAttribute("startPage",pageMap.get("pageStart"));
 		model.addAttribute("endPage",pageMap.get("pageEnd"));
 		
@@ -111,6 +113,22 @@ public class UserController {
 	}
 	
 	
+	//작성글 목록 페이지로 이동
+	@GetMapping("/user/myBoardHistory")
+	public String myBoardHistoryForm(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails,  @PageableDefault( size = 3) Pageable pageable) {
+		
+		//로그인 된 user의 id 가져옴
+		int userId = principalDetails.getUser().getId();
+		
+		Page<UserBoardHistoryInterface> userBoardHistory = communityService.작성글목록(userId, pageable);
+		model.addAttribute("userBoardHistory",userBoardHistory);
+		
+		Map<String, Integer> pageMap = commonService.시작끝페이지구하기(userBoardHistory, 10);
+		model.addAttribute("startPage",pageMap.get("pageStart"));
+		model.addAttribute("endPage",pageMap.get("pageEnd"));
+		
+		return "user/myBoardHistory";
+	}
 
 
 }

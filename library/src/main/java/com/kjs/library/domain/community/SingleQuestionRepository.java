@@ -12,8 +12,8 @@ import com.kjs.library.web.dto.community.BFreeListInterface;
 
 public interface SingleQuestionRepository extends JpaRepository<SingleQuestion, Integer>{
 	
-	@Query(value = "SELECT * FROM SingleQuestion ORDER BY id DESC", 
-	countQuery = "SELECT count(*) FROM SingleQuestion ",
+	@Query(value = "SELECT * FROM SingleQuestion WHERE useState = TRUE ORDER BY id DESC", 
+	countQuery = "SELECT count(*) FROM SingleQuestion WHERE useState = TRUE",
     nativeQuery = true)
 	Page<SingleQuestion> findByAllDesc(Pageable pageable);
 	

@@ -18,7 +18,15 @@
 	        		padding : 10px 5px;
 	        		text-align :center;
 	        	}
-	        
+	        	
+		/*최대 width가 1024이하일 때 아래로 변경함*/
+		@media (max-width:1024px) {
+			table{
+				padding-bottom:1px; 
+				display:flex; 
+				flex-direction : column
+			}
+			
 	        </style>
 	        
 	        	

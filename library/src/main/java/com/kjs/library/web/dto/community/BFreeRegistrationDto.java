@@ -18,10 +18,13 @@ public class BFreeRegistrationDto {
 	@NotBlank
 	private String content;
 	
+	private String useState;
+	
 	public BoardFree toEntity() {
 		return BoardFree.builder()
 		.title(title)
 		.content(content)
+		.useState(true) //기본값 세팅...columnDefinition이 작동하지 않아서 이렇게 세팅함
 		.build();
 	}
 	

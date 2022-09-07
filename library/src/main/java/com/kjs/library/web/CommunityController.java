@@ -275,10 +275,13 @@ public class CommunityController {
 	}
 	
 	
+	
+	/////////////////////////////////////////////////////////////
+	
+	//자주묻는질문 게시판으로 이동
 	@GetMapping("/community/manyQuestion")
-	public String manyQuestion() {
+	public String manyQuestionForm() {
 		
 		return "/community/manyQuestion";
 	}
-
 }

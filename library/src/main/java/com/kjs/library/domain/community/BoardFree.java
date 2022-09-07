@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 
+import org.hibernate.annotations.DynamicInsert;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kjs.library.domain.book.Book;
 import com.kjs.library.domain.book.Samebook;
@@ -33,6 +35,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor//
 @Data@AllArgsConstructor
 @Builder
+@DynamicInsert //insert할 때, 값이 NULL인 필드는 insert되지 않는다.
 public class BoardFree {
 	
 		//게시글 번호
@@ -72,7 +75,7 @@ public class BoardFree {
 		//조회수
 		@Column(columnDefinition = "int default '0' ")
 		private int readCount;
-
+		
 	
 		//게시글 수정 날짜
 		private String editDate;
@@ -91,27 +94,10 @@ public class BoardFree {
 		public void addReadCount(int id) {
 			this.readCount += 1;
 		}
-		/*
-		//작성자 정보 세팅
-		public void setUser(User user) {
-			this.user = user;
-		}
 		
-		//내용 세팅
-		public void setContent(String content) {
-			this.content = content;
-		}
-		
-	
-		//제목 세팅
-		public void setTitle(String title) {
-			this.title=title;
-		}
-
-		//게시글 수정 날짜 세팅
-		public void setEditDate(String editDate) {
-			this.editDate=editDate;
-		}*/
+		//게시글을 등록하면 true, 게시글을 삭제하면 false 처리.. 작동 안 되서 DTO에 세팅함
+		@Column(columnDefinition="int default '1' ")
+		private boolean useState;
 
 		
 }

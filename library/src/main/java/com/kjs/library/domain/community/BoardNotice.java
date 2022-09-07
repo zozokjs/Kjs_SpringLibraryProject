@@ -70,4 +70,9 @@ public class BoardNotice {
 	public void addReadCount(int id) {
 		this.readCount += 1;
 	}
+	
+	//공지사항을 등록하면 true, 공지사항을 삭제하면 false 처리
+	@Column(columnDefinition = "boolean default true")
+	private boolean useState;
+	
 }

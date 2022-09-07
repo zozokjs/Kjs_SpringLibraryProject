@@ -20,8 +20,7 @@
 								<li><a href="/user/userInfor/${principal.user.id}">회원정보</a></li>
 								<li><a href="/user/myLibrary">대출관리(연장/반납)</a></li>
 								<li><a href="/user/myLendHistory">반납완료내역</a></li>
-								<li><a href="#">희망도서신청관리</a></li>
-								<li><a href="#">작성한 글</a></li>
+								<li><a href="/user/myBoardHistory">작성글목록</a></li>
 							</ul>
 						</nav>
 					</div>

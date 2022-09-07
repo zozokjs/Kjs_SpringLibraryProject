@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBr2RhL7AaxcigQ2-TFzDQjfn5vnkZ6twI",
+    authDomain: "springlibrarywebpush.firebaseapp.com",
+    projectId: "springlibrarywebpush",
+    storageBucket: "springlibrarywebpush.appspot.com",
+    messagingSenderId: "799938082025",
+    appId: "1:799938082025:web:1e6fee9e3e6e37d051ac78",
+    measurementId: "G-FP87X68NXY"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+</body>
+</html>
