@@ -18,7 +18,7 @@
 							<div class="clear"></div>
 						</div>
 						<div class="accordeon-b">
-						A. 우리도서관은 정기휴관일(매월 마지막주 월요일)과 국가공휴일, 그 외 공사 등의 특별한 사정으로 도서관장이 지정한 날을 제외하고는 언제나 무료로 이용 가능합니다.
+						A. 우리도서관은 제국 건국일 및 도서관 설립일을 제외하고는 언제나 이용 가능합니다.
 						</div>
 					</div>
 					<!-- \\ -->
@@ -30,48 +30,88 @@
 							<div class="clear"></div>
 						</div>
 						<div class="accordeon-b">
-							A. 대상자료 : 발행연도 5년 이내의 단행본, 희귀자료 및 학술적 가치가 있는 자료 등
-										기증방법 : 우편/택배 또는 도서관 직접 방문
-										기증장소 : (우)47103 부산광역시 부산진구 월드컵대로 462 1층 사서과
+							A. 현재 기술적 문제가 해결되지 않아 지구로부터의 도서 기증(실물, 전자 형태 포함)은 불가능합니다. <br>
+							그 외의 경우는 가능합니다.
 						</div>
 					</div>
 					
 					<div class="accordeon-item">
 						<div class="accordeon-a">
 							<i class="accordeon-icon"></i> 
-							<span>Q.타인의 대출카드로도 빌릴 수 있나요</span>
+							<span>Q. 소담공원 내에 있는 포털을 이용해도 건강에 문제는 없나요?</span>
 							<div class="clear"></div>
 						</div>
 						<div class="accordeon-b">
-							  A. 본인 독서회원카드로만 대출 가능합니다.
+							  A. 해당 포털은 포털이 설치된 공간과 특정 공간을 단순 이어주는 장치입니다. <br> 
+							  실제 문을 열고 들어가는 것과 다름 없으므로 건강상에 끼칠 문제는 없습니다.  
 						</div>
 					</div>
 					
 					<div class="accordeon-item">
 						<div class="accordeon-a">
 							<i class="accordeon-icon"></i> 
-							<span>Q.필요한 자료를 인쇄할 수 있나요?</span>
+							<span>Q. 대출한 책은 어떻게 읽을 수 있나요?</span>
 							<div class="clear"></div>
 						</div>
 						<div class="accordeon-b">
-							  	A. 디지털자료실(3층) 모든 PC 및 복사실(2층)에 비치된 PC에서 인쇄 가능합니다.
-									결제방법은 신용카드, 체크카드, 티머니 교통카드, 삼성페이로 가능하고 금액은 아래와 같습니다.
+							  	A. 현재로서는 불가능합니다. <br>
+							  	당초 국립도서관 설립 시 모두에게 읽을 수 있도록 하자는게 도서관의 근본적인 설립 목적이었으나 <br>
+							  	지구에서는 아직 파악하지 못한 문제로 인해 열람이 불가능한 상황입니다. 이것이 지구만의 특별한 환경 때문인지 <br>
+							  	그 외의 문제가 있는지는 각종 실험을 통해 확인하고 있으므로 기술적 문제가 해결되는 대로 공지하도록 하겠습니다.
 						</div>
 					</div>
 					
 					<div class="accordeon-item">
 						<div class="accordeon-a">
 							<i class="accordeon-icon"></i> 
-							<span>Q.무선인터넷을 사용할 수 있나요?</span>
+							<span>Q. 진우도에 있는 게이트는 이용이 불가능한가요? 만져도 괜찮은가요? 게이트는 왜 사진 촬영이 안 되나요?</span>
 							<div class="clear"></div>
 						</div>
 						<div class="accordeon-b">
-							A. 무선 단말기(스마트폰, 노트북 등)의 네트워크 연결설정에서 “Busan_Lib"을 선택하면 누구나 이용가능합니다.<br>
-										무선인터넷 이용 가능 장소 : 지하 식당, 1층 휴게실 근처, 2층 복도, 3층 디지털실, 3층 여자열람실 노트북코너(멀티미디어학습공간), 3층 복도, 3층 휴게실, 4층 남자열람실 노트북코너(멀티미디어학습공간), 4층 옥외휴게실 근처
-							
+							A. 물리적인 형태로는 이용할 수 없습니다. <br>
+							해당 게이트는 물리적으로 생성된 것이 아니므로 만질 수 없습니다. <br>
+							사진 기술에 대해서는 파악된 것이 없어 아직 답변 드릴 수 없습니다.
 						</div>
 					</div>
 					
+					<div class="accordeon-item">
+						<div class="accordeon-a">
+							<i class="accordeon-icon"></i> 
+							<span>Q. 왜 제국으로 이동 할 수 없는건가요?</span>
+							<div class="clear"></div>
+						</div>
+						<div class="accordeon-b">
+							A. 해당 섬에 설치된 게이트는 제국과 지구간의 문화적 교류를 위해 생성한 시설입니다. <br>
+							본래는 물리적 및 그 외의 형태로 쌍방향 이동이 가능하도록 생성 되었으나 현재로는 제국과 지구간의 <br>
+							데이터만 단순히 송수신 할 수 있는 기능까지만 구현된 상태입니다. 이것이 제국과 지구의 물리적 거리 때문인지 <br>
+							그 외의 원인 때문인지는 파악하고 있습니다.
+						</div>
+					</div>
+					
+					<div class="accordeon-item">
+						<div class="accordeon-a">
+							<i class="accordeon-icon"></i> 
+							<span>Q. 도서관에 등록된 기술 서적은 지구에서는 처음 보는 것이 많은데 실제로 구현 가능한건가요?</span>
+							<div class="clear"></div>
+						</div>
+						<div class="accordeon-b">
+							A. 도서관 홈페이지를 통해 확인 할 수 있는 각종 서적은 실제 제국 도서관에 등록된 것이 표시됩니다. <br>
+							제국 내외 출판, 발행된 모든 도서가 도서관에 보존 및 전파되고 있으나 이것이 해당 도서가 실제로 기술적으로 구현 가능함을 보장하는 것은 아닙니다. <br>
+							다만, 지구에서의 기술 서적이 상식에서 크게 벗어 났을 때 퇴출되는 것처럼 제국 또한 마찬가지이므로 도서관 이용자붙께서도 충분히 구분 가능하실거라 판단됩니다. <br>
+						</div>
+					</div>
+					
+					<div class="accordeon-item">
+						<div class="accordeon-a">
+							<i class="accordeon-icon"></i> 
+							<span>Q. 도서관 로고는 무엇을 의미하나요? 제국의 상징인가요?</span>
+							<div class="clear"></div>
+						</div>
+						<div class="accordeon-b">
+							A. 진우도 및 제국 곳곳에 위치한 도서관 게이트 모양을 본 뜬 것입니다.<br>	
+							 제국의 상징(국기 및 마력적 지문)은 아직 공개되지 않았습니다.<br>							
+						</div>
+					</div>
 					<!-- \\ -->
 					<!-- // -->
 				</div>
