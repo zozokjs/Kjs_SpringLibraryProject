@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kjs.library.config.auth.PrincipalDetails;
+import com.kjs.library.domain.common.VisitorCount;
+import com.kjs.library.domain.common.VisitorCountRepository;
+import com.kjs.library.domain.common.VisitorInfor;
+import com.kjs.library.domain.common.VisitorInforRepository;
 import com.kjs.library.domain.user.RoleType;
 import com.kjs.library.domain.user.UserRepository;
 import com.kjs.library.handler.aop.ex.CustomValidationException;
@@ -38,6 +43,9 @@ public class CommonService {
 
 	
 	private final JavaMailSender mailSender;
+	private final VisitorInforRepository visitorInforRepository;
+	private final VisitorCountRepository visitorCountRepository;
+	
 	
 	//책 타이틀 이미지만 모아두는 곳
 	@Value("${file.path.upload_imageTitle}")
@@ -258,6 +266,117 @@ public class CommonService {
 		mailSender.send(mMessage);
 		System.out.println("이메일이 전송되었습니다.");
 	}
+	
+
+	/** 접속자 ip 주소 얻기
+	 * 출처 : https://linked2ev.github.io/java/2019/05/22/JAVA-1.-java-get-clientIP/
+	 * */
+	public String getClientIP(HttpServletRequest request) {
+	    String ip = request.getHeader("X-Forwarded-For");
+	    //log.info("> X-FORWARDED-FOR : " + ip);
+
+	    if (ip == null) {
+	        ip = request.getHeader("Proxy-Client-IP");
+	       // log.info("> Proxy-Client-IP : " + ip);
+	    }
+	    if (ip == null) {
+	        ip = request.getHeader("WL-Proxy-Client-IP");
+	       // log.info(">  WL-Proxy-Client-IP : " + ip);
+	    }
+	    if (ip == null) {
+	        ip = request.getHeader("HTTP_CLIENT_IP");
+	        //log.info("> HTTP_CLIENT_IP : " + ip);
+	    }
+	    if (ip == null) {
+	        ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+	        //log.info("> HTTP_X_FORWARDED_FOR : " + ip);
+	    }
+	    if (ip == null) {
+	        ip = request.getRemoteAddr();
+	       // log.info("> getRemoteAddr : "+ip);
+	    }
+	   // log.info("> Result : IP Address : "+ip);
+
+	    return ip;
+	}
+	
+	/**
+	 * 주어진 ip와 값이 DB에 있는지 비교
+	 * @param ip, String
+	 * @param cookieValue : UUID.toString() 형태, String
+	 * @return ip와 cookieValue에 해당 되는 값이 있으면 True, 없으면 False
+	 * @throws  
+	 * 
+	 * */
+	public boolean 접속기록있다(String ip, String cookieValue) {
+		
+		VisitorInfor visitorInfor = visitorInforRepository.findInformationByipCookie(ip, cookieValue);
+		
+		if(visitorInfor != null) {
+			return true; //기록 있음
+		}else {
+			return false; //기록 없음
+		}
+		
+	}
+	
+	/**
+	 * 주어진 ip와 값이 DB에 있는지 비교
+	 * @param ip, String
+	 * @param cookieValue : UUID.toString() 형태, String
+	 * @return ip와 cookieValue에 해당 되는 값이 있으면 True, 없으면 False
+	 * @throws  
+	 * 
+	 * */
+	@Transactional
+	public VisitorInfor 접속기록(String ip, String cookieValue) {
+		
+		VisitorInfor visitorInfor = visitorInforRepository.findInformationByipCookie(ip, cookieValue);
+		
+		return visitorInfor;
+	}
+	
+	@Transactional
+	public VisitorCount 접속자수() {
+		
+		VisitorCount visitorCountEnttiy = visitorCountRepository.findById(1).orElseThrow();
+		
+		return visitorCountEnttiy;
+	}
+	
+	
+	/**
+	 * 주어진 ip와 값이 DB에 있는지 비교
+	 * @param ip, String
+	 * @param cookieValue : UUID.toString() 형태, String
+	 * @return ip와 cookieValue에 해당 되는 값이 있으면 True, 없으면 False
+	 * @throws  
+	 * 
+	 * */
+	@Transactional
+	public void 접속기록저장(String ip, String cookieValue) {
+		
+		VisitorInfor visitorInfor = new VisitorInfor();
+		visitorInfor.setIp(ip);
+		visitorInfor.setCookieValue(cookieValue);
+		
+		visitorInforRepository.save(visitorInfor);
+	}
+	
+	@Transactional
+	public VisitorCount 방문자증가() {
+		
+		VisitorCount vCountEntity = visitorCountRepository.findById(1).orElseThrow();
+		
+		int today = vCountEntity.getCountToday();//오늘 방문자 수
+		int total = vCountEntity.getCountTotal(); //전체 방문자 수
+		
+		vCountEntity.setCountToday(today+1);
+		vCountEntity.setCountTotal(total+1);
+		
+		return vCountEntity;
+	}
+	
 	
 	
 }

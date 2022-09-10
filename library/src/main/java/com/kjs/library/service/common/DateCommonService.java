@@ -1,5 +1,6 @@
 package com.kjs.library.service.common;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
@@ -19,12 +20,13 @@ import org.springframework.stereotype.Service;
 
 import com.ibm.icu.util.ChineseCalendar;
 
+import lombok.extern.slf4j.Slf4j;
+
 //날짜 관련 공통 서비스 모음
+@Slf4j
 @Service
 public class DateCommonService {
 
-	
-	
 	/**
 	 * 주어진 시간과 현재 시간을 비교
 	 * @param timeAfter : 기준 시간(yyyy-MM-dd HH:mm:ss 형식), String
@@ -32,7 +34,7 @@ public class DateCommonService {
 	 * @throws ParseException 
 	 * 
 	 * */
-	public static boolean 현재시간과비교(String timeAfter) throws ParseException {
+	public static boolean 현재시간보다늦음(String timeAfter) throws ParseException {
 		
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
@@ -52,6 +54,61 @@ public class DateCommonService {
 			return false;
 		}else {
 			//dateNow보다 dateAfter가 빠르면 False
+			return true;
+		}
+	}
+	
+	
+	/**
+	 * 주어진 날짜가 오늘인지 비교
+	 * @param targetTime : 기준 시간(yyyy-MM-dd HH:mm:ss 형식), String
+	 * @return targetTime가 오늘 날짜가 아니면 False 리턴
+	 * @throws ParseException 
+	 * 
+	 * */
+	public static boolean 오늘날짜다(LocalDateTime targetDate) throws ParseException {
+		
+		/**
+		 * 1. Date로 오늘 날짜를 가져옴
+		 * 2. yyyyMMdd 형태로 포맷 변경(Date -> String)
+		 * 3. 비교를 위해 Date 형태로 변경(String -> Date)
+		 * 
+		 * 4. targetTime을 yyyyMMdd 형태로 포맷 변경(LocalDateTime -> Date)
+		 * 5. 비교를 위해 Date 형태로 변경(Date -> String)
+		 * 6. 비교를 위해 Date 형태로 변경(String -> Date)
+		 * 7. 비교 
+		 * */
+		
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+		
+		//1. 오늘 날짜를 가져옴
+		Date dateNowDate = new Date();
+		
+		//2. dateNowDate을 주어진 포맷으로 변경(Date -> String)
+		String dateNowFormatted= simpleDateFormat.format(dateNowDate);
+		log.info("2 : {}",dateNowFormatted); //20220909
+		
+		//3. Date 형태로 변경(String -> Date)
+		Date dateNowDateParsed = simpleDateFormat.parse(dateNowFormatted);
+		
+		//4. targetTime의 포맷 변경(LocalDateTime -> Date)
+		Date targetDate2  = Timestamp.valueOf(targetDate);
+		
+		//5. targetTime을 주어진 포맷으로 변경(Date -> String)
+		String targetDateFormatted = simpleDateFormat.format(targetDate2);
+		log.info("5 : {}",targetDateFormatted); //20220909
+		
+		//6. targetDateFormatted를 Date로 변경(String -> Date)
+		Date targetDateParsed = simpleDateFormat.parse(targetDateFormatted);
+		
+		//7. 비교함
+		/** 202109.after( 202110 )  -> FALSE
+		 *   202110.after( 202109 )  -> TRUE
+		 *   dateNowDate가 tragetTime보다 이후이거나 이전일 때(오늘 날짜가 아닐 때) False
+		 * */
+		if(dateNowDateParsed.after(targetDateParsed) || dateNowDateParsed.before(targetDateParsed)) {
+			return false;
+		}else {
 			return true;
 		}
 	}

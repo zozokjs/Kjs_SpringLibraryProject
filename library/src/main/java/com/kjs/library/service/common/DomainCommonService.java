@@ -1,5 +1,7 @@
 package com.kjs.library.service.common;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -41,4 +43,7 @@ public class DomainCommonService {
 
 		return bindTypeString;
 	}
+
+
+
 }

@@ -231,7 +231,7 @@ public class AuthService {
 			String terminateTime = DateCommonService.시간더하기(createTime, 12);
 			
 			//3. 현재시간과 만료시간 비교. 만료 시간이 늦으면 True
-			boolean compareResult = DateCommonService.현재시간과비교(terminateTime);
+			boolean compareResult = DateCommonService.현재시간보다늦음(terminateTime);
 			
 			System.out.println("코드 생성 시간 : "+createTime);
 			System.out.println("코드 만료 시간 : "+terminateTime);

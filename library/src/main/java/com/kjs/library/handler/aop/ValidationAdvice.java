@@ -1,10 +1,20 @@
 package com.kjs.library.handler.aop;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -12,13 +22,32 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.kjs.library.domain.common.VisitorInfor;
 import com.kjs.library.handler.aop.ex.CustomValidationApiException;
 import com.kjs.library.handler.aop.ex.CustomValidationException;
+import com.kjs.library.service.common.CommonService;
+import com.kjs.library.service.common.DateCommonService;
+
+import lombok.extern.slf4j.Slf4j;
+
+/* AOP 참고
+ * https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rte:fdl:aop:aspectj
+ * */
+
+@Slf4j
 @Component
 @Aspect // aop처리 되는 핸들러 명시
 public class ValidationAdvice {
 	
+ 	
+	private CommonService commonService;
+	
+	public ValidationAdvice(CommonService cs) {
+		this.commonService  = cs;
+	}
 	
 	@Pointcut("execution(* com.kjs.library.web.*Controller.*(..))")
     private void allController() {
@@ -28,8 +57,73 @@ public class ValidationAdvice {
 	@Pointcut("execution(* com.kjs.library.web.api.*Controller.*(..))")
     private void allApiController() {
 	}
+
+	/**
+	 * 메소드 수행 이후에 무조건 수행됨 (메소드 정상 종료, 예외 발생 경우로 인한 종료 포함)
+	 * */
+	@After("allController(), allApiController()")
+	public void visitorChecker(JoinPoint joinpoint) throws Throwable {
+		
+		String methodName = joinpoint.getSignature().getName(); //메소드 이름을 얻어옴
+		//log.info(methodName + "() 읽었음");
+		//log.info(" {}",joinpoint.getSignature());
+		
+		//Request
+		HttpServletRequest request = ((ServletRequestAttributes) (RequestContextHolder.currentRequestAttributes())).getRequest();
+		
+		//Response
+		HttpServletResponse response = ((ServletRequestAttributes) (RequestContextHolder.currentRequestAttributes())).getResponse();
+		
+		//아이피 얻어옴
+		String ip = commonService.getClientIP(request);
+		//log.info("아이피 {}",ip);
+		
+		//새로운 uuid 생성
+		UUID uuid = UUID.randomUUID();
+		
+		//request 객체에서 쿠키 key가 visitorCookie인 값을 가져옴
+		String oldCookieValue = findCookieValue(request, "visiterCookie");
+		//log.info(" 저장된 값 : {}",oldCookieValue);
+		
+		if(oldCookieValue.equals("")) {
+			//log.info("접속 기록 및 쿠키 없음. 쿠키 세팅. 방문자 증가");
+			setNewCookie(ip, uuid.toString(), response);
+			commonService.접속기록저장(ip, uuid.toString());
+			commonService.방문자증가();
+		}else {
+
+			//db에서 쿠키가 저장된 정보를 가져 옴
+			VisitorInfor visitorInfor = commonService.접속기록(ip, oldCookieValue);
+			
+			if(visitorInfor != null) {
+				//db에 저장된 쿠키 생성 시간을 가져 옴
+				LocalDateTime cookieCreatedDate = visitorInfor.getCreateDate();
+				
+				if(DateCommonService.오늘날짜다(cookieCreatedDate) == false){
+					//접속 시간이 오늘이 아닐 때 -> 기존 쿠키 만료하고 새 쿠키 발급
+					deleteOldCookie(response);
+					
+					setNewCookie(ip, uuid.toString(), response);
+					commonService.접속기록저장(ip, uuid.toString());
+					commonService.방문자증가();
+				}else {
+					//접속 시간이 오늘일 때 -> 아무것도 안 함
+					//log.info("쿠키가 있어서 방문자 증가 안 함");
+				}
+			}else {
+				deleteOldCookie(response);
+				
+				setNewCookie(ip, uuid.toString(), response);
+				commonService.접속기록저장(ip, uuid.toString());
+				commonService.방문자증가();
+			}
+			
+		}
+	}
 	
-	
+	/**
+	 * 메소드 수행 중 예외사항을 반환하고 종료하는 경우 수행됨.
+	 * */
 	@AfterThrowing(pointcut = "allController(), allApiController() ", throwing = "exp")
 	public void afterThrowingTragetMethod(JoinPoint jp, Exception exp) throws Exception{
 		String methodName = jp.getSignature().getName(); //메소드 이름을 얻어옴
@@ -38,12 +132,10 @@ public class ValidationAdvice {
 		System.err.println(exp);
 	}
 	
-	
-	
 	//Controller 검사... return CustomValidationException
 	@Around("execution(* com.kjs.library.web.*Controller.*(..))")
 	public Object advise(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-
+		//System.out.println("advise가 실행됩니다. ");
 		// proceedingJoinPoint는 메소드의 매게변수와 메소드 내부에 접근할 수 있다.
 		// return proceedingJoinPoint.proceed(); //그 함수로 다시 돌아가라는 뜻이다.
 		/**
@@ -140,5 +232,54 @@ public class ValidationAdvice {
 		return proceedingJoinPoint.proceed();
 
 	}
+	
+	
+	/**
+	 * 쿠키 세팅
+	 * */
+	public void setNewCookie(String ip, String cookieValue, HttpServletResponse response) {
+		
+		Cookie newCookie = new Cookie("visiterCookie",cookieValue);//새 쿠키 생성
+		newCookie.setMaxAge(60*60*25); //쿠키 유지 시간 설정 : 24시간(86400초)
+		response.addCookie(newCookie); //쿠키 세팅
+	}
+	
+	
+	/**
+	 * cookie 아이디가 cookieKey인 것의 value를 가져옴
+	 * */
+	public String findCookieValue(HttpServletRequest request, String cookieKey) {
+		
+		String cookieValue = "";
+		
+		Cookie[] cookies = request.getCookies();
+		
+		if(cookies != null) {
+			for(Cookie cookie : cookies) {
+				String key = cookie.getName();
+				
+				//visitorCookie 쿠키가 있을 때
+				if(key.equals(cookieKey)) {
+					log.info("{}에 해당하는 쿠키 Key가 있습니다. ", cookieKey);
+					cookieValue =  cookie.getValue();
+				}else {
+					log.info("{}에 해당하는 쿠키 Key가 없습니다. ", cookieKey);
+					cookieValue = "";
+				}
+			}
+		}else{
+			log.info("쿠키가 없습니다");
+		}// end of if
+		
+		return cookieValue;
+		
+	} // end of findCookieValue()
 
+	
+	public void deleteOldCookie(HttpServletResponse response) {
+		Cookie deleteCookie = new Cookie("visiterCookie",null); //Null 값의 쿠키 생성
+		deleteCookie .setMaxAge(0); //쿠키 유지 시간 설정 
+		response.addCookie(deleteCookie ); //쿠키 세팅
+	}
+	
 }

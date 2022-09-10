@@ -29,7 +29,28 @@ public class SampleClass {
 	 * 1이면 처리 성공
 	 * */
 	//return new ResponseEntity<>(new CMRespDto<>(0,"로그인 해야 합니다.",null),HttpStatus.BAD_REQUEST);
+	
+	/*
+	Enumeration<String>  e = session.getAttributeNames();
+	
+	while(e.hasMoreElements()) {
+		System.out.println("nEXT  "+e.nextElement());
+		
+		String element = e.nextElement().toString();
+		System.out.println("Element > "+ element);
+		
+		System.out.println("GET > "+session.getAttribute(element));
 
-
-
+		if(element.equals("visit")) {
+			System.out.println("visit와 일치함 > "+session.getAttribute("visit") );
+			session.getMaxInactiveInterval();//유지시간
+			session.getLastAccessedTime();//최종 접촉 시간
+			session.getCreationTime(); //생성시간
+			session.
+			
+		}else {
+			System.out.println("일치된 값이 없어 visit를 세팅 합니다. ");
+			session.setAttribute("visit", "kkkkk");
+		}
+	 	**/
 }
