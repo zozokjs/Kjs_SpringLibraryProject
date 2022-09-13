@@ -85,41 +85,45 @@ public class ValidationAdvice {
 		String oldCookieValue = findCookieValue(request, "visiterCookie");
 		//log.info(" 저장된 값 : {}",oldCookieValue);
 		
-		if(oldCookieValue.equals("")) {
-			//log.info("접속 기록 및 쿠키 없음. 쿠키 세팅. 방문자 증가");
-			setNewCookie(ip, uuid.toString(), response);
-			commonService.접속기록저장(ip, uuid.toString());
-			commonService.방문자증가();
-		}else {
-
-			//db에서 쿠키가 저장된 정보를 가져 옴
-			VisitorInfor visitorInfor = commonService.접속기록(ip, oldCookieValue);
+		if(ip.equals("172.31.28.151") || ip.equals("172.31.11.16")) {
 			
-			if(visitorInfor != null) {
-				//db에 저장된 쿠키 생성 시간을 가져 옴
-				LocalDateTime cookieCreatedDate = visitorInfor.getCreateDate();
+		}else {
+			
+			if(oldCookieValue.equals("")) {
+				//log.info("접속 기록 및 쿠키 없음. 쿠키 세팅. 방문자 증가");
+				setNewCookie(ip, uuid.toString(), response);
+				commonService.접속기록저장(ip, uuid.toString());
+				commonService.방문자증가();
+			}else {
+				//db에서 쿠키가 저장된 정보를 가져 옴
+				VisitorInfor visitorInfor = commonService.접속기록(ip, oldCookieValue);
 				
-				if(DateCommonService.오늘날짜다(cookieCreatedDate) == false){
-					//접속 시간이 오늘이 아닐 때 -> 기존 쿠키 만료하고 새 쿠키 발급
+				if(visitorInfor != null) {
+					//db에 저장된 쿠키 생성 시간을 가져 옴
+					LocalDateTime cookieCreatedDate = visitorInfor.getCreateDate();
+					
+					if(DateCommonService.오늘날짜다(cookieCreatedDate) == false){
+						//접속 시간이 오늘이 아닐 때 -> 기존 쿠키 만료하고 새 쿠키 발급
+						deleteOldCookie(response);
+						
+						setNewCookie(ip, uuid.toString(), response);
+						commonService.접속기록저장(ip, uuid.toString());
+						commonService.방문자증가();
+					}else {
+						//접속 시간이 오늘일 때 -> 아무것도 안 함
+						//log.info("쿠키가 있어서 방문자 증가 안 함");
+					}
+				}else {
 					deleteOldCookie(response);
 					
 					setNewCookie(ip, uuid.toString(), response);
 					commonService.접속기록저장(ip, uuid.toString());
 					commonService.방문자증가();
-				}else {
-					//접속 시간이 오늘일 때 -> 아무것도 안 함
-					//log.info("쿠키가 있어서 방문자 증가 안 함");
 				}
-			}else {
-				deleteOldCookie(response);
-				
-				setNewCookie(ip, uuid.toString(), response);
-				commonService.접속기록저장(ip, uuid.toString());
-				commonService.방문자증가();
 			}
-			
-		}
-	}
+		}//end of First if
+	
+	}//end of Method
 	
 	/**
 	 * 메소드 수행 중 예외사항을 반환하고 종료하는 경우 수행됨.
