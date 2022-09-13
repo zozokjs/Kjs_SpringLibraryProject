@@ -5,13 +5,13 @@
 ※본 프로젝트는 이세계의 도서관을 모티브로 만든 홈페이지 입니다.  
 실제 서비스 중인 홈페이지 주소는 아래와 같으며 예상치 못한 사건 발생 시 접속이 불가할 수 있습니다. 
 https://www.tnlibrary.com  
-<br/><br/>
+<br/>
   
 ※사용된 기술  
 백엔드 : SpringBoot(with JPA)  
 프론트엔드 : JQurery, Javascript.   
 DB : MARIA  
-<br/><br/>  
+<br/> 
   
 ※개발 지침  
 -사용자가 귀찮아하는 경험은 개발자가 줄여줘야 합니다.   
@@ -22,7 +22,7 @@ DB : MARIA
 -> Readme파일을 수정하는 현재는, 개발 기간이 4개월이 넘어가는 시점이므로 설령 제가 작성했다고 할지라도  
 작성한지 오래된 기능일수록 그 작동 방식을 잊어 먹었을 가능성이 높습니다. 이를 최소화하기 위한 지침입니다.  
 예) findLendStateBybookid(); 비밀번호인증코드로유저찾기(); 로그인실패횟수증가(); 책청구기호수정();  
-<br/><br/>
+<br/>
 
 ※기타
 -해당 프로젝트에서 구현하는데 가장 공을 들인 메소드는 책청구기호수정() 메소드입니다.  
@@ -32,7 +32,7 @@ https://github.com/zozokjs/Kjs_SpringLibraryProject/blob/main/library/src/main/j
   
 -프론트엔드는 React나 그 외의 기술로 바꿀 것입니다.  
 (현재 적용된 기술로는 HTML을 동적으로 표시하기 굉장히 복잡하기 때문입니다)  
-<br/><br/> 
+<br/>
   
 ※앞으로 추가될 것  
 (단기 목표)  
@@ -54,7 +54,7 @@ https://github.com/zozokjs/Kjs_SpringLibraryProject/blob/main/library/src/main/j
 -AWS에서 로드밸런싱  
 -백엔드 메소드간의 데이터 흐름 지도  
 -프론트엔드 기술을 JSP에서 React로 변경  
-  
+<br/> 
   
 ※참고  
 template는 변경 될 수 있음(완료)  
