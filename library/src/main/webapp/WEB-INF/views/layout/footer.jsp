@@ -78,6 +78,10 @@
 				<p>고객센터 | 사이트 관리자 연락처 : zozokjs@naver.com</p>
 			</div>
 			<div>
+				<p><a href="/tnlProductionInfor"   style="color:orange;">[사이트제작정보]</a></p>
+			</div>
+			
+			<div>
 				<p id="visitorCount">[방문자집계]  준비중입니다</p>
 			</div>
 		</div>

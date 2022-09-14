@@ -77,5 +77,10 @@ public class MainController {
 		return "main/mailSample";
 	}
 
-	
+	//홈페이지 제작 정보 화면으로 이동
+	@GetMapping("/tnlProductionInfor")
+	public String tnlibraryProductInforForm() {
+		
+		return "main/tnlProductionInfor";
+	}
 }
