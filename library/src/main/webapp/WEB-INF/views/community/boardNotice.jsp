@@ -2,29 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_Community.jsp"%>
-           <style>
-           
-	        	table{
-	        /* 		border : 2px solid;
-	         */	}
-	        	
-	        	thead{
-	        		border : 2.5px solid;
-	        	}
-	        	th, td{
-	        		text-align :center;
-	        	}
-	        	/**
-	        	
-	        	th, td{
-	        		border : 2px solid; 
-	        		border-collapse : collpase; 
-	        		padding : 10px 5px;
-	        		text-align :center;
-	        	}*/
-	        </style>
-	      
-				
+
 				<div class="two-colls-right"><!-- 우측 메인 시작 -->
 					<div class="two-colls-right-b">
 						<div class="padding">
@@ -33,7 +11,7 @@
 							</div>
 							
 							<!-- 우측 본문 시작 -->
-							<div class="tables" style="margin-top: 70px;">
+							<div class="tables div-tables" >
 								<table class="table-a">
 									<thead>
 										<tr>
@@ -78,7 +56,7 @@
 							
 							
 							<!-- Page -->
-							<div class="pagination pagination-custom"  style="display:flex; justify-content:center;">	<!-- 페이지 버튼 시작 -->
+							<div class="pagination pagination-custom  div-pagination"  >	<!-- 페이지 버튼 시작 -->
 								<!-- 이전 버튼 -->
 				                <c:choose>
 									<c:when test="${community.first }">

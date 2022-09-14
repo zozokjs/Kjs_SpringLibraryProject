@@ -160,6 +160,19 @@ imgTagContainer img에서 width, top, left 별도 조정해야 함
 	
 /* SelectBox / InputBox  CSS   시작 -----------------------------------------------------------------------------------------*/	
 /* 회원가입이나 새책등록 시 Form에 사용*/	
+	.div-tables{
+		margin-top: 70px;
+	}
+
+	.tables-td {
+		text-align:left !important;
+	}
+	
+	.div-typography{
+		padding-bottom:30px;
+	}
+
+
 	.table-a tr td .input input[type=text]{
 		height:30px;
 		width:100%;
@@ -201,10 +214,6 @@ imgTagContainer img에서 width, top, left 별도 조정해야 함
 	
 	.inputBox-custom{
 		margin-bottom:0px;
-	}
-	
-	.inputBox-custom div{
-		/* border: 1px solid black; */
 	}
 	
 	.inputBox-custom  .input{

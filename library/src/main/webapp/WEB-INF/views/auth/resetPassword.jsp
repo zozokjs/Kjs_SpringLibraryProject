@@ -1,23 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <style>
-	
-	.main-cont-custom{
-		margin-top: 220px;
-	}
-	
-	.typography-heading-custom{
-		font-size: 30px;
-	}
-
-	.shortcodes-right-custom{
-		width:80%;
-		margin-right: 10%;
-	}
-	
-	.table-a .td-custom{
-		width : 60%;
-	}
 
 </style>
 <!-- main-cont -->

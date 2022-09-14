@@ -3,17 +3,7 @@
 <%@ include file="../layout/submenu_Auth.jsp"%>
 
 <style>
-	.table-a th {
-		font-size: 15px;
-		text-align: center;
-		width: 200px;
-	}
-	
-	.warningBlock {
-		margin-left:20px; 
-		color:red; 
-		font-weight:bold;
-	}
+
 	
 
 </style>
@@ -39,7 +29,7 @@
 										<!--  0  -->
 										<!-- 이 항목이 반드시 있어야 모바일 화면에서 테이블 형태가 유지됨-->
 										<tr>
-											<th colspan="3"  style="border-right:none; border-left:none;; border-top:none">
+											<th colspan="3"  style="">
 												<label class="inputBox-custom-important-label">*은 필수입력항목입니다</label>
 											</th>
 										</tr>
@@ -87,7 +77,7 @@
 										<tr>
 											<th><label class="inputBox-custom-require-label">*</label>이메일</th>
 											<td colspan=""  style="width:50%;">
-												<div class="booking-form-i inputBox-custom"  style="width:100%;">
+												<div class="booking-form-i inputBox-custom  div-width-full"  >
 													<div class="input">
 														<input type="text"  id = "email"  name="email"   onkeyup ='checkEmailFormat()' required=""  >
 													</div>
@@ -133,7 +123,7 @@
 										<tr>
 											<th>국가</th>
 											<td colspan="2">
-												<div class="card-expiration"  style="width:100%;">
+												<div class="card-expiration  div-width-full"  >
 													<select name="country" class="selectBox-custom" >
 														<option value="1">토르두스</option>
 														<option value="2">파이시아</option>
@@ -150,7 +140,7 @@
 										<tr>
 											<th>종족</th>
 											<td colspan="2">
-												<div class="card-expiration"  style="width:100%;">
+												<div class="card-expiration  div-width-full" >
 													<select name="species" class="selectBox-custom">
 														<option value="1">Human</option>
 														<option value="2">Elf</option>
@@ -168,7 +158,7 @@
 										<tr>
 											<th>직업</th>
 											<td colspan="2">
-												<div class="card-expiration"  style="width:100%;">
+												<div class="card-expiration  div-width-full" >
 													<select name="job" class="selectBox-custom">
 														<option value="1">학생</option>
 														<option value="2">공무원</option>

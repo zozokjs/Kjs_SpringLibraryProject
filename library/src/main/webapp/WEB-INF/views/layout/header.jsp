@@ -27,11 +27,35 @@
 	<meta charset="utf-8" /><link rel="icon" href="/img_custom/favicon-16x16.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
 	
+	<!-- Style -->
 	<link rel="stylesheet" href="/css/jquery-ui.css">
 	<link rel="stylesheet" href="/css/idangerous.swiper.css">
 	<link rel="stylesheet" href="/css/owl.carousel.css">
 	<link rel="stylesheet" href="/css/style.css" />
 	<link rel="stylesheet" href="/css_custom/style_custom.css" />
+	<link rel="stylesheet" href="/css_custom/auth/findToIdPassword.css" />
+	<link rel="stylesheet" href="/css_custom/auth/resetPassword.css" />	
+	<link rel="stylesheet" href="/css_custom/auth/signinOtherPage.css" />	
+	<link rel="stylesheet" href="/css_custom/auth/signup.css" />	
+	<link rel="stylesheet" href="/css_custom/auth/signupSuccess.css" />
+	
+	<link rel="stylesheet" href="/css_custom/community/boardFree.css" />
+	<link rel="stylesheet" href="/css_custom/community/boardFreeInfor.css" />
+	<link rel="stylesheet" href="/css_custom/community/boardFreeRegistration.css" />
+	<link rel="stylesheet" href="/css_custom/community/boardFreeUpdate.css" />
+	<link rel="stylesheet" href="/css_custom/community/boardNotice.css" />
+	<link rel="stylesheet" href="/css_custom/community/boardNoticeInfor.css" />
+	<link rel="stylesheet" href="/css_custom/community/boardNoticeRegistration.css" />
+	<link rel="stylesheet" href="/css_custom/community/boardNoticeUpdate.css" />
+	<link rel="stylesheet" href="/css_custom/community/manyQuestion.css" />
+	<link rel="stylesheet" href="/css_custom/community/singleQuestion.css" />
+	<link rel="stylesheet" href="/css_custom/community/singleQuestionInfor.css" />
+	<link rel="stylesheet" href="/css_custom/community/singleQuestionRegistration.css" />
+	
+		
+	
+	
+	
 	
 	<!-- 구글 한글 폰트 추가 -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">

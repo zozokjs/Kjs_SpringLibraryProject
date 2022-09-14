@@ -15,7 +15,7 @@
 							
 							
 							<!-- 우측 본문 시작 -->
-							<div class="tables" style="margin-top: 70px;">
+							<div class="tables div-tables"  >
 								<table class="table-a">
 									<tr>
 										<td>제목</td>
@@ -31,8 +31,8 @@
 
 									<tr>
 										<td>내용</td>
-										<td colspan="5" style="text-align:left;">
-											<div class="typography" style="padding-bottom:30px;">
+										<td colspan="5" class="tables-td">
+											<div class="typography  div-typography" >
 												<div class="content-wrapper">
 													<div class="block-qoutes">
 														<p>

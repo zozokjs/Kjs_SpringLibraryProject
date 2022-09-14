@@ -1,0 +1,12 @@
+thead{
+	border : 2.5px solid;
+}
+th, td{
+	text-align :center;
+}
+
+.div-pagination{
+	display:flex; 
+	justify-content:center; 
+	padding-bottom: 10px;
+}

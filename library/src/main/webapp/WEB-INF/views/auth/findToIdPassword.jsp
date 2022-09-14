@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_Auth.jsp"%>
-<style>
 
-	.input-custom{
-		    font-size: 16px;
-	
-	}
-</style>
 
 				<div class="two-colls-right"><!-- 우측 메인 시작 -->
 					<div class="two-colls-right-b">
@@ -23,10 +17,10 @@
 									
 									<div class="shortcodes-left">
 										<div calss="typography-block">
-											<h1>아이디 찾기</h1>
+											<h2>아이디 찾기</h2>
 										</div>
 										<div>
-											<label class="inputBox-custom-important-label" style="float:left; font-size:13px; margin-bottom: 8px;">가입할 때 입력한 이메일을 입력해주세요</label>
+											<label class="inputBox-custom-important-label  style-label" >가입할 때 입력한 이메일을 입력해주세요</label>
 										</div>
 										<div class="tables" >
 											<table class="table-a" >
@@ -53,10 +47,10 @@
 									<!-- 우측    -->
 									<div class="shortcodes-right">
 										<div calss="typography-block">
-											<h1>비밀번호 찾기</h1>
+											<h2>비밀번호 찾기</h2>
 										</div>
 										<div>
-											<label class="inputBox-custom-important-label" style="float:left; font-size:13px; margin-bottom: 8px;">가입할 때 입력한 이메일을 입력해주세요</label>
+											<label class="inputBox-custom-important-label  style-label" >가입할 때 입력한 이메일을 입력해주세요</label>
 										</div>
 										<div class="tables"  >
 											<table class="table-a">

@@ -14,7 +14,7 @@
 							<form action="/community/${boardNotice.id}/boardNoticeUpdate"   method = "post" enctype="multipart/form-data" >
 							
 								<!-- 우측 본문 시작 -->
-								<div class="tables" style="margin-top: 70px;">
+								<div class="tables   div-tables" >
 									<table class="table-a">
 										<tr>
 											<td>제목</td>
@@ -38,10 +38,11 @@
 												<div class="booking-form-i  inputBox-custom"  >
 													<div class="input">
 														<div>
-															<textarea  id="content"  name="content" cols="30" rows="5"  style="resize: none; width:99.3%; margin-bottom:-5px;" >${boardNotice.content}</textarea>
+															<textarea  id="content"  name="content" cols="30" rows="5"  class="div-textarea" > ${boardNotice.content}</textarea>
 														</div>
 													</div>
 												</div>
+												
 											</td>
 										</tr>
 									</table>

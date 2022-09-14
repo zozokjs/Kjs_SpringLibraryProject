@@ -19,13 +19,12 @@
 							<div class="right-Submenu-2depth">
 							로그인
 							</div>
-			
 							
 							<!-- 우측 본문 시작 -->
-							<div class="cat-list-item-r" style="margin:auto; width:58%;"><!-- 여기부터 콘텐츠 영역 -->
+							<div class="cat-list-item-r div-first"  ><!-- 여기부터 콘텐츠 영역 -->
 								<div class="cat-list-item-rb">
-									<div class="cat-list-content-l"  style="margin-right:0px; ">
-										<div class="cat-list-content-lpadding"  style="border:0px;"><!--  내용 시작 -->
+									<div class="cat-list-content-l  div-second"  >
+										<div class="cat-list-content-lpadding  div-third"  ><!--  내용 시작 -->
 											<div class="tables" >
 												<form action ="/auth/signin" method="POST" >
 													<table class="table-a light">
@@ -33,7 +32,7 @@
 															<!--  0  -->
 															<!-- 이 항목이 반드시 있어야 모바일 화면에서 테이블 형태가 유지됨-->
 															<tr>
-																<th colspan="3"  style="border-right:none; border-left:none;; border-top:none">
+																<th colspan="3"  class="table-border-none" >
 																</th>
 															</tr>
 															
@@ -44,7 +43,7 @@
 																	<input type="text"  name="username"   class="form-control"  placeholder="아이디" required="">
 																</td>
 																<td rowspan="2">
-																	<button class="authorize-btn"  style="height:77px;">로그인</button>
+																	<button class="authorize-btn  button-login-height"  >로그인</button>
 																</td>
 															</tr>
 															

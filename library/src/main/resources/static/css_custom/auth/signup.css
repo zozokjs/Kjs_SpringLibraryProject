@@ -1,0 +1,25 @@
+.table-a th {
+	font-size: 15px;
+	text-align: center;
+	width: 200px;
+}
+
+.warningBlock {
+	margin-left:20px; 
+	color:red; 
+	font-weight:bold;
+}
+
+.table-warning-Message {
+	border-right: none;
+	border-left: none;;
+	border-top: none;
+}
+
+.div-width-half{
+	width:100%;
+}
+
+.div-width-full{
+	width:100%;
+}

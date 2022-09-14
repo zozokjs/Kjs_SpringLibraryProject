@@ -13,7 +13,7 @@
 							<!-- 우측 본문 시작 -->
 							<form action="/community/boardNoticeRegistration"  method = "get"  enctype="multipart/form-data" >
 							
-								<div class="tables" style="margin-top: 70px;">
+								<div class="tables   div-tables" >
 									
 									<div>
 										<label class="inputBox-custom-important-label">*은 필수입력항목입니다</label>
@@ -33,7 +33,7 @@
 											<td><label class="inputBox-custom-require-label">*</label>내용</td>
 											<td>
 												<div class="booking-form-i">
-														<div class="textarea"  style="margin: 10px; padding: 1px;">
+														<div class="textarea  div-textarea"  >
 															<textarea  id="content"  name="content" class="form-control mb-3"  cols="30" rows="5" placeholder="내용" required=""></textarea>
 														</div>
 												</div>

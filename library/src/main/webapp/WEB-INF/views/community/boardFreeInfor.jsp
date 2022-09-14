@@ -16,7 +16,7 @@
 							<input type ="hidden" id="boardFreeId" value="${boardFree.id}">
 							
 							<!-- 우측 본문 시작 -->
-							<div class="tables" style="margin-top: 70px;">
+							<div class="tables  div-tables" >
 								<table class="table-a">
 									<tr>
 										<td>제목</td>
@@ -43,8 +43,8 @@
 									</tr>
 									<tr>
 										<td>내용</td>
-										<td colspan="5" style="text-align:left;">
-											<div class="typography" style="padding-bottom:30px;">
+										<td colspan="5" class="tables-td" >
+											<div class="typography div-typography" >
 												<div class="content-wrapper">
 													<div class="block-qoutes">
 														<p>
@@ -73,7 +73,7 @@
 							
 							<!-- 댓글 시작 -->
 							<!-- 이름 / 내용 / 작성 시간 / 삭제버튼 -->
-							<div class="tables" style="margin-top: 70px;">
+							<div class="tables div-tables">
 								<table class="table-a">
 									<tbody>
 									<!-- 댓글이 없을 경우 없다고 표시 -->
@@ -112,12 +112,12 @@
 
 							<!-- 댓글 작성 공간 시작-->								
 							<!-- 로그인 안 되어 있으면 표시 안 됨 -->
-							<div class="tables" style="margin-top: 40px;">
+							<div class="tables  div-tables2">
 								<table class="table-a">
 									<tr>
 										<td colspan="5" style="width:100%;">
 											<div class="booking-form-i  inputBox-custom textarea-comment"  >
-													<textarea id="commentContent"  cols="30" rows="5"  style="resize: none; width:99.3%; margin-bottom:-5px;"  placeholder = "댓글 작성시 타인에 대한 배려를 담아주세요" required=""></textarea>
+													<textarea id="commentContent"  cols="30" rows="5"  class="div-textarea" placeholder = "댓글 작성시 타인에 대한 배려를 담아주세요" required=""></textarea>
 											</div>
 										</td>
 										<td>

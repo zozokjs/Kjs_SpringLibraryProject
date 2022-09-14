@@ -7,6 +7,7 @@
 			font-size: 15px;
 			text-align: center;
 			width: 200px;
+			font-family: fangsong;
 	}
 	
 	.selectBox-custom{
@@ -31,7 +32,7 @@
 										<label class="inputBox-custom-important-label">*은 필수입력항목입니다</label>
 									</div>
 									
-									<table class="table-a">
+									<table class="table-a" style="font-family:lora;">
 										<tr>
 											<th>
 												<label class="inputBox-custom-require-label">*</label>
@@ -100,7 +101,12 @@
 													</div>
 												</div>
 											</td>
-											<th>크기</th>
+											<th>
+												크기
+												<a id ="modal_bookFormInformation">
+													<i class="bi bi-question-circle"></i>
+												</a>
+											</th>
 											<td>
 												<div class="booking-form-i  inputBox-custom"  >
 													<div class="input">
@@ -150,7 +156,7 @@
 												</div>
 											</td>
 											
-											<th>납본여부(중앙도서관 제출 여부)</th>
+											<th>납본여부(황궁도서관 제출 여부)</th>
 											<td>
 												<div class="card-expiration"  style="width:100%;">
 													<select name="deliveryState" class="selectBox-custom" >
@@ -191,7 +197,11 @@
 										</tr>
 										
 										<tr>
-											<th>ISBN<br>(예)978-89-605-3241-0 )</th>
+											<th>ISBN
+												<a id ="modal_bookISBNInformation">
+													<i class="bi bi-question-circle"></i>
+												</a>
+												<br>예)978-90-11579-43-1 
 											<td>
 												<div class="booking-form-i  inputBox-custom"  >
 													<div class="input">
@@ -199,7 +209,7 @@
 													</div>
 												</div>
 											</td>
-											<th>ISBN SET<br>(예)978-89-605-5173-3 ) </th>
+											<th>ISBN SET<br>예)978-90-11579-44-2 </th>
 											<td>
 												<div class="booking-form-i  inputBox-custom"  >
 													<div class="input">

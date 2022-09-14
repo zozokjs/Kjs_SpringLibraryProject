@@ -12,7 +12,7 @@
 							</div>
 							
 							<!-- 우측 본문 시작 -->
-							<div class="tables" style="margin-top: 70px;">
+							<div class="tables div-tables" >
 								<table class="table-a">
 									<thead>
 										<tr>
@@ -51,11 +51,8 @@
 								<button class=" booking-complete-btn white-btn-custom"  onclick="location.href='/community/singleQuestionRegistrationForm'" >질문하기</button>
 							</div>
 							
-							
-							
-							
 							<!-- Page -->
-							<div class="pagination pagination-custom"  style="display:flex; justify-content:center;">	<!-- 페이지 버튼 시작 -->
+							<div class="pagination pagination-custom" >	<!-- 페이지 버튼 시작 -->
 								<!-- 이전 버튼 -->
 				                <c:choose>
 									<c:when test="${singleQuestionList.first }">
