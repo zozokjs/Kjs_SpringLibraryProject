@@ -18,6 +18,17 @@
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
+	<!-- Google Analytics를 위한 tag (gtag.js) 시작 -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-WT7DNH7MEZ"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-WT7DNH7MEZ');
+	</script>
+	<!-- Google Analytics를 위한 tag (gtag.js) 끝 -->
+	
 	<!-- 날짜 라이브러리 -->
 	<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 	
