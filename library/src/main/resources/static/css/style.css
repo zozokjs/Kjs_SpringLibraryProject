@@ -939,7 +939,7 @@ button.srch-btn {cursor: pointer; font-family: 'Montserrat'; font-size:11px; fon
 	margin-bottom:12px;
 }
 .offer-slider-link a {
-	font-size:14px;
+	font-size:17px;
 	color:#4c4c4c;
 	text-transform:uppercase;
 	text-decoration:none;
@@ -953,9 +953,9 @@ button.srch-btn {cursor: pointer; font-family: 'Montserrat'; font-size:11px; fon
 }
 .offer-slider-location {	
 	margin-bottom:7px;
-	font-size:10px;
+	font-size:14px;
 	color:#747d7e;
-	font-weight:600;
+	/* font-weight:600; */
 	text-transform:uppercase;
 }
 .stars ul,.stars ul li {
