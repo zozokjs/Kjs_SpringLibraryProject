@@ -354,12 +354,10 @@ public class CommonService {
 	 * 
 	 * */
 	@Transactional
-	public void 접속기록저장(String ip, String cookieValue) {
+	public void 접속기록저장(String ip) {
 		
 		VisitorInfor visitorInfor = new VisitorInfor();
 		visitorInfor.setIp(ip);
-		visitorInfor.setCookieValue(cookieValue);
-		
 		visitorInforRepository.save(visitorInfor);
 	}
 	

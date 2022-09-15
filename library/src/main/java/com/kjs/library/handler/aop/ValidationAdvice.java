@@ -74,11 +74,18 @@ public class ValidationAdvice {
 		String oldCookieValue = findCookieValue(request, "visitorCookie");
 		//log.info("find 결과  {}",oldCookieValue);
 		
+		//아이피 얻어옴
+		String ip = commonService.getClientIP(request);
+		
+		
 		//2. 쿠키 없으면 쿠키 세팅, 방문자 증가
 		if(oldCookieValue == null || oldCookieValue.equals("") ) {
 			//log.info("접속 기록 및 쿠키 없음. 쿠키 세팅. 방문자 증가");
 			setNewCookie(response);
 			commonService.방문자증가();
+			
+			//방문자 집계 지점 확인을 위해 ip저장
+			commonService.접속기록저장(ip);
 		}else {
 			//3. 쿠키 있으면 쿠키에서 생성 날짜 가져옴
 			int checkPosition= oldCookieValue.indexOf("///");
@@ -93,6 +100,9 @@ public class ValidationAdvice {
 				
 				setNewCookie(response);
 				commonService.방문자증가();
+				
+				//방문자 집계 지점 확인을 위해 ip저장
+				commonService.접속기록저장(ip);
 			}else {
 				//5. 생성 날짜가 오늘이면 아무것도 안 함
 				//log.info("오늘 날짜라서 아무것도 안 함");
