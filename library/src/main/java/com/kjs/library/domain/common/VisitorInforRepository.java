@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+/**
+ * 사용 안 됨
+ * */
 public interface VisitorInforRepository  extends JpaRepository<VisitorInfor, Integer>{
 
 	

@@ -1,7 +1,9 @@
 package com.kjs.library.handler.aop;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,67 +65,42 @@ public class ValidationAdvice {
 	 * */
 	@After("allController(), allApiController()")
 	public void visitorChecker(JoinPoint joinpoint) throws Throwable {
-		
-		String methodName = joinpoint.getSignature().getName(); //메소드 이름을 얻어옴
-		//log.info(methodName + "() 읽었음");
-		//log.info(" {}",joinpoint.getSignature());
-		
 		//Request
 		HttpServletRequest request = ((ServletRequestAttributes) (RequestContextHolder.currentRequestAttributes())).getRequest();
-		
 		//Response
 		HttpServletResponse response = ((ServletRequestAttributes) (RequestContextHolder.currentRequestAttributes())).getResponse();
+
+		//1. request 객체에서 쿠키 key가 visitorCookie인 값을 가져옴
+		String oldCookieValue = findCookieValue(request, "visitorCookie");
+		//log.info("find 결과  {}",oldCookieValue);
 		
-		//아이피 얻어옴
-		String ip = commonService.getClientIP(request);
-		//log.info("아이피 {}",ip);
-		
-		//새로운 uuid 생성
-		UUID uuid = UUID.randomUUID();
-		
-		//request 객체에서 쿠키 key가 visitorCookie인 값을 가져옴
-		String oldCookieValue = findCookieValue(request, "visiterCookie");
-		//log.info(" 저장된 값 : {}",oldCookieValue);
-		
-		if(ip.equals("172.31.28.151") || ip.equals("172.31.11.16")) {
-			
+		//2. 쿠키 없으면 쿠키 세팅, 방문자 증가
+		if(oldCookieValue == null || oldCookieValue.equals("") ) {
+			//log.info("접속 기록 및 쿠키 없음. 쿠키 세팅. 방문자 증가");
+			setNewCookie(response);
+			commonService.방문자증가();
 		}else {
+			//3. 쿠키 있으면 쿠키에서 생성 날짜 가져옴
+			int checkPosition= oldCookieValue.indexOf("///");
+			String createDate = oldCookieValue.substring(0, checkPosition);
+			//log.info("쿠키 생성 시각 {}", createDate);
 			
-			if(oldCookieValue.equals("")) {
-				//log.info("접속 기록 및 쿠키 없음. 쿠키 세팅. 방문자 증가");
-				setNewCookie(ip, uuid.toString(), response);
-				commonService.접속기록저장(ip, uuid.toString());
+			//4. 생성 날짜가 오늘이 아닌 경우 기존 쿠키 만료하고 새 쿠키 발급
+			if(DateCommonService.오늘날짜다(createDate) == false){
+				//log.info("오늘 날짜 아니라서 방문수 증가");
+
+				deleteOldCookie(response);
+				
+				setNewCookie(response);
 				commonService.방문자증가();
 			}else {
-				//db에서 쿠키가 저장된 정보를 가져 옴
-				VisitorInfor visitorInfor = commonService.접속기록(ip, oldCookieValue);
+				//5. 생성 날짜가 오늘이면 아무것도 안 함
+				//log.info("오늘 날짜라서 아무것도 안 함");
 				
-				if(visitorInfor != null) {
-					//db에 저장된 쿠키 생성 시간을 가져 옴
-					LocalDateTime cookieCreatedDate = visitorInfor.getCreateDate();
-					
-					if(DateCommonService.오늘날짜다(cookieCreatedDate) == false){
-						//접속 시간이 오늘이 아닐 때 -> 기존 쿠키 만료하고 새 쿠키 발급
-						deleteOldCookie(response);
-						
-						setNewCookie(ip, uuid.toString(), response);
-						commonService.접속기록저장(ip, uuid.toString());
-						commonService.방문자증가();
-					}else {
-						//접속 시간이 오늘일 때 -> 아무것도 안 함
-						//log.info("쿠키가 있어서 방문자 증가 안 함");
-					}
-				}else {
-					deleteOldCookie(response);
-					
-					setNewCookie(ip, uuid.toString(), response);
-					commonService.접속기록저장(ip, uuid.toString());
-					commonService.방문자증가();
-				}
 			}
 		}//end of First if
+	}
 	
-	}//end of Method
 	
 	/**
 	 * 메소드 수행 중 예외사항을 반환하고 종료하는 경우 수행됨.
@@ -241,10 +218,24 @@ public class ValidationAdvice {
 	/**
 	 * 쿠키 세팅
 	 * */
-	public void setNewCookie(String ip, String cookieValue, HttpServletResponse response) {
-		
-		Cookie newCookie = new Cookie("visiterCookie",cookieValue);//새 쿠키 생성
-		newCookie.setMaxAge(60*60*25); //쿠키 유지 시간 설정 : 24시간(86400초)
+	public void setNewCookie(HttpServletResponse response) {
+		//log.info("새 쿠키가 추가 됨");
+	
+		//1. 날짜 포맷 세팅
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+		//2. 오늘 날짜를 가져옴
+		Date dateNowDate = new Date();
+		//3. dateNowDate을 주어진 포맷으로 변경(Date -> String)
+		String dateNowFormatted= simpleDateFormat.format(dateNowDate);
+		//4. 새로운 uuid 생성
+		UUID uuid = UUID.randomUUID();
+		//5. uuid에 dateNowFormatted 더함
+		String cookieValue = dateNowFormatted+"///"+uuid.toString();
+		// 예)20220901///asdqwdasdkljqiwofh
+		//log.info(" {}",cookieValue);
+		//6 쿠키 세팅
+		Cookie newCookie = new Cookie("visitorCookie",cookieValue);//새 쿠키 생성
+		newCookie.setMaxAge(60*60*25); //쿠키 유지 시간 설정 : 25시간
 		response.addCookie(newCookie); //쿠키 세팅
 	}
 	
@@ -264,15 +255,15 @@ public class ValidationAdvice {
 				
 				//visitorCookie 쿠키가 있을 때
 				if(key.equals(cookieKey)) {
-					log.info("{}에 해당하는 쿠키 Key가 있습니다. ", cookieKey);
+					//log.info("{}에 해당하는 쿠키 Key가 있습니다. ", cookieKey);
 					cookieValue =  cookie.getValue();
 				}else {
-					log.info("{}에 해당하는 쿠키 Key가 없습니다. ", cookieKey);
-					cookieValue = "";
+					//log.info("{}에 해당하는 쿠키 Key가 없습니다. ", cookieKey);
+					//cookieValue = "";
 				}
 			}
 		}else{
-			log.info("쿠키가 없습니다");
+			//log.info("쿠키가 없습니다");
 		}// end of if
 		
 		return cookieValue;
@@ -281,8 +272,11 @@ public class ValidationAdvice {
 
 	
 	public void deleteOldCookie(HttpServletResponse response) {
-		Cookie deleteCookie = new Cookie("visiterCookie",null); //Null 값의 쿠키 생성
-		deleteCookie .setMaxAge(0); //쿠키 유지 시간 설정 
+		
+		//log.info("기존 쿠키가 제거 됨");
+		
+		Cookie deleteCookie = new Cookie("visitorCookie",null); //Null 값의 쿠키 생성
+		deleteCookie.setMaxAge(0); //쿠키 유지 시간 설정 
 		response.addCookie(deleteCookie ); //쿠키 세팅
 	}
 	

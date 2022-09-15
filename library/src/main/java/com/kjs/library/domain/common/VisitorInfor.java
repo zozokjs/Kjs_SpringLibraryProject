@@ -2,6 +2,7 @@ package com.kjs.library.domain.common;
 
 import java.time.LocalDateTime;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+/**
+ * 사용 안 됨
+ * */
 //방문자 수 집계를 위해 방문자 정보를 저장하는 테이블
 @Entity // JPA를 위함. 디비에 테이블을 생성함
 @Data
