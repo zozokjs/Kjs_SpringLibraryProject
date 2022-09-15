@@ -33,21 +33,7 @@
 	font-weight: bold
 }
 
-.mp-slider-lbl-custom{
-	padding: 170px 0px 0px 0px;
-    text-align: center;
-    width: 100%;
-    font-size: 50px;
-    text-transform: uppercase;
-   font-family: 'Nanum Myeongjo', serif;
-    color: antiquewhite;
-    position: relative;
-    font-weight: bold;
-    text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
-
-}
-
-.background_search_div {
+.background_search_div { 
 	/* border: 10px solid green; */
 	max-width: 1100px;
 	width: 100%;
@@ -77,11 +63,31 @@
 }
 
 
-@media (max-width:800px){
+/*width가 800이상일 때 아래로 변경함*/
+@media (min-width:800px) {
+	.mp-slider-lbl-custom{
+		 font-size: 50px;
+		 font-family: 'Nanum Myeongjo', serif;
+	    color: antiquewhite !important;
+	      font-weight: bold;
+	    text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
+	}
+}
+
+/*width가 800이하일 때 아래로 변경함*/
+@media (max-width:800px) { 
+	.mp-slider-lbl-custom{
+		font-family: 'Nanum Myeongjo', serif;
+	    color: antiquewhite !important;
+	    font-weight: bold;
+	    text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
+	}
+	
 	.searchBox{
 		padding-top: 125px;
 	}
 }
+
 </style>
 
 <!-- main-cont 시작 -->
@@ -103,22 +109,23 @@
   				<div class="swiper-wrapper"><!-- 이미지  목록 시작-->	  				
       				<div class="swiper-slide">
 						<div class="slide-section" style="background:url(/img_custom/bg/books-1.jpg) center top no-repeat;">
-							<div class="mp-slider-lbl-custom ">위대한 상상은 한 권의 작은 책으로부터 시작됩니다</div>
+							<div class="mp-slider-lbl  mp-slider-lbl-custom">위대한 상상은 한 권의 작은 책으로부터 시작됩니다</div>
 							<div class="mp-slider-lbl-a">A great imagination begins with a small book</div><!-- 영문 번역 -->
 						</div>
       				</div>
       				<div class="swiper-slide"> 
 						<div class="slide-section slide-b" style="background:url(/img_custom/bg/books-2.jpg) center top no-repeat;">
-							<div class="mp-slider-lbl-custom">세상의 모든 책이 이곳에 있습니다</div>
+							<div class="mp-slider-lbl  mp-slider-lbl-custom">세상의 모든 책이 이곳에 있습니다</div>
 							<div class="mp-slider-lbl-a">All the books in the world are here</div>
 						</div>
       				</div>
-      				<div class="swiper-slide"> 
+<!--       				<div class="swiper-slide"> 
 						<div class="slide-section slide-b" style="background:url(/img_custom/bg/books-3.jpg) center top no-repeat;">
 							<div class="mp-slider-lbl-custom">책 속에는 지혜와 시간과 행복이 있습니다</div>
 							<div class="mp-slider-lbl-a">There is wisdom, time and happiness in books</div>
 						</div>
-      				</div>            
+      				</div> 
+-->          
   				</div><!-- 이미지  목록 끝-->		
 					
 			</div>
@@ -139,14 +146,14 @@
 							<div class="search-large-i" style="flex-grow: 9;">
 								<div class="srch-tab-line no-margin-bottom">
 									<div class="input-a">
-										<input type="text" id="searchKeyword" style="font-size: 30px;" value="" placeholder="자료검색">
+										<input type="text" id="searchKeyword" style="font-size: 20px;" value="" placeholder="자료검색">
 									</div>
 								</div>
 							</div>
 							
 							<!-- 검색 버튼 -->
 							<div style="flex-grow: 0.3;">
-								<a href="javascript:void(0);" onclick="bookSearch()" class="srch-btn" style="height: 45px; font-size: 30px;">검색</a>
+								<a href="javascript:void(0);" onclick="bookSearch()" class="srch-btn" style="height: 47px; font-size: 21px;">검색</a>
 							</div>
 							<!-- // -->							
 						</div>

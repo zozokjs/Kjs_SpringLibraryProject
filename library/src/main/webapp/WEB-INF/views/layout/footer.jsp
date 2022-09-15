@@ -74,7 +74,7 @@
 					</div>
 				</div>
 			</div>
-			<div>
+			<div style="text-align:center;">
 				<p>고객센터 | 사이트 관리자 연락처 : zozokjs@naver.com</p>
 			</div>
 			<div>

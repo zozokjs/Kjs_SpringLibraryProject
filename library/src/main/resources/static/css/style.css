@@ -130,7 +130,7 @@ input,select,button,textarea {outline:none;}
 .search-tab {height:27px;display:inline-block;margin:0px 3px 0px 0px;float:left;text-align:center;font-size:12px;color:#fff;text-transform:uppercase;	font-family:'Montserrat';background:#1d292e;cursor:pointer;padding:14px 33px 0px 33px;}
 .search-tab.nth {margin-right:0px;float:right;}
 .search-tab.active {background:#fff;cursor:default;color:#000000;}
-.page-search-content {min-height:120px;background:#fff;}
+.page-search-content {min-height:97px;background:#fff;}
 .page-search-p {padding:26px 21px 29px 21px;}
 .full-width-search .page-search-p {padding:26px 21px 21px 21px;}
 .page-search-content label {display:block;font-size:11px;color:#4c4c4c;text-transform:uppercase;font-family:'Raleway';font-weight:600;margin-bottom:9px;}

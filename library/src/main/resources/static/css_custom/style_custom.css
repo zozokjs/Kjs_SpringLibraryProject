@@ -276,4 +276,14 @@ imgTagContainer img에서 width, top, left 별도 조정해야 함
     float: right;
 }
 
+/*width가 800이하일 때 아래로 변경함*/
+@media (max-width:800px) { 
+	.shortcodes-left{
+	 	width: 100%;
+	}
 	
+	.shortcodes-right{
+    	width: 100%;
+}
+	
+}	

@@ -112,10 +112,6 @@
     border-left: 1px solid #333333;
     border-right: 1px solid #333333;
     padding: 14px 22px 0px 22px;
- /*   text-decoration: none;
-    display: inline-block;
-   
-    height: 26px; */
 }
 
 
@@ -127,11 +123,6 @@
     font-weight: bold;
     border-left: 1px solid #333333;
     border-right: 1px solid #333333;
-   /*  padding: 14px 22px 0px 22px;
-   text-decoration: none;
-    display: inline-block;
-   
-    height: 26px; */
 }
 
 .header-account a{
