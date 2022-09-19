@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
  * 서비스 테스트하려면 Repository가 필요한데, 그게 있으면 db 연결이 필요하기에 결과적으로 서비스만 테스트하는 게 아니게 됨.
  * 그래서 MockitoExtension으로 가까 객체를 만든다.
  * **/
-@Slf4j
+//@Slf4j
 @ExtendWith(MockitoExtension.class)
 public class UserServiceUnitTest {
 
