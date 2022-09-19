@@ -1,19 +1,14 @@
 package com.kjs.library.user;
 
-import java.io.IOException;
-
-import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.kjs.library.domain.user.UserRepository;
-import com.kjs.library.service.BookService;
 import com.kjs.library.service.UserService;
 import com.kjs.library.util.openApi.IpSearch;
 
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 서비스만 테스트하기에 서비스 관련된 것만 메모리에 올린다.
