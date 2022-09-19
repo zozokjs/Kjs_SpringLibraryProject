@@ -56,7 +56,7 @@ public class IpSearch {
         
         JSONObject jObject = new JSONObject(sb.toString());
         JSONObject jObjectResponse =  jObject.getJSONObject("response");// response
-        //log.info("jObject2 {}",jObject2.toString());
+        log.info("jObject2 {}",jObjectResponse.toString());
         
         JSONObject jObjectResult=  jObjectResponse.getJSONObject("result"); // response/result
         //log.info("jObject30 {}",jObject30.toString());
