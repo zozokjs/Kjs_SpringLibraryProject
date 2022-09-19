@@ -18,7 +18,7 @@
 							<!-- 우측 본문 시작 -->
 							<form action="/auth/signup" method="post" onsubmit = "return validationAll()" class="md-float-material form-material">
                    			
-                   			
+                   			<sec:csrfInput/><!-- CSRF 토큰 적용 -->
 							<div class="tables" style="margin-top: 70px;">
 								<div>
 									

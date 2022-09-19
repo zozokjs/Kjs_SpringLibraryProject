@@ -12,7 +12,7 @@
 							
 							<!-- 우측 본문 시작 -->
 							<form action="/community/boardFreeRegistration"  method = "get"  enctype="multipart/form-data" >
-							
+								<sec:csrfInput/><!-- CSRF 토큰 적용 -->
 								<div class="tables div-tables" >
 									
 									<div>
@@ -33,7 +33,7 @@
 											<td><label class="inputBox-custom-require-label">*</label>내용</td>
 											<td>
 												<div class="booking-form-i">
-														<div class="textarea  div-textarea"  >
+														<div class="textarea  div-textarea-registration"  >
 															<textarea  id="content"  name="content" class="form-control mb-3"  cols="30" rows="5" placeholder="내용" required=""></textarea>
 														</div>
 												</div>

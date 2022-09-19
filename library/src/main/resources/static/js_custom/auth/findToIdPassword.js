@@ -1,8 +1,23 @@
 /**
 */
 
+$.ajaxPrefilter(function (options) {
+	alert("as")
+	console.log("PRE FILTER 작동됨");
+	var headerName = '${_csrf.headerName}';
+	var token = '${_csrf.token}';
+	if (options.method === 'POST') {
+      options.headers = options.headers || {};
+      options.headers[headerName] = token;}
+});
+
 //아이디 중복 여부
+
+
 var idDuplicateStatus = false;
+
+var name = $("#userName").val();
+
 
 //이메일 주소 받아서 아이디 찾기
 function findToId() {
@@ -15,10 +30,13 @@ function findToId() {
 	else if (idEmail.length > 0) {
 		
 		$.ajax({
-			type: "post",
+			type: "POST",
 			url: "/api/auth/findId/" + idEmail,
-			dataType: "json"
-
+			dataType: "json",
+			beforeSend : function(xhr) 
+            {   /*데이터를 전송하기 전에 헤더에 csrf값 설정*/
+				xhr.setRequestHeader(csrfHeaderValue, csrfTokenValue);
+            }
 		}).done(res => {
 			console.log("응답 성공 " + res.data);
 			console.log("응답 성공 " + res.code);
@@ -66,7 +84,11 @@ function findToPassword(){
 		$.ajax({
 			type: "post",
 			url: "/api/auth/resetPassword/" + passwordUsername+"/"+passwordEmail,
-			dataType: "json"
+			dataType: "json",
+			beforeSend : function(xhr) 
+            {   /*데이터를 전송하기 전에 헤더에 csrf값 설정*/
+				xhr.setRequestHeader(csrfHeaderValue, csrfTokenValue);
+            }
 
 		}).done(res => {
 			console.log("응답 성공 " + res.data);

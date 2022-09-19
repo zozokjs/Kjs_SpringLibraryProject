@@ -113,19 +113,21 @@
 							<div class="mp-slider-lbl-a">A great imagination begins with a small book</div><!-- 영문 번역 -->
 						</div>
       				</div>
+      				
       				<div class="swiper-slide"> 
 						<div class="slide-section slide-b" style="background:url(/img_custom/bg/books-2.jpg) center top no-repeat;">
 							<div class="mp-slider-lbl  mp-slider-lbl-custom">세상의 모든 책이 이곳에 있습니다</div>
 							<div class="mp-slider-lbl-a">All the books in the world are here</div>
 						</div>
       				</div>
-<!--       				<div class="swiper-slide"> 
+
+      				<div class="swiper-slide"> 
 						<div class="slide-section slide-b" style="background:url(/img_custom/bg/books-3.jpg) center top no-repeat;">
-							<div class="mp-slider-lbl-custom">책 속에는 지혜와 시간과 행복이 있습니다</div>
-							<div class="mp-slider-lbl-a">There is wisdom, time and happiness in books</div>
+							<div class="mp-slider-lbl  mp-slider-lbl-custom"">책은 가장 넒고 가까운 우주입니다</div>
+							<div class="mp-slider-lbl-a">Books are the widest and closest universe</div>
 						</div>
       				</div> 
--->          
+       				<!-- 책 속에 길이 있습니다  / 책은 가장 영리한 벗입니다 -->
   				</div><!-- 이미지  목록 끝-->		
 					
 			</div>

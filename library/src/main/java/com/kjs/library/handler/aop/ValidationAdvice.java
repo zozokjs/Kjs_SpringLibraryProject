@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,13 +15,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.security.SecurityConfig;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
+import org.springframework.security.web.server.csrf.CsrfToken;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -60,6 +70,28 @@ public class ValidationAdvice {
     private void allApiController() {
 	}
 
+	/***
+	@Before("execution(* com.kjs.library.web.*Controller.*(..))")
+	public void csrfChecker(JoinPoint joinpoint) {
+		
+		log.info("Before를 읽었습니다.");
+		//Request
+		HttpServletRequest request = ((ServletRequestAttributes) (RequestContextHolder.currentRequestAttributes())).getRequest();
+		
+		//HttpSessionCsrfTokenRepository()는 HTTPSession에 저장된 토큰이라고 적혀 있음.
+		CsrfToken serverToken = (CsrfToken) new HttpSessionCsrfTokenRepository().loadToken(request);
+		
+		log.info("serverToken? {}" ,serverToken); //서버가 갖고 있는 토큰 아님
+		
+		String token = request.getHeader("X-XSRF-TOKEN");
+		log.info("token {}",token);
+		
+	    log.info("cookieValue ---> {} ", findCookieValue(request, "XSRF-TOKEN"));;
+	    
+	    //서버 세션에 담긴 값과 브라우저 세션에 담긴 값을 비교해야 할 것 같음.
+	    //CsrfFilter의 doFilterInternal() 참조
+	}*/
+		
 	/**
 	 * 메소드 수행 이후에 무조건 수행됨 (메소드 정상 종료, 예외 발생 경우로 인한 종료 포함)
 	 * */
@@ -177,7 +209,8 @@ public class ValidationAdvice {
 	}
 	
 	// Api Controller 검사... return CustomValidationApiException
-	@Around("execution(* com.cos.photogramstart.web.api.*Controller.*(..))")
+	/**
+	@Around("execution(* com.kjs.library.web.api.*Controller.*(..))")
 	public Object apiAdvise(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 		// proceedingJoinPoint는 위에서 명시한 범위 내의 매개변수 등에 접근할 수 있음
 		// return proceedingJoinPoint.proceed();는 모두 접근한 다음에 그 함수로 돌아가라는 명령이다.
@@ -186,7 +219,7 @@ public class ValidationAdvice {
 		 * 순간 profile() 함수가 실행되기 시작함.
 		 * 
 		 * 
-		 */
+		 *
 		System.out.println("web api 컨트롤러========================================");
 
 		Object[] args = proceedingJoinPoint.getArgs();
@@ -196,7 +229,7 @@ public class ValidationAdvice {
 			// org.springframework.validation.BeanPropertyBindingResult:
 			/**
 			 * 위와 같은 타입이면 아래처럼 낚아 챌 수 있다.
-			 */
+			 *
 			if (arg instanceof BindingResult) {
 				System.out.println("유효성을 검사하는 함수입니다.");
 
@@ -211,7 +244,7 @@ public class ValidationAdvice {
 							 System.out.println("======================");				 
 							 System.out.println(error.getDefaultMessage());  
 							 System.out.println("======================");		
-						*/
+						*
 					}
 					throw new CustomValidationApiException("유효성 검사 실패함", errorMap);
 				}
@@ -222,7 +255,7 @@ public class ValidationAdvice {
 
 		return proceedingJoinPoint.proceed();
 
-	}
+	}*/
 	
 	
 	/**

@@ -29,7 +29,11 @@ function bookSearch() {
 		
 		type : "post",
 		url : `/api/resource/${bookSearchKeyword}/bookSearch`,
-		dataType : "json"
+		dataType : "json",
+		beforeSend : function(xhr) 
+        {   /*데이터를 전송하기 전에 헤더에 csrf값 설정*/
+			xhr.setRequestHeader(csrfHeaderValue, csrfTokenValue);
+        }
 		
 	}).done(res =>{
 		
@@ -274,7 +278,11 @@ function bookSearchPagingProcess(pageIndex) {
 		//url : `?page=${pageIndex}`,
 		//url : `/api/resource/${searchKey}/bookSearch?page=1`,
 		url : `/api/resource/${searchKey}/bookSearch?page=${pageIndex}`,
-		dataType : "json"
+		dataType : "json",
+		beforeSend : function(xhr) 
+        {   /*데이터를 전송하기 전에 헤더에 csrf값 설정*/
+			xhr.setRequestHeader(csrfHeaderValue, csrfTokenValue);
+        }
 		
 	}).done(res =>{
 		console.log("성공", res);

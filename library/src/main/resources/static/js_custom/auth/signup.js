@@ -46,7 +46,11 @@ function findByUsernameRealtime() {
 		$.ajax({
 			type: "post",
 			url: "/api/auth/match/" + username,
-			dataType: "json"
+			dataType: "json",
+			beforeSend : function(xhr) 
+            {   /*데이터를 전송하기 전에 헤더에 csrf값 설정*/
+				xhr.setRequestHeader(csrfHeaderValue, csrfTokenValue);
+            }
 
 		}).done(res => {
 			
@@ -143,7 +147,11 @@ function emailAuthenticationSending(){
 		$.ajax({
 			type: "post",
 			url: "/api/auth/emailAuthenticationSending/" + emailAddress,
-			dataType: "json"
+			dataType: "json",
+			beforeSend : function(xhr) 
+            {   /*데이터를 전송하기 전에 헤더에 csrf값 설정*/
+				xhr.setRequestHeader(csrfHeaderValue, csrfTokenValue);
+            }
 
 		}).done(res => {
 			

@@ -27,6 +27,7 @@
 							
 							<!-- 우측 본문 시작 -->
 							<form action="/saseo/bookRegistration"  method = "post" enctype="multipart/form-data" class="contact-form bg-white rounded p-5"  id="comment-form">
+								<sec:csrfInput/><!-- CSRF 토큰 적용 -->
 								<div class="tables" style="margin-top: 70px;">
 									<div>
 										<label class="inputBox-custom-important-label">*은 필수입력항목입니다</label>

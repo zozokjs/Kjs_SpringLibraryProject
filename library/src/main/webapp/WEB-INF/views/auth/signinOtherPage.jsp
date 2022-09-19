@@ -27,6 +27,7 @@
 										<div class="cat-list-content-lpadding  div-third"  ><!--  내용 시작 -->
 											<div class="tables" >
 												<form action ="/auth/signin" method="POST" >
+													<sec:csrfInput/><!-- CSRF 토큰 적용 -->
 													<table class="table-a light">
 														<tbody>
 															<!--  0  -->

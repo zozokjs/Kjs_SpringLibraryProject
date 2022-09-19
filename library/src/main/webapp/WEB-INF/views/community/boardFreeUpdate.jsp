@@ -12,17 +12,15 @@
 							</div>
 							
 							<form action="/community/${community.id}/boardFreeUpdate"  method = "post" enctype="multipart/form-data" >
-							
+								<sec:csrfInput/><!-- CSRF 토큰 적용 -->
+								<input type="hidden" name="title" value="${community.title}"/>
+								
 								<!-- 우측 본문 시작 -->
 								<div class="tables  div-tables">
 									<table class="table-a">
 										<tr>
 											<td>제목</td>
 											<td colspan="3">${community.title}</td>
-<%-- 												<div class="input">
-													<input type="text"  id="title"  name="title" value = ""  required="" >
-												</div>
- --%>											
 										</tr>
 										
 										<tr>
@@ -38,7 +36,7 @@
 												<div class="booking-form-i  inputBox-custom"  >
 													<div class="input">
 														<div>
-															<textarea  id="content"  name="content" cols="30" rows="5"  class="div-textarea" >${community.content}</textarea>
+															<textarea  id="content"  name="content" cols="30" rows="5"  class="div-textarea-update" >${community.content}</textarea>
 														</div>
 													</div>
 												</div>

@@ -12,7 +12,7 @@
 							</div>
 							
 							<form action="/community/${boardNotice.id}/boardNoticeUpdate"   method = "post" enctype="multipart/form-data" >
-							
+								<sec:csrfInput/><!-- CSRF 토큰 적용 -->
 								<!-- 우측 본문 시작 -->
 								<div class="tables   div-tables" >
 									<table class="table-a">
@@ -38,7 +38,7 @@
 												<div class="booking-form-i  inputBox-custom"  >
 													<div class="input">
 														<div>
-															<textarea  id="content"  name="content" cols="30" rows="5"  class="div-textarea" > ${boardNotice.content}</textarea>
+															<textarea  id="content"  name="content" cols="30" rows="5"  class="div-textarea-update" > ${boardNotice.content}</textarea>
 														</div>
 													</div>
 												</div>

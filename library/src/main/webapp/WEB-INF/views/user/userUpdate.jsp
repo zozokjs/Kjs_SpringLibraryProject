@@ -13,7 +13,7 @@
 							</div>
 							
 							<form id="userUpdate"  onsubmit="userUpdate(${principal.user.id},event)" class="contact-form bg-white rounded p-5"  >
-								
+								<sec:csrfInput/><!-- CSRF 토큰 적용 -->
 								<div class="tables" style="margin-top: 70px;">
 								
 									<div>

@@ -15,7 +15,11 @@ function bookExtension(lendId) {
 		type : "put",
 		url : `/user/api/${lendId}/bookExtension`,
 		dataType : "json",
-		contentType : "application/x-www-form-urlencoded; charset=utf-8"
+		contentType : "application/x-www-form-urlencoded; charset=utf-8",
+		beforeSend : function(xhr) 
+        {   /*데이터를 전송하기 전에 헤더에 csrf값 설정*/
+			xhr.setRequestHeader(csrfHeaderValue, csrfTokenValue);
+        }
 		
 	}).done(res =>{
 		
@@ -62,7 +66,11 @@ function bookReturn(lendId) {
 		type : "put",
 		url : `/user/api/${lendId}/bookReturn`,
 		dataType : "json",
-		contentType : "application/x-www-form-urlencoded; charset=utf-8"
+		contentType : "application/x-www-form-urlencoded; charset=utf-8",
+		beforeSend : function(xhr) 
+        {   /*데이터를 전송하기 전에 헤더에 csrf값 설정*/
+			xhr.setRequestHeader(csrfHeaderValue, csrfTokenValue);
+        }
 		
 	}).done(res =>{
 		

@@ -14,7 +14,11 @@ function boardNoticeDelete(noticeBoardId) {
 		
 		type : "post",
 		url : `/api/community/${noticeBoardId}/boardNoticeDelete`,
-		dataType : "json"
+		dataType : "json",
+		beforeSend : function(xhr) 
+        {   /*데이터를 전송하기 전에 헤더에 csrf값 설정*/
+			xhr.setRequestHeader(csrfHeaderValue, csrfTokenValue);
+        }
 		
 	}).done(res =>{
 		

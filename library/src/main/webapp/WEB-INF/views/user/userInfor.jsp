@@ -16,7 +16,7 @@
 							<!-- 우측 본문 시작 -->
 							<form id="comment-form" action="/user/userUpdateBefore"  method = "Post" enctype="multipart/form-data" class="contact-form bg-white rounded p-5"  >
 							<!-- 수정 화면으로 진입시, POST 요청을 위해 form 방식 사용 -->
-							
+								<sec:csrfInput/><!-- CSRF 토큰 적용 -->
 								<div class="tables" style="margin-top: 70px;">
 									<table class="table-a">
 										<tr>

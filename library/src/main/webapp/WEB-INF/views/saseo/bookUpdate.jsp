@@ -36,7 +36,7 @@ width:100%;
 							
 							
 							<form id = "bookUpdate"  onsubmit="bookUpdate(${book.id},event)" enctype="multipart/form-data" class="contact-form bg-white rounded p-5" >
-								
+								<sec:csrfInput/><!-- CSRF 토큰 적용 -->
 								<input  type="hidden" name="titleImageUrl"  value="${book.titleImageUrl}"/>
 								
 								<div class="tables" style="margin-top: 70px;">

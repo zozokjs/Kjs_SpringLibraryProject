@@ -41,6 +41,7 @@
 							<!-- 우측 본문 시작 -->
 							<form action="/saseo/${book.id}/bookRegistration_kdc"  method = "post" enctype="multipart/form-data" class="contact-form bg-white rounded p-5"  id="comment-form2">
 								<!-- hidden Tag -->
+								<sec:csrfInput/><!-- CSRF 토큰 적용 -->
 								<input type="hidden"  id="book_id"  name = "bookId" value="${book.id}" />
 								<input type="hidden"  id="book_totalAmount"  value="${book.totalAmount}" />
 								<input type="hidden"  id="book_kdcCallSignFamily" value="${book.kdcCallSignFamily}" />

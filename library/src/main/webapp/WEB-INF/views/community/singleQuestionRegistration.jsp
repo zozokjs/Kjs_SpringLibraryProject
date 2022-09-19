@@ -20,6 +20,7 @@
 								</div>
 							</div>	
 							<form action="/community/singleQuestionRegistration"  method = "get"  enctype="multipart/form-data" >
+								<sec:csrfInput/><!-- CSRF 토큰 적용 -->
 								<div class="tables" style="">
 									<table class="table-a">
 										<tr>	

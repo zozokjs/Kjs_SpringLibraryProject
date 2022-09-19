@@ -12,7 +12,6 @@
 	principal.user.username 식으로 찾으면 된다.
 	 -->
 </sec:authorize>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +27,7 @@
 	  gtag('config', 'G-WT7DNH7MEZ');
 	</script>
 	<!-- Google Analytics를 위한 tag (gtag.js) 끝 -->
-	
+		
 	<!-- 날짜 라이브러리 -->
 	<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 	
@@ -38,34 +37,32 @@
 	<meta charset="utf-8" /><link rel="icon" href="/img_custom/favicon-16x16.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
 	
-	<!-- Style -->
+	<!-- 	<meta name="csrf-token" content="{{#_csrf}}token{{/_csrf}}"> -->
+	<meta name="_csrf" content="${_csrf.token}"/>
+	<meta name="_csrf_header" content="${_csrf.headerName}"/>
+	
+	
+	<!-- Style Custom Start-->
+	
 	<link rel="stylesheet" href="/css/jquery-ui.css">
 	<link rel="stylesheet" href="/css/idangerous.swiper.css">
 	<link rel="stylesheet" href="/css/owl.carousel.css">
 	<link rel="stylesheet" href="/css/style.css" />
 	<link rel="stylesheet" href="/css_custom/style_custom.css" />
+	
 	<link rel="stylesheet" href="/css_custom/auth/findToIdPassword.css" />
 	<link rel="stylesheet" href="/css_custom/auth/resetPassword.css" />	
 	<link rel="stylesheet" href="/css_custom/auth/signinOtherPage.css" />	
 	<link rel="stylesheet" href="/css_custom/auth/signup.css" />	
 	<link rel="stylesheet" href="/css_custom/auth/signupSuccess.css" />
 	
+	<link rel="stylesheet" href="/css_custom/layout/header.css" />
+	
 	<link rel="stylesheet" href="/css_custom/community/boardFree.css" />
 	<link rel="stylesheet" href="/css_custom/community/boardFreeInfor.css" />
-	<link rel="stylesheet" href="/css_custom/community/boardFreeRegistration.css" />
-	<link rel="stylesheet" href="/css_custom/community/boardFreeUpdate.css" />
 	<link rel="stylesheet" href="/css_custom/community/boardNotice.css" />
-	<link rel="stylesheet" href="/css_custom/community/boardNoticeInfor.css" />
-	<link rel="stylesheet" href="/css_custom/community/boardNoticeRegistration.css" />
-	<link rel="stylesheet" href="/css_custom/community/boardNoticeUpdate.css" />
-	<link rel="stylesheet" href="/css_custom/community/manyQuestion.css" />
-	<link rel="stylesheet" href="/css_custom/community/singleQuestion.css" />
-	<link rel="stylesheet" href="/css_custom/community/singleQuestionInfor.css" />
-	<link rel="stylesheet" href="/css_custom/community/singleQuestionRegistration.css" />
 	
-		
-	
-	
+	<!-- Style Custom End-->
 	
 	
 	<!-- 구글 한글 폰트 추가 -->
@@ -85,56 +82,7 @@
 </head>
 
 <style>
-.subMenuText ul li ul li a {
-	font-size: 16px;
-}
 
-.autorize-tab-content input[type='password'] {
-	border: 1px solid #ebebeb;
-	background: #fff;
-	width: 381px;
-	border-radius: 3px;
-	font-size: 11px;
-	padding: 10px 8px 10px 8px;
-	text-transform: uppercase;
-	font-family: 'Raleway';
-	font-weight: 600;
-	color: #8a8a8a;
-	margin-bottom: 15px;
-}
-
-.header_information_left {
-   	color: #fff;
-    font-size: 13px;
-    text-transform: uppercase;
-    font-family: 'Montserrat';
-    font-weight: bold;
-    border-left: 1px solid #333333;
-    border-right: 1px solid #333333;
-    padding: 14px 22px 0px 22px;
-}
-
-
-.header_information_right{
-   	color: #fff;
-    font-size: 13px;
-    text-transform: uppercase;
-    font-family: 'Montserrat';
-    font-weight: bold;
-    border-left: 1px solid #333333;
-    border-right: 1px solid #333333;
-}
-
-.header-account a{
-font-size:13px !important;
-}
-
-/*최대 width가 800이하일 때 아래로 변경함*/
-@media (max-width:800px) {
-	.header_information_left{
-		display:none;
-	}
-}
 
 </style>
 
@@ -154,6 +102,7 @@ font-size:13px !important;
 		
 		<section class="autorize-tab-content">
 			<form action ="/auth/signin" method="POST" >
+				<input type="hidden"  name="${_csrf.parameterName}"  value="${_csrf.token}"  /><!-- CSRF 토큰 적용 -->
 				<div class="autorize-padding">
 					<h6 class="autorize-lbl">로그인을 하시면 더 많은 서비스를 이용하실 수 있어요!</h6>
 					<input type="text"  name="username"     class="form-control"  placeholder="아이디" required="">
@@ -197,7 +146,13 @@ font-size:13px !important;
 					</c:when>
 					<c:otherwise>
 						<a href="/"  class=""> <span>${principal.user.username}님</span></a>	
-						<a href="/logout"  class=""><span>로그아웃</span></a>	
+						
+						<!-- <a href="/logout"  class=""><span>로그아웃</span></a>	 -->
+						<a href="#" onclick="javascript:btnClick(logoutAskOne);"><span>로그아웃</span></a>
+						<form name="logoutAskOne" action="/logout" method="post">
+							<sec:csrfInput/><!-- CSRF 토큰 적용 -->
+						</form>
+						
 						<a href="/user/myLibrary"  class=""> <span>내서재</span></a>		
 					</c:otherwise>
 				</c:choose>
@@ -210,69 +165,7 @@ font-size:13px !important;
 
 	<!-- 상단 메뉴 시작--------------------------------------------------->
 	<div class="header-b">
-	
-		<!-- // mobile menu // -->
-		<div class="mobile-menu">
-				<nav>
-					<ul>
-						<li><a class="has-child"  href="/guide/wayToHome">도서관이용안내</a>
-							<ul>
-								<li><a href="/guide/wayToHome">찾아오시는 길</a></li>
-								<li><a href="/guide/informationUse">도서관 이용안내</a></li>
-								<li><a href="/guide/infraUse">시설이용안내</a></li>
-								<li><a href="/guide/organizationChart">조직도 및 담당 업무</a></li>
-							</ul>
-<!-- 						</li>		
-						<li><a class="has-child"  href="/reserPassword">공사중</a>
-						</li>
- -->						<li><a class="has-child"  href="/resource/bookSearch">자료검색</a>
-							<ul>	
-								<li><a href="/resource/bookSearch">통합검색</a></li>
-								<li><a href="/resource/newBook">신착도서</a></li>
-<!-- 								<li><a href="/공사중">인기도서</a></li>
- -->							</ul>
-						</li>
 
-						<!-- 사서 권한만 볼 수 있음 -->
-						<c:choose>
-							<c:when test ="${principal.user.roleType eq 'ADMIN' || principal.user.roleType eq 'SASEO' }">	
-
-							<li><a class="has-child"  href="/saseo/bookManage">사서공간</a>
-								<ul>
-									<li><a href="/saseo/bookManage">도서관리(등록/수정/삭제/권수수정/십진분류)</a></li>
-									<li><a href="/saseo/bookRequestManage">희망도서관리(신청처리)</a></li>
-									<li><a href="/saseo/signinRequest">회원관리(가입허가/정지/경고)</a></li>
-<!-- 									<li><a href="/saseo/infraManage">시설이용관리(신청처리)</a></li> -->
-								</ul>
-							</li>
-
-							</c:when>
-						</c:choose>
-
-						<li><a class="has-child"  href="/community/boardFree">열린공간</a>
-							<ul>
-								<li><a href="/community/boardFree">자유게시판</a></li>
-								<li><a href="/community/boardNotice">공지사항</a></li>
-								<li><a href="/community/manyQuestion">자주묻는질문</a></li>
-								<li><a href="/community/singleQuestion">1대1질문하기</a></li>
-							</ul>
-						</li>
-						<li><a class="has-child"  href="/user/myLibrary"">내서재</a>
-							<ul>
-								<li><a href="/user/userInfor/${principal.user.id}">회원정보</a></li>
-								<li><a href="/user/myLibrary">대출관리(연장/반납)</a></li>
-								<li><a href="/user/myLendHistory">반납완료내역</a></li>
-								<li><a href="/user/myBoardHistory">작성글목록</a></li>
-								<!-- <li><a href="/공사중">희망도서신청관리</a></li> -->
-								
-							</ul>
-						</li>
-						
-					</ul>
-				</nav>	
-			</div>
-		<!-- \\ mobile menu \\ -->
-			
 		<div class="wrapper-padding">
 			<div class="header-logo">
 				<a href="/">
@@ -282,7 +175,6 @@ font-size:13px !important;
 			</div>
 			
 			<div class="header-right">
-
 				<a href="#" class="menu-btn"></a>
 				<nav class="header-nav subMenuText">
 					<ul>

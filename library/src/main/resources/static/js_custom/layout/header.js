@@ -11,3 +11,13 @@ $("#AD").html("<span'>"+currentAD+"</span>");
 let currentID = current.add(1282016, "day").format("YYYY년 MM월 DD일");
 
 $("#ID").html("<span'>"+currentID+"</span>");
+
+
+// 버튼 클릭 지정된 Form 실행
+function btnClick(formName) {
+	formName.submit();
+};
+
+
+let csrfTokenValue = $("meta[name='_csrf']").attr("content");
+let csrfHeaderValue = $("meta[name='_csrf_header']").attr("content");

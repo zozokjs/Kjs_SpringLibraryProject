@@ -1,0 +1,50 @@
+.subMenuText ul li ul li a {
+	font-size: 16px;
+}
+
+.autorize-tab-content input[type='password'] {
+	border: 1px solid #ebebeb;
+	background: #fff;
+	width: 381px;
+	border-radius: 3px;
+	font-size: 11px;
+	padding: 10px 8px 10px 8px;
+	text-transform: uppercase;
+	font-family: 'Raleway';
+	font-weight: 600;
+	color: #8a8a8a;
+	margin-bottom: 15px;
+}
+
+.header_information_left {
+   	color: #fff;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    border-left: 1px solid #333333;
+    border-right: 1px solid #333333;
+    padding: 14px 22px 0px 22px;
+}
+
+
+.header_information_right{
+   	color: #fff;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    border-left: 1px solid #333333;
+    border-right: 1px solid #333333;
+}
+
+.header-account a{
+font-size:13px !important;
+}
+
+/*최대 width가 800이하일 때 아래로 변경함*/
+@media (max-width:800px) {
+	.header_information_left{
+		display:none;
+	}
+}

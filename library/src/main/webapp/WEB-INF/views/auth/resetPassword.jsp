@@ -12,9 +12,9 @@
 					<div class="shortcodes-right  shortcodes-right-custom">
 					
 						<form action="/auth/resetPassword"  method="post" onsubmit = "return validationAll()" class="md-float-material form-material">
-						
+							<sec:csrfInput/><!-- CSRF 토큰 적용 -->
 							<input type="hidden"  id="username"  name="username"  value="${user.username}"   >
-					
+						
 							<div class="tables"  >
 								<table class="table-a">
 									<tr>

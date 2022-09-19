@@ -34,7 +34,11 @@ function bookUpdate(bookId, event) {
 		data : formData,
 		dataType : "json",
 		processData : false,
-		contentType : false
+		contentType : false,
+		beforeSend : function(xhr) 
+        {   /*데이터를 전송하기 전에 헤더에 csrf값 설정*/
+			xhr.setRequestHeader(csrfHeaderValue, csrfTokenValue);
+        }
 		//contentType : "application/x-www-form-urlencoded; charset=utf-8",
 		
 	}).done(res =>{

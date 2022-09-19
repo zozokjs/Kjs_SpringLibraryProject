@@ -7,6 +7,10 @@ function kdcEditAbleChecker(bookId) {
 		type : "get",
 		url : `/saseo/api/${bookId}/kdcEditAbleCheck`,
 		dataType : "json",
+		beforeSend : function(xhr) 
+        {   /*데이터를 전송하기 전에 헤더에 csrf값 설정*/
+			xhr.setRequestHeader(csrfHeaderValue, csrfTokenValue);
+        }
 	}).done(res =>{
 		
 		console.log("성공", res);
@@ -46,6 +50,10 @@ function bookDelete(bookId){
 		type : "post",
 		url : `/saseo/api/${bookId}/bookDelete`,
 		dataType : "json",
+		beforeSend : function(xhr) 
+        {   /*데이터를 전송하기 전에 헤더에 csrf값 설정*/
+			xhr.setRequestHeader(csrfHeaderValue, csrfTokenValue);
+        }
 	}).done(res =>{
 		
 		console.log("성공", res);

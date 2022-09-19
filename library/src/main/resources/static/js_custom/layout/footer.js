@@ -13,7 +13,11 @@ $(document).ready(function() {
 		
 		type : "put",
 		url : `/api/main/footer/getVisitorCount`,
-		contentType : "application/x-www-form-urlencoded; charset=utf-8"
+		contentType : "application/x-www-form-urlencoded; charset=utf-8",
+		beforeSend : function(xhr) 
+        {   /*데이터를 전송하기 전에 헤더에 csrf값 설정*/
+			xhr.setRequestHeader(csrfHeaderValue, csrfTokenValue);
+        }
 		
 	}).done(res =>{
 		/***

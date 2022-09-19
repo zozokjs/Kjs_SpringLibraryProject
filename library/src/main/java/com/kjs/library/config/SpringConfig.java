@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 
 @EnableWebSecurity
@@ -24,10 +25,13 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		
-		http.csrf().disable(); //일단 CSRF 토큰 비활성화.
+		//http.csrf().disable(); 
+		http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 		/**
 		 * CSRF 토큰은 사용자가 받는 데이터가 내 서버에서 보낸 데이터가 맞는지 검증하는 방법 중 하나
-	
+		withHttpOnlyFalse() 
+		-> setCookieHttpOnly(boolean)가 false로 설정된 인스턴스를 편리하게 생성하기 위한 팩토리 메소드.
+			 반환값: setCookieHttpOnly(boolean)가 false로 설정된 CookieCsrfTokenRepository의 인스턴스
 		 * */
 		http.authorizeRequests()
 			.antMatchers("/user/**","/community/boardFreeRegistration").authenticated() //이 주소는 인증 필요

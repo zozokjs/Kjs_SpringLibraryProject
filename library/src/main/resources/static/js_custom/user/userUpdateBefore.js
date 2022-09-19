@@ -9,7 +9,11 @@ function passwordMatchChecker() {
 		
 		type : "post",
 		url : `/user/api/${password}/updateBeforeChecker`,
-		dataType : "json"
+		dataType : "json",
+		beforeSend : function(xhr) 
+        {   /*데이터를 전송하기 전에 헤더에 csrf값 설정*/
+			xhr.setRequestHeader(csrfHeaderValue, csrfTokenValue);
+        }
 		//data: JSON.stringify(pwData),
 		//contentType : "application/x-www-form-urlencoded; charset=utf-8"
 		//contentType : "application/json; charset=utf-8"

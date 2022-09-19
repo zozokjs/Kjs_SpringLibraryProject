@@ -32,6 +32,7 @@
 							<!-- 우측 본문 시작 -->
 							<form  id = "bookUpdate_kdc" onsubmit="bookUpdate_kdc(${book.id},event)" >
 								<!-- hidden Tag -->
+								<sec:csrfInput/><!-- CSRF 토큰 적용 -->
 								<input type="hidden"  id="book_id"  name = "bookId" value="${book.id}" />
 								<input type="hidden"  id="book_totalAmount"   name = "book_totalAmount"  value="${book.totalAmount}"/>
 								<input type="hidden"  id="book_kdcCallSignFamily" value="${book.kdcCallSignFamily}" />
