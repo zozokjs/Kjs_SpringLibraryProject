@@ -42,6 +42,7 @@ import com.kjs.library.handler.aop.ex.CustomValidationApiException;
 import com.kjs.library.handler.aop.ex.CustomValidationException;
 import com.kjs.library.service.common.CommonService;
 import com.kjs.library.service.common.DateCommonService;
+import com.kjs.library.util.openApi.IpSearch;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -56,10 +57,12 @@ public class ValidationAdvice {
 	
  	
 	private CommonService commonService;
-	
-	public ValidationAdvice(CommonService cs) {
+	private IpSearch ipSearch;
+	public ValidationAdvice(CommonService cs, IpSearch ipSearch) {
 		this.commonService  = cs;
+		this.ipSearch  = ipSearch;
 	}
+	
 	
 	@Pointcut("execution(* com.kjs.library.web.*Controller.*(..))")
     private void allController() {
@@ -109,38 +112,44 @@ public class ValidationAdvice {
 		//아이피 얻어옴
 		String ip = commonService.getClientIP(request);
 		
+		boolean isDomesticIP = ipSearch.국내아이피다(ip);
 		
-		//2. 쿠키 없으면 쿠키 세팅, 방문자 증가
-		if(oldCookieValue == null || oldCookieValue.equals("") ) {
-			//log.info("접속 기록 및 쿠키 없음. 쿠키 세팅. 방문자 증가");
-			setNewCookie(response);
-			commonService.방문자증가();
-			
-			//방문자 집계 지점 확인을 위해 ip저장
-			commonService.접속기록저장(ip);
-		}else {
-			//3. 쿠키 있으면 쿠키에서 생성 날짜 가져옴
-			int checkPosition= oldCookieValue.indexOf("///");
-			String createDate = oldCookieValue.substring(0, checkPosition);
-			//log.info("쿠키 생성 시각 {}", createDate);
-			
-			//4. 생성 날짜가 오늘이 아닌 경우 기존 쿠키 만료하고 새 쿠키 발급
-			if(DateCommonService.오늘날짜다(createDate) == false){
-				//log.info("오늘 날짜 아니라서 방문수 증가");
-
-				deleteOldCookie(response);
-				
+		//국내 아이피 및 사설 아이피가 아닌 것에 한해 체크함
+		if(isDomesticIP = true) {
+			//2. 쿠키 없으면 쿠키 세팅, 방문자 증가
+			if(oldCookieValue == null || oldCookieValue.equals("") ) {
+				//log.info("접속 기록 및 쿠키 없음. 쿠키 세팅. 방문자 증가");
 				setNewCookie(response);
 				commonService.방문자증가();
 				
 				//방문자 집계 지점 확인을 위해 ip저장
 				commonService.접속기록저장(ip);
 			}else {
-				//5. 생성 날짜가 오늘이면 아무것도 안 함
-				//log.info("오늘 날짜라서 아무것도 안 함");
+				//3. 쿠키 있으면 쿠키에서 생성 날짜 가져옴
+				int checkPosition= oldCookieValue.indexOf("///");
+				String createDate = oldCookieValue.substring(0, checkPosition);
+				//log.info("쿠키 생성 시각 {}", createDate);
 				
+				//4. 생성 날짜가 오늘이 아닌 경우 기존 쿠키 만료하고 새 쿠키 발급
+				if(DateCommonService.오늘날짜다(createDate) == false){
+					//log.info("오늘 날짜 아니라서 방문수 증가");
+
+					deleteOldCookie(response);
+					
+					setNewCookie(response);
+					commonService.방문자증가();
+					
+					//방문자 집계 지점 확인을 위해 ip저장
+					commonService.접속기록저장(ip);
+				}else {
+					//5. 생성 날짜가 오늘이면 아무것도 안 함
+					//log.info("오늘 날짜라서 아무것도 안 함");
+					
+				}
 			}
-		}//end of First if
+		}//end of --> if(isDomesticIP = true)
+		
+		
 	}
 	
 	

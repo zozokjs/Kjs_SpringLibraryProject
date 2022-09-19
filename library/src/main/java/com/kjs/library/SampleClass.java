@@ -22,7 +22,19 @@ public class SampleClass {
 	}
 	 */
 	
-	
+	/**
+	 * 주어진 ip와 값이 DB에 있는지 비교
+	 * @param ip, String
+	 * @param cookieValue : UUID.toString() 형태, String
+	 * @return ip와 cookieValue에 해당 되는 값이 있으면 True, 없으면 False
+	 * @throws  
+	 * 
+	 * */
+	/*
+	public void sampleMethod() {
+		
+	}
+	 */
 	/**
 	 * Ajax로 요청 했을 때 Ajax로 되돌려 주기
 	 * 0이면 처리 실패

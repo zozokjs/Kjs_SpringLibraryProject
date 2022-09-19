@@ -1,5 +1,8 @@
 package com.kjs.library.user;
 
+import java.io.IOException;
+
+import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -8,6 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.kjs.library.domain.user.UserRepository;
 import com.kjs.library.service.BookService;
 import com.kjs.library.service.UserService;
+import com.kjs.library.util.openApi.IpSearch;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,8 +34,12 @@ public class UserServiceUnitTest {
 	@Mock
 	private UserRepository userRepository;
 	
+	@Mock
+	private IpSearch ipSearch;
 	
-	
-	
-	
+	//@Test
+	public void 대출Test() {
+			
+			
+		}
 }
