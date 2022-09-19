@@ -117,7 +117,7 @@ public class ValidationAdvice {
 		//국내 아이피 및 사설 아이피가 아닌 것에 한해 체크함
 		if(isDomesticIP == true) {
 			//2. 쿠키 없으면 쿠키 세팅, 방문자 증가
-			if(oldCookieValue == null || oldCookieValue.equals("") ) {
+			if(oldCookieValue == null || oldCookieValue.equals("") || oldCookieValue.length() == 0 || oldCookieValue.isEmpty()) {
 				//log.info("접속 기록 및 쿠키 없음. 쿠키 세팅. 방문자 증가");
 				setNewCookie(response);
 				commonService.방문자증가();
