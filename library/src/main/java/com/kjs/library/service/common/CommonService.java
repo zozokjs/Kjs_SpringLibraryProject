@@ -321,10 +321,10 @@ public class CommonService {
 	}
 	
 	/**
-	 * 주어진 ip와 값이 DB에 있는지 비교
+	 * 주어진 ip와 값에 해당되는 객체를 DB에서 가져옴
 	 * @param ip, String
 	 * @param cookieValue : UUID.toString() 형태, String
-	 * @return ip와 cookieValue에 해당 되는 값이 있으면 True, 없으면 False
+	 * @return 주어진 ip와 값에 해당되는 객체를 DB에서 가져옴
 	 * @throws  
 	 * 
 	 * */
@@ -376,5 +376,29 @@ public class CommonService {
 	}
 	
 	
+	/**
+	 * 매일 0시 1분에 접속기록을 갱신함
+	 * @param 
+	 * @return 갱신된 VisitorCount Entity
+	 * @throws  
+	 * */
+	@Transactional
+	public VisitorCount 접속기록갱신() {
+		VisitorCount countEntity = 접속자수();
+		
+		//기존 방문수를 가져옴
+		// 9월 4일 자정 기준,  9월 3일의 방문수를 가져옴
+		int countToday= countEntity.getCountToday();
+
+		//오늘 방문수를 어제 방문수에 세팅함
+		//9월 3일 방문수를, 9월 4일의 어제 방문수에 세팅함 
+		countEntity.setCountYesterday(countToday);
+		
+		//오늘 방문수를 0으로 갱신함
+		//9월 4일의 오늘 방문수를 0으로 세팅함
+		countEntity.setCountToday(0);
+		
+		return countEntity;
+	}
 	
 }
