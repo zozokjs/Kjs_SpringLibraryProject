@@ -9,13 +9,10 @@ function userUpdate(userId, event) {
 		alert("비밀번호와 비밀번호 확인 값이 일치하지 않습니다.");
 		return false;
 	}
-
-	
 	
 	let data =$(`#userUpdate`).serialize();
 
-	console.log("1");
-	console.log(data);
+	//console.log(data);
 	
 	$.ajax({
 		

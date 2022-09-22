@@ -27,7 +27,9 @@ import com.kjs.library.web.dto.user.PasswordCheckerDto;
 import com.kjs.library.web.dto.user.UserUpdateDto;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 public class UserApiController {
@@ -42,6 +44,9 @@ public class UserApiController {
 	public CMRespDto<?> userUpdateBeforeChecker(
 		@PathVariable String password,
 		@AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		//log.info("일치 확인 중");
+
 		
 		if(비번일치함(password, principalDetails.getPassword() ) == true) {
 			return new CMRespDto<>(1,"비밀번호가 일치합니다.",null);

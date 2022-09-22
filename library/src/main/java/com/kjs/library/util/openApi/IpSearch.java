@@ -39,7 +39,7 @@ public class IpSearch {
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Content-type", "application/json");
-        System.out.println("Response code: " + conn.getResponseCode());
+        //System.out.println("Response code: " + conn.getResponseCode());
         BufferedReader rd;
         if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
             rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -48,43 +48,43 @@ public class IpSearch {
         }
         StringBuilder sb = new StringBuilder();
         String line;
-        while ((line = rd.readLine()) != null) {
-            sb.append(line);
-        }
-        rd.close();
-        conn.disconnect();
+		while ((line = rd.readLine()) != null) {
+		    sb.append(line);
+		}
+		rd.close();
+		conn.disconnect();
         
-        JSONObject jObject = new JSONObject(sb.toString());
-        JSONObject jObjectResponse =  jObject.getJSONObject("response");// response
-        log.info("jObject2 {}",jObjectResponse.toString());
-        
-        JSONObject jObjectResult=  jObjectResponse.getJSONObject("result"); // response/result
-        //log.info("jObject30 {}",jObject30.toString());
-        
-        int resultCode =  jObjectResult.getInt("result_code");// response/result/result_code
-       // log.info("resultCode {}", resultCode);//결과 코드
-        
-        JSONObject jObjectWhois =  jObjectResponse.getJSONObject("whois");// response/whois
-        
-        String registry =  jObjectWhois.getString("registry"); // response/whois/registry
-        //log.info("registry {}",registry);//registry 코드
-
-        String countryCode =  jObjectWhois.getString("countryCode"); // response/whois/countryCode
-       // log.info("countryCode {}", countryCode);//registry 코드
-        
-        /* conn.getResponseCode() == 200 -> 응답 성공
-         	 result_code == 10000 -> 조회 성공
+		JSONObject jObject = new JSONObject(sb.toString());
+		JSONObject jObjectResponse =  jObject.getJSONObject("response");// response
+		//log.info("jObject2 {}",jObjectResponse.toString());
+		
+		JSONObject jObjectResult=  jObjectResponse.getJSONObject("result"); // response/result
+		//log.info("jObject30 {}",jObject30.toString());
+		
+		int resultCode =  jObjectResult.getInt("result_code");// response/result/result_code
+		   // log.info("resultCode {}", resultCode);//결과 코드
+		
+		JSONObject jObjectWhois =  jObjectResponse.getJSONObject("whois");// response/whois
+		
+		String registry =  jObjectWhois.getString("registry"); // response/whois/registry
+		//log.info("registry {}",registry);//registry 코드
+		
+		String countryCode =  jObjectWhois.getString("countryCode"); // response/whois/countryCode
+		   // log.info("countryCode {}", countryCode);//registry 코드
+		
+		/* conn.getResponseCode() == 200 -> 응답 성공
+		 	 result_code == 10000 -> 조회 성공
 			 registry.equals("KRNIC" ) -> 지역 레지스트리가 한국임(http://www.ktword.co.kr/test/view/view.php?m_temp1=4864)
 			 registry가 SPECIAL인 경우 사설 아이피로 판단함
 			 countryCode.equals("KR") -> ip가 한국에 할당됨
 		*/
-        if(conn.getResponseCode() == 200 && resultCode == 10000 && registry.equals("KRNIC" ) && countryCode.equals("KR")) {
-        	//log.info("true");
-        	return true;
-        }else {
-         	//log.info("false");
-        	return false;
-        }
+		if(conn.getResponseCode() == 200 && resultCode == 10000 && registry.equals("KRNIC" ) && countryCode.equals("KR")) {
+			//log.info("true");
+			return true;
+		}else {
+		 	//log.info("false");
+			return false;
+		}
 
     }
 }
