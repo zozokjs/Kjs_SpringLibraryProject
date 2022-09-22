@@ -102,7 +102,8 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
 				})
 				.and()
 				.oauth2Login() 
-				.loginPage("/loginForm")
+				.defaultSuccessUrl("/")
+				//.loginPage("/loginForm")
 				.userInfoEndpoint()
 				.userService(principalOauth2UserService);
 			

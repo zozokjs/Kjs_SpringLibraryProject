@@ -143,12 +143,14 @@ public class AuthController {
 
 	
 	/**
+	 * OAuth 라이브러리 사용하면서 deprecated
 	 * OAuth를 이용한 카카오 회원 가입 및 로그인 
 	 * @param accessCode, String, Kakao로부터 받은 회원 계정에 대한 Access코드
 	 * @return 
 	 * @throws  
 	 * */
-	@GetMapping("/auth/oauth/kakao/callback")
+	//@GetMapping("/auth/oauth/kakao/callback")
+	/**
 	public String kakaoCallback(@RequestParam("code") String accessCode, HttpSession session) {
 		log.info("code {}",accessCode);
 		
@@ -202,7 +204,7 @@ public class AuthController {
 			
 			return "redirect:/";
 		}
-	}
+	}*/
 
 	
 	

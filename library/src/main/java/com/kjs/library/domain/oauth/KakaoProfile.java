@@ -1,41 +1,38 @@
 package com.kjs.library.domain.oauth;
 
+import java.util.Map;
+
 import javax.annotation.Generated;
 
 import lombok.Data;
 
-@Data
-public class KakaoProfile {
-		public Long id;
-		public String connected_at;
-		public Kakao_account kakao_account;
-		public Properties properties;
-		
-		@Data
-		public class Kakao_account {
-			public Boolean profile_nickname_needs_agreement;
-			public Profile profile;
-			public Boolean has_email;
-			public Boolean email_needs_agreement;
-			public Boolean is_email_valid;
-			public Boolean is_email_verified;
-			public String email;
-			
-			@Data
-			public class Profile {
-				public String nickname;
+public class KakaoProfile implements OAuth2UserInfo{
 
-			}
-		}
-		
-		
-		
-		@Data
-		public class Properties {
-			public String nickname;
+	private Map<String, Object> attributes;
+	
+	public KakaoProfile(Map<String, Object> attributes) {
+		this.attributes = attributes;
+	}
 
-		}
-		
+	@Override
+	public String getEmail() {
+		return (String) attributes.get("email");
+	}
+
+	@Override
+	public String getPlatform() {
+		return null;
+	}
+
+	@Override
+	public String getPlatformId() {
+		return null;
+	}
+
+	@Override
+	public String getName() {
+		return null;
+	}
 }
 
 

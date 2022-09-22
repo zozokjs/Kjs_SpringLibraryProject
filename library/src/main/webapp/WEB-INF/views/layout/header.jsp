@@ -125,18 +125,13 @@
 			</form>
 			<div style="text-align:center;">
 				<!-- 카카오 로그인 -->
-				<a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=01d44202f2f9d241ef89ae26c19707c1&redirect_uri=http://localhost:8080/auth/oauth/kakao/callback">
-					<img alt=""  class="oauth_kakao"   src="/img_custom/oauth/kakao_login_button_wide.png" />
+				<a href="/oauth2/authorization/kakao"><!-- yml 파일의 authorization-uri에 설정된 주소가 요청됨 -->
+					<img alt=""  class="oauth_kakao"   src="/img_custom/oauth/kakao_login.png" />
 				</a>
-				<!-- 네이버 로그인 -->
-				<a href="/oauth2/authorization/naver"><!-- yml 파일의 authorization-uri에 설정된 주소가 요청된다. -->
-					<img alt=""  class="oauth_naver"  src="/img_custom/oauth/naver_login_button.png" />
-				</a>
-				<!-- 구글 로그인 -->
-				<!-- <a href="/oauth2/authorization/google">
-					<img alt=""  style="height:100%; width:70%; margin:7px;" src="/img_custom/oauth/google_login_button.png" />
-				</a> -->
-				
+				<!-- 네이버 로그인 ... 구현 완료... 승인 대기 중
+				<a href="/oauth2/authorization/naver">
+					<img alt=""  class="oauth_naver"  src="/img_custom/oauth/naver_login.png" />
+				</a>-->
 			</div>
 		</section>
 		
