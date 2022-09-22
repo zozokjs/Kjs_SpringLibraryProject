@@ -11,9 +11,12 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.kjs.library.config.auth.PrincipalDetails;
+import com.kjs.library.domain.user.User;
+import com.kjs.library.service.AuthService;
 import com.kjs.library.service.BookSelectService;
 import com.kjs.library.service.BookService;
 import com.kjs.library.service.CommunityService;
@@ -22,16 +25,19 @@ import com.kjs.library.web.dto.community.UserBoardHistoryInterface;
 import com.kjs.library.web.dto.lend.UserLendListInterface;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 
 @RequiredArgsConstructor
 @Controller
+@Slf4j
 public class UserController {
 	
 	private final BookService bookService;
 	private final CommonService commonService;
 	private final BookSelectService bookSelectService;
 	private final CommunityService communityService;
+	private final AuthService authService;
 	
 	//내 서재 페이지로 이동
 	@GetMapping("/user/myLibrary")
@@ -62,7 +68,6 @@ public class UserController {
 		/**
 		 * 매개변수로 @AuthenticationPrincial을 적고 header에서 principal을 jstl 태그 써서 지정하면
 		 * 유저 정보를 body에서 출력할 수 있음
-		 * 
 		 * */
 		
 		//로그인 한 사람의 회원 정보 표시 .. 이후 수정, 탈퇴
@@ -74,15 +79,38 @@ public class UserController {
 	
 	
 	//회원 수정 페이지로 이동 전 비밀번호 확인
-	@PostMapping("/user/userUpdateBefore")
-	public String userUpdateBeforeForm() {
+	@PostMapping("/user/userUpdateBefore/{username}")
+	public String userUpdateBeforeForm(@PathVariable String username, Model model) {
 		
-		return "user/userUpdateBefore";
+		User userEntity = authService.유저정보(username);
+		
+		String oAuthPlatform = userEntity.getOAuthPlatform();
+		
+		//OAuth로 가입한 회원이면 비밀번호 확인 없이 수정 화면으로 이동함.
+		if( oAuthPlatform == null || oAuthPlatform.isEmpty() || oAuthPlatform.equals("")) {
+			log.info("oauth 가입 안 했음");
+
+			
+			return "user/userUpdateBefore";
+		}else {
+			log.info("oauth 가입 했음");
+			
+			model.addAttribute("oAuthPlatform", oAuthPlatform);
+			
+			return "user/userUpdate";
+		}
 	}
 	
 	//비밀번호 확인 후 회원 수정 페이지로 이동
 	@PostMapping("/user/userUpdate")
-	public String userUpdateForm() {
+	public String userUpdateForm(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+		String username = principalDetails.getUser().getUsername();
+		User userEntity = authService.유저정보(username);
+		String oAuthPlatform = userEntity.getOAuthPlatform();
+		model.addAttribute("oAuthPlatform", oAuthPlatform);
+		
+		log.info("userUpdateForm read  {}",oAuthPlatform);
+
 		
 		return "user/userUpdate";
 	}

@@ -69,6 +69,17 @@
 														</tbody>
 													</table>
 												</form>
+												<div style="text-align:center;">
+													<!-- 카카오 로그인 -->
+													<a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=01d44202f2f9d241ef89ae26c19707c1&redirect_uri=http://localhost:8080/auth/oauth/kakao/callback">
+														<img alt=""  class="oauth_button"   src="/img_custom/oauth/kakao_login_button_wide.png" />
+													</a>
+													<!-- 네이버 로그인 -->
+													<a href="/oauth2/authorization/naver"><!-- yml 파일의 authorization-uri에 설정된 주소가 요청된다. -->
+														<img alt=""  class="oauth_button"  src="/img_custom/oauth/naver_login_button.png" />
+													</a>
+												</div>
+																					
 												<div class="clear"></div>
 											</div>	
 										</div><!-- 내용 끝 -->

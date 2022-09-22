@@ -9,7 +9,7 @@
 						<div class="padding">
 							<div class="right-Submenu-2depth">
 								<!-- 1depth Menu -->
-								회원 정보 수정 전 비밀번호 확인ㅓ
+								회원 정보 수정 전 비밀번호 확인
 							</div>
 							
 							<input type="hidden"  id ="userId" value="${principal.user.id}">
@@ -36,6 +36,9 @@
 							<div style="text-align: -webkit-center;">
 								<button class=" booking-complete-btn white-btn-custom"  onclick="passwordMatchChecker()">확인</button>
 							</div>
+							<form name="userUpdateForm"  action="/user/userUpdate" method="post">
+								<sec:csrfInput/><!-- CSRF 토큰 적용 -->
+							</form>
 							
 							
 				

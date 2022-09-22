@@ -11,6 +11,7 @@ import org.hibernate.internal.build.AllowSysOut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,7 +36,6 @@ public class AuthService {
 	
 	private final CommonService commonService;
 	private final UserRepository userRepository;
-	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	private final AuthDataService authDateService;
 	
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -44,7 +44,7 @@ public class AuthService {
 	public void 회원가입(User user) {
 		//1. 비번 암호화
 		String rawPassword = user.getPassword();
-		String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+		String encPassword = new BCryptPasswordEncoder().encode(rawPassword);
 		//2, 비번 세팅
 		user.setPassword(encPassword);
 		//3. 권한 세팅
@@ -52,7 +52,7 @@ public class AuthService {
 		//4. 회원정보 INSERT
 		userRepository.save(user);
 	}
-
+	
 	
 	@Transactional
 	public User 로그인실패횟수증가(String username) {
@@ -146,7 +146,7 @@ public class AuthService {
 		Random random = new Random();
 		Long randomNumber = random.nextLong();
 		//2. 난수를 구분하기 어렵도록 암호화
-		String encRandomNumber= bCryptPasswordEncoder.encode(Long.toString(randomNumber));
+		String encRandomNumber= new BCryptPasswordEncoder().encode(Long.toString(randomNumber));
 		//3. 난수와 난수 생성 시각을 세팅
 		비밀번호난수세팅(username, encRandomNumber);
 		
@@ -275,7 +275,7 @@ public class AuthService {
 		User user = userRepository.findByUsername(signupDto.getUsername());
 		
 		//1. 비번 암호화
-		String encPassword = bCryptPasswordEncoder.encode(signupDto.getPassword());
+		String encPassword = new BCryptPasswordEncoder().encode(signupDto.getPassword());
 		//2, 비번 세팅
 		user.setPassword(encPassword);
 		
@@ -288,4 +288,34 @@ public class AuthService {
 		return user;
 	}
 
+	
+	/**
+	 * 주어진 username이 DB에 있는지 확인
+	 * @param username, String
+	 * @return username이 DB에 있으면 True, 없으면 False
+	 * @throws  
+	 * */
+	@Transactional(readOnly = true)
+	public boolean 가입된유저다(String username) {
+		User userEntity = userRepository.findByUsername(username);
+		
+		if(userEntity == null) { 
+			return false;
+		}else {
+			return true;
+		}
+	}
+
+	/**
+	 * 주어진 username으로 DB에서 User Entity 찾기 
+	 * @param username, String
+	 * @return username으로 DB에서 찾은 User Entity
+	 * @throws  
+	 * */
+	@Transactional(readOnly = true)
+	public User 유저정보(String username) {
+		User userEntity = userRepository.findByUsername(username);
+		
+		return userEntity;
+	}
 }

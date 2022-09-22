@@ -20,7 +20,13 @@ public class UserService {
 	private final UserRepository userRepository;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-	
+	/**
+	 * 회원정보 수정 처리
+	 * @param userId, int
+	 * @param user, User객체, 회원정보 수정 화면에서 전달된 정보
+	 * @return 회원정보 수정 완료된 User
+	 * @throws  
+	 * */
 	@Transactional
 	public User 회원정보수정(int userId, User user) {
 			
@@ -29,12 +35,16 @@ public class UserService {
 			return new CustomValidationApiException("찾을 수 없는 유저입니다. 수정 불가");
 		});
 		
-		//수정된 비밀번호를 암호화
-		String rawPassword = user.getPassword();
-		String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+		//oAuthPlatform로 가입하지 않는 사용자만 비밀번호 변경 처리
+		String oAuthPlatform = userEntity2.getOAuthPlatform();
+		if( oAuthPlatform == null || oAuthPlatform.isEmpty() || oAuthPlatform.equals("")) {
+			//수정된 비밀번호를 암호화
+			String rawPassword = user.getPassword();
+			String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+			userEntity2.setPassword(encPassword);	
+		}
 		
 		//db에서 찾은 유저 정보에 수정된 데이터 세팅
-		userEntity2.setPassword(encPassword);	
 		userEntity2.setAddress(user.getAddress());
 		userEntity2.setJob(user.getJob());
 		userEntity2.setEmail(user.getEmail());

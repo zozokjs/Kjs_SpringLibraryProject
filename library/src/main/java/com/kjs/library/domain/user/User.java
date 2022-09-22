@@ -51,8 +51,10 @@ public class User{
 	//이름
 	private String name;
 	
+	//회원가입 플랫폼 구분(KAKAO, NAVER, GOOGLE... null이면 일반 가입)
+	private String oAuthPlatform;
+	
 	/** 계정 활성화 여부(기본값 0(false)), 비번이 5번 틀리면 비활성화 된다. */
-
 	@Column(nullable = false, columnDefinition = "int default '0' ")
 	private boolean isEnabled;
 	

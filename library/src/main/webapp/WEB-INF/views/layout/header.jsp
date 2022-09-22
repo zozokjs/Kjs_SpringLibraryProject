@@ -82,8 +82,17 @@
 </head>
 
 <style>
-
-
+ 	.oauth_kakao{
+ 		height: 54px;
+ 		width: 40%; 
+ 		margin:7px;
+ 	}
+	
+	.oauth_naver{
+		height: 55px;
+		width: 40%; 
+		margin:7px;
+	}
 </style>
 
 <body>
@@ -92,7 +101,7 @@
 
 	<!-- 팝업 시작------------------------------------------------- -->
 	<div class="overlay"></div>
-	<div class="autorize-popup"><!--popup-content  -->
+	<div class="autorize-popup"  style="height:300px;"><!--popup-content  -->
 		<div class="autorize-tabs">
 			<a href="#" class="autorize-tab-a current">로그인</a>
 			<a href="#" class="autorize-close"></a>
@@ -104,7 +113,6 @@
 			<form action ="/auth/signin" method="POST" >
 				<input type="hidden"  name="${_csrf.parameterName}"  value="${_csrf.token}"  /><!-- CSRF 토큰 적용 -->
 				<div class="autorize-padding">
-					<h6 class="autorize-lbl">로그인을 하시면 더 많은 서비스를 이용하실 수 있어요!</h6>
 					<input type="text"  name="username"     class="form-control"  placeholder="아이디" required="">
 					<input type="password"  name="password"    class="form-control" placeholder="비밀번호" required="">
 					<footer class="autorize-bottom">
@@ -115,6 +123,21 @@
 					</footer>
 				</div>
 			</form>
+			<div style="text-align:center;">
+				<!-- 카카오 로그인 -->
+				<a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=01d44202f2f9d241ef89ae26c19707c1&redirect_uri=http://localhost:8080/auth/oauth/kakao/callback">
+					<img alt=""  class="oauth_kakao"   src="/img_custom/oauth/kakao_login_button_wide.png" />
+				</a>
+				<!-- 네이버 로그인 -->
+				<a href="/oauth2/authorization/naver"><!-- yml 파일의 authorization-uri에 설정된 주소가 요청된다. -->
+					<img alt=""  class="oauth_naver"  src="/img_custom/oauth/naver_login_button.png" />
+				</a>
+				<!-- 구글 로그인 -->
+				<!-- <a href="/oauth2/authorization/google">
+					<img alt=""  style="height:100%; width:70%; margin:7px;" src="/img_custom/oauth/google_login_button.png" />
+				</a> -->
+				
+			</div>
 		</section>
 		
 
@@ -137,26 +160,25 @@
 			
 			<div class="header-account  header_information_right">
 				<a href="/"  class=""><span>홈으로</span></a>		
-				<!-- 로그인 한 상태라면 사용자 이름 표시되어야 함 -->		
+				<!-- 로그인 한 상태라면 사용자 이름 표시되어야 함 -->
 				<c:choose>
-					<c:when test ="${principal.user eq null}">
+				 	<c:when test ="${principal.user eq null}">
 						<!-- 로그인 버튼에 팝업 이벤트 달려 있음(header-account-Login-button로 검색)-->
 						<a href="/auth/signin"  class="header-account-Login-button "   ><span>로그인</span></a>
 						<a href="/auth/signup"  class=""><span>회원가입</span></a>		
-					</c:when>
-					<c:otherwise>
+					 </c:when>
+					<c:otherwise> 
 						<a href="/"  class=""> <span>${principal.user.username}님</span></a>	
-						
-						<!-- <a href="/logout"  class=""><span>로그아웃</span></a>	 -->
 						<a href="#" onclick="javascript:btnClick(logoutAskOne);"><span>로그아웃</span></a>
 						<form name="logoutAskOne" action="/logout" method="post">
 							<sec:csrfInput/><!-- CSRF 토큰 적용 -->
 						</form>
-						
 						<a href="/user/myLibrary"  class=""> <span>내서재</span></a>		
 					</c:otherwise>
-				</c:choose>
-			</div>
+				</c:choose> 
+			</div> 
+			
+			
 			
 			<div class="clear"></div>
 		</div>
@@ -196,7 +218,7 @@
 							</ul>
 						</li>
 
-						<!-- 사서 권한만 볼 수 있음 -->
+						<!-- 사서 권한만 볼 수 있음  원본-->
 						<c:choose>
 							<c:when test ="${principal.user.roleType eq 'ADMIN' || principal.user.roleType eq 'SASEO' }">	
 								<li><a href="/saseo/bookManage">사서공간</a>
@@ -209,7 +231,7 @@
 								</li>
 							</c:when>
 						</c:choose>
-
+						
 						<li><a href="/community/boardFree">열린공간</a>
 							<ul>
 								<li><a href="/community/boardFree">자유게시판</a></li>
@@ -218,13 +240,14 @@
 								<li><a href="/community/singleQuestion">1대1질문하기</a></li>
 							</ul>
 						</li>
-						<li><a href="/user/myLibrary"">내서재</a>
+						<li>
+							<a href="/user/myLibrary"">내서재</a>
 							<ul>
 								<li><a href="/user/userInfor/${principal.user.id}">회원정보</a></li>
 								<li><a href="/user/myLibrary">대출관리(연장/반납)</a></li>
 								<li><a href="/user/myLendHistory">반납완료내역</a></li>
 								<li><a href="/user/myBoardHistory">작성글목록</a></li>
-	<!-- 							<li><a href="/공사중">희망도서신청관리</a></li> -->
+ 								<!-- <li><a href="/공사중">희망도서신청관리</a></li> -->
 							</ul>
 						</li>
 					</ul>

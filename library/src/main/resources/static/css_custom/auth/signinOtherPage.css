@@ -19,3 +19,9 @@
 .button-login-height{
 	height:77px;
 }
+
+.oauth_button{
+	height:70px; 
+	width:50%; 
+	margin:7px;
+}

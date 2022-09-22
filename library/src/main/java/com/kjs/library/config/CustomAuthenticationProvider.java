@@ -9,6 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -30,7 +31,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	private final PrincipalDetailsService principalDetailsService;
-	private final PasswordEncoder passwordEncoder;
+	//private final PasswordEncoder passwordEncoder;
 	
 	
 	/**
@@ -101,8 +102,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 
 	//암호화 안 된 것, 암호화 된 비번의 일치여부를 비교함. 일치하면 true 리턴
 	private boolean 비번일치함(String password, String encodePassword) {
-        return passwordEncoder.matches(password, encodePassword);
-    }
+        //return passwordEncoder.matches(password, encodePassword);
+		return new BCryptPasswordEncoder().matches(password, encodePassword);
+
+	}
 
 	/**
 	 * 현재 클래스인 CustomAuthenticationProvider가 authentication을 지원하는 경우 True를 리턴함(supports() 메소드의 설명 참조) 

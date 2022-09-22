@@ -14,21 +14,15 @@
 							
 							<form id="userUpdate"  onsubmit="userUpdate(${principal.user.id},event)" class="contact-form bg-white rounded p-5"  >
 								<sec:csrfInput/><!-- CSRF 토큰 적용 -->
-								<div class="tables" style="margin-top: 70px;">
 								
+								<div class="tables" >
 									<div>
 										<label class="inputBox-custom-important-label">*은 필수입력항목입니다</label>
 									</div>
 									<table class="table-a">
 										<tr>
 											<th>아이디</th>
-											<td colspan="">${principal.user.username}
-												<%-- <div class="booking-form-i inputBox-custom"  >
-													<div class="input">
-														<input type="text"   id="username"  name="username"  value = "${principal.user.username}"  class="form-control"  placeholder="아이디" readonly="readonly">
-													</div>
-												</div> --%>
-											</td>
+											<td colspan="">${principal.user.username}</td>
 											<th><label class="inputBox-custom-require-label">*</label>이메일</th>
 											<td colspan="3">
 												<div class="booking-form-i inputBox-custom"  >
@@ -38,28 +32,30 @@
 												</div>
 											</td>
 										</tr>
-										
-										<tr>
-											<th><label class="inputBox-custom-require-label">*</label>새비밀번호</th>
-											<td colspan="">
-												<div class="booking-form-i-short inputBox-custom"  >
-													<div class="input">
-														<input type="password"  id ="password"  name="password"  onkeyup ='checkPasswordLength()'  required=""  >
-													</div>
-												</div>
-												<div  id="div_passwordLengthResult" ></div>
-											</td>
-											<th><label class="inputBox-custom-require-label">*</label>새 비밀번호 확인</th>
-											<td colspan="">
-												<div class="booking-form-i-short inputBox-custom"  >
-													<div class="input">
-														<input type="password"  id ="confirm-password"  name="confirm-password"   onkeyup ='checkPasswordMatch()' required=""  >
-													</div>
-												</div>
-												<div  id="div_passwordMatchResult" ></div>
-											</td>
-										</tr>
-										
+										<c:choose>
+											<c:when test ="${empty oAuthPlatform}"><!-- model에서 가져옴 -->
+												<tr>
+													<th><label class="inputBox-custom-require-label">*</label>새비밀번호</th>
+													<td colspan="">
+														<div class="booking-form-i-short inputBox-custom"  >
+															<div class="input">
+																<input type="password"  id ="password"  name="password"  onkeyup ='checkPasswordLength()'  required=""  >
+															</div>
+														</div>
+														<div  id="div_passwordLengthResult" ></div>
+													</td>
+													<th><label class="inputBox-custom-require-label">*</label>새 비밀번호 확인</th>
+													<td colspan="">
+														<div class="booking-form-i-short inputBox-custom"  >
+															<div class="input">
+																<input type="password"  id ="confirm-password"  name="confirm-password"   onkeyup ='checkPasswordMatch()' required=""  >
+															</div>
+														</div>
+														<div  id="div_passwordMatchResult" ></div>
+													</td>
+												</tr>
+											</c:when>
+										</c:choose>
 										<tr>
 											<th>이름</th>
 											<td colspan="">${principal.user.name}
