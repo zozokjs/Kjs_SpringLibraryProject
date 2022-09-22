@@ -9,3 +9,26 @@
 	width:99.3%;
 	 margin-bottom:-5px;
 }
+
+	
+/*width가 800이하일 때 아래로 변경함*/
+@media (max-width:800px) { 
+	/* stlye_custom.css의 
+	    .white-btn-small-custom과 같음 */
+	.white-btn-custom{
+		display: block;
+	    width: 60px;
+	    height: 25px;
+	    background: white;
+	    color: black;
+	    text-transform: uppercase;
+	    border: 0px;
+	    cursor: pointer;
+	    border-radius: 2px;
+	    font-size: 15px;
+	    font-family: 'Raleway';
+	    font-weight: bold;
+	    border: 1px solid black;
+	    margin:0;
+	}
+}

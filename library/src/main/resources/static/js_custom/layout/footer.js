@@ -7,7 +7,7 @@ $(document).ready(function() {
 	//id가 userUpdate일 때 form 내부 값 가져오기
 	let data =$(`#userUpdate`).serialize();
 
-	console.log(data);
+	//console.log(data);
 	
 	$.ajax({
 		

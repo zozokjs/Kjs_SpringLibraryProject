@@ -115,13 +115,13 @@
 							<div class="tables  div-tables2">
 								<table class="table-a">
 									<tr>
-										<td colspan="5" style="width:100%;">
+										<td colspan="5"  style="width:100%;">
 											<div class="booking-form-i  inputBox-custom textarea-comment"  >
 													<textarea id="commentContent"  cols="30" rows="5"  class="div-textarea" placeholder = "댓글 작성시 타인에 대한 배려를 담아주세요" required=""></textarea>
 											</div>
 										</td>
-										<td>
-											<div style="text-align: -webkit-center;">
+										<td colspan="1"  style="width:100%;">
+											<div style="text-align: -webkit-center; margin:15px auto;">
 												<button onclick="boardFreeCommentRegistrationConfirm(${boardFree.id}, ${principal.user.id})"    class=" booking-complete-btn white-btn-custom" >등록</button>
 											</div>
 										</td>
