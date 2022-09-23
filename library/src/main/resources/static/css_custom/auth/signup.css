@@ -1,25 +1,35 @@
 .table-a th {
 	font-size: 15px;
-	text-align: center;
-	width: 200px;
+} 
+
+.table-a-marginBottom{
+	margin-bottom: 25px;	
 }
 
-.warningBlock {
+/* .warningBlock {
 	margin-left:20px; 
 	color:red; 
 	font-weight:bold;
-}
+} */
 
 .table-warning-Message {
-	border-right: none;
-	border-left: none;;
-	border-top: none;
-}
+	border-right: none !important;
+	border-left: none !important;
+	border-top: none !important;
+} 
 
-.div-width-half{
+/* .div-width-half{
 	width:100%;
 }
 
 .div-width-full{
 	width:100%;
+} */
+
+.selectBox-custom{
+	width:100% !important;	
+}
+
+.selectBox-Div{
+	margin:0% 25%;
 }

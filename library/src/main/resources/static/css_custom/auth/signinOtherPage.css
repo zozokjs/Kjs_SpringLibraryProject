@@ -1,27 +1,39 @@
+
 .table-border-none {
 	border-right: none;
 	border-left: none;;
 	border-top: none;
 }
 
-.div-first{
-	margin:auto; 
-	width:58%;
-}
-.div-second{
-	margin-right:0px;
+.table-none{
+	border-bottom: none !important;
+	background: none !important;
 }
 
-.div-third{
-	border:0px;
-}
-
-.button-login-height{
-	height:77px;
-}
 
 .oauth_button{
-	height:70px; 
-	width:45%; 
-	margin:7px;
+	padding:10px;
+} 
+.button-login-height{
+	height:100px;
+}
+
+/*width가 800이상일 때 아래로 변경함*/
+@media (min-width:800px) { 
+	.table-a{
+		width: 65%;
+		margin:auto;
+	}
+	.table-a-marginBottom{
+	margin-bottom: 25px;	
+	}
+	
+}
+
+/*width가 800이하일 때 아래로 변경함*/
+@media (max-width:800px) { 
+	.button-login-height{
+		height:100px;
+		width: 100%;
+	}
 }

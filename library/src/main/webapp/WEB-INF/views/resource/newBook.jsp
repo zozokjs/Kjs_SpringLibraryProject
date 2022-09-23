@@ -25,7 +25,7 @@
 												<div class="cat-list-item-p">
 													<div class="cat-list-content">
 														<div class="cat-list-content-a">
-															<div class="cat-list-content-l"  style="margin-right:0px; ">
+															<div class="cat-list-content-l"  style="width:100%; ">
 																<div class="cat-list-content-lb">
 																
 																	<div class="cat-list-content-lpadding"><!--  내용 시작 -->

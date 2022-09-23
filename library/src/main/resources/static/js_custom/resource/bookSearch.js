@@ -103,7 +103,7 @@ function makeSearchResultTrue(bookDataBySearch){
 		searchResultHTML += 
 		`
 					<div class="cat-list-item fly-in"><!-- 반복부 시작 -->
-						<div class="cat-list-item-l">
+						<div class="cat-list-item-l  bookTitleImage">
 							<a href="#">
 								<img alt="" src="/upload/${books.titleImageUrl}"  ><!-- 타이틀 이미지 -->
 							</a>

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_Community.jsp"%>
-
+<link rel="stylesheet" href="/css_custom/community/boardFreeInfor.css" />
 
 				<div class="two-colls-right"><!-- 우측 메인 시작 -->
 					<div class="two-colls-right-b">
@@ -86,19 +86,23 @@
 										<c:otherwise>
 											<c:forEach var="comments" items="${boardFree.comments}">
 												<tr>
-													<td>${comments.user.username}</td>
-													<td>${comments.content}</td>
-													<td>${comments.createDateFormatted}</td>
-													<!-- 로그인 한 사람만 삭제 버튼 보임 -->
-													<c:choose>
-														<c:when test="${not empty principal.user.id}">
-															<td>
+													<td style="width:10%;">${comments.user.username}</td>
+													<td colspan="2"  style="width:50%; text-align: left;" >
+														${comments.content}
+													</td>
+													<td  style="width:10%;">
+														<fmt:parseDate value="${comments.createDateFormatted}" pattern="yyyy년MM월dd일HH시mm분ss초" var="parsedDateTime" type="both" />
+														<fmt:formatDate value="${parsedDateTime}" pattern="yyyy-MM-dd HH:mm " /> 
+															
+														<!-- 로그인 한 사람만 삭제 버튼 보임 -->
+														<c:choose>
+															<c:when test="${not empty principal.user.id}">
 																<div style="text-align: -webkit-center;">
 																	<button onclick="boardFreeCommentDeleteConfirm(${comments.id})"  class=" booking-complete-btn white-btn-small-custom"  >삭제</button>
 																</div>
-															</td>
-														</c:when>
-													</c:choose>
+															</c:when>
+														</c:choose>
+													</td>
 												</tr>
 											</c:forEach>
 										</c:otherwise>

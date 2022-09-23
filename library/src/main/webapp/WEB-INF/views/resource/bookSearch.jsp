@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_Resource.jsp"%>
-
+<link rel="stylesheet" href="/css_custom/resource/bookSearch.css" />
 
 	        	<div class="two-colls-right"><!-- 우측 메인 시작 -->
 					<div class="two-colls-right-b">
@@ -23,7 +23,7 @@
 								</div>
 								<div style="flex-grow: 0.3;">
 									<!-- items -->
-									<a href="javascript:void(0);"  onclick="bookSearch()"  class="srch-btn" style="height: 45px; font-size: 30px;">검색</a>
+									<a href="javascript:void(0);"  onclick="bookSearch()"  class="srch-btn" style="height: 60px; font-size: 30px;">검색</a>
 								</div>
 							</div><!-- 검색창 끝 -->
 							<!-- ------------------------------------------------------------------------------------------------------------ -->
@@ -52,8 +52,8 @@
 												<hr>
 												
 												<c:forEach var = "books" items ="${bookSearchData.content}"   varStatus="index">
-													<div class="cat-list-item fly-in"><!-- 반복부 시작 -->
-														<div class="cat-list-item-l">
+													<div class="cat-list-item fly-in"><!-- 반복부 시작sdasd -->
+														<div class="cat-list-item-l  bookTitleImage">
 															<a href="#">
 																<img alt="" src="/upload/${books.titleImageUrl}"  ><!-- 타이틀 이미지 -->
 															</a>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_Auth.jsp"%>
+<link rel="stylesheet" href="/css_custom/auth/signinOtherPage.css" />	
 
 <!-- LoginFailureHandler.java 참조. 여기서 msg를 던짐. -->
 <!-- errorMsg가 비어 있지 않을 때 -> 값이 있을 때 -->
@@ -21,14 +22,14 @@
 							</div>
 							
 							<!-- 우측 본문 시작 -->
-							<div class="cat-list-item-r div-first"  ><!-- 여기부터 콘텐츠 영역 -->
+<!-- 							<div class="cat-list-item-r div-first"  >여기부터 콘텐츠 영역
 								<div class="cat-list-item-rb">
 									<div class="cat-list-content-l  div-second"  >
-										<div class="cat-list-content-lpadding  div-third"  ><!--  내용 시작 -->
+										<div class="cat-list-content-lpadding  div-third"  > 내용 시작 -->
 											<div class="tables" >
 												<form action ="/auth/signin" method="POST" >
 													<sec:csrfInput/><!-- CSRF 토큰 적용 -->
-													<table class="table-a light">
+													<table class="table-a light table-a-marginBottom">
 														<tbody>
 															<!--  0  -->
 															<!-- 이 항목이 반드시 있어야 모바일 화면에서 테이블 형태가 유지됨-->
@@ -58,12 +59,23 @@
 															
 															<!--  3 -->
 															<tr>
-																<td></td>
+																				<td></td>
 																<td>
 																	<a href="/" class="authorize-forget-pass">비밀번호찾기</a> 
 																</td>
+											
 																<td>
 																	<a href="/auth/signup" class="authorize-forget-pass">회원가입</a>
+																</td>
+															</tr>
+															<tr>
+																<td colspan="3" class="table-none">
+																	<a href="/oauth2/authorization/kakao"> 
+																		<img alt="" class="oauth_button" src="/img_custom/oauth/kakao_login_small.png" />
+																	</a>
+																	<a href="/oauth2/authorization/kakao"> 
+																		<img alt="" class="oauth_button" src="/img_custom/oauth/naver_login_small.png" />
+																	</a>
 																</td>
 															</tr>
 														</tbody>
@@ -71,9 +83,9 @@
 												</form>
 												<div style="text-align:center;">
 													<!-- 카카오 로그인 -->
-													<a href="/oauth2/authorization/kakao">
+													<!-- <a href="/oauth2/authorization/kakao">
 														<img alt=""  class="oauth_button"   src="/img_custom/oauth/kakao_login.png" />
-													</a>
+													</a> -->
 													<!-- 네이버 로그인 구현 완료... 승인 대기 중
 													<a href="/oauth2/authorization/naver">
 														<img alt=""  class="oauth_button"  src="/img_custom/oauth/naver_login.png" />
@@ -82,12 +94,12 @@
 																					
 												<div class="clear"></div>
 											</div>	
-										</div><!-- 내용 끝 -->
+<!-- 										</div>내용 끝
 									<br class="clear" />
 								</div>
 							</div>
 							<br class="clear" />
-						</div>
+						</div> -->
 							
 							
 							

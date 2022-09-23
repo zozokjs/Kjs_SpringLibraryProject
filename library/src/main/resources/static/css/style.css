@@ -688,7 +688,7 @@ button.srch-btn {cursor: pointer; font-family: 'Montserrat'; font-size:11px; fon
 .cat-list-content-a {width:100%; float: left; }
 .cat-list-content-l {margin:0px 125px 0px 0px;}
 .cat-list-content-lb {width:100%; float:left; overflow:hidden;}
-.cat-list-content-lpadding {padding: 18px 30px 7px 0px; min-height: 156px;  border-right: 1px solid #ede7e1 ;}
+.cat-list-content-lpadding {padding: 18px 30px 7px 0px; min-height: 156px;  /* border-right: 1px solid #ede7e1  */;}
 .cat-list-content-r {width:124px;  float:left; overflow:hidden; margin:0 0 0 -125px;}
 .cat-list-content-p {padding:17px 0px 17px 18px; }
 .cat-list-item .offer-slider-link {font-family: 'Raleway'; color:#252525; margin-bottom:8px;}

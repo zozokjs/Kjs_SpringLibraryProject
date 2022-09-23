@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_Auth.jsp"%>
-
+	<link rel="stylesheet" href="/css_custom/auth/signup.css" />	
 <style>
 
 	
@@ -19,17 +19,17 @@
 							<form action="/auth/signup" method="post" onsubmit = "return validationAll()" class="md-float-material form-material">
                    			
                    			<sec:csrfInput/><!-- CSRF 토큰 적용 -->
-							<div class="tables" style="margin-top: 70px;">
+							<div class="tables" >
 								<div>
 									
 								</div>
-									<table class="table-a">
-									<tbody>
+									<table class="table-a  table-a-marginBottom">
+										<tbody>
 									
 										<!--  0  -->
 										<!-- 이 항목이 반드시 있어야 모바일 화면에서 테이블 형태가 유지됨-->
 										<tr>
-											<th colspan="3"  style="">
+											<th colspan="3"  class="table-warning-Message">
 												<label class="inputBox-custom-important-label">*은 필수입력항목입니다</label>
 											</th>
 										</tr>
@@ -76,7 +76,7 @@
 										<!--  4  -->
 										<tr>
 											<th><label class="inputBox-custom-require-label">*</label>이메일</th>
-											<td colspan=""  style="width:50%;">
+											<td colspan=""  style="">
 												<div class="booking-form-i inputBox-custom  div-width-full"  >
 													<div class="input">
 														<input type="text"  id = "email"  name="email"   onkeyup ='checkEmailFormat()' required=""  >
@@ -123,7 +123,7 @@
 										<tr>
 											<th>국가</th>
 											<td colspan="2">
-												<div class="card-expiration  div-width-full"  >
+												<div class="card-expiration  div-width-full selectBox-Div"  >
 													<select name="country" class="selectBox-custom" >
 														<option value="1">토르두스</option>
 														<option value="2">파이시아</option>
@@ -140,7 +140,7 @@
 										<tr>
 											<th>종족</th>
 											<td colspan="2">
-												<div class="card-expiration  div-width-full" >
+												<div class="card-expiration  div-width-full selectBox-Div"  >
 													<select name="species" class="selectBox-custom">
 														<option value="1">Human</option>
 														<option value="2">Elf</option>
@@ -158,7 +158,7 @@
 										<tr>
 											<th>직업</th>
 											<td colspan="2">
-												<div class="card-expiration  div-width-full" >
+												<div class="card-expiration  div-width-full selectBox-Div	" >
 													<select name="job" class="selectBox-custom">
 														<option value="1">학생</option>
 														<option value="2">공무원</option>
@@ -197,7 +197,9 @@
 										</tr>
 										</tbody>
 									</table>
-									<button class="booking-complete-btn">가입</button>
+									<div style="margin:auto;">
+										<button class="booking-complete-btn"  style="margin:auto;">가입</button>
+									</div>
 								<div class="clear"></div>
 							</div>
 							</form>

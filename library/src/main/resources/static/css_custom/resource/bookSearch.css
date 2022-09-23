@@ -1,0 +1,15 @@
+.bookTitleImage{
+	border: 1px solid black;	
+}
+
+/*width가 910이하일 때 아래로 변경함*/
+@media (max-width:910px) { 
+	.bookTitleImage{
+	 	width: 80%;
+	 	margin: 0 40px;
+	}
+	
+	.cat-list-item-r{
+	 margin: 0px;
+	}
+}

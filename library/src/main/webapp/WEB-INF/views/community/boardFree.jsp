@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_Community.jsp"%>
+<link rel="stylesheet" href="/css_custom/community/boardFreeInfor.css" />
+
+
 				
 				<div class="two-colls-right"><!-- 우측 메인 시작 -->
 					<div class="two-colls-right-b">

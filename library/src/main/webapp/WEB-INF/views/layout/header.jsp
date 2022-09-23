@@ -52,14 +52,14 @@
 	
 	<link rel="stylesheet" href="/css_custom/auth/findToIdPassword.css" />
 	<link rel="stylesheet" href="/css_custom/auth/resetPassword.css" />	
-	<link rel="stylesheet" href="/css_custom/auth/signinOtherPage.css" />	
-	<link rel="stylesheet" href="/css_custom/auth/signup.css" />	
+
+
 	<link rel="stylesheet" href="/css_custom/auth/signupSuccess.css" />
 	
 	<link rel="stylesheet" href="/css_custom/layout/header.css" />
 	
 	<link rel="stylesheet" href="/css_custom/community/boardFree.css" />
-	<link rel="stylesheet" href="/css_custom/community/boardFreeInfor.css" />
+
 	<link rel="stylesheet" href="/css_custom/community/boardNotice.css" />
 	
 	<!-- Style Custom End-->
@@ -183,6 +183,65 @@
 	<!-- 상단 메뉴 시작--------------------------------------------------->
 	<div class="header-b">
 
+		<!-- 화면이 모바일 형태일 때의 메뉴를 표시함-->
+		<div class="mobile-menu">
+			<nav>
+				<ul>
+					<!-- 1 -->
+					<li><a class="has-child"  href="/guide/wayToHome">도서관이용안내</a>
+						<ul>
+							<li><a href="/guide/wayToHome">찾아오시는 길</a></li>
+							<li><a href="/guide/informationUse">도서관 이용안내</a></li>
+							<li><a href="/guide/infraUse">시설이용안내</a></li>
+							<li><a href="/guide/organizationChart">조직도 및 담당 업무</a></li>
+						</ul>
+					</li>
+					
+					<!-- 2 -->
+					<li><a class="has-child"  href="/resource/bookSearch">자료검색</a>
+						<ul>	
+							<li><a href="/resource/bookSearch">통합검색</a></li>
+							<li><a href="/resource/newBook">신착도서</a></li>
+						</ul>
+					</li>
+					
+					<!-- 3 -->
+					<c:choose>
+						<c:when test ="${principal.user.roleType eq 'ADMIN' || principal.user.roleType eq 'SASEO' }">	
+						<li><a class="has-child"  href="/saseo/bookManage">사서공간</a>
+							<ul>
+								<li><a href="/saseo/bookManage">도서관리(등록/수정/삭제/권수수정/십진분류)</a></li>
+								<li><a href="/saseo/bookRequestManage">희망도서관리(신청처리)</a></li>
+								<li><a href="/saseo/signinRequest">회원관리(가입허가/정지/경고)</a></li>
+							</ul>
+						</li>
+						</c:when>
+					</c:choose>
+					
+					<!-- 4 -->
+					<li><a class="has-child"  href="/community/boardFree">열린공간</a>
+						<ul>
+							<li><a href="/community/boardFree">자유게시판</a></li>
+							<li><a href="/community/boardNotice">공지사항</a></li>
+							<li><a href="/community/manyQuestion">자주묻는질문</a></li>
+							<li><a href="/community/singleQuestion">1대1질문하기</a></li>
+						</ul>
+					</li>
+					
+					<!-- 5 -->
+					<li><a class="has-child"  href="/user/myLibrary"">내서재</a>
+						<ul>
+							<li><a href="/user/userInfor/${principal.user.id}">회원정보</a></li>
+							<li><a href="/user/myLibrary">대출관리(연장/반납)</a></li>
+							<li><a href="/user/myLendHistory">반납완료내역</a></li>
+							<li><a href="/user/myBoardHistory">작성글목록</a></li>
+						</ul>
+					</li>
+				</ul>
+					
+			</nav>	
+		</div>
+		<!-- \\ mobile menu \\ -->
 		<div class="wrapper-padding">
 			<div class="header-logo">
 				<a href="/">
