@@ -101,7 +101,7 @@
 
 	<!-- 팝업 시작------------------------------------------------- -->
 	<div class="overlay"></div>
-	<div class="autorize-popup"  style="height:300px;"><!--popup-content  -->
+	<div class="autorize-popup"  style="height:315px;"><!--popup-content  -->
 		<div class="autorize-tabs">
 			<a href="#" class="autorize-tab-a current">로그인</a>
 			<a href="#" class="autorize-close"></a>
@@ -113,13 +113,14 @@
 			<form action ="/auth/signin" method="POST" >
 				<input type="hidden"  name="${_csrf.parameterName}"  value="${_csrf.token}"  /><!-- CSRF 토큰 적용 -->
 				<div class="autorize-padding">
-					<input type="text"  name="username"     class="form-control"  placeholder="아이디" required="">
+					<input type="text"  name="username"     class="form-control"  placeholder="아이디" required="" style="text-transform: none;"> 
 					<input type="password"  name="password"    class="form-control" placeholder="비밀번호" required="">
 					<footer class="autorize-bottom">
 						<button class="authorize-btn" >로그인</button>
 						<a href="/auth/findToIdPassword" class="authorize-forget-pass">아이디 | 비밀번호찾기</a> 
 						<a href="/auth/signup" class="authorize-forget-pass">회원가입</a>
 						<div class="clear"></div>
+						[테스트 계정] 아이디 : test1 / 비밀번호 : 1q2w3e4r! 
 					</footer>
 				</div>
 			</form>
@@ -280,7 +281,7 @@
 										<li><a href="/saseo/bookManage">도서관리(등록/수정/삭제/권수수정/십진분류)</a></li>
 										<li><a href="/saseo/bookRequestManage">희망도서관리(신청처리)</a></li>
 										<li><a href="/saseo/signinRequest">회원관리(가입허가/정지/경고)</a></li>
-										<li><a href="/saseo/infraManage">시설이용관리(신청처리)</a></li>
+										<!-- <li><a href="/saseo/infraManage">시설이용관리(신청처리)</a></li> -->
 									</ul>
 								</li>
 							</c:when>

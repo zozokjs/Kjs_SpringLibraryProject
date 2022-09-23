@@ -22,7 +22,7 @@
 								<li><a href="/saseo/bookRequestManage">희망도서관리</a></li>
 								<li><a href="/saseo/signinRequest">회원가입 신청 관리</a></li>
 								<li><a href="/saseo/userLockManage">회원 잠금 관리</a></li>
-								<li><a href="/saseo/infraManage">시설이용관리</a></li>
+								<!-- <li><a href="/saseo/infraManage">시설이용관리</a></li> -->
 							</ul>
 						</nav>
 					</div>
