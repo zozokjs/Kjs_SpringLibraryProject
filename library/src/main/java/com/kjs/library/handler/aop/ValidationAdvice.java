@@ -126,7 +126,7 @@ public class ValidationAdvice {
 			if(oldCookieValue == null || oldCookieValue.equals("") || oldCookieValue.length() == 0 || oldCookieValue.isEmpty()) {
 				//log.info("접속 기록 및 쿠키 없음. 쿠키 세팅. 방문자 증가");
 				
-				commonCookieService.setNewCookie(response, "visitorCookie", 90000);
+				setNewCookie2(response, "visitorCookie", 90000);
 				commonService.방문자증가();
 				
 				//방문자 집계 지점 확인을 위해 ip저장
@@ -142,7 +142,7 @@ public class ValidationAdvice {
 					//log.info("오늘 날짜 아니라서 방문수 증가");
 
 					deleteOldCookie2(response,"visitorCookie");
-					commonCookieService.setNewCookie(response, "visitorCookie", 90000);
+					setNewCookie2(response, "visitorCookie", 90000);
 					commonService.방문자증가();
 					
 					//방문자 집계 지점 확인을 위해 ip저장
@@ -303,6 +303,23 @@ public class ValidationAdvice {
 		deleteCookie.setMaxAge(0); //쿠키 유지 시간 설정 
 		response.addCookie(deleteCookie ); //쿠키 세팅
 	}
-
+	
+	public void setNewCookie2(HttpServletResponse response, String cookieKey, int maxAge) {
+		//1. 날짜 포맷 세팅
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+		//2. 오늘 날짜를 가져옴
+		Date dateNowDate = new Date();
+		//3. dateNowDate을 주어진 포맷으로 변경(Date -> String)
+		String dateNowFormatted= simpleDateFormat.format(dateNowDate);
+		//4. 새로운 uuid 생성
+		UUID uuid = UUID.randomUUID();
+		//5. uuid에 dateNowFormatted 더함
+		String cookieValue = dateNowFormatted+"///"+uuid.toString();
+		// 예)20220901///asdqwdasdkljqiwofh
+		//6 쿠키 세팅
+		Cookie newCookie = new Cookie(cookieKey, cookieValue);//새 쿠키 생성
+		newCookie.setMaxAge(maxAge); //쿠키 유지 시간 설정 : 25시간 90000
+		response.addCookie(newCookie); //쿠키 세팅
+	}
 
 }
