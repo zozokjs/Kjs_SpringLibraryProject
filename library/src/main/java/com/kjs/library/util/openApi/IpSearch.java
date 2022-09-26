@@ -59,7 +59,7 @@ public class IpSearch {
 		
 		String receivedData = sb.toString();
 		
-		log.info("받은 데이터 {}",receivedData);
+		//log.info("받은 데이터 {}",receivedData);
 			
 		JSONObject j = new JSONObject();
 		

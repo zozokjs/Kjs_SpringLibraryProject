@@ -26,12 +26,14 @@ import com.kjs.library.service.common.DateCommonService;
 import com.kjs.library.web.dto.auth.SignupDto;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 //회원가입, 탈퇴 등 구체적인 로직 처리
 
 @EnableAsync //?
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class AuthService {
 	
 	private final CommonService commonService;
@@ -114,14 +116,22 @@ public class AuthService {
 		}
 	}
 	
+	/**
+	 * 주어진 toEmailAddress에 이메일 전송
+	 * @param toEmailAddress, String, 이메일 주소
+	 * @return 
+	 * @throws  
+	 * */
 	@Transactional
 	public void 아이디찾기메일전송(String toEmailAddress) {
 		
+		log.info("이메일이 존송되었음");
+		
 		String mailTitle = "[토르두스국립도서관]아이디 찾기 안내 메일입니다.";
-		
 		String username = userRepository.findByEmailToUsername(toEmailAddress);
-		
 		String mailContent = authDateService.아이디찾기이메일_내용(username);
+		
+		log.info("이름  {}",username);
 		
 		//email에 해당하는 아이디가 없음
 		if(username == null) {
@@ -129,6 +139,10 @@ public class AuthService {
 		}else {
 			try {
 				commonService.mailSendering(toEmailAddress, mailTitle,  mailContent);
+				
+				log.info("message");
+
+				
 			} catch (MessagingException e) {
 				e.printStackTrace();
 			}
