@@ -59,7 +59,7 @@ public class ValidationAdvice {
  	
 	private CommonService commonService;
 	private CommonCookieService commonCookieService;
-	
+		
 	private IpSearch ipSearch;
 	public ValidationAdvice(CommonService cs, IpSearch ipSearch) {
 		this.commonService  = cs;
@@ -141,7 +141,7 @@ public class ValidationAdvice {
 				if(DateCommonService.오늘날짜다(createDate) == false){
 					//log.info("오늘 날짜 아니라서 방문수 증가");
 
-					commonCookieService.deleteOldCookie(response,"visitorCookie");
+					deleteOldCookie2(response,"visitorCookie");
 					commonCookieService.setNewCookie(response, "visitorCookie", 90000);
 					commonService.방문자증가();
 					
@@ -269,7 +269,7 @@ public class ValidationAdvice {
 		return proceedingJoinPoint.proceed();
 
 	}*/
-public String findCookieValue2(HttpServletRequest request, String cookieKey) {
+	public String findCookieValue2(HttpServletRequest request, String cookieKey) {
 		
 		String cookieValue = "";
 		
@@ -296,4 +296,13 @@ public String findCookieValue2(HttpServletRequest request, String cookieKey) {
 		return cookieValue;
 		
 	} // end of findCookieValue()
+
+	public void deleteOldCookie2(HttpServletResponse response, String cookieKey) {
+		
+		Cookie deleteCookie = new Cookie(cookieKey, null); //Null 값의 쿠키 생성
+		deleteCookie.setMaxAge(0); //쿠키 유지 시간 설정 
+		response.addCookie(deleteCookie ); //쿠키 세팅
+	}
+
+
 }
