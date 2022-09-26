@@ -1,0 +1,50 @@
+.img-gate{
+	margin-top : 100px;
+}
+
+.div-gate{
+	text-align:center;
+	position:relative;	
+	margin-top:80px;
+}
+
+.inner-body{
+	background : #151515;  
+}
+
+.div-log{
+	margin:auto;
+	padding-left:30%;
+	color: white;
+	width : 370px;
+	position:relative;
+	top : -80px;
+}
+
+.p-log{
+	padding:10px;
+}
+
+p{
+	margin: 0;
+}
+
+/*width가 800이하일 때 아래로 변경함*/
+@media(max-width:800px){
+	.p-log{
+		padding:10px;
+		font-size:12px;
+	}
+	
+	.div-log{
+		width:300px;
+	}
+
+}
+
+@media(max-width:520px){
+		
+	.img-gate{
+		width : 90%;
+	}
+}

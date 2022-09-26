@@ -20,19 +20,8 @@
 </style>
 
 <div class="main-cont">
-
 	<div class="inner-page">
-		
-
 		<div class="content-wrapper" style="margin-top: 50px;">
-
-<!-- 			<div class="portfolio-full">
-				<div class="portfolio-full-img" style="text-align: center;">
-					1100 x 634px;
-					<img alt="" style="width: 40%;" src="/img_custom/로고_완성2.png" />
-				</div>
-			</div> -->
-
 			<div class="columns">
 				<div class="content-wrapper columns">
 					<div class="columns-block">
@@ -54,6 +43,10 @@
 								<p class="title_small">사진 저작권자 및 출처</p>
 								<p>사진 저작권자는 각 이미지 파일의 속성에 표시</p>
 								<p>https://pixabay.com/ko/</p>
+								<p class="title_small">FrontPage GIF 저작권자 및 출처</p>
+								<p>archillect</p>
+								<p>https://thedailytask.tumblr.com/post/153389792445/161031</p>
+								<p>https://mobile.twitter.com/archillect/status/884698803718078464</p>
 								<hr>
 								<p class="title_small">글자체 저작권자 및 출처</p>
 								<p>네이버 나눔명조(일부)</p>

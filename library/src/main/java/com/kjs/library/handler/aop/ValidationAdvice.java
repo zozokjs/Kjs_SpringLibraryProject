@@ -40,6 +40,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.kjs.library.domain.common.VisitorInfor;
 import com.kjs.library.handler.aop.ex.CustomValidationApiException;
 import com.kjs.library.handler.aop.ex.CustomValidationException;
+import com.kjs.library.service.common.CommonCookieService;
 import com.kjs.library.service.common.CommonService;
 import com.kjs.library.service.common.DateCommonService;
 import com.kjs.library.util.openApi.IpSearch;
@@ -57,6 +58,8 @@ public class ValidationAdvice {
 	
  	
 	private CommonService commonService;
+	private CommonCookieService commonCookieService;
+	
 	private IpSearch ipSearch;
 	public ValidationAdvice(CommonService cs, IpSearch ipSearch) {
 		this.commonService  = cs;
@@ -105,8 +108,11 @@ public class ValidationAdvice {
 		//Response
 		HttpServletResponse response = ((ServletRequestAttributes) (RequestContextHolder.currentRequestAttributes())).getResponse();
 
+		//log.info("message {}",findCookieValue2(request, "visitorCookie"));
+ 
+		
 		//1. request 객체에서 쿠키 key가 visitorCookie인 값을 가져옴
-		String oldCookieValue = findCookieValue(request, "visitorCookie");
+		String oldCookieValue = findCookieValue2(request, "visitorCookie");
 		//log.info("find 결과  {}",oldCookieValue);
 		
 		//아이피 얻어옴
@@ -119,7 +125,8 @@ public class ValidationAdvice {
 			//2. 쿠키 없으면 쿠키 세팅, 방문자 증가
 			if(oldCookieValue == null || oldCookieValue.equals("") || oldCookieValue.length() == 0 || oldCookieValue.isEmpty()) {
 				//log.info("접속 기록 및 쿠키 없음. 쿠키 세팅. 방문자 증가");
-				setNewCookie(response);
+				
+				commonCookieService.setNewCookie(response, "visitorCookie", 90000);
 				commonService.방문자증가();
 				
 				//방문자 집계 지점 확인을 위해 ip저장
@@ -134,9 +141,8 @@ public class ValidationAdvice {
 				if(DateCommonService.오늘날짜다(createDate) == false){
 					//log.info("오늘 날짜 아니라서 방문수 증가");
 
-					deleteOldCookie(response);
-					
-					setNewCookie(response);
+					commonCookieService.deleteOldCookie(response,"visitorCookie");
+					commonCookieService.setNewCookie(response, "visitorCookie", 90000);
 					commonService.방문자증가();
 					
 					//방문자 집계 지점 확인을 위해 ip저장
@@ -148,8 +154,6 @@ public class ValidationAdvice {
 				}
 			}
 		}//end of --> if(isDomesticIP = true)
-		
-		
 	}
 	
 	
@@ -265,37 +269,7 @@ public class ValidationAdvice {
 		return proceedingJoinPoint.proceed();
 
 	}*/
-	
-	
-	/**
-	 * 쿠키 세팅
-	 * */
-	public void setNewCookie(HttpServletResponse response) {
-		//log.info("새 쿠키가 추가 됨");
-	
-		//1. 날짜 포맷 세팅
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
-		//2. 오늘 날짜를 가져옴
-		Date dateNowDate = new Date();
-		//3. dateNowDate을 주어진 포맷으로 변경(Date -> String)
-		String dateNowFormatted= simpleDateFormat.format(dateNowDate);
-		//4. 새로운 uuid 생성
-		UUID uuid = UUID.randomUUID();
-		//5. uuid에 dateNowFormatted 더함
-		String cookieValue = dateNowFormatted+"///"+uuid.toString();
-		// 예)20220901///asdqwdasdkljqiwofh
-		//log.info(" {}",cookieValue);
-		//6 쿠키 세팅
-		Cookie newCookie = new Cookie("visitorCookie",cookieValue);//새 쿠키 생성
-		newCookie.setMaxAge(60*60*25); //쿠키 유지 시간 설정 : 25시간
-		response.addCookie(newCookie); //쿠키 세팅
-	}
-	
-	
-	/**
-	 * cookie 아이디가 cookieKey인 것의 value를 가져옴
-	 * */
-	public String findCookieValue(HttpServletRequest request, String cookieKey) {
+public String findCookieValue2(HttpServletRequest request, String cookieKey) {
 		
 		String cookieValue = "";
 		
@@ -317,19 +291,9 @@ public class ValidationAdvice {
 		}else{
 			//log.info("쿠키가 없습니다");
 		}// end of if
-		
+		//log.info(cookieKey+"로 찾은 값: "+ cookieValue);
+
 		return cookieValue;
 		
 	} // end of findCookieValue()
-
-	
-	public void deleteOldCookie(HttpServletResponse response) {
-		
-		//log.info("기존 쿠키가 제거 됨");
-		
-		Cookie deleteCookie = new Cookie("visitorCookie",null); //Null 값의 쿠키 생성
-		deleteCookie.setMaxAge(0); //쿠키 유지 시간 설정 
-		response.addCookie(deleteCookie ); //쿠키 세팅
-	}
-	
 }

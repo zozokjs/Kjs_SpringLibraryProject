@@ -35,10 +35,12 @@ import com.kjs.library.web.dto.book.ImageDto;
 
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 //어딘든지 공통으로 사용되는 서비스 모음
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class CommonService {
 
 	
@@ -244,9 +246,17 @@ public class CommonService {
 	}
 	
 	
-	
+	/**
+	 * 주어진 정보로 이메일 전송
+	 * @param toEmailAddress, String, 이메일 주소
+	 * @param mailTitle, String, 메일 제목
+	 * @param mailContent, String, 메일 내용
+	 * @return 
+	 * @throws  
+	 * */
 	public void mailSendering(String toEmailAddress, String mailTitle, String mailContent) throws MessagingException{
 		
+		log.info("메일 전송ㅇㅇㅇ");
 		String mailFrom = "zozokjsinfinite@naver.com";
 
 		MimeMessage mMessage = mailSender.createMimeMessage();
