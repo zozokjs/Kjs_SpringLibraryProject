@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kjs.library.config.auth.PrincipalDetails;
 import com.kjs.library.domain.community.BoardFree;
@@ -21,13 +22,16 @@ import com.kjs.library.domain.user.UserRepository;
 import com.kjs.library.service.CommunityService;
 import com.kjs.library.service.common.CommonService;
 import com.kjs.library.web.dto.CMRespDto;
+import com.kjs.library.web.dto.book.ImageDto;
 import com.kjs.library.web.dto.community.CommentRegistrationDto;
 import com.kjs.library.web.dto.community.SQuestionCommentRegistrationDto;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @RestController
+@Slf4j
 public class CommunityApiController {
 	
 	
@@ -50,7 +54,6 @@ public class CommunityApiController {
 		
 		return new ResponseEntity<>(new CMRespDto<>(1,"조회 성공.",boardFree),HttpStatus.OK);
 	}*/
-	
 	
 	/**게시글 삭제 처리*/
 	@PostMapping("/api/community/{boardFreeId}/boardFreeDelete")
@@ -147,6 +150,21 @@ public class CommunityApiController {
 		
 	}
 	
-	
+	/**
+	 * 주어진 image 데이터를 서버에 저장
+	 * @param ImageDto, Front에서 넘어온 이미지 데이터 
+	 * @return String, 서버에 저장된 이미지 파일 이름
+	 * @throws  
+	 * */
+	@PostMapping("/user/api/community/summernoteImage")
+	public String singleQuestionCommentRegistration(ImageDto imageDto){
+				
+		//log.info("컨트롤러 도착");
+		//log.info("파일 이름 " + imageDto.getFile().getOriginalFilename());
+		String savedFilename = commonService.사진저장(imageDto, "imageCommunity");
+		//log.info("저장된 파일 이름 " + savedFilename);
+		
+		return savedFilename;
+	}
 	
 }

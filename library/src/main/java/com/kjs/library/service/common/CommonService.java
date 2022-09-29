@@ -1,10 +1,10 @@
 package com.kjs.library.service.common;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -12,15 +12,13 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kjs.library.config.auth.PrincipalDetails;
 import com.kjs.library.domain.common.VisitorCount;
@@ -28,12 +26,9 @@ import com.kjs.library.domain.common.VisitorCountRepository;
 import com.kjs.library.domain.common.VisitorInfor;
 import com.kjs.library.domain.common.VisitorInforRepository;
 import com.kjs.library.domain.user.RoleType;
-import com.kjs.library.domain.user.UserRepository;
 import com.kjs.library.handler.aop.ex.CustomValidationException;
-import com.kjs.library.service.AuthDataService;
 import com.kjs.library.web.dto.book.ImageDto;
 
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,7 +42,7 @@ public class CommonService {
 	private final JavaMailSender mailSender;
 	private final VisitorInforRepository visitorInforRepository;
 	private final VisitorCountRepository visitorCountRepository;
-	
+	private final DateCommonService dateCommonService;
 	
 	//책 타이틀 이미지만 모아두는 곳
 	@Value("${file.path.upload_imageTitle}")
@@ -57,6 +52,9 @@ public class CommonService {
 	@Value("${file.path.upload_imageProfile}")
 	private String uploadProfileFolder;
 
+	//게시글에 올린 이미지만 모아두는 곳
+	@Value("${file.path.upload_imageCommunity}")
+	private String uploadCommunityFolder;
 	
 	/**사진만 저장함(책 타이틀 이미지, 유저 프로필 이미지 등)
 	 * */
@@ -74,11 +72,10 @@ public class CommonService {
 			
 			//유일성이 보장되는 id 생성
 			UUID uuid = UUID.randomUUID();
+			imageFileName = uuid+"_"+imageDto.getFile().getOriginalFilename();
 			
 			//도서 타이틀 이미지일 때
 			if(imagePath == "imageTitle") {
-				
-				imageFileName = uuid+"_"+imageDto.getFile().getOriginalFilename();
 				Path imageFilePath =Paths.get(uploadTitleFolder+imageFileName);
 
 				try {
@@ -89,7 +86,33 @@ public class CommonService {
 					e.printStackTrace();
 				}
 			}
-			//유저 프로필 사진일 때 
+			//게시판에 저장한 이미지일 때 
+			else if(imagePath == "imageCommunity") {
+				
+				//기본 파일 경로에 오늘 날짜 추가
+				String todayDate = DateCommonService.오늘날짜();
+				String imageFileSavingPath= uploadCommunityFolder+ todayDate+"/";
+				Path imageFilePath =Paths.get(imageFileSavingPath+imageFileName);
+				
+				log.info("파일 패스 : "+imageFileSavingPath);
+				
+				// upload_imageCommunity/오늘날짜/    <-- 이 경로가 없다면 폴더 새로 생성
+				File imageFileSavingFolder = new File(imageFileSavingPath);
+				if(!imageFileSavingFolder.exists()) {
+					imageFileSavingFolder.mkdir();
+					//log.info("폴더가 없어서 새로 만들었습니다");
+					//log.info("파일 패스 : "+pathFirst);
+				}
+				
+				try {
+					Files.write(imageFilePath, imageDto.getFile().getBytes());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				imageFileName = todayDate+"/"+imageFileName;
+			} 
+			/*
 			else if(imagePath == "imageProfile") {
 				imageFileName = uuid+"_"+imageDto.getFile().getOriginalFilename();
 				Path imageFilePath =Paths.get(uploadProfileFolder+imageFileName);
@@ -100,11 +123,12 @@ public class CommonService {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+			}*/
+			
 
 			System.out.println("이미지 이름 : " +imageFileName );
 				
-		}
+		}// end of first if
 		
 		return imageFileName; //저장된 사진 이름을 리턴함
 			

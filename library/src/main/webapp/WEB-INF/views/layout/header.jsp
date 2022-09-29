@@ -31,6 +31,10 @@
 	<!-- 날짜 라이브러리 -->
 	<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 	
+	<!-- summer note 시작 -->
+	<link rel="stylesheet" href="/summernote/summernote-lite.css">
+	<!-- summer note 끝 -->
+	
 	<title>토르두스 국립도서관</title>
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -52,14 +56,9 @@
 	
 	<link rel="stylesheet" href="/css_custom/auth/findToIdPassword.css" />
 	<link rel="stylesheet" href="/css_custom/auth/resetPassword.css" />	
-
-
 	<link rel="stylesheet" href="/css_custom/auth/signupSuccess.css" />
-	
 	<link rel="stylesheet" href="/css_custom/layout/header.css" />
-	
 	<link rel="stylesheet" href="/css_custom/community/boardFree.css" />
-
 	<link rel="stylesheet" href="/css_custom/community/boardNotice.css" />
 	
 	<!-- Style Custom End-->
@@ -188,6 +187,7 @@
 		<div class="mobile-menu">
 			<nav>
 				<ul>
+				
 					<!-- 1 -->
 					<li><a class="has-child"  href="/guide/wayToHome">도서관이용안내</a>
 						<ul>
@@ -255,6 +255,9 @@
 				<a href="#" class="menu-btn"></a>
 				<nav class="header-nav subMenuText">
 					<ul>
+							<li>
+						<a class="has-child"  href="/frontPage">테스트</a>
+					</li>
 						<li><a href="/guide/wayToHome">도서관이용안내</a>
 							<ul>
 								<li><a href="/guide/wayToHome">찾아오시는 길</a></li>

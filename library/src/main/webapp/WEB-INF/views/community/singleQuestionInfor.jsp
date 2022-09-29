@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_Community.jsp"%>
-				
+<link rel="stylesheet" href="/css_custom/community/singleQuestionInfor.css" />
 				
 				<div class="two-colls-right"><!-- 우측 메인 시작 -->
 					<div class="two-colls-right-b">
 						<div class="padding">
 							<div class="right-Submenu-2depth">
-								1대일 질문하기 - 상세
+								1대일 질문하기 
 							</div>
 							
 							<input type ="hidden" id="loginUserId" value="${principal.user.id}">
@@ -18,30 +18,21 @@
 							<div class="tables div-tables"  >
 								<table class="table-a">
 									<tr>
-										<td>제목</td>
-										<td colspan="3">${sqResponseDto.title}</td>
+										<td colspan="6"  class="table-td-title">${sqResponseDto.title}</td>
 									</tr>
 
 									<tr>
-										<td>작성자</td>
-										<td>${sqResponseDto.user.username}</td>
+										<td class="table-td-info-left">작성자</td>
+										<td  colspan="2"  >${sqResponseDto.user.username}</td>
 										<td>등록일</td>
-										<td>${sqResponseDto.createDateFormatted}</td>
+										<td  colspan="2"  class="table-td-info-right">${sqResponseDto.createDateFormatted}</td>
 									</tr>
 
 									<tr>
-										<td>내용</td>
-										<td colspan="5" class="tables-td">
-											<div class="typography  div-typography" >
-												<div class="content-wrapper">
-													<div class="block-qoutes">
-														<p>
-															${sqResponseDto.content}
-														</p>
-													</div>
-												</div>
-											</div>
-									
+										<td colspan="6"  class="table-td-content" >
+											<p>
+												${sqResponseDto.content}
+											</p>
 										</td>
 									</tr>
 								</table>
@@ -55,12 +46,7 @@
 									</div>
 								</c:when>
 							</c:choose> 
-							<hr>
 		
-							<div>
-							답변내용
-							</div>
-							
 							<!-- 답변 작성 공간 시작-->
 							<div >
 								<c:choose>
@@ -89,14 +75,30 @@
 									</c:when>
 									
 									<c:otherwise>
-										<div class="typography" style="padding-bottom:30px;">
-											<div class="content-wrapper">
-												<div class="block-qoutes">
-													<p>
-														${sqResponseDto.commentSQ.content}
-													</p>
-												</div>
-											</div>
+
+										<div class="tables div-tables"  >
+											<table class="table-a">
+												<tr>
+													<td colspan="6"  class="table-td-title">[Re] ${sqResponseDto.title}</td>
+												</tr>
+												<tr>
+													<td class="table-td-info-left">작성자</td>
+													<td  colspan="2"  >사서</td>
+													<td>답변일</td>
+													<td  colspan="2"  class="table-td-info-right">
+														<fmt:parseDate value="${sqResponseDto.commentSQ.createDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+														<fmt:formatDate value="${parsedDateTime}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" />
+													</td>
+												</tr>
+			
+												<tr>
+													<td colspan="6"  class="table-td-content" >
+														<p>
+															${sqResponseDto.commentSQ.content}
+														</p>
+													</td>
+												</tr>
+											</table>
 										</div>
 									</c:otherwise>
 									

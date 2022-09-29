@@ -33,9 +33,10 @@
 											<td><label class="inputBox-custom-require-label">*</label>내용</td>
 											<td>
 												<div class="booking-form-i">
-														<div class="textarea  div-textarea-registration"  >
-															<textarea  id="content"  name="content" class="form-control mb-3"  cols="30" rows="5" placeholder="내용" required=""></textarea>
-														</div>
+															<!-- <textarea  id="content"  name="content" class="form-control mb-3"  cols="30" rows="5" placeholder="내용" required=""></textarea>
+ -->																
+													<textarea id="summernote" name="content"></textarea>
+															
 												</div>
 											</td>
 										</tr>
@@ -61,5 +62,5 @@
 		</div><!-- end of class [ wrapper-padding ] -->
 	</div><!-- end of class [ body-wrapper ] -->
 </div><!-- /main-cont -->
-
+<script src="/js_custom/community/summerNoteCustom.js"></script>
 <%@ include file="../layout/footer.jsp"%>
