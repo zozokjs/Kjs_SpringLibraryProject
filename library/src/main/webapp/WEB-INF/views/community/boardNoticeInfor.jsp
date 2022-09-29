@@ -2,14 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_Community.jsp"%>
-<link rel="stylesheet" href="/css_custom/community/boardNoticeInfor.css" />
+
 
 				<div class="two-colls-right"><!-- 우측 메인 시작 -->
 					<div class="two-colls-right-b">
 						<div class="padding">
 							<div class="right-Submenu-2depth">
 								<!-- 1depth Menu -->
-								공지사항
+								공지사항-상세 읽기
 							</div>
 							
 							<input type ="hidden" id="loginUserId" value="${principal.user.id}">
@@ -19,32 +19,41 @@
 							<div class="tables  div-tables" >
 								<table class="table-a">
 									<tr>
-										<td colspan="6" class="table-td-title">${boardNotice.title}</td>
+										<td>제목</td>
+										<td colspan="5">${boardNotice.title}</td>
 									</tr>
-									<tr class="table-td-info-left">
+									<tr>
 										<c:choose>
 											<c:when test="${empty boardNotice.editDate}">
-												<td class="table-td-info-left">작성자</td>
+												<td>작성자</td>
 												<td>${boardNotice.user.username}</td>
 												<td >등록일</td>
-												<td colspan="3"  class="table-td-info-right">${boardNotice.createDateFormatted}</td>
+												<td colspan="3">${boardNotice.createDateFormatted}</td>
 											</c:when>
 											<c:otherwise>
-												<td class="table-td-info-left">작성자</td>
+												<td>작성자</td>
 												<td>${boardNotice.user.username}</td>
 												<td>등록일</td>
 												<td>${boardNotice.createDateFormatted}</td>
 												<td>수정일</td>
-												<td class="table-td-info-right">${boardNotice.editDate}</td>
+												<td>${boardNotice.editDate}</td>
 											</c:otherwise>
 										</c:choose>
 										
 									</tr>
 									<tr>
-										<td colspan="6"  class="table-td-content">
-											<p>
-												${boardNotice.content}
-											</p>
+										<td>내용</td>
+										<td colspan="5"  class="tables-td">
+											<div class="typography  div-typography" >
+												<div class="content-wrapper">
+													<div class="block-qoutes">
+														<p>
+															${boardNotice.content}
+														</p>
+													</div>
+												</div>
+											</div>
+									
 										</td>
 									</tr>
 								</table>

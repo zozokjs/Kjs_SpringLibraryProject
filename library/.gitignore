@@ -16,7 +16,7 @@ target/
 .sts4-cache
 
 src/main/resources/application.yml
-src/test/java/
+
 
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/

@@ -34,12 +34,13 @@
 										<tr>	
 											<td>내용</td>
 											<td colspan="3">
-												<div class="booking-form-i">
+												<div class="booking-form-i  inputBox-custom"  >
+													<div class="input">
 														<div>
-	<!-- 														<textarea  id="content"  name="content" cols="30" rows="5"  style="resize: none; width:99.3%; margin-bottom:-5px;"  placeholder="등록된 질문글은 수정할 수 없습니다" ></textarea -->
-															<textarea id="summernote" name="content"></textarea>
+															<textarea  id="content"  name="content" cols="30" rows="5"  style="resize: none; width:99.3%; margin-bottom:-5px;"  placeholder="등록된 질문글은 수정할 수 없습니다" ></textarea>
 														</div>
 													</div>
+												</div>
 											</td>
 										</tr>
 									</table>
@@ -60,5 +61,5 @@
 		</div><!-- end of class [ wrapper-padding ] -->
 	</div><!-- end of class [ body-wrapper ] -->
 </div><!-- /main-cont -->
-<script src="/js_custom/community/summerNoteCustom.js"></script>
+
 <%@ include file="../layout/footer.jsp"%>

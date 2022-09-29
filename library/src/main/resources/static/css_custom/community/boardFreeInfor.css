@@ -1,30 +1,4 @@
-.table-a tr td{
-	background : white !important;
-}
 
-.table-td-title{
-	border-top : 3px solid !important;
-	border-left: none !important;
-	border-right: none !important;
-}
-
-.table-td-info-left{
-	border-left: none !important;
-}
-
-.table-td-info-right{
-	border-right: none !important;
-}
-
-.table-td-content{
-	border-left: none !important;
-	border-right: none !important;
-	padding : 20px !important;
-}
-
-.table-td-content p{
-	text-align: left;
-}
 
 .div-tables2{
 	margin-top: 40px;
@@ -35,6 +9,7 @@
 	width:99.3%;
 	 margin-bottom:-5px;
 }
+
 	
 /*width가 800이하일 때 아래로 변경함*/
 @media (max-width:800px) { 

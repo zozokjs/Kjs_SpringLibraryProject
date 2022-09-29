@@ -58,23 +58,6 @@ public class DateCommonService {
 		}
 	}
 	
-	/**
-	 * 오늘 날짜를 구함
-	 * @param 
-	 * @return yyyyMMdd 형식, String
-	 * @throws ParseException 
-	 * */
-	public static String 오늘날짜() {
-
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
-		//1. 오늘 날짜를 가져옴
-		Date dateNowDate = new Date();
-		//2. dateNowDate을 주어진 포맷으로 변경(Date -> String)
-		String dateNowFormatted= simpleDateFormat.format(dateNowDate);
-		
-		return dateNowFormatted;
-	}
-	
 	
 	/**
 	 * 주어진 날짜가 오늘인지 비교
@@ -86,20 +69,30 @@ public class DateCommonService {
 	public static boolean 오늘날짜다(String targetDate) throws ParseException {
 		
 		/**
-		 * 1. String 형태의 오늘 날짜를 구해온 뒤, Date 형태로 변경(String -> Date)
-		 * 2. targetDate를 Date로 변경(String -> Date)
-		 * 3. 비교 
+		 * 1. Date로 오늘 날짜를 가져옴
+		 * 2. yyyyMMdd 형태로 포맷 변경(Date -> String)
+		 * 3. 비교를 위해 Date 형태로 변경(String -> Date)
+		 * 
+		 * 4. targetDate를 Date로 변경(String -> Date)
+		 * 5. 비교 
 		 * */
 		
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 		
-		//1. String 형태의 오늘 날짜를 구해온 뒤, Date 형태로 변경(String -> Date)
-		Date dateNowDateParsed = simpleDateFormat.parse(오늘날짜());
+		//1. 오늘 날짜를 가져옴
+		Date dateNowDate = new Date();
+		
+		//2. dateNowDate을 주어진 포맷으로 변경(Date -> String)
+		String dateNowFormatted= simpleDateFormat.format(dateNowDate);
+		
+		//3. Date 형태로 변경(String -> Date)
+		Date dateNowDateParsed = simpleDateFormat.parse(dateNowFormatted);
 
-		//2. targetDate를 Date로 변경(String -> Date)
+		
+		//4. targetDate를 Date로 변경(String -> Date)
 		Date targetDateParsed = simpleDateFormat.parse(targetDate);
 		
-		//3. 비교함
+		//5. 비교함
 		/** 202109.after( 202110 )  -> FALSE
 		 *   202110.after( 202109 )  -> TRUE
 		 *   dateNowDate가 tragetTime보다 이후이거나 이전일 때(오늘 날짜가 아닐 때) False

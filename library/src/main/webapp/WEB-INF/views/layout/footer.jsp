@@ -100,7 +100,8 @@
 <script src="/js/bootstrap-4-Modal-Wrapper/dist/bootstrap-modal-wrapper-factory.min.js"></script>
 <!-- 모달 구현 끝-->
 
-	
+
+
 <script src="/js/slideInit.js"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery-ui.min.js"></script>
@@ -109,17 +110,17 @@
 <script src="/js/jqeury.appear.js"></script>
 <script src="/js/script.js"></script>
 <script src="/js/idangerous.swiper.js"></script>
+
 <script src="/js/owl.carousel.min.js"></script>
 <script src="/js/bxSlider.js"></script>
-
 <script src="/js/custom.select.js"></script>
-<script src="/js_custom/script_custom.js"></script>
-<script src="/js_custom/layout/footer.js"></script>
 
-<!-- summer note 시작 -->
-<script src="/summernote/summernote-lite.js"></script>
-<script src="/summernote/lang/summernote-ko-KR.js"></script>
-<!-- summer note 끝 -->
+<!-- 	<script type="text/javascript" src="/js/twitterfeed.js"></script> -->
+
+<script src="/js_custom/script_custom.js"></script>
+
+
+<script src="/js_custom/layout/footer.js"></script>
 <!-- \\ scripts \\ -->
 
 </body>

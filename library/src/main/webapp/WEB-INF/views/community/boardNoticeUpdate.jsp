@@ -38,10 +38,11 @@
 												<div class="booking-form-i  inputBox-custom"  >
 													<div class="input">
 														<div>
-															<textarea id="summernote" name="content">${boardNotice.content}</textarea>
+															<textarea  id="content"  name="content" cols="30" rows="5"  class="div-textarea-update" > ${boardNotice.content}</textarea>
 														</div>
 													</div>
 												</div>
+												
 											</td>
 										</tr>
 									</table>
@@ -65,5 +66,5 @@
 		</div><!-- end of class [ wrapper-padding ] -->
 	</div><!-- end of class [ body-wrapper ] -->
 </div><!-- /main-cont -->
-<script src="/js_custom/community/summerNoteCustom.js"></script>
+
 <%@ include file="../layout/footer.jsp"%>

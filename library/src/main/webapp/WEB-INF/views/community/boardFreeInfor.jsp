@@ -9,7 +9,7 @@
 						<div class="padding">
 							<div class="right-Submenu-2depth">
 								<!-- 1depth Menu -->
-								자유게시판
+								자유게시판-상세 읽기
 							</div>
 							
 							<input type ="hidden" id="loginUserId" value="${principal.user.id}">
@@ -19,32 +19,40 @@
 							<div class="tables  div-tables" >
 								<table class="table-a">
 									<tr>
-										<td colspan="6" class="table-td-title">${boardFree.title}</td>
+										<td>제목</td>
+										<td colspan="5">${boardFree.title}</td>
 									</tr>
-									<tr class="table-td-info-left">
+									<tr>
 										<c:choose>
 											<c:when test="${empty boardFree.editDate}">
-												<td class="table-td-info-left">작성자</td>
+												<td>작성자</td>
 												<td>${boardFree.user.username}</td>
 												<td >등록일</td>
-												<td colspan="3"  class="table-td-info-right">${boardFree.createDateFormatted}</td>
+												<td colspan="3">${boardFree.createDateFormatted}</td>
 											</c:when>
 											<c:otherwise>
-												<td class="table-td-info-left">작성자</td>
+												<td>작성자</td>
 												<td>${boardFree.user.username}</td>
 												<td>등록일</td>
 												<td>${boardFree.createDateFormatted}</td>
 												<td>수정일</td>
-												<td class="table-td-info-right">${boardFree.editDate}</td>
+												<td>${boardFree.editDate}</td>
 											</c:otherwise>
 										</c:choose>
 										
 									</tr>
 									<tr>
-										<td colspan="6" class="table-td-content" >
-												<p>
-													${boardFree.content}
-												</p>
+										<td>내용</td>
+										<td colspan="5" class="tables-td" >
+											<div class="typography div-typography" >
+												<div class="content-wrapper">
+													<div class="block-qoutes">
+														<p>
+															${boardFree.content}
+														</p>
+													</div>
+												</div>
+											</div>
 									
 										</td>
 									</tr>
@@ -59,6 +67,9 @@
 									</div>
 								</c:when>
 							</c:choose> 
+							
+							<hr>
+							
 							
 							<!-- 댓글 시작 -->
 							<!-- 이름 / 내용 / 작성 시간 / 삭제버튼 -->
