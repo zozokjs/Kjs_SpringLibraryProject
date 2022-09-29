@@ -24,12 +24,7 @@ $(document).ready(function() {
 						callbacks: {	
 							//이미지 업로드 했을 때 동작함(글 작성 완료와는 관계 없이)
 							onImageUpload: function(files) {
-								
-								console.log("최초 이미지 길이 "+files.length)
-							
 								for(var ind = files.length - 1; ind >= 0; ind--){
-									console.log("이미지 길이 "+files.length)
-
 									uploadSummernoteImageFile(files[ind], this);
 								}
 							}
@@ -56,9 +51,7 @@ function uploadSummernoteImageFile(file, el){
 				xhr.setRequestHeader(csrfHeaderValue, csrfTokenValue);
             },
 		success : function(data) {
-				console.log(data)
-				console.log(data.url)
-				
+				//console.log(data)
 					$(el).summernote('editor.insertImage', '/community/'+data);
 	}
 	})

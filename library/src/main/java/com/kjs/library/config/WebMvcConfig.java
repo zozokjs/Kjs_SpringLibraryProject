@@ -37,7 +37,8 @@ public class WebMvcConfig implements WebMvcConfigurer{
 		
 		registry.addResourceHandler("/community/**")
 		.addResourceLocations("file:///"+upload_imageCommunityFolder)
-		.resourceChain(true) 
+		.setCachePeriod(3600)
+		.resourceChain(false) 
 		.addResolver(new PathResourceResolver());
 	}
 	
