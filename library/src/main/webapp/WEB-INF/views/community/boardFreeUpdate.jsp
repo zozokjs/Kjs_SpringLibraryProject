@@ -8,7 +8,7 @@
 					<div class="two-colls-right-b">
 						<div class="padding">
 							<div class="right-Submenu-2depth">
-								자유게시판 - 게시글 수정
+								자유게시판
 							</div>
 							
 							<form action="/community/${community.id}/boardFreeUpdate"  method = "post" enctype="multipart/form-data" >
@@ -35,9 +35,7 @@
 											<td colspan="3">
 												<div class="booking-form-i  inputBox-custom"  >
 													<div class="input">
-														<div>
-															<textarea  id="content"  name="content" cols="30" rows="5"  class="div-textarea-update" >${community.content}</textarea>
-														</div>
+														<textarea id="summernote" name="content">${community.content}</textarea>		
 													</div>
 												</div>
 											</td>
@@ -64,4 +62,5 @@
 	</div><!-- end of class [ body-wrapper ] -->
 </div><!-- /main-cont -->
 
+<script src="/js_custom/community/summerNoteCustom.js"></script>
 <%@ include file="../layout/footer.jsp"%>

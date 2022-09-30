@@ -26,11 +26,6 @@
 	text-align: left;
 }
 
-.table-tr-noComment{
-	border:2px solid black !important;
-	font-weight: bold;
-}
-
 .div-tables2{
 	margin-top: 40px;
 }
@@ -41,7 +36,6 @@
 	 margin-bottom:-5px;
 }
 
-	
 /*width가 800이하일 때 아래로 변경함*/
 @media (max-width:800px) { 
 	/* stlye_custom.css의 

@@ -9,7 +9,7 @@
 						<div class="padding">
 							<div class="right-Submenu-2depth">
 								<!-- 1depth Menu -->
-								자유게시판-상세 읽기
+								자유게시판
 							</div>
 							
 							<input type ="hidden" id="loginUserId" value="${principal.user.id}">
@@ -19,41 +19,32 @@
 							<div class="tables  div-tables" >
 								<table class="table-a">
 									<tr>
-										<td>제목</td>
-										<td colspan="5">${boardFree.title}</td>
+										<td colspan="6" class="table-td-title">${boardFree.title}</td>
 									</tr>
-									<tr>
+									<tr class="table-td-info-left">
 										<c:choose>
 											<c:when test="${empty boardFree.editDate}">
-												<td>작성자</td>
+												<td class="table-td-info-left">작성자</td>
 												<td>${boardFree.user.username}</td>
 												<td >등록일</td>
-												<td colspan="3">${boardFree.createDateFormatted}</td>
+												<td colspan="3"  class="table-td-info-right">${boardFree.createDateFormatted}</td>
 											</c:when>
 											<c:otherwise>
-												<td>작성자</td>
+												<td class="table-td-info-left">작성자</td>
 												<td>${boardFree.user.username}</td>
 												<td>등록일</td>
 												<td>${boardFree.createDateFormatted}</td>
 												<td>수정일</td>
-												<td>${boardFree.editDate}</td>
+												<td class="table-td-info-right">${boardFree.editDate}</td>
 											</c:otherwise>
 										</c:choose>
 										
 									</tr>
 									<tr>
-										<td>내용</td>
-										<td colspan="5" class="tables-td" >
-											<div class="typography div-typography" >
-												<div class="content-wrapper">
-													<div class="block-qoutes">
-														<p>
-															${boardFree.content}
-														</p>
-													</div>
-												</div>
-											</div>
-									
+										<td colspan="6" class="table-td-content" >
+											<p>
+												${boardFree.content}
+											</p>
 										</td>
 									</tr>
 								</table>
@@ -80,7 +71,7 @@
 									<c:choose>
 										<c:when test="${empty boardFree.comments}">
 											<tr>
-												<td colspan="4">등록된 덧글이 없습니다.</td>
+												<td colspan="4" class="table-tr-noComment">등록된 덧글이 없습니다.</td>
 											</tr>
 										</c:when>
 										<c:otherwise>

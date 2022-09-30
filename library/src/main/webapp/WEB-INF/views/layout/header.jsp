@@ -31,6 +31,10 @@
 	<!-- 날짜 라이브러리 -->
 	<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 	
+	<!-- summer note 시작 -->
+	<link rel="stylesheet" href="/summernote/summernote-lite.css">
+	<!-- summer note 끝 -->
+	
 	<title>토르두스 국립도서관</title>
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -41,27 +45,22 @@
 	<meta name="_csrf" content="${_csrf.token}"/>
 	<meta name="_csrf_header" content="${_csrf.headerName}"/>
 	
-	
-	<!-- Style Custom Start-->
-	
 	<link rel="stylesheet" href="/css/jquery-ui.css">
 	<link rel="stylesheet" href="/css/idangerous.swiper.css">
 	<link rel="stylesheet" href="/css/owl.carousel.css">
 	<link rel="stylesheet" href="/css/style.css" />
+	
+	<!-- Style Custom Start-->
 	<link rel="stylesheet" href="/css_custom/style_custom.css" />
 	
 	<link rel="stylesheet" href="/css_custom/auth/findToIdPassword.css" />
 	<link rel="stylesheet" href="/css_custom/auth/resetPassword.css" />	
-
-
 	<link rel="stylesheet" href="/css_custom/auth/signupSuccess.css" />
 	
 	<link rel="stylesheet" href="/css_custom/layout/header.css" />
 	
 	<link rel="stylesheet" href="/css_custom/community/boardFree.css" />
-
 	<link rel="stylesheet" href="/css_custom/community/boardNotice.css" />
-	
 	<!-- Style Custom End-->
 	
 	

@@ -110,17 +110,19 @@
 <script src="/js/jqeury.appear.js"></script>
 <script src="/js/script.js"></script>
 <script src="/js/idangerous.swiper.js"></script>
-
 <script src="/js/owl.carousel.min.js"></script>
 <script src="/js/bxSlider.js"></script>
 <script src="/js/custom.select.js"></script>
 
-<!-- 	<script type="text/javascript" src="/js/twitterfeed.js"></script> -->
 
 <script src="/js_custom/script_custom.js"></script>
-
-
 <script src="/js_custom/layout/footer.js"></script>
+
+<!-- summer note 시작 -->
+<script src="/summernote/summernote-lite.js"></script>
+<script src="/summernote/lang/summernote-ko-KR.js"></script>
+<!-- summer note 끝 -->
+
 <!-- \\ scripts \\ -->
 
 </body>
