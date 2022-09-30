@@ -21,8 +21,7 @@
 						A. 우리도서관은 제국 건국일 및 도서관 설립일을 제외하고는 언제나 이용 가능합니다.
 						</div>
 					</div>
-					<!-- \\ -->
-					<!-- // -->
+
 					<div class="accordeon-item">
 						<div class="accordeon-a">
 							<i class="accordeon-icon"></i> 
@@ -64,7 +63,7 @@
 					<div class="accordeon-item">
 						<div class="accordeon-a">
 							<i class="accordeon-icon"></i> 
-							<span>Q. 진우도에 있는 게이트는 이용이 불가능한가요? 만져도 괜찮은가요? 게이트는 왜 사진 촬영이 안 되나요?</span>
+							<span>Q. 진우도에 있는 게이트는 이용이 불가능한가요? 만져도 괜찮은가요? 게이트는 왜 사진을 찍어도 찍히지가 않나요? </span>
 							<div class="clear"></div>
 						</div>
 						<div class="accordeon-b">
@@ -104,12 +103,11 @@
 					<div class="accordeon-item">
 						<div class="accordeon-a">
 							<i class="accordeon-icon"></i> 
-							<span>Q. 도서관 로고는 무엇을 의미하나요? 제국의 상징인가요?</span>
+							<span>Q. 도서관 로고는 무엇을 의미하나요?</span>
 							<div class="clear"></div>
 						</div>
 						<div class="accordeon-b">
 							A. 진우도 및 제국 곳곳에 위치한 도서관 게이트 모양을 본 뜬 것입니다.<br>	
-							 제국의 상징(국기 및 마력적 지문)은 아직 공개되지 않았습니다.<br>							
 						</div>
 					</div>
 					<!-- \\ -->
