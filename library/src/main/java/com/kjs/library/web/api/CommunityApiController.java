@@ -21,6 +21,7 @@ import com.kjs.library.domain.user.UserRepository;
 import com.kjs.library.service.CommunityService;
 import com.kjs.library.service.common.CommonService;
 import com.kjs.library.web.dto.CMRespDto;
+import com.kjs.library.web.dto.book.ImageDto;
 import com.kjs.library.web.dto.community.CommentRegistrationDto;
 import com.kjs.library.web.dto.community.SQuestionCommentRegistrationDto;
 
@@ -148,5 +149,20 @@ public class CommunityApiController {
 	}
 	
 	
+	/**
+	 * 주어진 image 데이터를 서버에 저장
+	 * @param ImageDto, Front에서 넘어온 이미지 데이터 
+	 * @return String, 서버에 저장된 이미지 파일 이름
+	 * @throws  
+	 * */
+	@PostMapping("/user/api/community/summernoteImage")
+	public String singleQuestionCommentRegistration(ImageDto imageDto){
+
+		//log.info("파일 이름 " + imageDto.getFile().getOriginalFilename());
+		String savedFilename = commonService.사진저장(imageDto, "imageCommunity");
+		//log.info("저장된 파일 이름 " + savedFilename);
+
+		return savedFilename;
+	}
 	
 }

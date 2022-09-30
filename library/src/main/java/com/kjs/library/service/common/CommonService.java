@@ -1,5 +1,6 @@
 package com.kjs.library.service.common;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -53,10 +54,14 @@ public class CommonService {
 	@Value("${file.path.upload_imageTitle}")
 	private String uploadTitleFolder;
 	
-	//유저 프로필 이미지만 모아두는 곳
+	/*유저 프로필 이미지만 모아두는 곳
 	@Value("${file.path.upload_imageProfile}")
-	private String uploadProfileFolder;
+	private String uploadProfileFolder;*/
 
+	//게시글에 올린 이미지만 모아두는 곳
+	@Value("${file.path.upload_imageCommunity}")
+	private String uploadCommunityFolder;
+		
 	
 	/**사진만 저장함(책 타이틀 이미지, 유저 프로필 이미지 등)
 	 * */
@@ -72,13 +77,13 @@ public class CommonService {
 		//첨부한 이미지가 있을 때
 		else {
 			
-			//유일성이 보장되는 id 생성
+			//유일성이 보장되는 id로 이미지 파일 이름 지정
 			UUID uuid = UUID.randomUUID();
+			imageFileName = uuid+"_"+imageDto.getFile().getOriginalFilename();
 			
 			//도서 타이틀 이미지일 때
 			if(imagePath == "imageTitle") {
 				
-				imageFileName = uuid+"_"+imageDto.getFile().getOriginalFilename();
 				Path imageFilePath =Paths.get(uploadTitleFolder+imageFileName);
 
 				try {
@@ -88,8 +93,34 @@ public class CommonService {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
-			//유저 프로필 사진일 때 
+			}//게시판에 저장한 이미지일 때 
+			else if(imagePath == "imageCommunity") {
+
+				//기본 파일 경로에 오늘 날짜 추가
+				String todayDate = DateCommonService.오늘날짜();
+				String imageFileSavingPath= uploadCommunityFolder+ todayDate+"/";
+				Path imageFilePath =Paths.get(imageFileSavingPath+imageFileName);
+
+				//log.info("파일 패스 : "+imageFileSavingPath);
+
+				//폴더가 없다면 새로 생성 [ upload_imageCommunity/오늘날짜/  ]
+				File imageFileSavingFolder = new File(imageFileSavingPath);
+				if(!imageFileSavingFolder.exists()) {
+					imageFileSavingFolder.mkdir();
+					//log.info("폴더가 없어서 새로 만들었습니다");
+					//log.info("파일 패스 : "+pathFirst);
+				}
+
+				try {
+					Files.write(imageFilePath, imageDto.getFile().getBytes());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				
+				imageFileName = todayDate+"/"+imageFileName; // [ 20220409/qwdasdqw123qswd ] 형식
+			} 
+			/*유저 프로필 사진일 때 
 			else if(imagePath == "imageProfile") {
 				imageFileName = uuid+"_"+imageDto.getFile().getOriginalFilename();
 				Path imageFilePath =Paths.get(uploadProfileFolder+imageFileName);
@@ -100,7 +131,7 @@ public class CommonService {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+			}*/
 
 			System.out.println("이미지 이름 : " +imageFileName );
 				
