@@ -15,6 +15,7 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import com.kjs.library.domain.oauth.GoogleProfile;
 import com.kjs.library.domain.oauth.KakaoProfile;
 import com.kjs.library.domain.oauth.NaverProfile;
 import com.kjs.library.domain.oauth.OAuth2UserInfo;
@@ -34,6 +35,13 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 	@Value("${cos.key}")
 	private String cosKey;
 	
+	/**
+	 * 1) oauth2 라이브러리를 사용하고,
+	 * 2) application.yml 파일에 oauth2 관련 설정하고,
+	 * 3) WebSecurityConfigurerAdapter를 상속 받은 SpringConfig 파일에서 oauth2Login()로 연결되는 설정을 하고, ... 
+	 * 4) userService()의 매게변수로 DefaultOAuth2UserService를 상속 받은 클래스를 넣어준 상태라면,
+	 * 구글 등 oauth2 관련 로그인을 진행하면 아래 메소드를 자동적으로 읽게 됨.
+	 * */
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
 
@@ -41,11 +49,11 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 		
 		//1. 플랫폼 이름 가져옴(kakao ... naver...)
 		String platformName = userRequest.getClientRegistration().getRegistrationId();
-		log.info(" platform "+platformName);
+		//log.info(" platform "+platformName);
 		
 		//2. 카카오나 네이버로부터 받은 사용자 데이터가 저장됨
 		OAuth2User oAuth2User = super.loadUser(userRequest);
-		log.info(" 정보 "+oAuth2User.getAttributes().toString());
+		//log.info(" 정보 "+oAuth2User.getAttributes().toString());
 		
 		//3. OAuth2 플랫폼 별 사용자 아이디가 저장됨
 		String platformId = null;
@@ -64,16 +72,21 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 			oAuth2UserInfo = new KakaoProfile((Map)oAuth2User.getAttributes().get("kakao_account"));
 			platformId = oAuth2User.getAttribute("id").toString();
 			//log.info(" platformId "+oAuth2User.getAttribute("id").toString());
+		}else if(platformName.equals("google")) {
+			
+			//log.info("구글에서 로그인을 요청했습니다.");
+			oAuth2UserInfo = new GoogleProfile((Map)oAuth2User.getAttributes());
+			platformId = oAuth2User.getAttribute("sub").toString();
 		}
 		
 		String username = platformName+"_"+platformId; //naver_1234
 		String password = cosKey;
 		String email = oAuth2UserInfo.getEmail();
 		
-		log.info("platform "+platformName);
-		log.info("platformId "+platformId);
-		log.info("name "+username);
-		log.info("email "+email);
+		//log.info("platform "+platformName);
+		//log.info("platformId "+platformId);
+		//log.info("name "+username);
+		//log.info("email "+email);
 		
 		
 		//5. db 삽입

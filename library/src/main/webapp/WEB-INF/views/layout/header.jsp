@@ -80,20 +80,6 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 </head>
 
-<style>
- 	.oauth_kakao{
- 		height: 54px;
- 		width: 40%; 
- 		margin:7px;
- 	}
-	
-	.oauth_naver{
-		height: 55px;
-		width: 40%; 
-		margin:7px;
-	}
-</style>
-
 <body>
 
 <!-- // authorize // -->
@@ -125,8 +111,15 @@
 			</form>
 			<div style="text-align:center;">
 				<!-- 카카오 로그인 -->
-				<a href="/oauth2/authorization/kakao"><!-- yml 파일의 authorization-uri에 설정된 주소가 요청됨 -->
+				<!-- yml 파일의 authorization-uri에 설정된 주소가 요청됨. 주소 커스텀 불가.
+						OAuth2 라이브러리, yml 설정, WebSecurityConfigurerAdapter 설정, DefaultOAuth2UserService 설정에 의해 동작함
+				 -->
+				<a href="/oauth2/authorization/kakao">
 					<img alt=""  class="oauth_kakao"   src="/img_custom/oauth/kakao_login.png" />
+				</a>
+				<!-- 구글 로그인 -->
+				<a href="/oauth2/authorization/google">
+					<img alt=""  class="oauth_google"   src="/img_custom/oauth/google_login_button.png" />
 				</a>
 				<!-- 네이버 로그인 ... 구현 완료... 승인 대기 중
 				<a href="/oauth2/authorization/naver">

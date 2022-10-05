@@ -67,6 +67,10 @@
 														<a href="/oauth2/authorization/kakao"> 
 															<img alt="" class="oauth_button" src="/img_custom/oauth/kakao_login_small.png" />
 														</a>
+														<!-- 구글 로그인 -->
+														<a href="/oauth2/authorization/google">
+															<img alt=""  class="oauth_google"   src="/img_custom/oauth/google_login_button.png" />
+														</a>
 														<!-- <a href="/oauth2/authorization/NAV"> 
 															<img alt="" class="oauth_button" src="/img_custom/oauth/naver_login_small.png" />
 														</a> -->

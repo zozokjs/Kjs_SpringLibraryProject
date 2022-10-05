@@ -1,3 +1,19 @@
+	.oauth_kakao{
+ 		height: 45px;
+ 		width: 40%; 
+ 		margin:7px;
+ 	}
+	
+	.oauth_naver{
+		height: 55px;
+		width: 40%; 
+		margin:7px;
+	}
+	
+	.oauth_google{
+		width: 48%; 
+	}
+
 .subMenuText ul li ul li a {
 	font-size: 16px;
 }

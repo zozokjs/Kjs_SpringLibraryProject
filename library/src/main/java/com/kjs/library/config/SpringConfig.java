@@ -76,7 +76,7 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
 					@Override
 					public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
 						
-						System.out.println("dddddddddddd");
+						//System.out.println("로그아웃됩니다.");
 						
 						HttpSession session = request.getSession();
 						String accessToken = (String) session.getAttribute("kakaoAccessToken");
