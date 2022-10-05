@@ -191,9 +191,10 @@
 					<li><a class="has-child"  href="/guide/wayToHome">도서관이용안내</a>
 						<ul>
 							<li><a href="/guide/wayToHome">찾아오시는 길</a></li>
-							<li><a href="/guide/informationUse">도서관 이용안내</a></li>
-							<li><a href="/guide/infraUse">시설이용안내</a></li>
-							<li><a href="/guide/organizationChart">조직도 및 담당 업무</a></li>
+							<li><a href="/guide/buildingInfor">건물안내도</a></li>
+							<li><a href="/guide/informationUse">이용시간/회원가입</a></li>
+							<li><a href="/guide/loanReturnReserveExtension">대출/반납/연장</a></li>
+							<li><a href="/guide/organizationChart">조직도및담당업무</a></li>
 						</ul>
 					</li>
 					
@@ -257,9 +258,10 @@
 						<li><a href="/guide/wayToHome">도서관이용안내</a>
 							<ul>
 								<li><a href="/guide/wayToHome">찾아오시는 길</a></li>
-								<li><a href="/guide/informationUse">도서관 이용안내</a></li>
-								<li><a href="/guide/infraUse">시설이용안내</a></li>
-								<li><a href="/guide/organizationChart">조직도 및 담당 업무</a></li>
+								<li><a href="/guide/buildingInfor">건물안내도</a></li>
+								<li><a href="/guide/informationUse">이용시간/회원가입</a></li>
+								<li><a href="/guide/loanReturnReserveExtension">대출/반납/연장</a></li>
+								<li><a href="/guide/organizationChart">조직도및담당업무</a></li>
 							</ul>
 						</li>		
 <!-- 						<li><a href="/auth/signupSuccess">공사중</a> -->

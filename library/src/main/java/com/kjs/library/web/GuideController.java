@@ -33,13 +33,13 @@ public class GuideController {
 		return "guide/closeTime";
 	}
 
-	// 시설 이용 안내
-	@GetMapping("/guide/infraUse")
+	//건물안내도
+	@GetMapping("/guide/buildingInfor")
 	public String infraUse() {
-		return "guide/infraUse";
+		return "guide/buildingInfor";
 	}
 
-	// 대출/반납/예약/연장(미사용)
+	// 대출/반납/예약/연장안내
 	@GetMapping("/guide/loanReturnReserveExtension")
 	public String loanReturnReserveExtension() {
 		return "guide/loanReturnReserveExtension";

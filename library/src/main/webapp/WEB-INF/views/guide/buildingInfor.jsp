@@ -9,17 +9,24 @@
 						<div class="padding">
 							<div class="right-Submenu-2depth">
 								<!-- 1depth Menu -->
-								시설 이용 안내 
+								건물안내도
 							</div>
 							
 							<!-- 우측 본문 시작 -->
-							<div class="typography-block">
-								<div class="blockqoute-tp-a">
-								<span>
-									생성 중입니다...만 기술적 구현 정도 및 정부와의 협약 내용에 따라 미구현 될 수 있음을 참고바랍니다.
-								</span>
+							<!-- 우측 본문 시작 -->
+							<div class="typography" style="margin-top: 40px;">
+								<div class="content-wrapper">
+								
+									<div class="portfolio-full">
+										<div class="portfolio-full-img  div-portfolio-full-img" >
+											<!-- 1100 x 634px; -->
+											<img alt=""  src="/img_custom/건물안내도.jpg" />
+										</div>
+									</div>
+									
 								</div>
 							</div>
+									
 							<!-- 우측 본문 끝 -->
 					
 				
