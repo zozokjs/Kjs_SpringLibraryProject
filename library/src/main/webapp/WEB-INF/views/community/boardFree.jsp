@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_Community.jsp"%>
-<link rel="stylesheet" href="/css_custom/community/boardFreeInfor.css" />
+<link rel="stylesheet" href="/css_custom/community/boardFree.css" />
 
 
 				

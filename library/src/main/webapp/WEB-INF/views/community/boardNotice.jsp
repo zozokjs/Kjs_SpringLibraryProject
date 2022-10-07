@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/submenu_Community.jsp"%>
+<link rel="stylesheet" href="/css_custom/community/boardNotice.css" />
 
 				<div class="two-colls-right"><!-- 우측 메인 시작 -->
 					<div class="two-colls-right-b">
@@ -59,17 +60,17 @@
 							<div class="pagination pagination-custom  div-pagination"  >	<!-- 페이지 버튼 시작 -->
 								<!-- 이전 버튼 -->
 				                <c:choose>
-									<c:when test="${community.first }">
+									<c:when test="${boardNotice.first }">
 									</c:when>
 									<c:otherwise>
-										<a class="" href="?page=${community.number-1}">이전</a>
+										<a class="" href="?page=${boardNotice.number-1}">이전</a>
 									</c:otherwise>
 								</c:choose>
 								
 								<!-- 현재 페이지일 때 Active  -->
 				                <c:forEach var="index" begin="${startPage}" end="${endPage}">
 			                      	<c:choose>
-										<c:when test="${community.number+1  eq index}" >
+										<c:when test="${boardNotice.number+1  eq index}" >
 										   <a class="active" href="#">${index}</a>
 										</c:when>
 										<c:otherwise>
@@ -80,10 +81,10 @@
 								
 								<!-- 다음 버튼 -->
 								<c:choose>
-									<c:when test="${community.last }">
+									<c:when test="${boardNotice.last }">
 									</c:when>
 									<c:otherwise>
-										<a class=""  href="?page=${community.number+1}">다음</a>
+										<a class=""  href="?page=${boardNotice.number+1}">다음</a>
 									</c:otherwise>
 								</c:choose>
 									

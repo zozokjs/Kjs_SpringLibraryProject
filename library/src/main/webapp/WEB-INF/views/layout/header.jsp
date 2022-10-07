@@ -58,9 +58,6 @@
 	<link rel="stylesheet" href="/css_custom/auth/signupSuccess.css" />
 	
 	<link rel="stylesheet" href="/css_custom/layout/header.css" />
-	
-	<link rel="stylesheet" href="/css_custom/community/boardFree.css" />
-	<link rel="stylesheet" href="/css_custom/community/boardNotice.css" />
 	<!-- Style Custom End-->
 	
 	
