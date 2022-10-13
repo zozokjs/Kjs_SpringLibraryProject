@@ -82,19 +82,6 @@
 				<div class="typography" style="margin-top:40px;">
 					<div class="content-wrapper">
 						<div class="typography-block">
-							<h1>방문객에게 알립니다</h1>
-							<div class="blockqoute-tp-a">
-								<span>
-									진우도에 접근하셔도 육체 형태로는 도서관 포털 진입이 불가합니다.<br>
-									진우도 지반이 매우 연약하오니 소담공원 내에 위치한 포털 사용 시 주의바랍니다.<br>
-									소담공원 근방에는 주차공간이 없사오니 대중교통 이용 바랍니다.
-								</span> <b></b>
-							</div>
-						</div>
-						
-						<hr>
-							
-						<div class="typography-block">
 							<h1>대중교통 이용시</h1>
 							<p class="guide_pTag">
 								(1) 1호선 하단역 하차 후 '하단역 버스정류장'에서 3번 버스 탑승 <br>
@@ -111,6 +98,19 @@
 								(1) 네비게이션에 '부산 소담공원' 입력 후 이동<br>
 								(2) 소담공원에 위치한 안내문에 따라 바닷가 쪽으로 이동 후 포털 사용
 							</p>
+						</div>
+						
+						<hr>
+						
+						<div class="typography-block">
+							<h1>주의사항</h1>
+							<div class="blockqoute-tp-a">
+								<span>
+									진우도에 접근하셔도 육체 형태로는 도서관 포털 진입이 불가합니다.<br>
+									진우도 지반이 매우 연약하므로 진우도 상륙과 관련한 안전을 보장하지는 않습니다.<br>
+									소담공원 근방에는 주차공간이 없습니다. 대중교통 이용 바랍니다.
+								</span> <b></b>
+							</div>
 						</div>
 						
 					
